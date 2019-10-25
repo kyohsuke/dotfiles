@@ -1,0 +1,12 @@
+#!/bin/bash
+if [ $# -lt 1 ];then
+   echo "Usage: brew relink <packagename> <packagename> ..."
+   exit 1
+fi
+args=("$@")
+argn=$#
+for i in $(seq $argn)
+do
+  brew unlink ${args[$i-1]} && brew link ${args[$i-1]}
+done
+exit 0

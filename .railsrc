@@ -1,0 +1,5 @@
+--skip-spring
+--skip-sprockets
+--skip-test
+--skip-system-test
+--skip-listen

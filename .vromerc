@@ -1,0 +1,5 @@
+imap <M-a> <C-a>
+iunmap <C-a>
+iunmap <M-l>
+set disablesites=mail.google.com, docs.google.com, twitter.com, live.sukima.in, www.youtube.com, medium.com
+set show_disabled_text=0

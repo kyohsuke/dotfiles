@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+TARGET_DIR="`pwd`"
+if [ $# -ge 1 ]; then
+  TARGET_DIR=$1
+fi
+
+echo "Searching Gemfiles..."
+for gemfile in `find $TARGET_DIR -name "Gemfile" | grep -v "\/\."`; do
+  echo "[Found] $gemfile"
+  bundle install --jobs=5 --gemfile=$gemfile
+done

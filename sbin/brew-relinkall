@@ -1,0 +1,1 @@
+brew relink `brew list`

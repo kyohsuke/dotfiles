@@ -1,0 +1,57 @@
+#!/usr/bin/env ruby
+require 'bundler/inline'
+
+gemfile do
+  source 'https://rubygems.org'
+  gem 'rubydns', '~> 2.0.2'
+end
+
+IS_MAC = RbConfig::CONFIG['host_os'].match?(/darwin|mac os/)
+IN = Resolv::DNS::Resource::IN
+PREV_DNS = if IS_MAC
+  dns = `networksetup -getdnsservers Wi-Fi`.split("\n").join(' ')
+  dns&.match?("There aren't any DNS Servers set") ? nil : dns
+else
+  nil
+end
+DEFAULT_UPSTREAMS = if IS_MAC
+  `cat /etc/resolv.conf`.split("\n").select {|str| str.start_with? 'nameserver' }.map {|ns| ns.tr('nameserver', '').strip }.join(',')
+else
+  '8.8.8.8,8.8.4.4'
+end
+UPSTREAMS = ENV.fetch('NANODNS_UPSTREAMS', DEFAULT_UPSTREAMS).split(',')
+
+INTERFACE_IP = ENV.fetch('NANODNS_INTERFACE_IP', '127.0.0.1')
+INTERFACE_PORT = ENV.fetch('NANODNS_INTERFACE_PORT', '53').to_i
+
+UPSTREAM = RubyDNS::Resolver.new(UPSTREAMS.map {|us| [[:udp, us, 53], [:tcp, us, 53]] }.flatten(1))
+puts "[INFO] UPSTREAMS #{UPSTREAMS}"
+
+DOMAIN = ENV.fetch('NANODNS_DOMAIN', ARGV.shift || "nanodns.test").tr('.', '\.')
+IP = ENV.fetch('NANODNS_IP', ARGV.shift || "127.0.0.1")
+
+
+begin
+  RubyDNS::run_server([[:udp, INTERFACE_IP, INTERFACE_PORT], [:tcp, INTERFACE_IP, INTERFACE_PORT]]) do
+    puts "[INFO] *.#{DOMAIN.tr('\.', '.')} IN A #{IP}"
+
+    `networksetup -setdnsservers Wi-Fi #{INTERFACE_IP}` if IS_MAC
+
+    match(/#{DOMAIN}/, IN::A) do |transaction|
+      q = transaction.query.question.flatten
+      puts "[QUESTION] #{q.first} #{q.last}"
+      puts "[RESP] #{IP}"
+      transaction.respond!(IP, ttl: 60)
+    end
+
+    otherwise do |transaction|
+      transaction.passthrough!(UPSTREAM)
+    end
+
+    puts "nanodns started."
+  end
+
+rescue Interrupt
+  `networksetup -setdnsservers Wi-Fi #{PREV_DNS || 'EMPTY'}` if IS_MAC
+  puts "\rinterrupted."
+end

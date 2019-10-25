@@ -1,0 +1,15 @@
+# write your settings without Host/Match
+LogLevel ERROR
+TcpKeepAlive no
+Compression yes
+ForwardAgent yes
+
+# PersistControl
+ControlPersist 10
+ServerAliveInterval 15
+ServerAliveCountMax 3
+
+# Identity Files
+IdentityFile ~/.ssh/id_ed25519
+IdentityFile ~/.ssh/id_ecdsa
+IdentityFile ~/.ssh/id_rsa

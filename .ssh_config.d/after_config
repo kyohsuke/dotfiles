@@ -1,0 +1,14 @@
+# write your settings with Host/Match
+
+Host bitbucket.org
+  ControlMaster no
+  Ciphers aes128-cbc,aes192-cbc,aes256-cbc
+
+Host github.com bitbucket.org gitlab.com
+  IdentitiesOnly yes
+  Ciphers aes128-cbc,aes192-cbc,aes256-cbc
+
+Host *
+  ControlMaster auto
+  ControlPath ~/.ssh/mux-%C
+  Ciphers chacha20-poly1305@openssh.com,aes256-gcm@openssh.com,aes128-gcm@openssh.com,aes256-ctr,aes192-ctr,aes128-ctr

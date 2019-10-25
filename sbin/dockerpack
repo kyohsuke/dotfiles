@@ -1,0 +1,31 @@
+#!/bin/bash
+if [ $# -lt 1 ]; then
+  REALPATH=$0
+  echo "Usage: ${REALPATH##*/} <packagename>"
+  exit 1
+fi
+
+TEMP_NAME="temp/temp-`date +%s`"
+trap "docker stop ${IMAGE_ID};docker rmi -f ${TEMP_NAME}; exit 1" INT TERM
+
+set -e
+TARGET_CONTAINER=$1
+
+echo "[INFO] Delete Previous Image."
+(docker rmi -f ${TARGET_CONTAINER} || echo 0);
+
+docker build -t=$TEMP_NAME .
+if [[ $? -ne 0 ]]; then
+  echo "[ERR] Build Failed, Stop."
+  exit 1
+fi
+
+echo "[INFO] Running Created Image."
+IMAGE_ID=$(docker run -td $TEMP_NAME)
+
+echo "[INFO] RePack Image."
+docker export ${IMAGE_ID} | docker import - ${TARGET_CONTAINER}
+echo "[INFO] Stop Image."
+docker stop ${IMAGE_ID}
+echo "[INFO] Remove Temporary Image."
+docker rmi -f ${TEMP_NAME}:latest

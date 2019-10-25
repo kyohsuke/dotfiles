@@ -1,0 +1,23 @@
+#!/usr/bin/ruby
+
+# Fixing readline with rbenv on Mac OSX
+# At first, you should run 'brew install readline && brew link readline'
+# See Also: http://qiita.com/items/c82657b5cb4bdb2aaac4
+
+readline = ENV['READLINE'] || "/usr/local/opt/readline/lib/libreadline.dylib"
+
+`find $(rbenv root)/versions -name readline.bundle`.split("\n").each do |rlp|
+  libreadline = `otool -L #{rlp}`.split("\n").find {|l| l.include?("libreadline") }.to_s.strip
+
+  if 0 < libreadline.size
+    puts '-------------------'
+    puts libreadline
+    puts '-------------------'
+    libedit_path = libreadline.scan(/(\/usr.+\.dylib)/).flatten.first.to_s
+    unless libedit_path.strip == readline.strip
+      cmd = "install_name_tool -change #{libedit_path} #{readline} #{rlp}"
+      puts cmd
+      # `#{cmd}`
+    end
+  end
+end

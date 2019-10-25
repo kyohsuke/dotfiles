@@ -1,0 +1,84 @@
+# vim: filetype=gitconfig
+[user]
+  name = KAWAHARA Keisuke
+[ghq]
+  root = ~/src
+[core]
+  excludesfile = ~/.gitignore.global
+[include]
+  path = ~/.gitconfig.local
+[submodule]
+  fetchJobs = 4
+[remote "origin"]
+  prune = true
+[credential]
+  helper = store --file ~/.git-credentials
+[color]
+  branch = auto
+  diff = auto
+  status = auto
+[push]
+  default = current
+  followTags = true
+[gc]
+  reflogExpire = 0
+  reflogExpireUnreachable = 0
+  rerereresolved = 0
+  rerereunresolved = 0
+  pruneExpire = now
+[alias]
+  branch = --no-pager branch
+  branches = --no-pager branch -a
+  tags = tag
+  stashes = stash list
+  remotes = remote -v
+
+  pull = pull --recurse-submodules
+  rename = branch -m
+
+  graph = log --graph --date=short --decorate=short --pretty=format:'%Cgreen%h %Creset%cd %Cblue%cn %Cred%d %Creset%s'
+  compress = repack -f -a -d --depth=250 --window=250
+
+  sdiff = difftool
+  last = sdiff HEAD~1
+  dig = log -p --pickaxe-all -S
+  precommit = diff --cached --diff-algorithm=minimal -w
+
+  mkb = checkout -b 
+  current-branch = rev-parse --abbrev-ref HEAD
+  delete-merged-branches = "!git checkout master && git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
+  delete-tag="!f(){ if [ -n \"$1\" ]; then git tag -d $1; git push origin --delete $1;; fi; };f"
+  export = "!f(){ CURRENT=`git current-branch` && git archive $CURRENT | bzip2 > $CURRENT.tbz2 ;};f"
+  dmb = delete-merged-branches 
+
+  setfork = "!f(){ git remote add upstream $1;};f"
+  refork = "!f(){ git fetch upstream && git checkout master && git rebase upstream/master ;};f"
+
+  subpull = "!f(){ git submodule foreach 'git checkout master; git pull --rebase';};f"
+
+  cleanup= "!f(){ git reflog expire --expire=now --all && git gc --prune=now;};f"
+
+  gc = gc --aggressive
+
+  amend = commit --amend
+  unstage = reset -q HEAD --
+  discard = checkout --
+  uncommit = reset --mixed HEAD~
+
+[pager]
+  difftool = true
+  branch = cat
+[interactive]
+  diffFilter = diff-highlight
+[diff]
+  compactionHeuristic = true
+  tool=icdiff
+[difftool]
+  prompt = false
+[difftool "icdiff"]
+  cmd = icdiff \"$LOCAL\" \"$REMOTE\"
+[merge]
+  tool = gvimdiff
+[mergetool]
+  prompt = false
+  keepBackup = false

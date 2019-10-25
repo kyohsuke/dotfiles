@@ -1,0 +1,81 @@
+#!/usr/bin/env bash
+TEMPDIR=$(mktemp -d)
+
+function cleanup {
+  rm -rf "$TEMPDIR"
+}
+trap cleanup EXIT
+
+if ! [ -f "$HOME/.install" ]; then
+  # Put machine processors to environment
+  grep --quiet MACHINE_PROCESSORS "$HOME/.zshenv.local" || echo "export MACHINE_PROCESSORS=$(ruby -retc -e 'puts Etc.nprocessors')" >> "$HOME/.zshenv.local"
+  # shellcheck disable=SC2016
+  grep --quiet HOMEBREW_MAKE_JOBS "$HOME/.zshenv.local" || echo 'export HOMEBREW_MAKE_JOBS=$MACHINE_PROCESSORS' >> "$HOME/.zshenv.local"
+  # shellcheck disable=SC2016
+  grep --quiet BUNDLE_JOBS "$HOME/.zshenv.local" || echo 'export BUNDLE_JOBS=$MACHINE_PROCESSORS' >> "$HOME/.zshenv.local"
+  # shellcheck disable=SC2016
+  grep --quiet MAKE_OPTS "$HOME/.zshenv.local" || echo 'export MAKE_OPTS="-j $MACHINE_PROCESSORS"' >> "$HOME/.zshenv.local"
+
+  # Ask for the administrator password upfront
+  sudo -v
+
+  # Keep-alive: update existing `sudo` time stamp until the script has finished
+  while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+
+
+  # Check for Homebrew,
+  # Install if we don't have it
+  if test ! "$(command -v brew)"; then
+    echo "Installing homebrew..."
+    ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+    # Make sure we’re using the latest Homebrew.
+    brew update
+    # Upgrade any already-installed formulae.
+    brew upgrade --all
+  fi
+
+  # clone dotfiles and convert https to ssh
+  git clone https://github.com/kyohsuke/dotfiles.git "$TEMPDIR"
+  cd "$TEMPDIR" || exit
+
+  # copy dotfiles
+  find . -mindepth 1 -maxdepth 1 -print0 | xargs -P 4 -0 -I{} mv -f {} "$HOME/"
+  cd "$HOME" || exit
+  git submodule update --init
+fi
+
+echo "WORK? [Y/n]"
+read -r ANSWER
+case $(echo "$ANSWER" | tr y Y) in
+    "" | Y* )
+      export WORK="true"
+      ;;
+    *       )
+      export WORK="false"
+      ;;
+esac
+
+echo "change OSX defaults? [y/N]"
+read -r ANSWER
+case $(echo "$ANSWER" | tr n N) in
+    "" | N* )
+      export CHANGE_OSX_DEFAULTS="false"
+      ;;
+    *       )
+      export CHANGE_OSX_DEFAULTS="true"
+      ;;
+esac
+
+TARGET_DIR="$HOME/.setups"
+for STEP in $(find "$TARGET_DIR" -name '*.sh'| sort)
+do
+  STEP_FILE="${STEP##$TARGET_DIR/}"
+  echo "[EXEC] $STEP_FILE"
+  bash "$HOME/.setups/$STEP_FILE"
+done
+
+echo "Cleaning up homebrew..."
+brew cleanup
+# vim: expandtab softtabstop=2 shiftwidth=2
+# vim: foldmethod=marker
+# vim: filetype=sh

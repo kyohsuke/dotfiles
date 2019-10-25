@@ -1,0 +1,55 @@
+# Ignore All Files
+/*
+/.*
+# add tracking files
+!/.zshrc
+!/.gvimrc
+!/.vimrc
+!/.vimlc
+!/.zsh
+!/.zshenv
+!/.zprofile
+!/.vimshrc
+!/.vimrc.d
+!/.vim
+!/.gitconfig
+!/.gitignore
+!/.gitmodules
+!/.gitattributes
+!/.gemrc
+!/.rspec
+!/.peco
+!/sbin
+!/skkdic
+!/.ssh_config.d
+!/.gitignore.global
+!/.vromerc
+!/.Brewfile
+!/.install
+!/.requirements.3.txt
+!/.python-version
+!/.ruby-version
+!/.go-version
+!/.go-package
+!/.zsh-completions
+!/.zsh-custom
+!/.zlogin
+!/.setups
+!/.inputrc
+!/.pryrc
+!/.railsrc
+!/.ruby-version
+!/.python-version
+!/.node-version
+
+# Add Tracking only .bundle/config
+!/.bundle
+/.bundle/*
+!/.bundle/config
+!/.dein
+
+# Ignore Files
+/.vim/plugged/
+/.vim/.netrwhist
+/.vim/pack
+/.oh-my-zsh

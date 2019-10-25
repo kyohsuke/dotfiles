@@ -1,0 +1,12 @@
+[submodule ".zsh/zaw"]
+	path = .zsh/zaw
+	url = https://github.com/zsh-users/zaw.git
+[submodule ".zsh/bd"]
+	path = .zsh/bd
+	url = https://github.com/Tarrasch/zsh-bd.git
+[submodule ".rb"]
+	path = .rb
+	url = https://github.com/thisredone/rb.git
+[submodule ".zsh/zsh-system-clipboard"]
+	path = .zsh/zsh-system-clipboard
+	url = https://github.com/kutsan/zsh-system-clipboard

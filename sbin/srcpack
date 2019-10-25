@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+PARENT_DIR=$(pwd)
+function finish {
+  cd "$PARENT_DIR" || return
+}
+trap finish EXIT
+
+DIRECTORIES=$(find "$HOME/src" -name '.git')
+for DIR in $DIRECTORIES;
+do
+  TARGET=$(dirname "$DIR")
+  echo "[INFO] Execute git gc --aggressive to $TARGET"
+  cd "$TARGET" || exit
+  git gc --aggressive
+done

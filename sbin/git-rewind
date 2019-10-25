@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+TARGET=$(git reflog | peco --select-1 | awk '{print $2}' | sed 's/://g' | head -1)
+
+if [ -n "$TARGET" ]; then
+  echo "git reset --hard $TARGET"
+fi
