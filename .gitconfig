@@ -44,6 +44,8 @@
   dig = log -p --pickaxe-all -S
   precommit = diff --cached --diff-algorithm=minimal -w
 
+  squash-all = "!f(){ git reset $(git commit-tree HEAD^{tree} -m \"${1:-A new start}\");};f"
+
   mkb = checkout -b 
   current-branch = rev-parse --abbrev-ref HEAD
   delete-merged-branches = "!git checkout master && git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
