@@ -13,7 +13,5 @@ if ! [ -d "$HOME/Library/Application Support/AquaSKK" ]; then
   done
 
   # Set rules on AquaSKK
-  mkdir -p ~/Library/Application\ Support/AquaSKK/
-  cp -f ~/skkdic/question.rule ~/Library/Application\ Support/AquaSKK/
-  cp -f ~/skkdic/sub-rule.desc ~/Library/Application\ Support/AquaSKK/
+  bash "$HOME/skkdic/install.sh"
 fi
