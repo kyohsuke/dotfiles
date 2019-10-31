@@ -46,9 +46,6 @@ if [[ -z $ZSHENV_LOAD ]] {
   # pyenv
   export PYTHON_CONFIGURE_OPTS="--enable-framework"
 
-  # rbenv
-  export RUBY_CONFIGURE_OPTS="--enable-shared"
-
   # bat
   export BAT_STYLE="plain"
 
