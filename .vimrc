@@ -34,7 +34,6 @@ call plug#begin('~/.vim/plugged')
     Plug 'maralla/vim-toml-enhance' 
 
   " Syntax for markdown
-  Plug 'previm/previm'
   Plug 'tpope/vim-markdown'
     Plug 'joker1007/vim-markdown-quote-syntax'
 
@@ -46,8 +45,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'kana/vim-smartchr'
   Plug 'yssl/QFEnter'
   Plug 'kyohsuke/sinplu.vim'
-  Plug 'zxqfl/tabnine-vim'
-  " Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --gocode-completer' }
+
+  Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --gocode-completer' }
   Plug 'kyohsuke/yaml-key.vim'
   Plug 'hotwatermorning/auto-git-diff'
 
@@ -351,6 +350,7 @@ set visualbell t_vb=
 set colorcolumn=80,128
 set clipboard=unnamed
 set completeopt-=preview 
+set number
 set relativenumber
 
 " {{{ Vim Technique Bible 1-10
@@ -387,7 +387,7 @@ set noswapfile " Kill Swapfile
 set ambiwidth=double
 set backspace=indent,eol,start
 set laststatus=2
-set statusline=%<%f\ %m%r%h%w[%Y]%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}%=%l,%c%V%8P
+set statusline=%<%f\ %m%r%h%w[%Y]%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}%=%c%V%8P
 
 set noshowcmd
 set ignorecase
