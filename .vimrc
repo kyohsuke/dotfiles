@@ -46,7 +46,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'kana/vim-smartchr'
   Plug 'yssl/QFEnter'
   Plug 'kyohsuke/sinplu.vim'
-  Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --gocode-completer' }
+  Plug 'zxqfl/tabnine-vim'
+  " Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --gocode-completer' }
   Plug 'kyohsuke/yaml-key.vim'
   Plug 'hotwatermorning/auto-git-diff'
 

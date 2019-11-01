@@ -1,5 +1,0 @@
-livestreamer
-streamlink
-thefuck
-pgcli
-mycli

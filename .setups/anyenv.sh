@@ -13,6 +13,7 @@ NODENV_PLUGINS=(
 
 PYENV_PLUGINS=(
   yyuu/pyenv-pip-migrate
+  jawshooah/pyenv-default-packages
 )
 
 RBENV_PLUGINS=(
@@ -40,6 +41,9 @@ install_pyenv_plugins() {
       git clone "https://github.com/${PLUGIN}" "$(pyenv root)/plugins/${PLUGIN##*/}"
     fi
   done
+cat <<EOS > "$(rbenv root)/default-packages"
+thefuck
+EOS
 }
 
 install_rbenv_plugins() {
@@ -120,23 +124,9 @@ if ! [ -e "$HOME/.anyenv" ]; then
       pyenv install "$VERSION"
     done
     pyenv rehash
-    if [ -f "$HOME/.requirements.3.txt" ]; then
-      if [ -n "$(command -v pip3)" ]; then
-        pip3 install -Ur "$HOME/.requirements.3.txt"
-      fi
-    fi
-    if [ -f "$HOME/.requirements.2.txt" ]; then
-      if [ -n "$(command -v pip2)" ]; then
-        pip2 install -Ur "$HOME/.requirements.2.txt"
-      fi
-    fi
   fi
 fi
 
 install_nodenv_plugins
 install_pyenv_plugins
 install_rbenv_plugins
-
-# put bundle jobs to environment
-# shellcheck disable=SC2016
-grep --quiet BUNDLE_JOBS "$HOME/.zshenv.local" || echo 'export BUNDLE_JOBS=$MACHINE_PROCESSORS' >> "$HOME/.zshenv.local"
