@@ -26,7 +26,8 @@
 !/.vromerc
 !/.Brewfile
 !/.install
-!/.requirements.3.txt
+!/.default-gems
+!/.default-packages
 !/.python-version
 !/.ruby-version
 !/.go-version

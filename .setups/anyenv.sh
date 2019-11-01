@@ -41,9 +41,7 @@ install_pyenv_plugins() {
       git clone "https://github.com/${PLUGIN}" "$(pyenv root)/plugins/${PLUGIN##*/}"
     fi
   done
-cat <<EOS > "$(rbenv root)/default-packages"
-thefuck
-EOS
+ln -s "$HOME/.default-packages" "$(pyenv root)/default-packages"
 }
 
 install_rbenv_plugins() {
@@ -54,11 +52,7 @@ do
     git clone "https://github.com/${PLUGIN}" "$(rbenv root)/plugins/${PLUGIN##*/}"
   fi
 done
-cat <<EOS > "$(rbenv root)/default-gems"
-bundler
-bundler-audit
-solargraph
-EOS
+ln -s "$HOME/.default-gems" "$(rbenv root)/default-gems"
 }
 
 
