@@ -46,6 +46,9 @@ if [[ -z $ZSHENV_LOAD ]] {
   # pyenv
   export PYTHON_CONFIGURE_OPTS="--enable-framework CC=clang"
 
+  # rbenv
+  export RUBY_BUILD_HTTP_CLIENT="aria2c"
+
   # bat
   export BAT_STYLE="plain"
 
