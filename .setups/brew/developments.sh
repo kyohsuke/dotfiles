@@ -29,6 +29,7 @@ TOOLS=(
   git-extras
   terminal-notifier
   go
+  aria2
 )
 
 LIST=""
