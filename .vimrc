@@ -436,6 +436,7 @@ augroup FileTypes
   autocmd BufRead,BufNewFile {before_config,.ssh_config.local,after_config} setlocal filetype=sshconfig
   autocmd BufRead,BufNewFile {*.md,*.mkd,*.markdown}                        setlocal filetype=markdown
   autocmd BufRead,BufNewFile {*.js,*.jsx,*.es6}                             setlocal filetype=javascript
+  autocmd BufRead,BufNewFile {*.ts,*.tsx}                                   setlocal filetype=typescript
 
   " Rspec / TestUnit
   autocmd BufRead,BufNewFile *_spec.rb setlocal filetype=ruby.rspec
