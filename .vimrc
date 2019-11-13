@@ -3,9 +3,21 @@
 
 " {{{ MacVim 8 patch 1272 or above
 if has('vim_starting') && has('mac')
-  let g:rubydll_path = substitute(system('rbenv prefix')."/lib/libruby.dylib", "\n", '', 'g')
+  let s:rubydll_path = substitute(system('rbenv prefix')."/lib/libruby.dylib", "\n", '', 'g')
   set rubydll&
-  exe "set rubydll=".g:rubydll_path
+  exe "set rubydll=".s:rubydll_path
+
+  " PythonX
+  set pythonthreehome&
+  set pythonthreedll&
+  set pyx&
+  set pyxversion&
+  set pyx=3
+  set pyxversion=3
+  let s:pyenv_root_path = system('pyenv prefix')
+  let s:pyenv_dll_path = substitute(system("ls \"$(pyenv prefix)/lib/libpython3.\"*m.dylib"), "\n", '', 'g')
+  exe 'set pythonthreehome='.s:pyenv_root_path
+  exe 'set pythonthreedll='.s:pyenv_dll_path
 endif
 " }}}
 " {{{ vim-plug
@@ -27,7 +39,9 @@ call plug#begin('~/.vim/plugged')
   Plug 'ekalinin/Dockerfile.vim'
   Plug 'slim-template/vim-slim'
   Plug 'tpope/vim-haml'
-  Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
+  Plug 'fatih/vim-go', { 
+        \ 'do': ':GoInstallBinaries' 
+        \ }
 
   " Syntas for toml
   Plug 'cespare/vim-toml'
@@ -46,9 +60,18 @@ call plug#begin('~/.vim/plugged')
   Plug 'yssl/QFEnter'
   Plug 'kyohsuke/sinplu.vim'
 
-  Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --gocode-completer' }
   Plug 'kyohsuke/yaml-key.vim'
   Plug 'hotwatermorning/auto-git-diff'
+
+  Plug 'roxma/vim-hug-neovim-rpc'
+  Plug 'roxma/nvim-yarp'
+  Plug 'shougo/deoplete.nvim'
+    Plug 'Shougo/neco-vim'
+    Plug 'Shougo/neco-syntax'
+    Plug 'deoplete-plugins/deoplete-zsh'
+  Plug 'prabirshrestha/async.vim'
+  Plug 'prabirshrestha/vim-lsp'
+    Plug 'lighttiger2505/deoplete-vim-lsp'
 
   " Ruby
   Plug 'thoughtbot/vim-rspec'
@@ -62,7 +85,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'soh335/vim-ref-pman'
 
   Plug 'LeafCage/foldCC.vim'
-  Plug 'Shougo/vimproc', { 'do':  'make' }
+  Plug 'Shougo/vimproc.vim', { 'do':  'make' }
   Plug 'Shougo/vinarise'
   Plug 'ctrlpvim/ctrlp.vim'
 
@@ -233,9 +256,27 @@ endif
         \   ['(ind)ex$', '\1exes', 'i']
         \ ]
   " }}}
-  " {{{ YouCompleteMe
-  let g:ycm_add_preview_to_completeopt = 0
-  let g:ycm_autoclose_preview_window_after_completion = 0
+  " {{{ deoplete
+  inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+  let g:deoplete#enable_at_startup = 1
+	call deoplete#custom#var('omni', 'input_patterns', {
+        \ 'ruby': ['[^. *\t]\.\w*', '[a-zA-Z_]\w*::'],
+		    \ 'java': '[^. *\t]\.\w*',
+		    \ 'php': '\w+|[^. \t]->\w*|\w+::\w*',
+		    \ })
+    " {{{ deoplete-vim-lsp
+    if executable('solargraph')
+      augroup LspRuby
+        autocmd!
+        autocmd User lsp_setup call lsp#register_server({
+              \ 'name': 'solargraph',
+              \ 'cmd': {server_info->[&shell, &shellcmdflag, 'solargraph', 'stdio']},
+              \ 'whitelist': ['ruby'],
+              \ })
+      augroup END
+    endif
+    " }}}
+
   " }}}
   " {{{ vim-ref
   nnoremap ,rpy :<C-u>Ref<Space>pydoc<Space>
