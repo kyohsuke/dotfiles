@@ -32,6 +32,7 @@ alias git=hub
 alias zshconfig="$EDITOR ~/.zshrc"
 alias ohmyzsh="$EDITOR ~/.oh-my-zsh"
 alias vimrc="$EDITOR ~/.vimrc"
+alias f='thefuck'
 # }}}
 # {{{ Functions
 function twitch() {
