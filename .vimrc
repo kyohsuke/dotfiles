@@ -76,8 +76,7 @@ call plug#begin('~/.vim/plugged')
   " Ruby
   Plug 'thoughtbot/vim-rspec'
   Plug 'tpope/vim-bundler'
-  Plug 'vim-ruby/vim-ruby'
-    Plug 'tpope/vim-rails'
+  Plug 'tpope/vim-rails'
 
   " vim-ref
   Plug 'thinca/vim-ref'
@@ -307,10 +306,6 @@ endif
   let g:ruby_indent_access_modifier_style = 'normal'
   let g:ruby_indent_block_style = 'do'
   let g:ruby_indent_assignment_style = 'variable'
-
-  " Omni
-  let g:rubycomplete_rails = 1
-  let g:rubycomplete_use_bundler = 1
 
   " Syntax
   let g:ruby_operators = 1
