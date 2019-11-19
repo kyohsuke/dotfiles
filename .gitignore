@@ -30,6 +30,7 @@
 !/.default-packages
 !/.python-version
 !/.ruby-version
+!/.perl-version
 !/.go-version
 !/.go-package
 !/.zsh-completions
