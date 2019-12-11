@@ -55,3 +55,4 @@
 /.vim/.netrwhist
 /.vim/pack
 /.oh-my-zsh
+/.vim/autoload/plug.vim.old
