@@ -3,7 +3,6 @@
 # Install services
 SERVICES=(
   mysql@5.5
-  postgresql@10
   redis
 )
 

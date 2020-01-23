@@ -30,6 +30,7 @@ TOOLS=(
   terminal-notifier
   go
   aria2
+  libpq
 )
 
 LIST=""
