@@ -344,7 +344,6 @@ nnoremap <expr> h virtcol('.') == 1 && foldlevel(line('.')) > 0 ? 'zc' : 'h'
 nnoremap <expr> l foldclosed(line('.')) != -1 ? 'zo0' : 'l'
 vnoremap <expr> h virtcol('.') == 1 && foldlevel(line('.')) > 0 ? 'zcgv' : 'h'
 vnoremap <expr> l foldclosed(line('.')) != -1 ? 'zogv0' : 'l'
-vnoremap <expr> . match(getline(min([line('.'), line('v')])), ") && 0 <= match(getline(max([line('.'), line('v')])), ") ? 'zd' : 'zf'
 " }}}
 " Individual Remap 
 nnoremap <silent> ,sh :<C-u>:terminal<Return>
