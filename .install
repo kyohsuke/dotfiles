@@ -27,7 +27,8 @@ if ! [ -f "$HOME/.install" ]; then
   # Install if we don't have it
   if test ! "$(command -v brew)"; then
     echo "Installing homebrew..."
-    ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+    bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+
     # Make sure we’re using the latest Homebrew.
     brew update
     # Upgrade any already-installed formulae.
