@@ -47,22 +47,22 @@ fi
 
 echo "WORK? [Y/n]"
 read -r ANSWER
-case $(echo "$ANSWER" | tr y Y) in
-    "" | Y* )
+case "$ANSWER" in
+    "" | [Yy]* )
       export WORK="true"
       ;;
-    *       )
+    * )
       export WORK="false"
       ;;
 esac
 
 echo "change OSX defaults? [y/N]"
 read -r ANSWER
-case $(echo "$ANSWER" | tr n N) in
-    "" | N* )
+case "$ANSWER" in
+    "" | [Nn]* )
       export CHANGE_OSX_DEFAULTS="false"
       ;;
-    *       )
+    * )
       export CHANGE_OSX_DEFAULTS="true"
       ;;
 esac
