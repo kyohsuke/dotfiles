@@ -496,6 +496,9 @@ augroup FileTypes
   " YAML
   autocmd FileType yaml setlocal indentexpr=
 
+  " Ruby
+  autocmd FileType ruby set omnifunc=
+
   " Markdown
   autocmd FileType markdown setlocal ts=4 sts=4 sw=4
   autocmd FileType markdown syntax sync fromstart
