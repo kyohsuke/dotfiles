@@ -384,7 +384,7 @@ set t_Co=256
 set visualbell t_vb=
 set colorcolumn=80,128
 set clipboard=unnamed
-set completeopt-=preview 
+set completeopt=menu,noselect
 set number
 set relativenumber
 
