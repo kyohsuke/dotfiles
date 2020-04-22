@@ -9,6 +9,7 @@ ANYENVS=(
 NODENV_PLUGINS=(
   pine/nodenv-yarn-install
   ouchxp/nodenv-nvmrc
+  nodenv/nodenv-default-packages
 )
 
 PYENV_PLUGINS=(
@@ -31,6 +32,7 @@ install_nodenv_plugins() {
       git clone "https://github.com/${PLUGIN}" "$(nodenv root)/plugins/${PLUGIN##*/}"
     fi
   done
+ln -s "$HOME/.default-node-packages" "$(nodenv root)/default-packages"
 }
 
 install_pyenv_plugins() {
