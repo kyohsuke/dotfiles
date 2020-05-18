@@ -48,7 +48,7 @@ fi
 echo "WORK? [Y/n]"
 read -r ANSWER
 case "$ANSWER" in
-    "" | [Yy]* )
+    ""|[yY]|[yY][eE][sS])
       export WORK="true"
       ;;
     * )
@@ -59,7 +59,7 @@ esac
 echo "change OSX defaults? [y/N]"
 read -r ANSWER
 case "$ANSWER" in
-    "" | [Nn]* )
+    ""[nN]|[nN][oO])
       export CHANGE_OSX_DEFAULTS="false"
       ;;
     * )
