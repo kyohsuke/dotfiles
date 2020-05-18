@@ -27,8 +27,8 @@ install_nodenv_plugins() {
   for PLUGIN in "${NODENV_PLUGINS[@]}";
   do
     echo "[CHECK] ${PLUGIN}"
-    if [ ! -d "$(ndenv root)/plugins/${PLUGIN##*/}" ]; then
-      git clone "https://github.com/${PLUGIN}" "$(ndenv root)/plugins/${PLUGIN##*/}"
+    if [ ! -d "$(nodenv root)/plugins/${PLUGIN##*/}" ]; then
+      git clone "https://github.com/${PLUGIN}" "$(nodenv root)/plugins/${PLUGIN##*/}"
     fi
   done
 }
