@@ -9,7 +9,6 @@ CASKS=(
   docker
   qlcolorcode
   qlstephen
-  qlmarkdown
   quicklook-json
   qlprettypatch
   quicklook-csv
