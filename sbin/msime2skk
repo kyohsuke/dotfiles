@@ -1,7 +1,5 @@
 #!/usr/bin/env ruby
-# encoding: UTF-8
-require 'nkf'
-require 'pp'
+require 'tempfile'
 
 if ARGV.empty? or ARGV.length < 2 or ARGV.length > 2 then
   puts "Usage: #{File.basename(__FILE__)} input_file output_jisyo_file"
@@ -11,29 +9,29 @@ end
 infile = ARGV.shift
 outfile = ARGV.shift
 
+return unless File.exist?(infile)
 
-input = File.open(infile)
-output = File.open('tmp.SKK-JISYO', 'w')
+Tempfile.open do |file|
+  {}.tap do |temp|
+    File.open(infile, encoding: Encoding::CP932).each_line do |line|
+      splits = line.encode(Encoding::UTF_8).chomp.split("\t")
+      if !splits.empty? and !splits[0].to_s.include?('!') and !splits[0].to_s.include?('＠') then
+        temp[splits[0]] = [] if temp[splits[0]].nil?
+        splits[-1] = splits[-1].to_s.gsub(' / ', ',') if splits.length == 4
 
+        temp[splits[0]].push([ splits[1], splits[-1] ]) if splits.length == 4
+        temp[splits[0]].push([ splits[1] ]) unless splits.length == 4
+      end
+    end
 
-temp = {}
+    File.open(file.path, 'w', encoding: Encoding::EUC_JP) do |output|
+      temp.each_pair do |key,words|
+        words.each do |word|
+          output.puts "#{key} /#{word.join(";")}/"
+        end
+      end
+    end
 
-while data = input.gets do
-  splits = NKF.nkf('-w', data.to_s).chomp.split("\t")
-  if !splits.empty? and !splits[0].to_s.include?("!") and !splits[0].to_s.include?("＠") then
-    temp[splits[0]] = [] if temp[splits[0]].nil?
-    splits[-1] = splits[-1].to_s.gsub(' / ', ',') if splits.length == 4
-
-    temp[splits[0]].push([ splits[1], splits[-1] ]) if splits.length == 4
-    temp[splits[0]].push([ splits[1] ]) unless splits.length == 4
+    `skkdic-expr2 #{file.path} > #{outfile}`
   end
 end
-
-temp.each_pair do |key,words|
-  words.each do |word|
-    output.puts "#{key} /#{word.join(";")}/"
-  end
-end
-
-`skkdic-expr2 tmp.SKK-JISYO | nkf -e > #{outfile}`
-`rm -f tmp.SKK-JISYO`
