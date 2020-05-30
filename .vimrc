@@ -334,6 +334,7 @@ set encoding=utf-8
 set fileencodings=ucs-bom,utf-8,euc-jp,cp932,iso-2022-jp
 set fileformats=unix,dos,mac
 set langmenu=ja_JP.utf-8
+set maxmempattern=10240
 
 " Kill termencoding on MacVim
 if !has('gui_macvim')
