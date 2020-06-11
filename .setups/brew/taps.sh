@@ -20,10 +20,6 @@ LIST="$LIST\\nbrew \"cert\""
 
 # Install misc files
 LIST="$LIST\\ncask \"macface-haruhi\""
-LIST="$LIST\\ncask \"font-hackgen\""
-
-# Install fira code
-LIST="$LIST\\ncask \"font-fira-code\""
 
 # Install act
 LIST="$LIST\\nbrew \"nektos/tap/act\""
