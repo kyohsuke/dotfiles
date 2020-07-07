@@ -42,12 +42,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'fatih/vim-go', { 
         \ 'do': ':GoInstallBinaries' 
         \ }
-
-  " Syntas for toml
   Plug 'cespare/vim-toml'
     Plug 'maralla/vim-toml-enhance' 
-
-  " Syntax for markdown
   Plug 'tpope/vim-markdown'
     Plug 'joker1007/vim-markdown-quote-syntax'
 
@@ -55,14 +51,18 @@ call plug#begin('~/.vim/plugged')
   Plug 'scrooloose/nerdtree'
     Plug 'Xuyuanp/nerdtree-git-plugin'
 
+  Plug 'previm/previm'
+
   Plug 'thinca/vim-quickrun'
   Plug 'kana/vim-smartchr'
   Plug 'yssl/QFEnter'
-  Plug 'kyohsuke/sinplu.vim'
 
+  Plug 'kyohsuke/sinplu.vim'
   Plug 'kyohsuke/yaml-key.vim'
+
   Plug 'hotwatermorning/auto-git-diff'
 
+  " Deoplete
   Plug 'roxma/vim-hug-neovim-rpc'
   Plug 'roxma/nvim-yarp'
   Plug 'shougo/deoplete.nvim'
@@ -85,7 +85,6 @@ call plug#begin('~/.vim/plugged')
 
   Plug 'LeafCage/foldCC.vim'
   Plug 'Shougo/vimproc.vim', { 'do':  'make' }
-  Plug 'Shougo/vinarise'
   Plug 'ctrlpvim/ctrlp.vim'
 
   Plug 'tpope/vim-dispatch'
@@ -327,6 +326,15 @@ endif
     exe "set runtimepath+=".globpath($GOPATH, "src/github.com/nsf/gocode/vim")
   endif
   " }}}
+  " {{{ Previm Open
+  augroup PreVimOpenMarkdown
+    autocmd!
+    autocmd BufRead,BufNewFile {*.md,*.mkd,*.markdown} call s:auOpenPreVim()
+    function! s:auOpenPreVim()
+      PrevimOpen
+    endfunction
+  augroup END
+  " }}}
 " }}}
 " {{{ Indivisual Settings
 " Encodings 
@@ -464,7 +472,6 @@ endif
 augroup FileTypes
   autocmd!
 
-
   " Type Detect
   autocmd BufRead,BufNewFile *.json.tpl                                     setlocal filetype=json
   autocmd BufRead,BufNewFile .vimrc.local                                   setlocal filetype=vim
@@ -503,12 +510,9 @@ augroup FileTypes
   " Markdown
   autocmd FileType markdown setlocal ts=4 sts=4 sw=4
   autocmd FileType markdown syntax sync fromstart
-  autocmd BufRead,BufNewFile {*.md,*.mkd,*.markdown} call s:auOpenPreVim()
-  function! s:auOpenPreVim()
-    PrevimOpen
-  endfunction
 augroup END
 " }}}
+"
 " {{{ Finalize
 if filereadable(expand('~/.vimrc.local'))
   source ~/.vimrc.local
