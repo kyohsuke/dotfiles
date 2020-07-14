@@ -4,7 +4,7 @@ TOOLS=(
   parallel
   ctags
   git
-  git-hooks
+  git-hooks-go
   ghq
   gnupg
   gpg-agent
