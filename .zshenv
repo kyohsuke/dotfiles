@@ -48,7 +48,6 @@ if [[ -z $ZSHENV_LOAD ]] {
 
   # rbenv
   export RUBY_BUILD_HTTP_CLIENT="aria2c"
-  export RUBYGEMS_GEMDEPS='-'
 
   # bat
   export BAT_STYLE="plain"
