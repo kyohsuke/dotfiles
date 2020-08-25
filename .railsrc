@@ -1,5 +1,14 @@
+--database=postgresql
+
+--skip-action-mailer
+--skip-action-mailbox
+--skip-action-text
+
 --skip-spring
 --skip-sprockets
+--skip-listen
+
 --skip-test
 --skip-system-test
---skip-listen
+
+--skip-webpack-install
