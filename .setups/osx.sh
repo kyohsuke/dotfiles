@@ -761,9 +761,9 @@ defaults write com.google.Chrome.canary DisablePrintPreview -bool true
 defaults write com.google.Chrome PMPrintingExpandedStateForPrint2 -bool true
 defaults write com.google.Chrome.canary PMPrintingExpandedStateForPrint2 -bool true
 
-# Put Disk Cache Size
-defaults write com.google.Chrome DiskCacheSize -integer "$(echo '256 * 1024 * 1024' | bc)"
-defaults write com.google.Chrome.canary DiskCacheSize -integer "$(echo '256 * 1024 * 1024' | bc)"
+# Put Disk Cache Size (2GB)
+defaults write com.google.Chrome DiskCacheSize -integer 2147483648
+defaults write com.google.Chrome.canary DiskCacheSize -integer 2147483648
 
 
 ###############################################################################
