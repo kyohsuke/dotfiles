@@ -9,12 +9,5 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
 brew update
 brew upgrade
-UPDATE_CASKS=$(brew cask outdated)
-if [ -n "$UPDATE_CASKS" ]; then
-  echo "outdated casks found. updating..."
-  for CASK in $UPDATE_CASKS; do
-    echo "updating $CASK..."
-    brew cask reinstall "$CASK"
-  done
-fi
+brew upgrade --cask
 brew cleanup --prune 0
