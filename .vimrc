@@ -46,6 +46,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'maralla/vim-toml-enhance' 
   Plug 'tpope/vim-markdown'
     Plug 'joker1007/vim-markdown-quote-syntax'
+  Plug 'hashivim/vim-terraform'
 
   " NerdTree
   Plug 'scrooloose/nerdtree'
