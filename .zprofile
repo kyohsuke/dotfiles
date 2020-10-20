@@ -4,11 +4,6 @@
 
 # {{{ Evaluates
 # {{{ Additional Path
-additional_paths=('/usr/local/heroku/bin' '/usr/local/mysql/bin')
-for apath in $additional_paths
-do
-  [[ -d $apth ]] && export PATH="$apath:$PATH"
-done
 export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
 # {{{ anyenv
 if [[ -s $HOME/.anyenv/bin/anyenv ]] {
