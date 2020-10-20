@@ -7,7 +7,6 @@ TOOLS=(
   git-hooks-go
   ghq
   gnupg
-  gpg-agent
   hub
   icdiff
   libsodium
