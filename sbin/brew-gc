@@ -15,8 +15,11 @@ for dir in "$HOMEBREW_REPOSITORY" "$HOMEBREW_LIBRARY"/Taps/*/*; do
   previous_size=$(get_repo_size)
   (( total_previous_size += previous_size ))
 
-  echo "$ git gc --aggressive"
-  git gc --aggressive
+  echo "$ git reflog expire --all --expire=now"
+  git reflog expire --all --expire=now
+
+  echo "$ git gc --prune=now --aggressive"
+  git gc --prune=now --aggressive
 
   current_size=$(get_repo_size)
   (( total_current_size += current_size ))
