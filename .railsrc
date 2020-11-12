@@ -2,13 +2,17 @@
 
 --skip-action-mailer
 --skip-action-mailbox
+--skip-active-storage 
 --skip-action-text
 
 --skip-spring
 --skip-sprockets
+--skip-javascript
+--skip-turbolinks
 --skip-listen
 
 --skip-test
 --skip-system-test
 
 --skip-webpack-install
+--skip-yarn
