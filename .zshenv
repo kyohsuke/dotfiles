@@ -39,6 +39,15 @@ if [[ -z $ZSHENV_LOAD ]] {
   export GOPATH=$HOME
   export MANPATH="/usr/local/share/man:$MANPATH"
 
+  # Google Cloud SDK
+  export CLOUDSDK_PYTHON="/usr/local/opt/python@3.8/libexec/bin/python"
+  if [ -r "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc" ]; then
+    source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
+  fi
+  if [ -r "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc" ]; then
+    source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
+  fi
+
   # for python and pyenv
   export PYTHONDONTWRITEBYTECODE=1
   export PYENV_VIRTUALENV_DISABLE_PROMPT=1
