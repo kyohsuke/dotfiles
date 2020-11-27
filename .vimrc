@@ -47,6 +47,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'tpope/vim-markdown'
     Plug 'joker1007/vim-markdown-quote-syntax'
   Plug 'hashivim/vim-terraform'
+  Plug 'rafael84/vim-wsd'
 
   " NerdTree
   Plug 'scrooloose/nerdtree'
@@ -513,7 +514,6 @@ augroup FileTypes
   autocmd FileType markdown syntax sync fromstart
 augroup END
 " }}}
-"
 " {{{ Finalize
 if filereadable(expand('~/.vimrc.local'))
   source ~/.vimrc.local
