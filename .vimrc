@@ -15,7 +15,7 @@ if has('vim_starting') && has('mac')
   set pyx=3
   set pyxversion=3
   let s:pyenv_root_path = system('pyenv prefix')
-  let s:pyenv_dll_path = substitute(system("ls \"$(pyenv prefix)/lib/libpython3.\"*m.dylib"), "\n", '', 'g')
+  let s:pyenv_dll_path = substitute(system("ls \"$(pyenv prefix)/lib/libpython3.\"*.dylib"), "\n", '', 'g')
   exe 'set pythonthreehome='.s:pyenv_root_path
   exe 'set pythonthreedll='.s:pyenv_dll_path
 endif
