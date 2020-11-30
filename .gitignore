@@ -28,10 +28,6 @@
 !/.install
 !/.default-gems
 !/.default-packages
-!/.python-version
-!/.ruby-version
-!/.perl-version
-!/.go-version
 !/.go-package
 !/.zsh-completions
 !/.zsh-custom
@@ -40,9 +36,7 @@
 !/.inputrc
 !/.pryrc
 !/.railsrc
-!/.ruby-version
-!/.python-version
-!/.node-version
+!/.*-version
 
 # Add Tracking only .bundle/config
 !/.bundle
