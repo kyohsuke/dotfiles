@@ -53,7 +53,7 @@ if [[ -z $ZSHENV_LOAD ]] {
   export PYENV_VIRTUALENV_DISABLE_PROMPT=1
 
   # pyenv
-  export PYTHON_CONFIGURE_OPTS="--enable-framework CC=clang"
+  export PYTHON_CONFIGURE_OPTS="--enable-framework"
 
   # rbenv
   export RUBY_BUILD_HTTP_CLIENT="aria2c"
