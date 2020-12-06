@@ -2,17 +2,13 @@
 
 CASKS=(
   charles
-  franz
   firefox
   bitbar
   psequel
   docker
   qlcolorcode
   qlstephen
-  quicklook-json
   qlprettypatch
-  quicklook-csv
-  webpquicklook
 )
 
 LIST=""
