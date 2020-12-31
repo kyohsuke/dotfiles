@@ -328,15 +328,6 @@ endif
     exe "set runtimepath+=".globpath($GOPATH, "src/github.com/nsf/gocode/vim")
   endif
   " }}}
-  " {{{ Previm Open
-  augroup PreVimOpenMarkdown
-    autocmd!
-    autocmd BufRead,BufNewFile {*.md,*.mkd,*.markdown} call s:auOpenPreVim()
-    function! s:auOpenPreVim()
-      PrevimOpen
-    endfunction
-  augroup END
-  " }}}
 " }}}
 " {{{ Indivisual Settings
 " Encodings 
