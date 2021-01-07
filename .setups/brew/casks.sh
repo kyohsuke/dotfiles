@@ -6,7 +6,6 @@ CASKS=(
   bitbar
   psequel
   docker
-  qlcolorcode
   qlstephen
   qlprettypatch
 )
