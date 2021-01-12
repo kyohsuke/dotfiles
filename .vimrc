@@ -353,6 +353,7 @@ nnoremap <silent> ,gvimrc :<C-u>e<Space>~/.gvimrc<Return>
 nnoremap <silent> ,vimrc :<C-u>e<Space>~/.vimrc<Return>
 nnoremap <silent> ,rt :<C-u>set<Space>ft=ruby<Return>
 nnoremap <silent> ,md :<C-u>set<Space>ft=markdown<Return>
+nnoremap <silent> ,date "=strftime("%FT%T%z")<CR>P
 
 " key mappings tradition of Vim 
 noremap : ;
