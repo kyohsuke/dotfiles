@@ -504,6 +504,18 @@ augroup FileTypes
   " Markdown
   autocmd FileType markdown setlocal ts=4 sts=4 sw=4
   autocmd FileType markdown syntax sync fromstart
+
+  " GoHtmlTmpl
+  augroup GoHtmlTemplate
+    function! s:DetectGoHtmlTmpl()
+      if expand('%:e') == "html" && search("{{") != 0
+        set filetype=gohtmltmpl 
+      endif
+    endfunction
+
+    autocmd!
+    autocmd BufRead,BufNewFile * call s:DetectGoHtmlTmpl()
+  augroup END
 augroup END
 " }}}
 " {{{ Finalize
