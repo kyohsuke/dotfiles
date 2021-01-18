@@ -45,6 +45,8 @@
   dig = log -p --pickaxe-all -S
   precommit = diff --cached --diff-algorithm=minimal -w
 
+  sdiff = diff
+
   squash-all = "!f(){ git reset $(git commit-tree HEAD^{tree} -m \"${1:-A new start}\");};f"
 
   current-branch = rev-parse --abbrev-ref HEAD
@@ -71,7 +73,7 @@
   difftool = true
   branch = cat
 [interactive]
-  diffFilter = diff-highlight
+  diffFilter = delta --color-only
 [merge]
   tool = gvimdiff
 [mergetool]
@@ -79,12 +81,11 @@
   keepBackup = false
 
 [delta]
-  side-by-side = true
-  line-numbers = false
-  features = side-by-side line-numbers decorations
+  features = line-numbers decorations
   syntax-theme = Dracula
   plus-style = syntax "#003800"
   minus-style = syntax "#3f0001"
+
 [delta "decorations"]
   commit-decoration-style = bold yellow box ul
   file-style = bold yellow ul
