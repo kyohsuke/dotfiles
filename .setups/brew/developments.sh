@@ -8,7 +8,7 @@ TOOLS=(
   ghq
   gnupg
   hub
-  delta
+  icdiff
   libsodium
   mono
   p7zip
