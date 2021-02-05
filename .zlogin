@@ -14,7 +14,6 @@ alias gd="source $HOME/sbin/cd-git-root"
 alias scrr='screen -U -D -RR'
 alias diff='diff -W ${COLUMNS}'
 alias ber='bundle exec ruby'
-alias scp='scp -o "Ciphers=arcfour,arcfour128,arcfour256,aes128-cbc,aes128-ctr" -o "Compression=no"'
 alias time='/usr/bin/time'
 alias locate='mdfind -name'
 alias top='top -o cpu'
@@ -33,6 +32,18 @@ alias zshconfig="$EDITOR ~/.zshrc"
 alias ohmyzsh="$EDITOR ~/.oh-my-zsh"
 alias vimrc="$EDITOR ~/.vimrc"
 alias f='thefuck'
+
+if [ -r "/usr/local/bin/docker" ]; then
+  # See Also: https://www.keisuke69.net/entry/2020/06/04/145719
+  alias aws='docker run --rm -it -v ~/.aws:/root/.aws -v $(pwd):/aws amazon/aws-cli'
+
+  cloud_sdk_commands=('gcloud' 'gsutil' 'bq')
+  for command in $cloud_sdk_commands
+  do
+    alias $command="docker run --rm -it --workdir='/gcloud' -v ~/.config/gcloud:/root/.config/gcloud -v \$(pwd):/gcloud google/cloud-sdk $command"
+  done
+fi
+
 # }}}
 # {{{ Functions
 function twitch() {
