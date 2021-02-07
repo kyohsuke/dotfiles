@@ -29,8 +29,9 @@ if [[ -z $ZSHENV_LOAD ]] {
     irb
   )
   export ANDROID_HOME=/usr/local/opt/android-sdk
-  export BROWSER='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome'
-  export HOMEBREW_BROWSER='/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'
+  export BROWSER='/Applications/Firefox.app/Contents/MacOS/firefox'
+  # export BROWSER='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome'
+  export HOMEBREW_BROWSER=$BROWSER
   export HOMEBREW_INSTALL_CLEANUP="1"
   export EDITOR="mvim -f --cmd 'autocmd VimLeave * :!open -a Terminal'"
   [[ -r "/usr/local/bin/gpg" ]] && export GPG_TTY=$(tty)
