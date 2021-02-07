@@ -42,6 +42,8 @@ if [ -r "/usr/local/bin/docker" ]; then
   do
     alias $command="docker run --rm -it --workdir='/gcloud' -v ~/.config/gcloud:/root/.config/gcloud -v \$(pwd):/gcloud google/cloud-sdk $command"
   done
+
+  alias ffmpeg='docker run --rm -it --workdir="/config" -v $(pwd):/config linuxserver/ffmpeg'
 fi
 
 # }}}
