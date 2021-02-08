@@ -18,6 +18,8 @@
   branch = auto
   diff = auto
   status = auto
+[fetch]
+  parallel = 8
 [push]
   default = current
   followTags = true
