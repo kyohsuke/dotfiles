@@ -48,6 +48,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'joker1007/vim-markdown-quote-syntax'
   Plug 'hashivim/vim-terraform'
   Plug 'rafael84/vim-wsd'
+  Plug 'jparise/vim-graphql'
 
   " NerdTree
   Plug 'scrooloose/nerdtree'
@@ -493,7 +494,7 @@ augroup FileTypes
   autocmd FileType jsp,asp,php,ruby,xml,perl syntax sync minlines=500 maxlines=1000
 
   " Golang
-  autocmd FileType go setlocal noexpandtab tabstop=4 shiftwidth=4
+  autocmd FileType go setlocal noexpandtab ts=4 sts=4 sw=4
 
   " YAML
   autocmd FileType yaml setlocal indentexpr=
