@@ -15,7 +15,7 @@ if has('vim_starting') && has('mac')
   set pyx=3
   set pyxversion=3
   let s:pyenv_root_path = system('pyenv prefix')
-  let s:pyenv_dll_path = substitute(system("ls \"$(pyenv prefix)/lib/libpython3.\"*.dylib"), "\n", '', 'g')
+  let s:pyenv_dll_path = substitute(system("ls \"$(pyenv prefix)/lib/libpython3.\"*m.dylib"), "\n", '', 'g')
   exe 'set pythonthreehome='.s:pyenv_root_path
   exe 'set pythonthreedll='.s:pyenv_dll_path
 endif
@@ -74,6 +74,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'deoplete-plugins/deoplete-zsh'
   Plug 'prabirshrestha/async.vim'
   Plug 'prabirshrestha/vim-lsp'
+    Plug 'mattn/vim-lsp-settings'
     Plug 'lighttiger2505/deoplete-vim-lsp'
 
   " Ruby
@@ -265,19 +266,6 @@ endif
 		    \ 'java': '[^. *\t]\.\w*',
 		    \ 'php': '\w+|[^. \t]->\w*|\w+::\w*',
 		    \ })
-    " {{{ deoplete-vim-lsp
-    if executable('solargraph')
-      augroup LspRuby
-        autocmd!
-        autocmd User lsp_setup call lsp#register_server({
-              \ 'name': 'solargraph',
-              \ 'cmd': {server_info->[&shell, &shellcmdflag, 'solargraph', 'stdio']},
-              \ 'whitelist': ['ruby'],
-              \ })
-      augroup END
-    endif
-    " }}}
-
   " }}}
   " {{{ vim-ref
   nnoremap ,rpy :<C-u>Ref<Space>pydoc<Space>
