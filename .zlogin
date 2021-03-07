@@ -34,9 +34,6 @@ alias vimrc="$EDITOR ~/.vimrc"
 alias f='thefuck'
 
 if [ -r "/usr/local/bin/docker" ]; then
-  # See Also: https://www.keisuke69.net/entry/2020/06/04/145719
-  alias aws='docker run --rm -it -v ~/.aws:/root/.aws -v $(pwd):/aws amazon/aws-cli'
-
   cloud_sdk_commands=('gcloud' 'gsutil' 'bq')
   for command in $cloud_sdk_commands
   do
