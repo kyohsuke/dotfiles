@@ -39,9 +39,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'ekalinin/Dockerfile.vim'
   Plug 'slim-template/vim-slim'
   Plug 'tpope/vim-haml'
-  Plug 'fatih/vim-go', { 
-        \ 'do': ':GoInstallBinaries' 
-        \ }
+  Plug 'mattn/vim-goimports'
   Plug 'cespare/vim-toml'
     Plug 'maralla/vim-toml-enhance' 
   Plug 'tpope/vim-markdown'
@@ -65,17 +63,12 @@ call plug#begin('~/.vim/plugged')
 
   Plug 'hotwatermorning/auto-git-diff'
 
-  " Deoplete
-  Plug 'roxma/vim-hug-neovim-rpc'
-  Plug 'roxma/nvim-yarp'
-  Plug 'shougo/deoplete.nvim'
-    Plug 'Shougo/neco-vim'
-    Plug 'Shougo/neco-syntax'
-    Plug 'deoplete-plugins/deoplete-zsh'
-  Plug 'prabirshrestha/async.vim'
+  Plug 'prabirshrestha/asyncomplete.vim'
+  Plug 'prabirshrestha/asyncomplete-lsp.vim'
   Plug 'prabirshrestha/vim-lsp'
     Plug 'mattn/vim-lsp-settings'
-    Plug 'lighttiger2505/deoplete-vim-lsp'
+  Plug 'hrsh7th/vim-vsnip'
+  Plug 'hrsh7th/vim-vsnip-integ'
 
   " Ruby
   Plug 'thoughtbot/vim-rspec'
@@ -257,15 +250,27 @@ endif
   let g:sinplu_plural_override_wards = [
         \   ['(ind)ex$', '\1exes', 'i']
         \ ]
-  " }}}
-  " {{{ deoplete
-  inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
-  let g:deoplete#enable_at_startup = 1
-	call deoplete#custom#var('omni', 'input_patterns', {
-        \ 'ruby': ['[^. *\t]\.\w*', '[a-zA-Z_]\w*::'],
-		    \ 'java': '[^. *\t]\.\w*',
-		    \ 'php': '\w+|[^. \t]->\w*|\w+::\w*',
-		    \ })
+  " {{{ vim-lsp
+  function! s:on_lsp_buffer_enabled() abort
+    setlocal omnifunc=lsp#complete
+    setlocal signcolumn=yes
+    nmap <buffer> gd <plug>(lsp-definition)
+    nmap <buffer> <f2> <plug>(lsp-rename)
+    inoremap <expr> <cr> pumvisible() ? "\<c-y>\<cr>" : "\<cr>"
+  endfunction
+
+  augroup lsp_install
+    au!
+    autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
+  augroup END
+  command! LspDebug let lsp_log_verbose=1 | let lsp_log_file = expand('~/lsp.log')
+
+  let g:lsp_diagnostics_enabled = 1
+  let g:lsp_diagnostics_echo_cursor = 1
+  let g:asyncomplete_auto_popup = 1
+  let g:asyncomplete_auto_completeopt = 0
+  let g:asyncomplete_popup_delay = 200
+  let g:lsp_text_edit_enabled = 1
   " }}}
   " {{{ vim-ref
   nnoremap ,rpy :<C-u>Ref<Space>pydoc<Space>
