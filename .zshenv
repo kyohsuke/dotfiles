@@ -28,7 +28,7 @@ if [[ -z $ZSHENV_LOAD ]] {
     cap
     irb
   )
-  export ANDROID_HOME=/usr/local/opt/android-sdk
+
   export HOMEBREW_INSTALL_CLEANUP="1"
   export EDITOR="mvim -f --cmd 'autocmd VimLeave * :!open -a Terminal'"
   [[ -r "/usr/local/bin/gpg" ]] && export GPG_TTY=$(tty)
