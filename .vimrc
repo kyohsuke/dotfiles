@@ -39,7 +39,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'ekalinin/Dockerfile.vim'
   Plug 'slim-template/vim-slim'
   Plug 'tpope/vim-haml'
-  Plug 'mattn/vim-goimports'
+  Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
   Plug 'cespare/vim-toml'
     Plug 'maralla/vim-toml-enhance' 
   Plug 'tpope/vim-markdown'
