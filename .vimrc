@@ -254,8 +254,13 @@ endif
   function! s:on_lsp_buffer_enabled() abort
     setlocal omnifunc=lsp#complete
     setlocal signcolumn=yes
+    if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
     nmap <buffer> gd <plug>(lsp-definition)
+    nmap <buffer> ge <plug>(lsp-document-diagnostics)
     nmap <buffer> <f2> <plug>(lsp-rename)
+    nmap <buffer> gr <plug>(lsp-references)
+    nmap <buffer> K <plug>(lsp-hover)
+
     inoremap <expr> <cr> pumvisible() ? "\<c-y>\<cr>" : "\<cr>"
   endfunction
 
