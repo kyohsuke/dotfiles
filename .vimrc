@@ -88,7 +88,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'tpope/vim-fugitive'
   Plug 'tyru/eskk.vim'
   Plug 'tyru/open-browser.vim'
-  Plug 'vim-syntastic/syntastic'
   Plug 'kyohsuke/vimlc.vim'
 call plug#end()
 if !isdirectory($HOME.'/.vim/plugged')
@@ -147,20 +146,6 @@ endif
     autocmd!
     nnoremap <silent> <Leader>d :<C-u>Dispatch<Return>
   augroup END
-  " }}}
-  " {{{ Syntastic
-  set statusline+=%#warningmsg#
-  set statusline+=%{SyntasticStatuslineFlag()}
-  set statusline+=%*
-  let g:syntastic_always_populate_loc_list = 1
-  let g:syntastic_auto_loc_list = 1
-  let g:syntastic_check_on_open = 0 " これをオンにすると git の mergetool で syntax check が発動して死ぬ
-  let g:syntastic_check_on_wq = 0
-  let g:syntastic_eruby_ruby_quiet_messages = {'regex': 'possibly useless use of .\+ in void context'}
-  if executable($HOME.'/.rbenv/shims/ruby')
-    let g:syntastic_ruby_exec = $HOME.'/.rbenv/shims/ruby'
-  endif
-  let g:syntastic_python_checkers = ['flake8']
   " }}}
   " {{{ ctrlp
   set wildignore+=*/tmp/*,*.so,*.swp,*.zip 
@@ -272,10 +257,17 @@ endif
 
   let g:lsp_diagnostics_enabled = 1
   let g:lsp_diagnostics_echo_cursor = 1
+  let g:lsp_text_edit_enabled = 1
+  " }}}
+  " {{{ asyncomplete
   let g:asyncomplete_auto_popup = 1
   let g:asyncomplete_auto_completeopt = 0
   let g:asyncomplete_popup_delay = 200
-  let g:lsp_text_edit_enabled = 1
+  inoremap <expr> <C-y>     pumvisible() ? asyncomplete#cancel_popup() : "\<C-y>"
+  inoremap <expr> <TAB>     pumvisible() ? "\<C-n>" : "\<TAB>"
+  inoremap <expr> <S-Tab>   pumvisible() ? "\<C-p>" : "\<S-Tab>"
+  inoremap <expr> <BS>      pumvisible() ? asyncomplete#close_popup() : "\<BS>"
+  inoremap <expr> <c-space> asyncomplete#force_refresh() 
   " }}}
   " {{{ vim-ref
   nnoremap ,rpy :<C-u>Ref<Space>pydoc<Space>
