@@ -324,6 +324,7 @@ endif
   " {{{ vim-go
   nnoremap ,go :<C-u>Godoc<Space>
   let g:go_def_mapping_enabled = 0
+  let g:go_gopls_enabled = 0
   if isdirectory(expand(globpath($GOPATH, "src/github.com/nsf/gocode/vim")))
     exe "set runtimepath+=".globpath($GOPATH, "src/github.com/nsf/gocode/vim")
   endif
