@@ -2,3 +2,5 @@ bundler
 bundler-audit
 solargraph
 tty
+rubocop
+rubocop-performance
