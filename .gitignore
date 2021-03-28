@@ -37,6 +37,7 @@
 !/.pryrc
 !/.railsrc
 !/.*-version
+!/.rubocop.yml
 
 # Add Tracking only .bundle/config
 !/.bundle
