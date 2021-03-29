@@ -244,9 +244,12 @@ endif
     nmap <buffer> ge <plug>(lsp-document-diagnostics)
     nmap <buffer> <f2> <plug>(lsp-rename)
     nmap <buffer> gr <plug>(lsp-references)
+    nmap <buffer> <c-o> <plug>(lsp-hover)
     nmap <buffer> K <plug>(lsp-hover)
 
-    inoremap <expr> <cr> pumvisible() ? "\<c-y>\<cr>" : "\<cr>"
+
+    inoremap <buffer> <expr> <C-o> lsp#internal#document_hover#under_cursor#do({}) ? '' : ''
+    inoremap <buffer> <expr> <cr> pumvisible() ? "\<c-y>\<cr>" : "\<cr>"
   endfunction
 
   augroup lsp_install
