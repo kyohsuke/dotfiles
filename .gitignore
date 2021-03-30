@@ -39,11 +39,17 @@
 !/.*-version
 !/.rubocop.yml
 
+# Add .config file
+!/.config
+/.config/*
+!/.config/pgcli
+/.config/pgcli/*
+!/.config/pgcli/config
+
 # Add Tracking only .bundle/config
 !/.bundle
 /.bundle/*
 !/.bundle/config
-!/.dein
 
 # Ignore Files
 /.vim/plugged/
