@@ -67,6 +67,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'prabirshrestha/asyncomplete-lsp.vim'
   Plug 'prabirshrestha/vim-lsp'
     Plug 'mattn/vim-lsp-settings'
+    Plug 'mattn/ctrlp-lsp'
   Plug 'hrsh7th/vim-vsnip'
   Plug 'hrsh7th/vim-vsnip-integ'
 
@@ -246,7 +247,8 @@ endif
     nmap <buffer> gr <plug>(lsp-references)
     nmap <buffer> <c-o> <plug>(lsp-hover)
     nmap <buffer> K <plug>(lsp-hover)
-
+    nnoremap <buffer> gs :<C-u>CtrlPLspDocumentSymbol<Return>
+    nnoremap <buffer> gS :<C-u>CtrlPLspWorkspaceSymbol<Return>
 
     inoremap <buffer> <expr> <C-o> lsp#internal#document_hover#under_cursor#do({}) ? '' : ''
     inoremap <buffer> <expr> <cr> pumvisible() ? "\<c-y>\<cr>" : "\<cr>"
