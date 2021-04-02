@@ -39,7 +39,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'ekalinin/Dockerfile.vim'
   Plug 'slim-template/vim-slim'
   Plug 'tpope/vim-haml'
-  Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
   Plug 'cespare/vim-toml'
     Plug 'maralla/vim-toml-enhance' 
   Plug 'tpope/vim-markdown'
@@ -47,6 +46,10 @@ call plug#begin('~/.vim/plugged')
   Plug 'hashivim/vim-terraform'
   Plug 'rafael84/vim-wsd'
   Plug 'jparise/vim-graphql'
+
+  " golang
+  Plug 'mattn/vim-goimports'
+  Plug 'kyohsuke/vim-go-syntax'
 
   " NerdTree
   Plug 'scrooloose/nerdtree'
@@ -68,8 +71,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'prabirshrestha/vim-lsp'
     Plug 'mattn/vim-lsp-settings'
     Plug 'mattn/ctrlp-lsp'
-  Plug 'hrsh7th/vim-vsnip'
-  Plug 'hrsh7th/vim-vsnip-integ'
 
   " Ruby
   Plug 'thoughtbot/vim-rspec'
@@ -271,7 +272,7 @@ endif
   inoremap <expr> <C-y>     pumvisible() ? asyncomplete#cancel_popup() : "\<C-y>"
   inoremap <expr> <TAB>     pumvisible() ? "\<C-n>" : "\<TAB>"
   inoremap <expr> <S-Tab>   pumvisible() ? "\<C-p>" : "\<S-Tab>"
-  inoremap <expr> <BS>      pumvisible() ? asyncomplete#close_popup() : "\<BS>"
+  inoremap <expr> <bs>      pumvisible() ? asyncomplete#close_popup()."\<BS>" : "\<BS>"
   inoremap <expr> <c-space> asyncomplete#force_refresh() 
   " }}}
   " {{{ vim-ref
