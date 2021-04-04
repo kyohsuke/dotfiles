@@ -284,8 +284,14 @@ endif
   let g:vim_markdown_folding_disabled = 1
   let g:markdown_fenced_languages = ['coffee', 'css', 'erb=eruby', 'javascript', 'js=javascript', 'json=javascript', 'ruby', 'sass', 'xml', 'sh']
     " {{{ vim-markdown-quote-syntax
-    let g:markdown_quote_syntax_filetypes = {}
-    let g:markdown_quote_syntax_filetypes.sshconfig = { 'start' : 'sshconfig' }
+    let g:markdown_quote_syntax_filetypes = {
+          \   'sshconfig' : {
+          \     'start' : 'sshconfig'
+          \   },
+          \   'gohtmltmpl' : {
+          \     'start' : 'go-html-template'
+          \   },
+          \ }
     " }}}
   " }}}
   " {{{ auto-git-diff
