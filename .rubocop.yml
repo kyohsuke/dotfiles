@@ -168,6 +168,9 @@ Style/YodaCondition:
 Style/Lambda:
   Enabled: false
 
+Layout/MultilineMethodCallIndentation:
+  EnforcedStyle: indented
+
 Layout/EmptyLinesAroundAttributeAccessor:
   Enabled: false
 
