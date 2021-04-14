@@ -153,7 +153,7 @@ endif
   set wildignore+=*/tmp/*,*.so,*.swp,*.zip 
   let g:ctrlp_show_hidden = 1
   let g:ctrlp_regexp = 0
-  let g:ctrlp_reuse_window = 'NERD'
+  let g:ctrlp_reuse_window =  'netrw\|help\|quickfix\|nerdtree'
   let g:ctrlp_extensions = ['tag', 'quickfix', 'dir', 'line', 'mixed']
   let g:ctrlp_working_path_mode = 'r'
   let g:ctrlp_open_new_file = 'h'
