@@ -33,7 +33,6 @@ if [[ -z $ZSHENV_LOAD ]] {
   export EDITOR="mvim -f --cmd 'autocmd VimLeave * :!open -a Terminal'"
   [[ -r "/usr/local/bin/gpg" ]] && export GPG_TTY=$(tty)
 
-  export GOENV_DISABLE_GOPATH=1
   export GOPATH=$HOME
   export MANPATH="/usr/local/share/man:$MANPATH"
 
