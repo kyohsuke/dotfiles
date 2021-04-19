@@ -153,7 +153,7 @@ endif
   set wildignore+=*/tmp/*,*.so,*.swp,*.zip 
   let g:ctrlp_show_hidden = 1
   let g:ctrlp_regexp = 0
-  let g:ctrlp_reuse_window =  'netrw\|help\|quickfix\|nerdtree'
+  let g:ctrlp_reuse_window =  'netrw'
   let g:ctrlp_extensions = ['tag', 'quickfix', 'dir', 'line', 'mixed']
   let g:ctrlp_working_path_mode = 'r'
   let g:ctrlp_open_new_file = 'h'
@@ -230,6 +230,7 @@ endif
   let g:qfenter_keymap.vopen = ['<C-v>']
   let g:qfenter_keymap.hopen = ['<C-CR>', '<C-s>', '<C-x>']
   let g:qfenter_keymap.topen = ['<C-t>']
+  let g:qfenter_exclude_filetypes = ['nerdtree', 'tagbar']
   " }}}
   " {{{ SinPlu
   let g:sinplu_no_mappings = 1
