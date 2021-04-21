@@ -250,7 +250,14 @@ endif
     endfunction
     command! LspRestartServer call s:lsp_restart_server()
 
+    function! s:lsp_definition_split_window() abort
+      split
+      execute "normal \<plug>(lsp-definition)"
+    endfunction
+    nnoremap <Plug>LspDefinitionS :<C-u>call <SID>lsp_definition_split_window()<Return>
+
     nmap <buffer> gd <plug>(lsp-definition)
+    nmap <buffer> <C-]> <plug>LspDefinitionS
     nmap <buffer> ge <plug>(lsp-document-diagnostics)
     nmap <buffer> <f2> <plug>(lsp-rename)
     nmap <buffer> gr <plug>(lsp-references)
@@ -269,13 +276,32 @@ endif
   augroup END
   command! LspDebug let lsp_log_verbose=1 | let lsp_log_file = expand('~/lsp.log')
 
+  let g:lsp_use_lua = has('nvim-0.4.0') || (has('lua') && has('patch-8.2.0775'))
+  let g:lsp_format_sync_timeout = 1000
   let g:lsp_diagnostics_enabled = 1
   let g:lsp_diagnostics_echo_cursor = 1
   let g:lsp_text_edit_enabled = 1
+  let g:lsp_diagnostics_float_cursor = 1
+  let g:lsp_settings_filetype_go = ['gopls', 'golangci-lint-langserver']
+  let g:lsp_settings = {}
+  let g:lsp_settings['gopls'] = {
+    \  'workspace_config': {
+    \    'usePlaceholders': v:true,
+    \    'analyses': {
+    \      'fillstruct': v:true,
+    \    },
+    \  },
+    \  'initialization_options': {
+    \    'usePlaceholders': v:true,
+    \    'analyses': {
+    \      'fillstruct': v:true,
+    \    },
+    \  },
+    \}
+
   " }}}
   " {{{ asyncomplete
-  let g:asyncomplete_auto_popup = 1
-  let g:asyncomplete_auto_completeopt = 0
+  " let g:asyncomplete_auto_completeopt = 0
   let g:asyncomplete_popup_delay = 200
   inoremap <expr> <C-y>     pumvisible() ? asyncomplete#cancel_popup() : "\<C-y>"
   inoremap <expr> <TAB>     pumvisible() ? "\<C-n>" : "\<TAB>"
@@ -305,9 +331,9 @@ endif
   " {{{ auto-git-diff
   augroup auto_git_diff
     function! s:setup_auto_git_diff() abort
-        nmap <buffer><C-l> <Plug>(auto_git_diff_scroll_manual_update)
-        nmap <buffer><C-n> <Plug>(auto_git_diff_scroll_down_half)
-        nmap <buffer><C-p> <Plug>(auto_git_diff_scroll_up_half)
+        nmap <buffer><C-l> <plug>(auto_git_diff_scroll_manual_update)
+        nmap <buffer><C-n> <plug>(auto_git_diff_scroll_down_half)
+        nmap <buffer><C-p> <plug>(auto_git_diff_scroll_up_half)
     endfunction
     autocmd!
     autocmd FileType gitrebase call <SID>setup_auto_git_diff()
@@ -366,7 +392,6 @@ nnoremap <silent> ,gvimrc :<C-u>e<Space>~/.gvimrc<Return>
 nnoremap <silent> ,vimrc :<C-u>e<Space>~/.vimrc<Return>
 nnoremap <silent> ,rt :<C-u>set<Space>ft=ruby<Return>
 nnoremap <silent> ,md :<C-u>set<Space>ft=markdown<Return>
-nnoremap <silent> ,date "=strftime("%FT%T%z")<CR>P
 
 " key mappings tradition of Vim 
 noremap : ;
