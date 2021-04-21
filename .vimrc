@@ -243,6 +243,13 @@ endif
     setlocal omnifunc=lsp#complete
     setlocal signcolumn=yes
     if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
+
+    function! s:lsp_restart_server() abort
+      call lsp#stop_server('server-name')
+      call lsp#activate()
+    endfunction
+    command! LspRestartServer call s:lsp_restart_server()
+
     nmap <buffer> gd <plug>(lsp-definition)
     nmap <buffer> ge <plug>(lsp-document-diagnostics)
     nmap <buffer> <f2> <plug>(lsp-rename)
@@ -461,6 +468,12 @@ augroup help_remap
   autocmd FileType help nnoremap <buffer> <CR> <C-]>
   autocmd FileType help nnoremap <buffer> <BS> <C-O>
 augroup END
+
+augroup DotEnv
+  autocmd!
+  autocmd BufNewFile,BufReadPost .env.* setfiletype sh
+augroup END
+
 
 " virtual edit, vim hacks #195 
 set virtualedit=all
