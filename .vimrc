@@ -91,10 +91,189 @@ call plug#begin('~/.vim/plugged')
   Plug 'tyru/eskk.vim'
   Plug 'tyru/open-browser.vim'
   Plug 'kyohsuke/vimlc.vim'
+  Plug 'chrisbra/matchit'
 call plug#end()
 if !isdirectory($HOME.'/.vim/plugged')
   PlugInstall
 endif
+" }}}
+" {{{ Indivisual Settings
+  " {{{ Reset Global 
+  set wildignore&
+  set statusline&
+  " }}}
+  " {{{ Language & Encodings
+  set encoding=utf-8
+  set fileencodings=ucs-bom,utf-8,euc-jp,cp932,iso-2022-jp
+  set fileformats=unix,dos,mac
+  set langmenu=ja_JP.utf-8
+  " Kill termencoding on MacVim
+  if !has('gui_macvim')
+    set termencoding=utf-8
+  endif
+  " }}}
+  " {{{ Keybind ReMap
+    nnoremap <silent> ,sh :<C-u>:terminal<Return>
+    nnoremap <silent> ,gvimrc :<C-u>e<Space>~/.gvimrc<Return>
+    nnoremap <silent> ,vimrc :<C-u>e<Space>~/.vimrc<Return>
+    nnoremap <silent> ,rt :<C-u>set<Space>ft=ruby<Return>
+    nnoremap <silent> ,md :<C-u>set<Space>ft=markdown<Return>
+
+    " {{{ key mappings tradition of Vim 
+    noremap : ;
+    noremap ; :
+
+    nnoremap j gj
+    nnoremap k gk
+    nnoremap gj j
+    nnoremap gk k
+
+    nnoremap <silent> <Esc><Esc> :<C-u>noh<Return>
+    nnoremap <C-h> :<C-u>help<Space>
+    nnoremap <C-f> :<C-u>setf<Space>
+    " }}}
+    " {{{ Folding Remap 
+    nnoremap <expr> h virtcol('.') == 1 && foldlevel(line('.')) > 0 ? 'zc' : 'h'
+    nnoremap <expr> l foldclosed(line('.')) != -1 ? 'zo0' : 'l'
+    vnoremap <expr> h virtcol('.') == 1 && foldlevel(line('.')) > 0 ? 'zcgv' : 'h'
+    vnoremap <expr> l foldclosed(line('.')) != -1 ? 'zogv0' : 'l'
+    " }}}
+
+    cnoremap <C-h> <Left>
+    cnoremap <C-j> <Down>
+    cnoremap <C-k> <Up>
+    cnoremap <C-l> <Right>
+
+    " {{{
+    " }}}
+  " }}}
+  " {{{ Color Scheme 
+  try
+      colorscheme mrkn256
+  catch /^Vim\%((\a\+)\)\=:E185/
+      colorscheme koehler
+  endtry
+  " }}}
+  " {{{ Mode Color StatusLine ( Vim Technique Bible 1-10 )
+  augroup VimrcTechniqueBible_1_10
+    autocmd!
+    autocmd InsertEnter * hi StatusLine guifg=DarkBlue guibg=DarkYellow gui=none ctermfg=Blue ctermbg=Yellow cterm=none
+    autocmd InsertLeave * hi StatusLine guifg=DarkBlue guibg=DarkGray gui=none ctermfg=Blue ctermbg=DarkGray cterm=none
+  augroup END
+  " }}}
+  " {{{ Kill Indent 
+  set noautoindent
+  set nocindent
+  set nocopyindent
+  set nopreserveindent
+  set nosmartindent
+  " }}}
+  " {{{ Kill Backup 
+  set nobackup
+  set noundofile
+  set noswapfile " Kill Swapfile
+  " }}}
+  " {{{ Paste withmut space on virtual edit ( vim hacks #195 )
+  set virtualedit=all
+  if has('virtualedit') && &virtualedit =~# '\<all\>'
+    nnoremap <expr> p (col('.') >= col('$') ? '$' : '') . 'p'
+  endif
+  " }}}
+
+  set ts=2 sts=2 sw=2
+  set wildmode=list:full
+  set showmatch
+  set t_Co=256
+  set visualbell t_vb=
+  set colorcolumn=80,128
+  set clipboard=unnamed
+  set completeopt=menu,noselect
+  set number relativenumber
+  set maxmempattern=10240
+
+  set hlsearch
+  set hid
+  set expandtab
+  set autoread
+
+  set ambiwidth=double
+  set backspace=indent,eol,start
+  set laststatus=2
+  set statusline=%<%f\ %m%r%h%w[%Y]%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}%=%c%V%8P
+
+  set noshowcmd
+  set ignorecase
+  set smartcase
+  set noshowmode
+
+  autocmd WinEnter * checktime
+  " {{{ Kill Auto Commentout
+  augroup VimrcKillAutoCommentOut
+    autocmd!
+    autocmd FileType * setlocal formatoptions-=ro
+  augroup END
+  " }}}
+" }}}
+" {{{ Detect FileTypes
+augroup DetectFileTypes
+  autocmd!
+
+  " Type Detect
+  autocmd BufRead,BufNewFile *.json.tpl                                     setlocal filetype=json
+  autocmd BufRead,BufNewFile .vimrc.local                                   setlocal filetype=vim
+  autocmd BufRead,BufNewFile COMMIT_EDITMSG                                 setlocal filetype=gitcommit
+  autocmd BufRead,BufNewFile {before_config,.ssh_config.local,after_config} setlocal filetype=sshconfig
+  autocmd BufRead,BufNewFile {*.md,*.mkd,*.markdown}                        setlocal filetype=markdown
+  autocmd BufRead,BufNewFile {*.js,*.jsx,*.es6}                             setlocal filetype=javascript
+  autocmd BufRead,BufNewFile {*.ts,*.tsx}                                   setlocal filetype=typescript
+  autocmd BufRead,BufNewFile .env.*                                         setlocal filetype=sh
+
+  " GoHtmlTmpl
+  augroup GoHtmlTemplate
+    function! s:DetectGoHtmlTmpl()
+      if expand('%:e') == "html" && search("{{") != 0
+        setlocal filetype=gohtmltmpl 
+      endif
+    endfunction
+
+    autocmd!
+    autocmd BufRead,BufNewFile * call s:DetectGoHtmlTmpl()
+  augroup END
+
+  " Rspec / TestUnit
+  autocmd BufRead,BufNewFile *_spec.rb setlocal filetype=ruby.rspec
+  autocmd BufRead,BufNewFile *_test.rb setlocal filetype=ruby.testunit
+
+  " Capfile
+  autocmd BufRead,BufNewFile {Schemafile,Gemfile,Rakefile,Thorfile,config.ru,.caprc,.irbrc,irb_tempfile*,*.arb} set filetype=ruby
+" }}}
+" {{{ Set local settings with filetype
+  " Ruby on Rails
+  autocmd BufRead,BufNewFile *.slim   setlocal ts=2 sw=2
+  autocmd BufRead,BufNewFile *.haml   setlocal ts=2 sw=2
+  autocmd BufRead,BufNewFile *.rhtml  setlocal ts=2 sw=2
+  autocmd BufRead,BufNewFile *.rb     setlocal ts=2 sw=2
+  autocmd BufRead,BufNewFile *.yml    setlocal ts=2 sw=2
+
+  " Set up synclines
+  autocmd FileType jsp,asp,php,ruby,xml,perl syntax sync minlines=500 maxlines=1000
+
+  " Golang
+  autocmd FileType go setlocal noexpandtab ts=4 sts=4 sw=4
+
+  " YAML
+  autocmd FileType yaml setlocal indentexpr=
+
+  " Ruby
+  autocmd FileType ruby setlocal foldmethod=marker omnifunc=
+
+  " Markdown
+  autocmd FileType markdown setlocal ts=4 sts=4 sw=4
+  autocmd FileType markdown syntax sync fromstart
+
+  " Remap vim help
+  autocmd FileType help nnoremap <buffer> <CR> <C-]>
+  autocmd FileType help nnoremap <buffer> <BS> <C-O>
 " }}}
 " {{{ Plugins
   " {{{ NerdTree
@@ -271,7 +450,7 @@ endif
   endfunction
 
   augroup lsp_install
-    au!
+    autocmd!
     autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
   augroup END
   command! LspDebug let lsp_log_verbose=1 | let lsp_log_file = expand('~/lsp.log')
@@ -368,199 +547,6 @@ endif
   endif
   " }}}
 " }}}
-" {{{ Indivisual Settings
-" Encodings 
-set encoding=utf-8
-set fileencodings=ucs-bom,utf-8,euc-jp,cp932,iso-2022-jp
-set fileformats=unix,dos,mac
-set langmenu=ja_JP.utf-8
-set maxmempattern=10240
-
-" Kill termencoding on MacVim
-if !has('gui_macvim')
-  set termencoding=utf-8
-endif
-" {{{ Folding Remap 
-nnoremap <expr> h virtcol('.') == 1 && foldlevel(line('.')) > 0 ? 'zc' : 'h'
-nnoremap <expr> l foldclosed(line('.')) != -1 ? 'zo0' : 'l'
-vnoremap <expr> h virtcol('.') == 1 && foldlevel(line('.')) > 0 ? 'zcgv' : 'h'
-vnoremap <expr> l foldclosed(line('.')) != -1 ? 'zogv0' : 'l'
-" }}}
-" Individual Remap 
-nnoremap <silent> ,sh :<C-u>:terminal<Return>
-nnoremap <silent> ,gvimrc :<C-u>e<Space>~/.gvimrc<Return>
-nnoremap <silent> ,vimrc :<C-u>e<Space>~/.vimrc<Return>
-nnoremap <silent> ,rt :<C-u>set<Space>ft=ruby<Return>
-nnoremap <silent> ,md :<C-u>set<Space>ft=markdown<Return>
-
-" key mappings tradition of Vim 
-noremap : ;
-noremap ; :
-
-nnoremap j gj
-nnoremap k gk
-nnoremap gj j
-nnoremap gk k
-
-nnoremap <silent> <Esc><Esc> :<C-u>noh<Return>
-nnoremap <C-h> :<C-u>help<Space>
-nnoremap <C-f> :<C-u>setf<Space>
-
-" Color Scheme
-try
-    colorscheme mrkn256
-catch /^Vim\%((\a\+)\)\=:E185/
-    colorscheme koehler
-endtry
-
-" Reset Global 
-set wildignore&
-set statusline&
-" 
-
-set ts=2 sts=2 sw=2
-set wildmode=list:full
-set showmatch
-set t_Co=256
-set visualbell t_vb=
-set colorcolumn=80,128
-set clipboard=unnamed
-set completeopt=menu,noselect
-set number
-set relativenumber
-
-" {{{ Vim Technique Bible 1-10
-augroup vimrc_technique_bible_1_10
-  autocmd!
-  autocmd InsertEnter * hi StatusLine guifg=DarkBlue guibg=DarkYellow gui=none ctermfg=Blue ctermbg=Yellow cterm=none
-  autocmd InsertLeave * hi StatusLine guifg=DarkBlue guibg=DarkGray gui=none ctermfg=Blue ctermbg=DarkGray cterm=none
-augroup END
-" }}}
-
-
-" Kill Indent 
-set noautoindent
-set nocindent
-set nocopyindent
-set nopreserveindent
-set nosmartindent
-
-set hlsearch
-set hid
-set expandtab
-
-set autoread
-
-" Kill Match Hilight 
-let loaded_matchparen = 1
-" 
-" Kill Backup 
-set nobackup
-set noundofile
-set noswapfile " Kill Swapfile
-
-" 
-set ambiwidth=double
-set backspace=indent,eol,start
-set laststatus=2
-set statusline=%<%f\ %m%r%h%w[%Y]%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}%=%c%V%8P
-
-set noshowcmd
-set ignorecase
-set smartcase
-set noshowmode
-
-source $VIMRUNTIME/macros/matchit.vim
-
-" Kill Auto Commentout
-augroup vimrc_kill_auto_commentout
-  autocmd!
-  autocmd FileType * setlocal formatoptions-=ro
-augroup END
-
-augroup vimrc_checktime
-  autocmd!
-  autocmd WinEnter * checktime
-augroup END
-
-augroup RubyFold
-  autocmd!
-  autocmd FileType ruby setlocal foldmethod=marker
-augroup END
-
-augroup help_remap
-  autocmd!
-  autocmd FileType help nnoremap <buffer> <CR> <C-]>
-  autocmd FileType help nnoremap <buffer> <BS> <C-O>
-augroup END
-
-augroup DotEnv
-  autocmd!
-  autocmd BufNewFile,BufReadPost .env.* setfiletype sh
-augroup END
-
-
-" virtual edit, vim hacks #195 
-set virtualedit=all
-if has('virtualedit') && &virtualedit =~# '\<all\>'
-  nnoremap <expr> p (col('.') >= col('$') ? '$' : '') . 'p'
-endif
-" }}}
-" {{{ FileTypes
-augroup FileTypes
-  autocmd!
-
-  " Type Detect
-  autocmd BufRead,BufNewFile *.json.tpl                                     setlocal filetype=json
-  autocmd BufRead,BufNewFile .vimrc.local                                   setlocal filetype=vim
-  autocmd BufRead,BufNewFile COMMIT_EDITMSG                                 setlocal filetype=gitcommit
-  autocmd BufRead,BufNewFile {before_config,.ssh_config.local,after_config} setlocal filetype=sshconfig
-  autocmd BufRead,BufNewFile {*.md,*.mkd,*.markdown}                        setlocal filetype=markdown
-  autocmd BufRead,BufNewFile {*.js,*.jsx,*.es6}                             setlocal filetype=javascript
-  autocmd BufRead,BufNewFile {*.ts,*.tsx}                                   setlocal filetype=typescript
-
-  " Rspec / TestUnit
-  autocmd BufRead,BufNewFile *_spec.rb setlocal filetype=ruby.rspec
-  autocmd BufRead,BufNewFile *_test.rb setlocal filetype=ruby.testunit
-
-  " Capfile
-  autocmd BufRead,BufNewFile {Schemafile,Gemfile,Rakefile,Thorfile,config.ru,.caprc,.irbrc,irb_tempfile*,*.arb} set filetype=ruby
-
-  " Ruby on Rails
-  autocmd BufRead,BufNewFile *.slim   setlocal ts=2 sw=2
-  autocmd BufRead,BufNewFile *.haml   setlocal ts=2 sw=2
-  autocmd BufRead,BufNewFile *.rhtml  setlocal ts=2 sw=2
-  autocmd BufRead,BufNewFile *.rb     setlocal ts=2 sw=2
-  autocmd BufRead,BufNewFile *.yml    setlocal ts=2 sw=2
-
-  " Set up synclines
-  autocmd FileType jsp,asp,php,ruby,xml,perl syntax sync minlines=500 maxlines=1000
-
-  " Golang
-  autocmd FileType go setlocal noexpandtab ts=4 sts=4 sw=4
-
-  " YAML
-  autocmd FileType yaml setlocal indentexpr=
-
-  " Ruby
-  autocmd FileType ruby set omnifunc=
-
-  " Markdown
-  autocmd FileType markdown setlocal ts=4 sts=4 sw=4
-  autocmd FileType markdown syntax sync fromstart
-
-  " GoHtmlTmpl
-  augroup GoHtmlTemplate
-    function! s:DetectGoHtmlTmpl()
-      if expand('%:e') == "html" && search("{{") != 0
-        set filetype=gohtmltmpl 
-      endif
-    endfunction
-
-    autocmd!
-    autocmd BufRead,BufNewFile * call s:DetectGoHtmlTmpl()
-  augroup END
-augroup END
 " }}}
 " {{{ Finalize
 if filereadable(expand('~/.vimrc.local'))
