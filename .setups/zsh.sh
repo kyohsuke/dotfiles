@@ -4,10 +4,9 @@ if [ "$SHELL" != "/usr/local/bin/zsh" ]; then
   # Install Zsh
   brew install zsh
   brew install zsh-completions
-  echo "Adding the newly installed shell to the list of allowed shells"
-  grep -q /usr/local/bin/zsh /etc/shells || sudo bash -c 'echo /usr/local/bin/zsh >> /etc/shells'
+
   # Change to the new shell, prompts for password
-  chsh -s /usr/local/bin/zsh
+  sudo chsh -s /usr/local/bin/zsh "$USER"
 
   if [ -z "$WITHOUT_OH_MY_ZSH" ]; then
     # install oh-my-zsh
