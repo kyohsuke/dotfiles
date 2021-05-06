@@ -4,6 +4,7 @@ ANYENVS=(
   rbenv
   pyenv
   nodenv
+  plenv
 )
 
 NODENV_PLUGINS=(
