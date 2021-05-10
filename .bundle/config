@@ -1,5 +1,4 @@
 ---
-BUNDLE_JOBS: "4"
 BUNDLE_BUILD__JEMALLOC: "--with-valgrind"
 BUNDLE_BUILD__MYSQL2: "--with-opt-dir=/usr/local/opt/openssl"
 BUNDLE_GEM__TEST: "minitest"
