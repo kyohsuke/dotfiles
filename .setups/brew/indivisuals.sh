@@ -3,7 +3,6 @@
 # check and install homebrew
 if [ "$WORK" != "true" ]; then
   CASKS=(
-    dropbox
     xld
     cooviewer
     kindle
