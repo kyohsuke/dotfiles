@@ -3,10 +3,10 @@
 CURRENT_TAPS=$(brew tap)
 
 TAPS=(
-genkiroid/cert
-kyohsuke/misc
-homebrew/cask-fonts
-nektos/tap
+  genkiroid/cert
+  kyohsuke/misc
+  homebrew/cask-fonts
+  nektos/tap
 )
 
 LIST=""

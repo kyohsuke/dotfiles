@@ -3,7 +3,6 @@
 CASKS=(
   charles
   firefox
-  bitbar
   psequel
   docker
   qlstephen

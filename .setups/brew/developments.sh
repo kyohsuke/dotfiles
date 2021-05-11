@@ -22,11 +22,9 @@ TOOLS=(
   hivemind
   cmake
   bat
-  imagemagick
   ipcalc
   direnv
   git-extras
-  terminal-notifier
   go
   aria2
   libpq

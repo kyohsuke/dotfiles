@@ -38,6 +38,7 @@
 !/.railsrc
 !/.*-version
 !/.rubocop.yml
+!/.github
 
 # Add .config file
 !/.config

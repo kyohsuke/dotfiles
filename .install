@@ -45,27 +45,32 @@ if ! [ -f "$HOME/.install" ]; then
   git submodule update --init
 fi
 
-echo "WORK? [Y/n]"
-read -r ANSWER
-case "$ANSWER" in
-    ""|[yY]|[yY][eE][sS])
-      export WORK="true"
-      ;;
-    * )
-      export WORK="false"
-      ;;
-esac
 
-echo "change OSX defaults? [y/N]"
-read -r ANSWER
-case "$ANSWER" in
-    ""[nN]|[nN][oO])
-      export CHANGE_OSX_DEFAULTS="false"
-      ;;
-    * )
-      export CHANGE_OSX_DEFAULTS="true"
-      ;;
-esac
+if [ -z "$WORK" ]; then
+  echo "WORK? [Y/n]"
+  read -r ANSWER
+  case "$ANSWER" in
+      ""|[yY]|[yY][eE][sS])
+        export WORK="true"
+        ;;
+      * )
+        export WORK="false"
+        ;;
+  esac
+fi
+
+if [ -z "$CHANGE_OSX_DEFAULTS" ]; then
+  echo "change OSX defaults? [y/N]"
+  read -r ANSWER
+  case "$ANSWER" in
+      ""[nN]|[nN][oO])
+        export CHANGE_OSX_DEFAULTS="false"
+        ;;
+      * )
+        export CHANGE_OSX_DEFAULTS="true"
+        ;;
+  esac
+fi
 
 TARGET_DIR="$HOME/.setups"
 for STEP in $(find "$TARGET_DIR" -name '*.sh'| sort)
