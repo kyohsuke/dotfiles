@@ -14,5 +14,9 @@ jobs:
       WITH_MAS: 'false'
     steps:
       - uses: actions/checkout@v2
+
+      - name: Dir check
+        run: ls -hl
+
       - name: Run Test installer
         run: bash ./install
