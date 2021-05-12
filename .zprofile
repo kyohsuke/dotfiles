@@ -8,6 +8,10 @@
     # {{{ anyenv
       if [[ -s $HOME/.anyenv/bin/anyenv ]] {
         export PATH="$HOME/.anyenv/bin:$PATH"
+        local PYENV_ROOT_PATH="$(anyenv root)/envs/pyenv"
+        if [[ -s $PYENV_ROOT_PATH ]] {
+          export PATH="$PYENV_ROOT_PATH/shims:$PATH"
+        }
         eval "$(anyenv init --no-rehash - zsh)"
       }
       export PATH="$HOME/bin:$HOME/sbin:$PATH"
