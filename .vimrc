@@ -46,6 +46,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'hashivim/vim-terraform'
   Plug 'rafael84/vim-wsd'
   Plug 'jparise/vim-graphql'
+  Plug 'dart-lang/dart-vim-plugin'
 
   " golang
   Plug 'mattn/vim-goimports'
