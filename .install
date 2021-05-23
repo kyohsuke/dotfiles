@@ -82,6 +82,4 @@ done
 
 echo "Cleaning up homebrew..."
 brew cleanup
-# vim: expandtab softtabstop=2 shiftwidth=2
-# vim: foldmethod=marker
-# vim: filetype=sh
+# vim: filetype=sh foldmethod=marker expandtab softtabstop=2 shiftwidth=2 
