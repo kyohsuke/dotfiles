@@ -442,6 +442,7 @@ augroup DetectFileTypes
     nmap <buffer> <f2> <plug>(lsp-rename)
     nmap <buffer> gr <plug>(lsp-references)
     nmap <buffer> <c-o> <plug>(lsp-hover)
+    nmap <buffer> gi <plug>(lsp-implementation)
     nmap <buffer> K <plug>(lsp-hover)
     nnoremap <buffer> gs :<C-u>CtrlPLspDocumentSymbol<Return>
     nnoremap <buffer> gS :<C-u>CtrlPLspWorkspaceSymbol<Return>
