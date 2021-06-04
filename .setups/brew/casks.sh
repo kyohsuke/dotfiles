@@ -3,10 +3,8 @@
 CASKS=(
   charles
   firefox
-  psequel
   docker
-  qlstephen
-  qlprettypatch
+  keka
 )
 
 LIST=""
