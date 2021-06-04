@@ -359,11 +359,12 @@ augroup DetectFileTypes
   augroup END
   " }}}
   " {{{ QuickRun
+  nmap <Leader>r <Plug>(quickrun)
   let g:quickrun_config = {
         \   '_': {
         \     'outputter/buffer/close_on_empty': 1,
+        \     'outputter/buffer/opener': 'rightbelow split',
         \     'runner': 'job',
-        \     'split': 'below'
         \   },
         \   'ruby': {
         \     'command': 'ruby',
