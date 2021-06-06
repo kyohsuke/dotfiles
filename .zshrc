@@ -3,9 +3,6 @@
 # vim: filetype=zsh
 
 # {{{ Init oh-my-zsh
-# autoload -Uz compinit
-# compinit -C -i -d "${ZSH_COMPDUMP}"
-
 plugins=(bundler rails rake-fast redis-cli vagrant docker-compose)
 plugin_paths=('/usr/local/share/zsh-completions')
 for ppath in $plugin_paths
@@ -14,6 +11,8 @@ do
 done
 fpath=($fpath $HOME/.zsh-completions)
 source $ZSH/oh-my-zsh.sh
+autoload -Uz compinit
+compinit -C -i -d "${ZSH_COMPDUMP}"
 # }}}
 # {{{ Sources
 # {{{ Zaw
@@ -194,6 +193,7 @@ function zrebuild() {
   rm -f ~/.zcompdump;
   zmodload -i zsh/complist
   zcompile ~/.zshrc
+  autoload -Uz compinit
   compinit -C -i -d "${ZSH_COMPDUMP}"
 }
 if [ ! -f ~/.zshrc.zwc -o ~/.zshrc -nt ~/.zshrc.zwc ]; then
