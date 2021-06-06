@@ -1,1 +1,1 @@
-STDOUT.sync = true
+$stdout.sync = true
