@@ -84,7 +84,7 @@ done
 if ! [ -e "$HOME/.anyenv" ]; then
   git clone https://github.com/riywo/anyenv ~/.anyenv
   PATH="$HOME/.anyenv/bin:$PATH"
-  eval "$("$HOME/.anyenv/bin/anyenv" init -)"
+  "$HOME/.anyenv/bin/anyenv" init -
   anyenv install --init
 
   for ANYENV in "${ANYENVS[@]}"
