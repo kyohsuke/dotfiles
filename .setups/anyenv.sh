@@ -59,7 +59,6 @@ ln -s "$HOME/.default-gems" "$(rbenv root)/default-gems"
 }
 
 
-
 # install Anyenv
 if ! [ -e "$HOME/.anyenv" ]; then
   git clone https://github.com/riywo/anyenv ~/.anyenv
@@ -67,35 +66,14 @@ if ! [ -e "$HOME/.anyenv" ]; then
   mkdir -p "$(anyenv root)/plugins"
   git clone https://github.com/znz/anyenv-update.git "$(anyenv root)/plugins/anyenv-update"
   git clone https://github.com/znz/anyenv-git.git "$(anyenv root)/plugins/anyenv-git"
-
+  "$HOME/.anyenv/bin/anyenv" install --force-init
   eval "$("$HOME/.anyenv/bin/anyenv" init -)"
-fi
 
-# Install envs
-for ANYENV in "${ANYENVS[@]}"
-do
-  if ! [ -e "$HOME/.anyenv/envs/$ANYENV" ]; then
-    anyenv install "$ANYENV"
-    mkdir -p "$($ANYENV root)/plugins"
-  fi
-done
-
-# install Anyenv
-if ! [ -e "$HOME/.anyenv" ]; then
-  git clone https://github.com/riywo/anyenv ~/.anyenv
-  PATH="$HOME/.anyenv/bin:$PATH"
-  "$HOME/.anyenv/bin/anyenv" init -
-  anyenv install --init
-
+  # Install envs
   for ANYENV in "${ANYENVS[@]}"
   do
     anyenv install "$ANYENV"
   done
-  mkdir -p "$(anyenv root)/plugins"
-  git clone https://github.com/znz/anyenv-update.git "$(anyenv root)/plugins/anyenv-update"
-
-  eval "$("$HOME/.anyenv/bin/anyenv" init -)"
-
   mkdir -p "$(pyenv root)/plugins"
   mkdir -p "$(rbenv root)/plugins"
   mkdir -p "$(ndenv root)/plugins"
@@ -126,7 +104,3 @@ if ! [ -e "$HOME/.anyenv" ]; then
     pyenv rehash
   fi
 fi
-
-install_nodenv_plugins
-install_pyenv_plugins
-install_rbenv_plugins
