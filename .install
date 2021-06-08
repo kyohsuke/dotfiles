@@ -31,8 +31,6 @@ if ! [ -f "$HOME/.install" ]; then
 
     # Make sure we’re using the latest Homebrew.
     brew update
-    # Upgrade any already-installed formulae.
-    brew upgrade --all
   fi
 
   # clone dotfiles and convert https to ssh
@@ -81,5 +79,5 @@ do
 done
 
 echo "Cleaning up homebrew..."
-brew cleanup
+brew cleanup --prune 0
 # vim: filetype=sh foldmethod=marker expandtab softtabstop=2 shiftwidth=2 
