@@ -67,13 +67,14 @@ if ! [ -e "$HOME/.anyenv" ]; then
   git clone https://github.com/znz/anyenv-update.git "$(anyenv root)/plugins/anyenv-update"
   git clone https://github.com/znz/anyenv-git.git "$(anyenv root)/plugins/anyenv-git"
   "$HOME/.anyenv/bin/anyenv" install --force-init
-  eval "$("$HOME/.anyenv/bin/anyenv" init -)"
 
   # Install envs
   for ANYENV in "${ANYENVS[@]}"
   do
     anyenv install "$ANYENV"
   done
+  eval "$("$HOME/.anyenv/bin/anyenv" init -)"
+
   mkdir -p "$(pyenv root)/plugins"
   mkdir -p "$(rbenv root)/plugins"
   mkdir -p "$(ndenv root)/plugins"
