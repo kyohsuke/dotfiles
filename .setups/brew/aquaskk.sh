@@ -2,7 +2,7 @@
 
 if ! [ -d "$HOME/Library/Application Support/AquaSKK" ]; then
   # Install AquaSKK
-  echo -e "cask aquaskk" | brew bundle --file=/dev/stdin
+  echo 'cask "aquaskk"' | brew bundle --file=/dev/stdin
 
   # Set direct writes to AquaSKK
   DIRECT_WRITE_APPS=(com.apple.Terminal org.vim.MacVim com.apple.Spotlight)
