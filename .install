@@ -43,7 +43,6 @@ if ! [ -f "$HOME/.install" ]; then
   git submodule update --init
 fi
 
-
 if [ -z "$WORK" ]; then
   echo "WORK? [Y/n]"
   read -r ANSWER
@@ -69,6 +68,9 @@ if [ -z "$CHANGE_OSX_DEFAULTS" ]; then
         ;;
   esac
 fi
+
+echo "WORK: $WORK"
+echo "CHANGE_OSX_DEFAULTS: $CHANGE_OSX_DEFAULTS"
 
 TARGET_DIR="$HOME/.setups"
 for STEP in $(find "$TARGET_DIR" -name '*.sh'| sort)
