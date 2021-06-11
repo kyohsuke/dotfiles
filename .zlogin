@@ -43,23 +43,6 @@ fi
 
 # }}}
 # {{{ Functions
-function twitch() {
-  curl --silent -H "Client-ID: ${TWITCH_CLIENT_ID}" -H 'Accept: application/vnd.twitchtv.v3+json' -X GET https://api.twitch.tv/kraken/users/kyohsuke/follows/channels \
-    | jq -r '.follows[].channel.name' \
-    | xargs -I {} -n 1 -P 4 curl --silent -H "Client-ID: ${TWITCH_CLIENT_ID}" -H 'Accept: application/vnd.twitchtv.v3+json' -X GET https://api.twitch.tv/kraken/streams/\{\} \
-    | jq -r 'select(.stream != null) | .stream.channel.name' \
-    | peco --prompt="Twitch Live Channels> " | head -1 | xargs -I {} livestreamer --twitch-oauth-token ${TWITCH_OAUTH_TOKEN} twitch.tv/{} best 
-}
-function radio() {
-  curl --silent -H "Client-ID: ${TWITCH_CLIENT_ID}" -H 'Accept: application/vnd.twitchtv.v3+json' -X GET https://api.twitch.tv/kraken/users/kyohsuke/follows/channels \
-    | jq -r '.follows[].channel.name' \
-    | xargs -I {} -n 1 -P 4 curl --silent -H "Client-ID: ${TWITCH_CLIENT_ID}"  -H 'Accept: application/vnd.twitchtv.v3+json' -X GET https://api.twitch.tv/kraken/streams/\{\} \
-    | jq -r 'select(.stream != null) | .stream.channel.name' \
-    | peco --prompt="Twitch Live Channels> " | head -1 | xargs -I {} livestreamer --twitch-oauth-token ${TWITCH_OAUTH_TOKEN} twitch.tv/{} audio
-}
-function qtwitch() {
-    livestreamer --twitch-oauth-token ${TWITCH_OAUTH_TOKEN} twitch.tv/$1 best
-}
 function loc() {
   mdfind -onlyin $PWD -name $*
 }
