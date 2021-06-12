@@ -1,4 +1,4 @@
-#!/usr/bin/ruby
+#!/usr/bin/env ruby
 
 # Fixing readline with rbenv on Mac OSX
 # At first, you should run 'brew install readline && brew link readline'

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 get_repo_size() {
   du -sk .git | awk '{print $1}'
 }

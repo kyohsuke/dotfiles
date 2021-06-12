@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 if [ $# -lt 1 ]; then
   REALPATH=$0
   echo "Usage: ${REALPATH##*/} <packagename>"

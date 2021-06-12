@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 export GIT_MERGE_AUTOEDIT='no'
 
 # Ask for the administrator password upfront
