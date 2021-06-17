@@ -49,8 +49,11 @@
 
   squash-all = "!f(){ git reset $(git commit-tree HEAD^{tree} -m \"${1:-A new start}\");};f"
 
+  root-repo-name = "!f(){ git remote show origin | grep 'HEAD branch' | cut -d' ' -f5;};f"
   current-branch = rev-parse --abbrev-ref HEAD
-  delete-merged-branches = "!git checkout master && git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
+
+  delete-merged-branches = "!f(){ROOT_NAME=`git root-repo-name` && git checkout $ROOT_NAME && git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d;};f"
+  # delete-merged-branches = "!git checkout master && git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
   delete-tag="!f(){ if [ -n \"$1\" ]; then git tag -d $1; git push origin --delete $1;; fi; };f"
   export = "!f(){ CURRENT=`git current-branch` && git archive $CURRENT | bzip2 > $CURRENT.tbz2 ;};f"
   dmb = delete-merged-branches 
