@@ -5,7 +5,7 @@
 # {{{ User specific aliases and functions 
 # {{{ Aliases
 alias dcs='docker stats $(docker-compose ps -q || echo "#")'
-alias gup='git pull --rebase && git dmb'
+alias gup='git pull --rebase'
 alias rm='rm -i'
 alias ll='ls -l'
 alias df='df -h'
