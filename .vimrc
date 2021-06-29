@@ -228,6 +228,7 @@ augroup DetectFileTypes
   autocmd BufRead,BufNewFile {*.js,*.jsx,*.es6}                             setlocal filetype=javascript
   autocmd BufRead,BufNewFile {*.ts,*.tsx}                                   setlocal filetype=typescript
   autocmd BufRead,BufNewFile .env.*                                         setlocal filetype=sh
+  autocmd BufRead,BufNewFile {.babelrc,.eslintrc.json,.stylelintrc.json}    setlocal filetype=json
 
   " GoHtmlTmpl
   augroup GoHtmlTemplate
