@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-docker run --rm -v `pwd`:/app -w /app minidocks/ghostscript $*
+docker run --rm -v `pwd`:/app -w /app minidocks/ghostscript "$@"
