@@ -7,12 +7,11 @@ VERSION = -'v0.11.0'
 URL = ARGV.shift
 urls = URL.split('/')
 
-OUTPATH = "#{ENV['PWD']}/output".freeze
 TIME = urls[-1]
 ID = urls[-2]
 
-puts ID
-puts TIME
+puts "ID: #{ID}"
+puts "TIME: #{TIME}"
 
-puts "docker run -it --rm -v \"#{OUTPATH}\":/output yyoshiki41/radigo:#{VERSION} rec -id=#{ID} -s=#{TIME}"
-exec("docker run -it --rm -v \"#{OUTPATH}\":/output yyoshiki41/radigo:#{VERSION} rec -id=#{ID} -s=#{TIME}")
+puts "docker run -it --rm -v \"#{ENV['PWD']}\":/output yyoshiki41/radigo:#{VERSION} rec -id=#{ID} -s=#{TIME}"
+exec("docker run -it --rm -v \"#{ENV['PWD']}\":/output yyoshiki41/radigo:#{VERSION} rec -id=#{ID} -s=#{TIME}")
