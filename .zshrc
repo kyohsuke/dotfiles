@@ -3,7 +3,7 @@
 # vim: filetype=zsh
 
 # {{{ Init oh-my-zsh
-plugins=(bundler rails rake-fast redis-cli vagrant docker-compose)
+plugins=(bundler rails rake-fast redis-cli vagrant docker docker-compose)
 plugin_paths=('/usr/local/share/zsh-completions')
 for ppath in $plugin_paths
 do
