@@ -2,17 +2,17 @@
 
 exit EXIT_FAILURE if ARGV.empty?
 
+VERSION = -'v0.11.0'
 
-URL=ARGV.shift
-urls = URL.split("/")
+URL = ARGV.shift
+urls = URL.split('/')
 
-
-OUTPATH="#{ENV['PWD']}/output"
-TIME=urls[-1]
-ID=urls[-2]
+OUTPATH = "#{ENV['PWD']}/output".freeze
+TIME = urls[-1]
+ID = urls[-2]
 
 puts ID
 puts TIME
 
-puts "docker run -it -v \"#{OUTPATH}\":/output yyoshiki41/radigo rec -id=#{ID} -s=#{TIME}"
-exec("docker run -it -v \"#{OUTPATH}\":/output yyoshiki41/radigo rec -id=#{ID} -s=#{TIME}")
+puts "docker run -it --rm -v \"#{OUTPATH}\":/output yyoshiki41/radigo:#{VERSION} rec -id=#{ID} -s=#{TIME}"
+exec("docker run -it --rm -v \"#{OUTPATH}\":/output yyoshiki41/radigo:#{VERSION} rec -id=#{ID} -s=#{TIME}")
