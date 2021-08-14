@@ -1,7 +1,8 @@
 bundler
 bundler-audit
 solargraph
+standard
+solargraph-standardrb
 tty
-rubocop
-rubocop-performance
 cocoapods
+ruby-debug-ide
