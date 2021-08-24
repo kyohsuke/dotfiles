@@ -46,8 +46,8 @@ if [[ -z $ZSHENV_LOAD ]] {
   fi
 
   if [ -r "/usr/local/bin/bat" ]; then
+    export MANPAGER='bat -l man -p'
     export BAT_PAGER="less -FR"
-    export MANPAGER="sh -c 'col -bx | bat -l man -p'"
   fi
 
   # for python and pyenv
