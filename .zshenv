@@ -45,6 +45,11 @@ if [[ -z $ZSHENV_LOAD ]] {
     source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
   fi
 
+  if [ -r "/usr/local/bin/bat" ]; then
+    export BAT_PAGER="less -FR"
+    export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+  fi
+
   # for python and pyenv
   export PYTHONDONTWRITEBYTECODE=1
   export PYENV_VIRTUALENV_DISABLE_PROMPT=1
