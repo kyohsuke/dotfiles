@@ -5,7 +5,15 @@
 # {{{ Add Homebrew completion
 if type brew &>/dev/null; then
   HOMEBREW_PREFIX="$(brew --prefix)"
-  fpath=("$HOMEBREW_PREFIX/share/zsh-completions" "$HOMEBREW_PREFIX/share/zsh/site-functions" $fpath)
+  SHARE_DIRECTORY="$HOMEBREW_PREFIX/share"
+  if [[ -d "$SHARE_DIRECTORY" ]]; then
+    fpath=("$HOMEBREW_PREFIX/share/zsh-completions" "$HOMEBREW_PREFIX/share/zsh/site-functions" $fpath)
+
+    SHARE_PERMISSION="$(stat -f '%A' "$SHARE_DIRECTORY")"
+    if [[ "$SHARE_PERMISSION" -ne 755 ]]; then
+      chmod -R go-w "$SHARE_PERMISSION"
+    fi
+  fi
 fi
 # }}}
 # {{{ Init oh-my-zsh
