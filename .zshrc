@@ -2,14 +2,15 @@
 # vim: foldmethod=marker
 # vim: filetype=zsh
 
+# {{{ Add Homebrew completion
+if type brew &>/dev/null; then
+  HOMEBREW_PREFIX="$(brew --prefix)"
+  fpath=("$HOMEBREW_PREFIX/share/zsh-completions" "$HOMEBREW_PREFIX/share/zsh/site-functions" $fpath)
+fi
+# }}}
 # {{{ Init oh-my-zsh
-plugins=(bundler rails rake-fast redis-cli vagrant docker docker-compose)
-plugin_paths=('/usr/local/share/zsh-completions')
-for ppath in $plugin_paths
-do
-  [[ -d $ppath ]] && fpath=($fpath $ppath)
-done
 fpath=($fpath $HOME/.zsh-completions)
+plugins=(bundler rails rake-fast redis-cli vagrant docker docker-compose)
 source $ZSH/oh-my-zsh.sh
 autoload -Uz compinit
 compinit -C -i -d "${ZSH_COMPDUMP}"
