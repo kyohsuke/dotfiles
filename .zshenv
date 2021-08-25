@@ -46,7 +46,7 @@ if [[ -z $ZSHENV_LOAD ]] {
   fi
 
   if [ -r "/usr/local/bin/bat" ]; then
-    export MANPAGER='bat -l man -p'
+    export MANPAGER="sh -c 'col -bx | bat -pl man'"
     export BAT_PAGER="less -FR"
   fi
 
