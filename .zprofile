@@ -21,5 +21,10 @@
         eval "$(direnv hook zsh)"
       }
     # }}}
+    # {{{ docker-machine
+    if type docker-machine &>/dev/null; then
+      eval "$(docker-machine env default)"
+    fi
+    # }}}
   # }}}
 # }}} 
