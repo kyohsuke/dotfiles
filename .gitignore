@@ -46,6 +46,9 @@
 !/.config/pgcli
 /.config/pgcli/*
 !/.config/pgcli/config
+!/.config/nodenv
+/.config/nodenv/*
+!/.config/nodenv/default-packages
 
 # Add Tracking only .bundle/config
 !/.bundle
