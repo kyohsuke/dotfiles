@@ -2,6 +2,8 @@
 
 exit EXIT_FAILURE if ARGV.empty?
 
+require 'fileutils'
+
 VERSION = -'v0.11.0'
 
 URL = ARGV.shift
@@ -9,9 +11,20 @@ urls = URL.split('/')
 
 TIME = urls[-1]
 ID = urls[-2]
+FILE_AAC = -"#{TIME}-#{ID}.aac"
+FILE_M4A = -"#{TIME}-#{ID}.m4a"
 
-puts "ID: #{ID}"
-puts "TIME: #{TIME}"
+puts "ID      : #{ID}"
+puts "TIME    : #{TIME}"
+puts "FILE_AAC: #{FILE_AAC}"
+puts "FILE_M4A: #{FILE_M4A}"
 
-puts "docker run --rm -v \"#{ENV['PWD']}\":/output yyoshiki41/radigo:#{VERSION} rec -id=#{ID} -s=#{TIME}"
-exec("docker run --rm -v \"#{ENV['PWD']}\":/output yyoshiki41/radigo:#{VERSION} rec -id=#{ID} -s=#{TIME}")
+cmd = "docker run --rm -v \"#{ENV['PWD']}\":/output yyoshiki41/radigo:#{VERSION} rec -id=#{ID} -s=#{TIME}"
+puts cmd
+system(cmd)
+
+cmd = "ffmpeg -i #{FILE_AAC} -c copy '#{FILE_M4A}'"
+puts cmd
+system(cmd)
+
+FileUtils.rm(FILE_AAC)
