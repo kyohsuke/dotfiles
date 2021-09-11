@@ -39,7 +39,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'ekalinin/Dockerfile.vim'
   Plug 'slim-template/vim-slim'
   Plug 'tpope/vim-haml'
-  Plug 'cespare/vim-toml', { 'branch': 'main' }
+  Plug 'cespare/vim-toml'
     Plug 'maralla/vim-toml-enhance' 
   Plug 'tpope/vim-markdown'
     Plug 'joker1007/vim-markdown-quote-syntax'
