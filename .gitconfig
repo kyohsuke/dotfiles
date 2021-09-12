@@ -10,6 +10,7 @@
   path = ~/.gitconfig.local
 [submodule]
   fetchJobs = 4
+  recurse = true
 [remote "origin"]
   prune = true
 [credential]
@@ -29,18 +30,13 @@
   rerereresolved = 0
   rerereunresolved = 0
   pruneExpire = now
+  aggressiveDepth = 250
+  aggressiveWindow = 250
 [alias]
-  branch = --no-pager branch
-  branches = --no-pager branch -a
+  branches = branch -a
   tags = tag
   stashes = stash list
   remotes = remote -v
-
-  pull = pull --recurse-submodules
-
-  graph = log --graph --date=short --decorate=short --pretty=format:'%Cgreen%h %Creset%cd %Cblue%cn %Cred%d %Creset%s'
-  compress = repack -f -a -d --depth=250 --window=250
-
 
   sdiff = difftool
   last = sdiff HEAD~1
@@ -49,23 +45,7 @@
 
   squash-all = "!f(){ git reset $(git commit-tree HEAD^{tree} -m \"${1:-A new start}\");};f"
 
-  root-repo-name = "!f(){ git remote show origin | grep 'HEAD branch' | cut -d' ' -f5;};f"
-  current-branch = rev-parse --abbrev-ref HEAD
-
-  delete-merged-branches = "!f(){ROOT_NAME=`git root-repo-name` && git checkout $ROOT_NAME && git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d;};f"
-  # delete-merged-branches = "!git checkout master && git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
   delete-tag="!f(){ if [ -n \"$1\" ]; then git tag -d $1; git push origin --delete $1;; fi; };f"
-  export = "!f(){ CURRENT=`git current-branch` && git archive $CURRENT | bzip2 > $CURRENT.tbz2 ;};f"
-  dmb = delete-merged-branches 
-
-  setfork = "!f(){ git remote add upstream $1;};f"
-  refork = "!f(){ git fetch upstream && git checkout master && git rebase upstream/master ;};f"
-
-  subpull = "!f(){ git submodule foreach 'git checkout master; git pull --rebase';};f"
-
-  cleanup= "!f(){ git reflog expire --expire=now --all && git gc --prune=now;};f"
-
-  gc = gc --aggressive
 
   amend = commit --amend
   unstage = reset -q HEAD --
@@ -75,7 +55,7 @@
 
 [pager]
   difftool = true
-  branch = cat
+  branch = false
 [interactive]
   diffFilter = diff-highlight
 [diff]	

@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+git submodule foreach 'git checkout "$(git default-branch)" && git pull --rebase'

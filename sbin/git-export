@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+CURRENT_BRANCH="$(git current)"
+
+git archive "$CURRENT_BRANCH" | bzip2 > "$CURRENT_BRANCH.tbz2"

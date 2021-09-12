@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+CURRENT_BRANCH_NAME="$(git current)"
+DEFAULT_BRANCH_NAME="$(git default-branch)"
+
+git checkout "$DEFAULT_BRANCH_NAME" > /dev/null 2> /dev/null
+
+git branch --merged | grep -v '\*'
+
+git checkout "$CURRENT_BRANCH_NAME" > /dev/null 2> /dev/null
