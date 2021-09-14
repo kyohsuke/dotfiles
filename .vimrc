@@ -259,7 +259,7 @@ augroup DetectFileTypes
   autocmd BufRead,BufNewFile *.yml    setlocal ts=2 sw=2
 
   " Set up synclines
-  autocmd FileType jsp,asp,php,ruby,xml,perl syntax sync minlines=500 maxlines=1000
+  autocmd FileType jsp,asp,php,ruby,xml,perl,markdown syntax sync minlines=500 maxlines=1000
 
   " Golang
   autocmd FileType go setlocal noexpandtab ts=4 sts=4 sw=4
@@ -508,6 +508,9 @@ augroup DetectFileTypes
           \   },
           \   'gohtmltmpl' : {
           \     'start' : 'go-html-template'
+          \   },
+          \   'graphql' : {
+          \     'start' : 'gql'
           \   },
           \ }
     " }}}
