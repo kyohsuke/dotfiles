@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+TARGET_TAG="$1"
+if [ -n "$TARGET_TAG" ]; then
+  git tag -fa "$TARGET_TAG"
+fi
