@@ -35,7 +35,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'maxmellon/vim-jsx-pretty'
   Plug 'lifepillar/pgsql.vim'
   Plug 'direnv/direnv.vim'
-  Plug 'tyru/skkdict.vim'
+  Plug 'vim-skk/skkdict.vim'
   Plug 'ekalinin/Dockerfile.vim'
   Plug 'slim-template/vim-slim'
   Plug 'tpope/vim-haml'
@@ -90,7 +90,7 @@ call plug#begin('~/.vim/plugged')
 
   Plug 'tpope/vim-dispatch'
   Plug 'tpope/vim-fugitive'
-  Plug 'tyru/eskk.vim'
+  Plug 'vim-skk/eskk.vim'
   Plug 'tyru/open-browser.vim'
   Plug 'kyohsuke/vimlc.vim'
   Plug 'chrisbra/matchit'
