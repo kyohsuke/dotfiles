@@ -41,5 +41,5 @@ echo -e "$LIST" | brew bundle --file=/dev/stdin
 
 GO_PACKAGES=$(cat .go-package)
 for PACKAGE in $GO_PACKAGES; do
-  go get "$PACKAGE"
+  go install "$PACKAGE"
 done
