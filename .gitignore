@@ -39,6 +39,7 @@
 !/.*-version
 !/.rubocop.yml
 !/.github
+!/.fontgen
 
 # Add .config file
 !/.config
