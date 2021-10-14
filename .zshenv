@@ -29,6 +29,8 @@ if [[ -z $ZSHENV_LOAD ]] {
     irb
   )
 
+  export FILES_IGNORE_PATTERN='^(\.git|\.hg|\.svn|_darcs|\.bzr|^node_modules|tmp|\.vagrant|\.keep|\.log|.tmp|\.DS_Store)$'
+
   export HOMEBREW_INSTALL_CLEANUP="1"
   export EDITOR="mvim -f --cmd 'autocmd VimLeave * :!open -a Terminal'"
   [[ -r "/usr/local/bin/gpg" ]] && export GPG_TTY=$(tty)
