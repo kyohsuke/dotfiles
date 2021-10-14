@@ -55,7 +55,6 @@ call plug#begin('~/.vim/plugged')
 
   " NerdTree
   Plug 'scrooloose/nerdtree'
-    Plug 'Xuyuanp/nerdtree-git-plugin'
 
   Plug 'previm/previm'
 
@@ -94,6 +93,12 @@ call plug#begin('~/.vim/plugged')
   Plug 'tyru/open-browser.vim'
   Plug 'kyohsuke/vimlc.vim'
   Plug 'chrisbra/matchit'
+
+  " Devicons
+  Plug 'ryanoasis/vim-devicons'
+    Plug 'Xuyuanp/nerdtree-git-plugin'
+    Plug 'mattn/vim-ctrlp-syntax-highlight'
+
 call plug#end()
 if !isdirectory($HOME.'/.vim/plugged')
   PlugInstall
@@ -298,6 +303,7 @@ augroup DetectFileTypes
     let g:NERDTreeAutoDeleteBuffer = 1
     let g:NERDTreeChDirMode = 2
     let g:NERDTreeStatusline = '  NERDTree  '. nerdtree#version()
+    let g:NERDTreeLimitedSyntax = 1
   augroup END
   " }}}
   " {{{ FoldCC
@@ -339,7 +345,7 @@ augroup DetectFileTypes
   let g:ctrlp_extensions = ['tag', 'quickfix', 'dir', 'line', 'mixed']
   let g:ctrlp_working_path_mode = 'r'
   let g:ctrlp_open_new_file = 'h'
-  let g:ctrlp_user_command = 'files -a -A -s -i "^(\.git|\.hg|\.svn|_darcs|\.bzr|^node_modules|tmp|\.vagrant|\.keep|\.log|.tmp|\.DS_Store)$" %s'
+  let g:ctrlp_user_command = 'files -a %s'
   let g:ctrlp_match_current_file = 1
   function! CtrlPCommand()
       let c = 0

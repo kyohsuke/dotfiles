@@ -34,7 +34,7 @@ if has('gui')
 
   if has('mac')
     set transparency=15
-    set guifont=Osaka-Mono:h14
+    set guifont=OsakaNerdFont-Regular-Mono:h14,Osaka-Mono:h14
 
     augroup hack234
       autocmd!
