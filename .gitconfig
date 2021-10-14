@@ -20,6 +20,7 @@
   diff = auto
   status = auto
 [fetch]
+  recurseSubmodules = true
   parallel = 8
 [push]
   default = current
