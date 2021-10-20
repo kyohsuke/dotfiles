@@ -25,6 +25,9 @@ call plug#begin('~/.vim/plugged')
   " Color Scheme
   Plug 'mrkn/mrkn256.vim'
 
+  " Japanese Help
+  Plug 'vim-jp/vimdoc-ja'
+
   " Syntax Plugins
   Plug 'mechatroner/rainbow_csv'
   Plug 'kchmck/vim-coffee-script'
@@ -93,6 +96,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'tyru/open-browser.vim'
   Plug 'kyohsuke/vimlc.vim'
   Plug 'chrisbra/matchit'
+
+  Plug 'markonm/traces.vim'
 
   " Devicons
   Plug 'ryanoasis/vim-devicons'
