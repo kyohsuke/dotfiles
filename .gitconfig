@@ -46,8 +46,6 @@
 
   squash-all = "!f(){ git reset $(git commit-tree HEAD^{tree} -m \"${1:-A new start}\");};f"
 
-  delete-tag="!f(){ if [ -n \"$1\" ]; then git tag -d $1; git push origin --delete $1;; fi; };f"
-
   amend = commit --amend
   unstage = reset -q HEAD --
   discard = checkout --
