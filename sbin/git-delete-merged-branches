@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 CURRENT_BRANCH_NAME="$(git current)"
+DEFAULT_BRANCH_NAME="$(git default-branch)"
 MERGED_BRANCHES="$(git merged-branches)"
 
+
 for BRANCH_NAME in $MERGED_BRANCHES; do
-  if [ "$CURRENT_BRANCH_NAME" != "$BRANCH_NAME" ]; then
-    echo "git branch -d $BRANCH_NAME"
+  if [ "$CURRENT_BRANCH_NAME" != "$BRANCH_NAME" ] && [ "$DEFAULT_BRANCH_NAME" != "$BRANCH_NAME" ]; then
+    echo "Delete $BRANCH_NAME"
     git branch -d "$BRANCH_NAME"
-  else
-    echo "$BRANCH_NAME is current branch. skip."
   fi
 done
