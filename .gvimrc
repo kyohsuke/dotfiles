@@ -1,24 +1,11 @@
 " MacVim Setting
-if has('gui')
+if has('gui_running')
   if has('win32')
     source $VIMRUNTIME/delmenu.vim
     set langmenu=ja_jp.utf-8
     source $VIMRUNTIME/menu.vim
   endif
 
-  " Cursorline 
-  if has('gui_macvim')
-    set cursorline
-    augroup cch
-      autocmd!
-      autocmd WinLeave * set nocursorline
-      autocmd WinEnter,BufRead * set cursorline
-    augroup END
-
-    highlight clear CursorLine
-    highlight CursorLine gui=underline
-    highlight CursorLine guibg=black ctermbg=black
-  endif
 
   " Kill IME
   set imdisable
@@ -32,9 +19,25 @@ if has('gui')
   set lines=60
   set columns=200
 
-  if has('mac')
+  " MacVim
+  if has('gui_macvim')
+    " Cursorline 
+    set cursorline
+    augroup cch
+      autocmd!
+      autocmd WinLeave * set nocursorline
+      autocmd WinEnter,BufRead * set cursorline
+    augroup END
+
+    highlight clear CursorLine
+    highlight CursorLine gui=underline
+    highlight CursorLine guibg=black ctermbg=black
+
     set transparency=15
-    set guifont=OsakaNerdFont-Regular-Mono:h14,Osaka-Mono:h14
+    set guifont=Cica-Regular:h14,Osaka-Mono:h14
+    set guifontwide=Cica-Regular:h14,Osaka-Mono:h14
+    " set guifont=OsakaNerdFont-Regular-Mono:h14,Osaka-Mono:h14
+    " set guifontwide=OsakaNerdFont-Regular-Mono:h14,Osaka-Mono:h14
 
     augroup hack234
       autocmd!
