@@ -99,6 +99,8 @@ call plug#begin('~/.vim/plugged')
 
   Plug 'markonm/traces.vim'
 
+  Plug 'tyru/current-func-info.vim'
+
   " Devicons
   Plug 'ryanoasis/vim-devicons'
     Plug 'Xuyuanp/nerdtree-git-plugin'
@@ -353,14 +355,14 @@ augroup DetectFileTypes
   let g:ctrlp_user_command = 'files -a %s'
   let g:ctrlp_match_current_file = 1
   function! CtrlPCommand()
-      let c = 0
-      let wincount = winnr('$')
-      " Don't open it here if current buffer is not writable (e.g. NERDTree)
-      while !empty(getbufvar(+expand("<abuf>"), "&buftype")) && c < wincount
-          exec 'wincmd w'
-          let c = c + 1
-      endwhile
-      exec 'CtrlP'
+    let c = 0
+    let wincount = winnr('$')
+    " Don't open it here if current buffer is not writable (e.g. NERDTree)
+    while !empty(getbufvar(+expand("<abuf>"), "&buftype")) && c < wincount
+      exec 'wincmd w'
+      let c = c + 1
+    endwhile
+    exec 'CtrlP'
   endfunction
   let g:ctrlp_cmd = 'call CtrlPCommand()'
   " }}}
@@ -432,6 +434,7 @@ augroup DetectFileTypes
   let g:sinplu_plural_override_wards = [
         \   ['(ind)ex$', '\1exes', 'i']
         \ ]
+  " }}}
   " {{{ vim-lsp
   function! s:on_lsp_buffer_enabled() abort
     setlocal omnifunc=lsp#complete
@@ -557,15 +560,11 @@ augroup DetectFileTypes
     autocmd FileType ruby,eruby nnoremap <silent> <Leader>t :split<Return> <C-]>
   augroup END
   " }}}
-  " {{{ vim-go
-  nnoremap ,go :<C-u>Godoc<Space>
-  let g:go_def_mapping_enabled = 0
-  let g:go_gopls_enabled = 0
-  if isdirectory(expand(globpath($GOPATH, "src/github.com/nsf/gocode/vim")))
-    exe "set runtimepath+=".globpath($GOPATH, "src/github.com/nsf/gocode/vim")
+  " {{{ current-func-info
+  if has_key(g:plugs, 'current-func-info.vim')
+    let &statusline .= ' [%{cfi#format("%s", "")}]'
   endif
   " }}}
-" }}}
 " }}}
 " {{{ Finalize
 if filereadable(expand('~/.vimrc.local'))
