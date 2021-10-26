@@ -1,5 +1,6 @@
 " vim: expandtab softtabstop=2 shiftwidth=2
 " vim: foldmethod=marker
+source $VIMRUNTIME/defaults.vim
 
 " {{{ MacVim 8 patch 1272 or above
 if has('vim_starting') && has('mac')
@@ -208,7 +209,7 @@ endfunction
   set t_Co=256
   set visualbell t_vb=
   set colorcolumn=80,128
-  set clipboard=unnamed
+  set clipboard+=unnamed
   set completeopt=menu,noselect
   set number relativenumber
   set maxmempattern=10240
