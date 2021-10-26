@@ -30,8 +30,9 @@ if has('gui_running')
     augroup END
 
     highlight clear CursorLine
-    highlight CursorLine gui=underline
-    highlight CursorLine guibg=black ctermbg=black
+    highlight CursorLine gui=underline guibg=black ctermbg=black
+    autocmd InsertEnter * set nocursorline
+    autocmd InsertLeave * set cursorline
 
     set transparency=15
     set guifont=Cica-Regular:h14,Osaka-Mono:h14
@@ -41,8 +42,8 @@ if has('gui_running')
 
     augroup hack234
       autocmd!
-      autocmd FocusGained * set transparency=10
-      autocmd FocusLost * set transparency=50
+      autocmd FocusGained * set transparency=10 cursorline
+      autocmd FocusLost * set transparency=50 nocursorline
     augroup END
   endif
 endif
