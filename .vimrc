@@ -161,21 +161,17 @@ endfunction
     vnoremap <expr> h virtcol('.') == 1 && foldlevel(line('.')) > 0 ? 'zcgv' : 'h'
     vnoremap <expr> l foldclosed(line('.')) != -1 ? 'zogv0' : 'l'
     " }}}
-
+    " {{{ Commandline Remap
     cnoremap <C-h> <Left>
     cnoremap <C-j> <Down>
     cnoremap <C-k> <Up>
     cnoremap <C-l> <Right>
-
-    " {{{
     " }}}
   " }}}
   " {{{ Color Scheme 
-  try
-      colorscheme mrkn256
-  catch /^Vim\%((\a\+)\)\=:E185/
-      colorscheme koehler
-  endtry
+  if s:IsPlugLoaded('mrkn256.vim')
+    colorscheme mrkn256
+  endif
   " }}}
   " {{{ Mode Color StatusLine ( Vim Technique Bible 1-10 )
   augroup VimrcTechniqueBible_1_10
@@ -244,7 +240,7 @@ augroup DetectFileTypes
   " Type Detect
   autocmd BufRead,BufNewFile *.json.tpl                                     setlocal filetype=json
   autocmd BufRead,BufNewFile .vimrc.local                                   setlocal filetype=vim
-  autocmd BufRead,BufNewFile COMMIT_EDITMSG                                 setlocal filetype=gitcommit
+  " autocmd BufRead,BufNewFile COMMIT_EDITMSG                                 setlocal filetype=gitcommit
   autocmd BufRead,BufNewFile {before_config,.ssh_config.local,after_config} setlocal filetype=sshconfig
   autocmd BufRead,BufNewFile {*.md,*.mkd,*.markdown}                        setlocal filetype=markdown
   autocmd BufRead,BufNewFile {*.js,*.jsx,*.es6}                             setlocal filetype=javascript
@@ -298,6 +294,7 @@ augroup DetectFileTypes
   " Remap vim help
   autocmd FileType help nnoremap <buffer> <CR> <C-]>
   autocmd FileType help nnoremap <buffer> <BS> <C-O>
+augroup END
 " }}}
 " {{{ Plugins
   " {{{ NerdTree
