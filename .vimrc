@@ -23,11 +23,11 @@ endif
 " }}}
 " {{{ vim-plug
 call plug#begin('~/.vim/plugged')
-  " Color Scheme
-  Plug 'mrkn/mrkn256.vim'
-
   " Japanese Help
   Plug 'vim-jp/vimdoc-ja'
+
+  " Color Scheme
+  Plug 'mrkn/mrkn256.vim'
 
   " Syntax Plugins
   Plug 'mechatroner/rainbow_csv'
@@ -46,7 +46,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'cespare/vim-toml'
     Plug 'maralla/vim-toml-enhance' 
   Plug 'tpope/vim-markdown'
-    Plug 'joker1007/vim-markdown-quote-syntax'
   Plug 'hashivim/vim-terraform'
   Plug 'rafael84/vim-wsd'
   Plug 'jparise/vim-graphql'
@@ -78,8 +77,6 @@ call plug#begin('~/.vim/plugged')
     Plug 'mattn/ctrlp-lsp'
 
   " Ruby
-  Plug 'thoughtbot/vim-rspec'
-  Plug 'tpope/vim-bundler'
   Plug 'tpope/vim-rails'
 
   " vim-ref
@@ -106,8 +103,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'ryanoasis/vim-devicons'
     Plug 'Xuyuanp/nerdtree-git-plugin'
     Plug 'mattn/vim-ctrlp-syntax-highlight'
-
 call plug#end()
+
 if !isdirectory($HOME.'/.vim/plugged')
   PlugInstall
 endif
@@ -168,11 +165,6 @@ endfunction
     cnoremap <C-l> <Right>
     " }}}
   " }}}
-  " {{{ Color Scheme 
-  if s:IsPlugLoaded('mrkn256.vim')
-    colorscheme mrkn256
-  endif
-  " }}}
   " {{{ Mode Color StatusLine ( Vim Technique Bible 1-10 )
   augroup VimrcTechniqueBible_1_10
     autocmd!
@@ -232,6 +224,11 @@ endfunction
     autocmd FileType * setlocal formatoptions-=ro
   augroup END
   " }}}
+" }}}
+" {{{ Color Scheme 
+if s:IsPlugLoaded('mrkn256.vim')
+  colorscheme mrkn256
+endif
 " }}}
 " {{{ Detect FileTypes
 augroup DetectFileTypes
@@ -298,36 +295,41 @@ augroup END
 " }}}
 " {{{ Plugins
   " {{{ NerdTree
-  augroup NerdTree
-    function! s:auCloseWindow()
-      if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree())
-        q
-      endif
-    endfunction
+  if s:IsPlugLoaded('nerdtree')
+    augroup NerdTree
+      autocmd!
 
-    autocmd!
-    autocmd BufEnter * call s:auCloseWindow()
+      function! s:auCloseWindow()
+        if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree())
+          q
+        endif
+      endfunction
 
-    nnoremap <silent> ,nf :<C-u>NERDTreeFind<Return>
-    nnoremap <silent> <C-e> :<C-u>NERDTreeToggle<Return>
+      nnoremap <silent> ,nf :<C-u>NERDTreeFind<Return>
+      nnoremap <silent> <C-e> :<C-u>NERDTreeToggle<Return>
 
-    let g:NERDTreeNaturalSort = 1
-    let g:NERDTreeHighlightCursorline = 0
-    let g:NERDTreeAutoDeleteBuffer = 1
-    let g:NERDTreeChDirMode = 2
-    let g:NERDTreeStatusline = '  NERDTree  '. nerdtree#version()
-    let g:NERDTreeLimitedSyntax = 1
-  augroup END
+      let g:NERDTreeNaturalSort = 1
+      let g:NERDTreeHighlightCursorline = 0
+      let g:NERDTreeAutoDeleteBuffer = 1
+      let g:NERDTreeChDirMode = 2
+      let g:NERDTreeStatusline = '  NERDTree  '. nerdtree#version()
+      let g:NERDTreeLimitedSyntax = 1
+
+      autocmd BufEnter * call s:auCloseWindow()
+    augroup END
+  endif
   " }}}
   " {{{ FoldCC
-  let g:foldCCtext_maxchars = 150
-  let g:foldCCtext_tail = 'printf("   %s[%4d lines  Lv%-2d]%s", v:folddashes, v:foldend-v:foldstart+1, v:foldlevel, v:folddashes)'
-  set foldtext=FoldCCtext()
-  set foldcolumn=3
-  set fillchars=vert:\|
+  if s:IsPlugLoaded('foldCC.vim')
+    let g:foldCCtext_maxchars = 150
+    let g:foldCCtext_tail = 'printf("   %s[%4d lines  Lv%-2d]%s", v:folddashes, v:foldend-v:foldstart+1, v:foldlevel, v:folddashes)'
+    set foldtext=FoldCCtext()
+    set foldcolumn=3
+    set fillchars=vert:\|
+  endif
   " }}}
   " {{{ eskk
-  if has('vim_starting')
+  if s:IsPlugLoaded('eskk.vim')
     let g:eskk#large_dictionary = {
           \   'path' : '~/.vim/stash/SKK-JISYO.L',
           \   'sorted' : 1,
@@ -345,32 +347,33 @@ augroup END
   endif
   " }}}
   " {{{ vim-dispatch
-  augroup Dispatch
-    autocmd!
+  if s:IsPlugLoaded('vim-dispatch')
     nnoremap <silent> <Leader>d :<C-u>Dispatch<Return>
-  augroup END
+  endif
   " }}}
   " {{{ ctrlp
-  set wildignore+=*/tmp/*,*.so,*.swp,*.zip 
-  let g:ctrlp_show_hidden = 1
-  let g:ctrlp_regexp = 0
-  let g:ctrlp_reuse_window =  'netrw'
-  let g:ctrlp_extensions = ['tag', 'quickfix', 'dir', 'line', 'mixed']
-  let g:ctrlp_working_path_mode = 'r'
-  let g:ctrlp_open_new_file = 'h'
-  let g:ctrlp_user_command = 'files -a %s'
-  let g:ctrlp_match_current_file = 1
-  function! CtrlPCommand()
-    let c = 0
-    let wincount = winnr('$')
-    " Don't open it here if current buffer is not writable (e.g. NERDTree)
-    while !empty(getbufvar(+expand("<abuf>"), "&buftype")) && c < wincount
-      exec 'wincmd w'
-      let c = c + 1
-    endwhile
-    exec 'CtrlP'
-  endfunction
-  let g:ctrlp_cmd = 'call CtrlPCommand()'
+  if s:IsPlugLoaded('ctrlp.vim')
+    set wildignore+=*/tmp/*,*.so,*.swp,*.zip 
+    let g:ctrlp_show_hidden = 1
+    let g:ctrlp_regexp = 0
+    let g:ctrlp_reuse_window =  'netrw'
+    let g:ctrlp_extensions = ['tag', 'quickfix', 'dir', 'line', 'mixed']
+    let g:ctrlp_working_path_mode = 'r'
+    let g:ctrlp_open_new_file = 'h'
+    let g:ctrlp_user_command = 'files -a %s'
+    let g:ctrlp_match_current_file = 1
+    function! CtrlPCommand()
+      let c = 0
+      let wincount = winnr('$')
+      " Don't open it here if current buffer is not writable (e.g. NERDTree)
+      while !empty(getbufvar(+expand("<abuf>"), "&buftype")) && c < wincount
+        exec 'wincmd w'
+        let c = c + 1
+      endwhile
+      exec 'CtrlP'
+    endfunction
+    let g:ctrlp_cmd = 'call CtrlPCommand()'
+  endif
   " }}}
   " {{{ vim-fugitive
   augroup vim_fugitive
@@ -413,33 +416,39 @@ augroup END
         \ }
   " }}}
   " {{{ vim-smartchr
-  inoremap <expr> / smartchr#loop('/', '//', '\/')
-  augroup SmartChr
-    autocmd!
-    " Ruby
-    autocmd FileType ruby,rails inoremap <buffer> <expr> <bar> smartchr#one_of('<bar>', '<bar><bar>', '<bar><bar>=')
-    autocmd FileType ruby,rails inoremap <buffer> <expr> = smartchr#one_of('=', '==', '=>')
-    autocmd FileType ruby,rails inoremap <buffer> <expr> { smartchr#loop('{', '#{', '{{')
-    " Python
-    autocmd FileType python inoremap <buffer> <expr> ? smartchr#loop('?', '\?')
-    " Haml/Slim
-    autocmd FileType haml inoremap <buffer> <expr> { smartchr#loop('{', '#{', '{{')
-    autocmd FileType slim inoremap <buffer> <expr> { smartchr#loop('{', '#{', '{{')
-  augroup END
+  if s:IsPlugLoaded('vim-smartchr')
+    inoremap <expr> / smartchr#loop('/', '//', '\/')
+    augroup SmartChr
+      autocmd!
+      " Ruby
+      autocmd FileType ruby,rails inoremap <buffer> <expr> <bar> smartchr#one_of('<bar>', '<bar><bar>', '<bar><bar>=')
+      autocmd FileType ruby,rails inoremap <buffer> <expr> = smartchr#one_of('=', '==', '=>')
+      autocmd FileType ruby,rails inoremap <buffer> <expr> { smartchr#loop('{', '#{', '{{')
+      " Python
+      autocmd FileType python inoremap <buffer> <expr> ? smartchr#loop('?', '\?')
+      " Haml/Slim
+      autocmd FileType haml inoremap <buffer> <expr> { smartchr#loop('{', '#{', '{{')
+      autocmd FileType slim inoremap <buffer> <expr> { smartchr#loop('{', '#{', '{{')
+    augroup END
+  endif
   " }}}
   " {{{ QFEnter
-  let g:qfenter_keymap = {}
-  let g:qfenter_keymap.vopen = ['<C-v>']
-  let g:qfenter_keymap.hopen = ['<C-CR>', '<C-s>', '<C-x>']
-  let g:qfenter_keymap.topen = ['<C-t>']
-  let g:qfenter_exclude_filetypes = ['nerdtree', 'tagbar']
+  if s:IsPlugLoaded('QFEnter')
+    let g:qfenter_keymap = {}
+    let g:qfenter_keymap.vopen = ['<C-v>']
+    let g:qfenter_keymap.hopen = ['<C-CR>', '<C-s>', '<C-x>']
+    let g:qfenter_keymap.topen = ['<C-t>']
+    let g:qfenter_exclude_filetypes = ['nerdtree', 'tagbar']
+  endif
   " }}}
   " {{{ SinPlu
-  let g:sinplu_no_mappings = 1
-  nmap <Leader>w <Plug>ToggleWord
-  let g:sinplu_plural_override_wards = [
-        \   ['(ind)ex$', '\1exes', 'i']
-        \ ]
+  if s:IsPlugLoaded('sinplu.vim')
+    let g:sinplu_no_mappings = 1
+    nmap <Leader>w <Plug>ToggleWord
+    let g:sinplu_plural_override_wards = [
+          \   ['(ind)ex$', '\1exes', 'i']
+          \ ]
+  endif
   " }}}
   " {{{ vim-lsp
   if s:IsPlugLoaded('vim-lsp')
@@ -523,52 +532,60 @@ augroup END
   nnoremap ,rph :<C-u>Ref<Space>pman<Space>
   " }}}
   " {{{ vim-markdown
-  let g:vim_markdown_folding_disabled = 1
-  let g:markdown_fenced_languages = ['coffee', 'css', 'erb=eruby', 'javascript', 'js=javascript', 'json=javascript', 'ruby', 'sass', 'xml', 'sh']
-    " {{{ vim-markdown-quote-syntax
-    let g:markdown_quote_syntax_filetypes = {
-          \   'sshconfig' : {
-          \     'start' : 'sshconfig'
-          \   },
-          \   'gohtmltmpl' : {
-          \     'start' : 'go-html-template'
-          \   },
-          \   'graphql' : {
-          \     'start' : 'gql'
-          \   },
-          \ }
-    " }}}
+  if s:IsPlugLoaded('vim-markdown')
+    let g:vim_markdown_folding_disabled = 1
+    let g:markdown_fenced_languages = [
+          \ 'coffee',
+          \ 'css',
+          \ 'erb=eruby',
+          \ 'javascript',
+          \ 'js=javascript',
+          \ 'json=javascript',
+          \ 'ruby',
+          \ 'sass',
+          \ 'xml',
+          \ 'go-html-template=gohtmltmpl',
+          \ 'graphql',
+          \ 'gql=graphql',
+          \ 'sshconfig',
+          \ 'sh',
+          \ ]
+  endif
   " }}}
-  " {{{ auto-git-diff
-  augroup auto_git_diff
-    function! s:setup_auto_git_diff() abort
-        nmap <buffer><C-l> <plug>(auto_git_diff_scroll_manual_update)
-        nmap <buffer><C-n> <plug>(auto_git_diff_scroll_down_half)
-        nmap <buffer><C-p> <plug>(auto_git_diff_scroll_up_half)
-    endfunction
-    autocmd!
-    autocmd FileType gitrebase call <SID>setup_auto_git_diff()
-  augroup END
+  " {{{ auto-git-diff 
+  if s:IsPlugLoaded('auto-git-diff')
+    augroup AutoGitDiff
+      function! s:setup_auto_git_diff() abort
+          nmap <buffer><C-l> <plug>(auto_git_diff_scroll_manual_update)
+          nmap <buffer><C-n> <plug>(auto_git_diff_scroll_down_half)
+          nmap <buffer><C-p> <plug>(auto_git_diff_scroll_up_half)
+      endfunction
+      autocmd!
+      autocmd FileType gitrebase call <SID>setup_auto_git_diff()
+    augroup END
+  endif
   " }}}
   " {{{ Ruby
-  " Indent
-  let g:ruby_indent_access_modifier_style = 'normal'
-  let g:ruby_indent_block_style = 'do'
-  let g:ruby_indent_assignment_style = 'variable'
+  if s:IsPlugLoaded('vim-ruby')
+    " Indent
+    let g:ruby_indent_access_modifier_style = 'normal'
+    let g:ruby_indent_block_style = 'do'
+    let g:ruby_indent_assignment_style = 'variable'
 
-  " Syntax
-  let g:ruby_operators = 1
-  let g:ruby_pseudo_operators = 1
-  let g:ruby_space_errors = 1
-  let g:ruby_no_expensive = 1
-  let g:ruby_minlines = 500
-  let g:ruby_spellcheck_strings = 1
+    " Syntax
+    let g:ruby_operators = 1
+    let g:ruby_pseudo_operators = 1
+    let g:ruby_space_errors = 1
+    let g:ruby_no_expensive = 1
+    let g:ruby_minlines = 500
+    let g:ruby_spellcheck_strings = 1
 
-  augroup VimRuby
-    autocmd!
-    autocmd FileType ruby setlocal expandtab
-    autocmd FileType ruby,eruby nnoremap <silent> <Leader>t :split<Return> <C-]>
-  augroup END
+    augroup VimRuby
+      autocmd!
+      autocmd FileType ruby setlocal expandtab
+      autocmd FileType ruby,eruby nnoremap <silent> <Leader>t :split<Return> <C-]>
+    augroup END
+  endif
   " }}}
   " {{{ current-func-info
   if s:IsPlugLoaded('current-func-info.vim')
@@ -577,9 +594,6 @@ augroup END
   " }}}
 " }}}
 " {{{ Finalize
-if filereadable(expand('~/.vimrc.local'))
-  source ~/.vimrc.local
-endif
 set secure
 syntax on
 " }}}
