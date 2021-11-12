@@ -56,6 +56,9 @@ call plug#begin('~/.vim/plugged')
   Plug 'mattn/vim-goimports'
   Plug 'kyohsuke/vim-go-syntax'
 
+  " ruby
+  Plug 'vim-ruby/vim-ruby'
+
   " NerdTree
   Plug 'scrooloose/nerdtree'
 
@@ -112,8 +115,8 @@ endfunction
 " }}}
 " {{{ Indivisual Settings
   " {{{ Reset Global 
-  set wildignore&
-  set statusline&
+    set wildignore&
+    set statusline&
   " }}}
   " {{{ Language & Encodings
   set encoding=utf-8
@@ -241,16 +244,13 @@ augroup DetectFileTypes
   " autocmd BufRead,BufNewFile {*.ts,*.tsx}                                 setf typescript
 
   " GoHtmlTmpl
-  augroup GoHtmlTemplate
-    function! s:DetectGoHtmlTmpl()
-      if expand('%:e') == "html" && search("{{") != 0
-        setf gohtmltmpl 
-      endif
-    endfunction
+  function! s:DetectGoHtmlTmpl()
+    if expand('%:e') == "html" && search("{{") != 0
+      setf gohtmltmpl 
+    endif
+  endfunction
 
-    autocmd!
-    autocmd BufRead,BufNewFile * call s:DetectGoHtmlTmpl()
-  augroup END
+  autocmd BufRead,BufNewFile * call s:DetectGoHtmlTmpl()
 
   " Rspec / TestUnit
   autocmd BufRead,BufNewFile *_spec.rb setlocal filetype=ruby.rspec
@@ -258,34 +258,52 @@ augroup DetectFileTypes
 
   " Capfile
   autocmd BufRead,BufNewFile {Schemafile,Gemfile,Rakefile,Thorfile,config.ru,.caprc,.irbrc,irb_tempfile*,*.arb} set filetype=ruby
-" }}}
-" {{{ Set local settings with filetype
-  " Ruby on Rails
-  autocmd BufRead,BufNewFile *.slim   setlocal ts=2 sw=2
-  autocmd BufRead,BufNewFile *.haml   setlocal ts=2 sw=2
-  autocmd BufRead,BufNewFile *.rhtml  setlocal ts=2 sw=2
-  autocmd BufRead,BufNewFile *.rb     setlocal ts=2 sw=2
-  autocmd BufRead,BufNewFile *.yml    setlocal ts=2 sw=2
+  " {{{ Set local settings with filetype
+    " {{{ Ruby on Rails
+      augroup VimRuby
+        autocmd!
+        autocmd FileType ruby setlocal expandtab
+        autocmd FileType ruby,eruby nnoremap <silent> <Leader>t :split<Return> <C-]>
+        autocmd BufRead,BufNewFile *.slim   setlocal ts=2 sw=2
+        autocmd BufRead,BufNewFile *.haml   setlocal ts=2 sw=2
+        autocmd BufRead,BufNewFile *.rhtml  setlocal ts=2 sw=2
+        autocmd BufRead,BufNewFile *.rb     setlocal ts=2 sw=2
+        autocmd BufRead,BufNewFile *.yml    setlocal ts=2 sw=2
+      augroup END
 
-  " Set up synclines
-  autocmd FileType jsp,asp,php,ruby,xml,perl,markdown syntax sync minlines=500 maxlines=1000
+      " Indent
+      let g:ruby_indent_access_modifier_style = 'normal'
+      let g:ruby_indent_block_style = 'do'
+      let g:ruby_indent_assignment_style = 'variable'
 
-  " Golang
-  autocmd FileType go setlocal noexpandtab ts=4 sts=4 sw=4
+      " Syntax
+      let g:ruby_operators = 1
+      let g:ruby_pseudo_operators = 1
+      let g:ruby_space_errors = 1
+      let g:ruby_no_expensive = 1
+      let g:ruby_minlines = 500
+      let g:ruby_spellcheck_strings = 1
+    " }}}
+    " Set up synclines
+    autocmd FileType jsp,asp,php,ruby,xml,perl,markdown syntax sync minlines=500 maxlines=1000
 
-  " YAML
-  autocmd FileType yaml setlocal indentexpr=
+    " Golang
+    autocmd FileType go setlocal noexpandtab ts=4 sts=4 sw=4
 
-  " Ruby
-  autocmd FileType ruby setlocal foldmethod=marker omnifunc=
+    " YAML
+    autocmd FileType yaml setlocal indentexpr=
 
-  " Markdown
-  autocmd FileType markdown setlocal ts=2 sts=2 sw=2
-  autocmd FileType markdown syntax sync fromstart
+    " Ruby
+    autocmd FileType ruby setlocal foldmethod=marker omnifunc=
 
-  " Remap vim help
-  autocmd FileType help nnoremap <buffer> <CR> <C-]>
-  autocmd FileType help nnoremap <buffer> <BS> <C-O>
+    " Markdown
+    autocmd FileType markdown setlocal ts=2 sts=2 sw=2
+    autocmd FileType markdown syntax sync fromstart
+
+    " Remap vim help
+    autocmd FileType help nnoremap <buffer> <CR> <C-]>
+    autocmd FileType help nnoremap <buffer> <BS> <C-O>
+  " }}}
 augroup END
 " }}}
 " {{{ Plugins
