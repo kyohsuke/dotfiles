@@ -76,16 +76,12 @@ call plug#begin('~/.vim/plugged')
     Plug 'mattn/vim-lsp-settings'
     Plug 'mattn/ctrlp-lsp'
 
-  " Ruby
-  Plug 'tpope/vim-rails'
-
   " vim-ref
   Plug 'thinca/vim-ref'
     Plug 'yuku-t/vim-ref-ri'
     Plug 'soh335/vim-ref-pman'
 
   Plug 'LeafCage/foldCC.vim'
-  Plug 'Shougo/vimproc.vim', { 'do':  'make' }
   Plug 'ctrlpvim/ctrlp.vim'
 
   Plug 'tpope/vim-dispatch'
@@ -235,21 +231,20 @@ augroup DetectFileTypes
   autocmd!
 
   " Type Detect
-  autocmd BufRead,BufNewFile *.json.tpl                                     setlocal filetype=json
-  autocmd BufRead,BufNewFile .vimrc.local                                   setlocal filetype=vim
-  " autocmd BufRead,BufNewFile COMMIT_EDITMSG                                 setlocal filetype=gitcommit
-  autocmd BufRead,BufNewFile {before_config,.ssh_config.local,after_config} setlocal filetype=sshconfig
-  autocmd BufRead,BufNewFile {*.md,*.mkd,*.markdown}                        setlocal filetype=markdown
-  autocmd BufRead,BufNewFile {*.js,*.jsx,*.es6}                             setlocal filetype=javascript
-  autocmd BufRead,BufNewFile {*.ts,*.tsx}                                   setlocal filetype=typescript
-  autocmd BufRead,BufNewFile .env.*                                         setlocal filetype=sh
-  autocmd BufRead,BufNewFile {.babelrc,.eslintrc.json,.stylelintrc.json}    setlocal filetype=json
+  autocmd BufRead,BufNewFile *.json.tpl                                     setf json
+  autocmd BufRead,BufNewFile .vimrc.local                                   setf vim
+  autocmd BufRead,BufNewFile {before_config,.ssh_config.local,after_config} setf sshconfig
+  autocmd BufRead,BufNewFile .env.*                                         setf sh
+  autocmd BufRead,BufNewFile .babelrc                                       setf json
+  " autocmd BufRead,BufNewFile {*.js,*.jsx,*.es6}                           setf javascript
+  " autocmd BufRead,BufNewFile *.ts                                         setf typescript
+  " autocmd BufRead,BufNewFile {*.ts,*.tsx}                                 setf typescript
 
   " GoHtmlTmpl
   augroup GoHtmlTemplate
     function! s:DetectGoHtmlTmpl()
       if expand('%:e') == "html" && search("{{") != 0
-        setlocal filetype=gohtmltmpl 
+        setf gohtmltmpl 
       endif
     endfunction
 
@@ -376,44 +371,48 @@ augroup END
   endif
   " }}}
   " {{{ vim-fugitive
-  augroup vim_fugitive
-    autocmd!
-    autocmd QuickFixCmdPost *grep* cwindow
-    nnoremap <expr><Leader>gg ":<C-u>Ggrep " . expand('<cword>') . "<Return>"
-  augroup END
+  if s:IsPlugLoaded('vim-fugitive')
+    augroup vim_fugitive
+      autocmd!
+      autocmd QuickFixCmdPost *grep* cwindow
+      nnoremap <expr><Leader>gg ":<C-u>Ggrep " . expand('<cword>') . "<Return>"
+    augroup END
+  endif
   " }}}
   " {{{ QuickRun
-  nmap <Leader>r <Plug>(quickrun)
-  let g:quickrun_config = {
-        \   '_': {
-        \     'outputter/buffer/close_on_empty': 1,
-        \     'outputter/buffer/opener': 'rightbelow split',
-        \     'runner': 'job',
-        \   },
-        \   'ruby': {
-        \     'command': 'ruby',
-        \     'cmdopt': '-C '.$PWD.' -r '.$HOME.'/.vim/stash/rubyopts.rb'
-        \   },
-        \   'ruby.rspec': {
-        \     'command': 'rspec',
-        \     'cmdopt': '-r '.$HOME.'/.vim/stash/rubyopts.rb -r '.$HOME.'/.vim/stash/vim_rspec_formatter.rb --format QuickfixFormatter',
-        \     'exec': "%c %o %s:%{line('.')}",
-        \     'outputter': 'quickfix'
-        \   },
-        \   'ruby.rspec_all': {
-        \     'command': 'rspec',
-        \     'cmdopt': '-r '.$HOME.'/.vim/stash/rubyopts.rb -r '.$HOME.'/.vim/stash/vim_rspec_formatter.rb --format QuickfixFormatter',
-        \     'exec': "%c %o",
-        \     'outputter': 'quickfix'
-        \   },
-        \   'ruby.testunit': {
-        \     'exec': "rake test"
-        \   },
-        \   'cpp': {
-        \     'command': 'g++',
-        \     'cmdopt': '-std=c++11'
-        \   }
-        \ }
+  if s:IsPlugLoaded('vim-quickrun')
+    nmap <Leader>r <Plug>(quickrun)
+    let g:quickrun_config = {
+          \   '_': {
+          \     'outputter/buffer/close_on_empty': 1,
+          \     'outputter/buffer/opener': 'rightbelow split',
+          \     'runner': 'job',
+          \   },
+          \   'ruby': {
+          \     'command': 'ruby',
+          \     'cmdopt': '-C '.$PWD.' -r '.$HOME.'/.vim/stash/rubyopts.rb'
+          \   },
+          \   'ruby.rspec': {
+          \     'command': 'rspec',
+          \     'cmdopt': '-r '.$HOME.'/.vim/stash/rubyopts.rb -r '.$HOME.'/.vim/stash/vim_rspec_formatter.rb --format QuickfixFormatter',
+          \     'exec': "%c %o %s:%{line('.')}",
+          \     'outputter': 'quickfix'
+          \   },
+          \   'ruby.rspec_all': {
+          \     'command': 'rspec',
+          \     'cmdopt': '-r '.$HOME.'/.vim/stash/rubyopts.rb -r '.$HOME.'/.vim/stash/vim_rspec_formatter.rb --format QuickfixFormatter',
+          \     'exec': "%c %o",
+          \     'outputter': 'quickfix'
+          \   },
+          \   'ruby.testunit': {
+          \     'exec': "rake test"
+          \   },
+          \   'cpp': {
+          \     'command': 'g++',
+          \     'cmdopt': '-std=c++11'
+          \   }
+          \ }
+  endif
   " }}}
   " {{{ vim-smartchr
   if s:IsPlugLoaded('vim-smartchr')
@@ -527,9 +526,11 @@ augroup END
   inoremap <expr> <c-space> asyncomplete#force_refresh() 
   " }}}
   " {{{ vim-ref
-  nnoremap ,rpy :<C-u>Ref<Space>pydoc<Space>
-  nnoremap ,rr :<C-u>Ref<Space>ri<Space>
-  nnoremap ,rph :<C-u>Ref<Space>pman<Space>
+  if s:IsPlugLoaded('vim-ref')
+    nnoremap ,rpy :<C-u>Ref<Space>pydoc<Space>
+    nnoremap ,rr :<C-u>Ref<Space>ri<Space>
+    nnoremap ,rph :<C-u>Ref<Space>pman<Space>
+  endif
   " }}}
   " {{{ vim-markdown
   if s:IsPlugLoaded('vim-markdown')
@@ -562,28 +563,6 @@ augroup END
       endfunction
       autocmd!
       autocmd FileType gitrebase call <SID>setup_auto_git_diff()
-    augroup END
-  endif
-  " }}}
-  " {{{ Ruby
-  if s:IsPlugLoaded('vim-ruby')
-    " Indent
-    let g:ruby_indent_access_modifier_style = 'normal'
-    let g:ruby_indent_block_style = 'do'
-    let g:ruby_indent_assignment_style = 'variable'
-
-    " Syntax
-    let g:ruby_operators = 1
-    let g:ruby_pseudo_operators = 1
-    let g:ruby_space_errors = 1
-    let g:ruby_no_expensive = 1
-    let g:ruby_minlines = 500
-    let g:ruby_spellcheck_strings = 1
-
-    augroup VimRuby
-      autocmd!
-      autocmd FileType ruby setlocal expandtab
-      autocmd FileType ruby,eruby nnoremap <silent> <Leader>t :split<Return> <C-]>
     augroup END
   endif
   " }}}
