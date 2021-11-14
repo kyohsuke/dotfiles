@@ -296,6 +296,9 @@ augroup DetectFileTypes
     " Ruby
     autocmd FileType ruby setlocal foldmethod=marker omnifunc=
 
+    " gitconfig
+    autocmd FileType gitconfig setlocal noexpandtab ts=4 sts=4 sw=4
+
     " Markdown
     autocmd FileType markdown setlocal ts=2 sts=2 sw=2
     autocmd FileType markdown syntax sync fromstart

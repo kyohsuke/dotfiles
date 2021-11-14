@@ -1,71 +1,73 @@
 # vim: filetype=gitconfig
 [user]
-  name = KAWAHARA Keisuke
+	name = KAWAHARA Keisuke
 [ghq]
-  root = ~/src
+	root = ~/src
 [core]
-  excludesfile = ~/.gitignore.global
-  compression = 9
+	excludesfile = ~/.gitignore.global
+	compression = 9
 [include]
-  path = ~/.gitconfig.local
+	path = ~/.gitconfig.local
 [submodule]
-  fetchJobs = 4
-  recurse = true
+	fetchJobs = 4
+	recurse = true
 [remote "origin"]
-  prune = true
+	prune = true
 [credential]
-  helper = store --file ~/.git-credentials
+	helper = store --file ~/.git-credentials
 [color]
-  branch = auto
-  diff = auto
-  status = auto
+	branch = auto
+	diff = auto
+	status = auto
 [fetch]
-  recurseSubmodules = true
-  parallel = 8
+	recurseSubmodules = true
+	parallel = 8
 [push]
-  default = current
-  followTags = true
+	default = current
+	followTags = true
 [gc]
-  reflogExpire = 0
-  reflogExpireUnreachable = 0
-  rerereresolved = 0
-  rerereunresolved = 0
-  pruneExpire = now
-  aggressiveDepth = 250
-  aggressiveWindow = 250
+	reflogExpire = 0
+	reflogExpireUnreachable = 0
+	rerereresolved = 0
+	rerereunresolved = 0
+	pruneExpire = now
+	aggressiveDepth = 250
+	aggressiveWindow = 250
 [alias]
-  branches = branch -a
-  tags = tag
-  stashes = stash list
-  remotes = remote -v
+	branches = branch -a
+	tags = tag
+	stashes = stash list
+	remotes = remote -v
 
-  sdiff = difftool
-  last = sdiff HEAD~1
-  dig = log -p --pickaxe-all -S
-  precommit = diff --cached --diff-algorithm=minimal -w
+	sdiff = difftool
+	last = sdiff HEAD~1
+	dig = log -p --pickaxe-all -S
+	precommit = diff --cached --diff-algorithm=minimal -w
 
-  squash-all = "!f(){ git reset $(git commit-tree HEAD^{tree} -m \"${1:-A new start}\");};f"
+	squash-all = "!f(){ git reset $(git commit-tree HEAD^{tree} -m \"${1:-A new start}\");};f"
 
-  amend = commit --amend
-  unstage = reset -q HEAD --
-  discard = checkout --
-  uncommit = reset --mixed HEAD~
+	amend = commit --amend
+	unstage = reset -q HEAD --
+	discard = checkout --
+	uncommit = reset --mixed HEAD~
 
 
 [pager]
-  difftool = true
-  branch = false
+	difftool = true
+	branch = false
 [interactive]
-  diffFilter = diff-highlight
-[diff]	
-  compactionHeuristic = true	
-  tool=icdiff
+	diffFilter = diff-highlight
+[diff]
+	compactionHeuristic = true
+	tool=icdiff
 [difftool]
-  prompt = false
+	prompt = false
 [difftool "icdiff"]
-  cmd = icdiff \"$LOCAL\" \"$REMOTE\"
+	cmd = icdiff \"$LOCAL\" \"$REMOTE\"
 [merge]
-  tool = gvimdiff
+	tool = gvimdiff
 [mergetool]
-  prompt = false
-  keepBackup = false
+	prompt = false
+	keepBackup = false
+[hub]
+	protocol = https
