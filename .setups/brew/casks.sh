@@ -1,17 +1,12 @@
 #!/usr/bin/env bash
 
-CASKS=(
-  charles
-  firefox
-  docker
-  keka
+BREWFILE=$(cat << EOS
+cask "charles"
+cask "firefox"
+cask "docker"
+cask "keka"
+EOS
 )
 
-LIST=""
-for CASK in "${CASKS[@]}"
-do
-  LIST="cask \"$CASK\"\\n$LIST"
-done
-
 # Install casks
-echo -e "$LIST" | brew bundle --file=/dev/stdin
+echo -e "$BREWFILE" | brew bundle --file=/dev/stdin

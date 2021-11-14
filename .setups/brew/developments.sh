@@ -1,45 +1,34 @@
 #!/usr/bin/env bash
 
-TOOLS=(
-  parallel
-  ctags
-  git
-  git-hooks-go
-  ghq
-  gnupg
-  hub
-  icdiff
-  libsodium
-  mono
-  p7zip
-  peco
-  pstree
-  rust
-  shellcheck
-  skktools
-  tldr
-  watch
-  hivemind
-  cmake
-  bat
-  ipcalc
-  direnv
-  git-extras
-  go
-  aria2
-  libpq
+BREWFILE=$(cat << EOS
+brew "parallel"
+brew "ctags"
+brew "git"
+brew "git-hooks-go"
+brew "ghq"
+brew "gnupg"
+brew "hub"
+brew "icdiff"
+brew "libsodium"
+brew "mono"
+brew "p7zip"
+brew "peco"
+brew "pstree"
+brew "rust"
+brew "shellcheck"
+brew "skktools"
+brew "tldr"
+brew "watch"
+brew "hivemind"
+brew "cmake"
+brew "bat"
+brew "ipcalc"
+brew "direnv"
+brew "git-extras"
+brew "go"
+brew "aria2"
+brew "libpq"
+EOS
 )
 
-LIST=""
-for TOOL in "${TOOLS[@]}"
-do
-  LIST="brew \"$TOOL\"\\n$LIST"
-done
-
-# Install development tools
-echo -e "$LIST" | brew bundle --file=/dev/stdin 
-
-GO_PACKAGES=$(cat .go-package)
-for PACKAGE in $GO_PACKAGES; do
-  go install "$PACKAGE"
-done
+echo -e "$BREWFILE" | brew bundle --file=/dev/stdin

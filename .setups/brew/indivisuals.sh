@@ -2,18 +2,13 @@
 
 # check and install homebrew
 if [ "$WORK" != "true" ]; then
-  CASKS=(
-    xld
-    cooviewer
-    kindle
-    timemachineeditor
-  )
+  BREWFILE=$(cat << EOS
+cask "xld"
+cask "cooviewer"
+cask "kindle"
+cask "timemachineeditor"
+EOS
+)
 
-  LIST=""
-  for CASK in "${CASKS[@]}"
-  do
-    LIST="cask \"$CASK\"\\n$LIST"
-  done
-
-  echo -e "$LIST" | brew bundle --file=/dev/stdin 
+  echo -e "$BREWFILE" | brew bundle --file=/dev/stdin
 fi
