@@ -96,7 +96,6 @@ call plug#begin('~/.vim/plugged')
   " Devicons
   Plug 'ryanoasis/vim-devicons'
     Plug 'Xuyuanp/nerdtree-git-plugin'
-    Plug 'mattn/vim-ctrlp-syntax-highlight'
 call plug#end()
 
 if !isdirectory($HOME.'/.vim/plugged')
@@ -580,6 +579,14 @@ augroup END
     let &statusline .= ' [%{cfi#format("%s", "")}]'
   endif
   " }}}
+  " {{{ vim-devicons
+  if s:IsPlugLoaded('vim-devicons')
+    let g:webdevicons_enable_ctrlp = 0
+    let g:WebDevIconsNerdTreeGitPluginForceVAlign = 0
+    let g:WebDevIconsNerdTreeAfterGlyphPadding = ''
+  endif
+  " }}}
+
 " }}}
 " {{{ Finalize
 set secure
