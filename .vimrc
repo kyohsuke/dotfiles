@@ -79,11 +79,6 @@ call plug#begin('~/.vim/plugged')
     Plug 'mattn/vim-lsp-settings'
     Plug 'mattn/ctrlp-lsp'
 
-  " vim-ref
-  Plug 'thinca/vim-ref'
-    Plug 'yuku-t/vim-ref-ri'
-    Plug 'soh335/vim-ref-pman'
-
   Plug 'LeafCage/foldCC.vim'
   Plug 'ctrlpvim/ctrlp.vim'
 
@@ -133,8 +128,8 @@ endfunction
   " }}}
   " {{{ Keybind ReMap
     nnoremap <silent> ,sh :<C-u>:terminal<Return>
-    nnoremap <silent> ,gvimrc :<C-u>e<Space>~/.gvimrc<Return>
-    nnoremap <silent> ,vimrc :<C-u>e<Space>~/.vimrc<Return>
+    nnoremap <silent> ,gvimrc :<C-u>e<Space>$MYGVIMRC<Return>
+    nnoremap <silent> ,vimrc :<C-u>e<Space>$MYVIMRC<Return>
     nnoremap <silent> ,rt :<C-u>set<Space>ft=ruby<Return>
     nnoremap <silent> ,md :<C-u>set<Space>ft=markdown<Return>
 
@@ -545,13 +540,6 @@ augroup END
   inoremap <expr> <S-Tab>   pumvisible() ? "\<C-p>" : "\<S-Tab>"
   inoremap <expr> <bs>      pumvisible() ? asyncomplete#close_popup()."\<BS>" : "\<BS>"
   inoremap <expr> <c-space> asyncomplete#force_refresh() 
-  " }}}
-  " {{{ vim-ref
-  if s:IsPlugLoaded('vim-ref')
-    nnoremap ,rpy :<C-u>Ref<Space>pydoc<Space>
-    nnoremap ,rr :<C-u>Ref<Space>ri<Space>
-    nnoremap ,rph :<C-u>Ref<Space>pman<Space>
-  endif
   " }}}
   " {{{ vim-markdown
   if s:IsPlugLoaded('vim-markdown')
