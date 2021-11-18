@@ -96,6 +96,7 @@ call plug#begin('~/.vim/plugged')
   " Devicons
   Plug 'ryanoasis/vim-devicons'
     Plug 'Xuyuanp/nerdtree-git-plugin'
+    Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 call plug#end()
 
 if !isdirectory($HOME.'/.vim/plugged')
