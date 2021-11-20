@@ -26,7 +26,6 @@ call plug#begin('~/.vim/plugged')
 
   " Syntax Plugins
   Plug 'mechatroner/rainbow_csv'
-  Plug 'kchmck/vim-coffee-script'
   Plug 'othree/javascript-libraries-syntax.vim'
   Plug 'othree/yajs.vim'
     Plug 'othree/es.next.syntax.vim'
@@ -34,18 +33,13 @@ call plug#begin('~/.vim/plugged')
   Plug 'maxmellon/vim-jsx-pretty'
   Plug 'lifepillar/pgsql.vim'
   Plug 'direnv/direnv.vim'
-  Plug 'vim-skk/skkdict.vim'
   Plug 'ekalinin/Dockerfile.vim'
-  Plug 'slim-template/vim-slim'
-  Plug 'tpope/vim-haml'
   Plug 'cespare/vim-toml'
     Plug 'maralla/vim-toml-enhance' 
   Plug 'tpope/vim-markdown'
   Plug 'hashivim/vim-terraform'
-  Plug 'rafael84/vim-wsd'
   Plug 'jparise/vim-graphql'
   Plug 'dart-lang/dart-vim-plugin'
-  Plug 'vim-crystal/vim-crystal'
 
   " golang
   Plug 'mattn/vim-goimports'
@@ -66,7 +60,12 @@ call plug#begin('~/.vim/plugged')
   Plug 'kyohsuke/sinplu.vim'
   Plug 'kyohsuke/yaml-key.vim'
 
+  " Git
+  Plug 'tpope/vim-fugitive'
   Plug 'hotwatermorning/auto-git-diff'
+
+  Plug 'ctrlpvim/ctrlp.vim'
+  Plug 'mattn/ctrlp-matchfuzzy'
 
   Plug 'prabirshrestha/asyncomplete.vim'
   Plug 'prabirshrestha/asyncomplete-lsp.vim'
@@ -75,10 +74,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'mattn/ctrlp-lsp'
 
   Plug 'LeafCage/foldCC.vim'
-  Plug 'ctrlpvim/ctrlp.vim'
 
-  Plug 'tpope/vim-dispatch'
-  Plug 'tpope/vim-fugitive'
   Plug 'vim-skk/eskk.vim'
   Plug 'tyru/open-browser.vim'
   Plug 'kyohsuke/vimlc.vim'
@@ -254,7 +250,6 @@ augroup DetectFileTypes
         autocmd!
         autocmd FileType ruby setlocal expandtab
         autocmd FileType ruby,eruby nnoremap <silent> <Leader>t :split<Return> <C-]>
-        autocmd BufRead,BufNewFile *.slim   setlocal ts=2 sw=2
         autocmd BufRead,BufNewFile *.haml   setlocal ts=2 sw=2
         autocmd BufRead,BufNewFile *.rhtml  setlocal ts=2 sw=2
         autocmd BufRead,BufNewFile *.rb     setlocal ts=2 sw=2
@@ -352,11 +347,6 @@ augroup END
     let g:eskk#enable_completion = 0
   endif
   " }}}
-  " {{{ vim-dispatch
-  if s:IsPlugLoaded('vim-dispatch')
-    nnoremap <silent> <Leader>d :<C-u>Dispatch<Return>
-  endif
-  " }}}
   " {{{ ctrlp
   if s:IsPlugLoaded('ctrlp.vim')
     set wildignore+=*/tmp/*,*.so,*.swp,*.zip 
@@ -436,9 +426,6 @@ augroup END
       autocmd FileType ruby,rails inoremap <buffer> <expr> { smartchr#loop('{', '#{', '{{')
       " Python
       autocmd FileType python inoremap <buffer> <expr> ? smartchr#loop('?', '\?')
-      " Haml/Slim
-      autocmd FileType haml inoremap <buffer> <expr> { smartchr#loop('{', '#{', '{{')
-      autocmd FileType slim inoremap <buffer> <expr> { smartchr#loop('{', '#{', '{{')
     augroup END
   endif
   " }}}
