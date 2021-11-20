@@ -1,13 +1,8 @@
 " vim: expandtab softtabstop=2 shiftwidth=2
 " vim: foldmethod=marker
-source $VIMRUNTIME/defaults.vim
 
 " {{{ MacVim 8 patch 1272 or above
 if has('vim_starting') && has('mac')
-  let s:rubydll_path = substitute(system('rbenv prefix')."/lib/libruby.dylib", "\n", '', 'g')
-  set rubydll&
-  exe "set rubydll=".s:rubydll_path
-
   " PythonX
   set pythonthreehome&
   set pythonthreedll&
