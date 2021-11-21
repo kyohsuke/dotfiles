@@ -37,8 +37,6 @@ if has('gui_running')
     set transparency=15
     set guifont=Cica-Regular:h14,Osaka-Mono:h14
     set guifontwide=Cica-Regular:h14,Osaka-Mono:h14
-    " set guifont=OsakaNerdFont-Regular-Mono:h14,Osaka-Mono:h14
-    " set guifontwide=OsakaNerdFont-Regular-Mono:h14,Osaka-Mono:h14
 
     augroup hack234
       autocmd!
