@@ -154,7 +154,6 @@ augroup DetectFileTypes
 
   " Type Detect
   autocmd BufRead,BufNewFile *.json.tpl                                     setf json
-  autocmd BufRead,BufNewFile .vimrc.local                                   setf vim
   autocmd BufRead,BufNewFile {before_config,.ssh_config.local,after_config} setf sshconfig
   autocmd BufRead,BufNewFile .env.*                                         setf sh
   autocmd BufRead,BufNewFile .babelrc                                       setf json
@@ -190,20 +189,30 @@ call plug#begin('~/.vim/plugged')
 
   " Syntax Plugins
   Plug 'mechatroner/rainbow_csv'
-  Plug 'othree/javascript-libraries-syntax.vim'
-  Plug 'othree/yajs.vim'
-    Plug 'othree/es.next.syntax.vim'
-  Plug 'leafgarland/typescript-vim'
-  Plug 'maxmellon/vim-jsx-pretty'
-  Plug 'lifepillar/pgsql.vim'
   Plug 'direnv/direnv.vim'
   Plug 'ekalinin/Dockerfile.vim'
-  Plug 'cespare/vim-toml'
-    Plug 'maralla/vim-toml-enhance' 
-  Plug 'tpope/vim-markdown'
   Plug 'hashivim/vim-terraform'
   Plug 'jparise/vim-graphql'
   Plug 'dart-lang/dart-vim-plugin'
+
+  " Markdown
+  Plug 'tpope/vim-markdown'
+
+  " PostgreSQL
+  Plug 'lifepillar/pgsql.vim'
+
+  " TOML
+  Plug 'cespare/vim-toml'
+    Plug 'maralla/vim-toml-enhance' 
+
+  " JavaScript
+  Plug 'othree/yajs.vim'
+    Plug 'othree/es.next.syntax.vim'
+  Plug 'othree/javascript-libraries-syntax.vim'
+  Plug 'maxmellon/vim-jsx-pretty'
+
+  " html5
+  Plug 'othree/html5.vim'
 
   " golang
   Plug 'mattn/vim-goimports'
@@ -228,9 +237,11 @@ call plug#begin('~/.vim/plugged')
   Plug 'tpope/vim-fugitive'
   Plug 'hotwatermorning/auto-git-diff'
 
+  " CtrlP
   Plug 'ctrlpvim/ctrlp.vim'
-  Plug 'mattn/ctrlp-matchfuzzy'
+    Plug 'mattn/ctrlp-matchfuzzy'
 
+  " Vim-LSP & AsynComplete
   Plug 'prabirshrestha/asyncomplete.vim'
   Plug 'prabirshrestha/asyncomplete-lsp.vim'
   Plug 'prabirshrestha/vim-lsp'
@@ -265,7 +276,6 @@ endfunction
 command! -nargs=1 UsePlugin if !FindPlugin(<args>) | finish | endif
 
 runtime! config/*.vim
-
 " }}}
 
 set secure

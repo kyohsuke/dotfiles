@@ -1,6 +1,6 @@
-UsePlugin 'vim-goimports'
+UsePlugin 'vim-go-syntax'
 
-augroup Golang
+augroup VimGoSyntax
   autocmd!
 
   " Golang
