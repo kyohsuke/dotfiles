@@ -30,7 +30,7 @@ if [[ -z $ZSHENV_LOAD ]] {
   )
 
   if [ -r "/usr/local/bin/files" ]; then
-    export FILES_IGNORE_PATTERN='^(\.git|\.hg|\.svn|_darcs|\.bzr|^node_modules|tmp|\.vagrant|\.keep|\.log|.tmp|\.DS_Store)$'
+    export FILES_IGNORE_PATTERN='(^(\.git|\.hg|\.svn|_darcs|\.bzr|tmp|\.vagrant|\.keep|\.log|.tmp|\.DS_Store)$|node_modules)'
   fi
 
   export HOMEBREW_INSTALL_CLEANUP="1"
