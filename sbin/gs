@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+CMD_NAME="$(basename $0)"
+CONTAINER="minidocks/ghostscript"
 SUEXEC="$(id -u):$(id -g)"
 PWD="$(pwd)"
-docker run --rm -e SUEXEC="$SUEXEC" -v "$PWD":/app -w /app minidocks/ghostscript "$@"
+
+docker run --rm -e SUEXEC="$SUEXEC" -v "$PWD":/app -w /app "$CONTAINER" "$CMD_NAME" "$@"

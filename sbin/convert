@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
-IMAGE="minidocks/imagemagick"
+CMD_NAME="$(basename $0)"
+CONTAINER="minidocks/imagemagick"
 SUEXEC="$(id -u):$(id -g)"
 PWD="$(pwd)"
-docker run --rm -e SUEXEC="$SUEXEC" -v "$PWD":/app -w /app "$IMAGE" "$@"
+
+docker run --rm -e SUEXEC="$SUEXEC" -v "$PWD":/app -w /app "$CONTAINER" "$CMD_NAME" "$@"
