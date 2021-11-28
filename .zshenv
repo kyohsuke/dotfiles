@@ -59,7 +59,7 @@ if [[ -z $ZSHENV_LOAD ]] {
   export PYENV_VIRTUALENV_DISABLE_PROMPT=1
 
   # pyenv
-  export PYTHON_CONFIGURE_OPTS="--enable-framework"
+  export PYTHON_CONFIGURE_OPTS="--enable-framework --enable-optimizations --with-lto"
 
   # bat
   export BAT_STYLE="plain"
