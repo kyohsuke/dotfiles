@@ -124,15 +124,12 @@ function check_ssh_config {
     chmod 644 $CURRENT_CONFIG
   }
 }
-check_ssh_config
 # }}}
 # {{{ History
-HISTSIZE=1000
-SAVEHIST=1000
+HISTSIZE=10000
+SAVEHIST=10000
 # }}}
 # {{{ option,limit,bindkey
-zmodload zsh/zpty
-
 setopt hist_ignore_all_dups
 setopt hist_reduce_blanks
 
@@ -148,44 +145,6 @@ zstyle ':completion:*' matcher-list '' 'm:{[:lower:]}={[:upper:]}' '+m:{[:upper:
 setopt prompt_subst
 # zsh option setting
 setopt auto_cd
-# }}}
-# {{{ Addrev
-typeset -A myabbrev
-myabbrev=(
-  "pecommit"  "git commit -m '_|_' \$(git status --porcelain | sed s/^...// | peco | tr '\\n' ' ')"
-)
-
-my-expand-abbrev() {
-    if [ -z "$RBUFFER" ] ; then
-        my-expand-abbrev-aux
-    else
-        zle end-of-line
-    fi
-}
-
-my-expand-abbrev-aux() {
-    local init last value addleft addright
-    init=$(echo -nE "$LBUFFER" | sed -e "s/[_a-zA-Z0-9]*$//")
-    last=$(echo -nE "$LBUFFER" | sed -e "s/.*[^_a-zA-Z0-9]\([_a-zA-Z0-9]*\)$/\1/")
-    value=${myabbrev[$last]}
-    if [[ $value = *_\|_* ]] ; then
-        addleft=${value%%_\|_*}
-        addright=${value#*_\|_}
-    else
-        addleft=$value
-        addright=""
-    fi
-    if [ "$last" = "PWD" ] ; then
-        LBUFFER=""
-        RBUFFER="$PWD"
-    else
-        LBUFFER=$init${addleft:-$last }
-        RBUFFER=$addright$RBUFFER
-    fi
-}
-
-zle -N my-expand-abbrev
-bindkey "^e" my-expand-abbrev
 # }}}
 # {{{ PROMPT Theme
 if [[ $ZSH_THEME -eq "robbyrussel" ]] {
@@ -208,10 +167,5 @@ function zrebuild() {
 if [ ! -f ~/.zshrc.zwc -o ~/.zshrc -nt ~/.zshrc.zwc ]; then
   echo ".zshrc has been changed. recompiling."
   zrebuild
-fi
-# }}}
-# {{{ load localfile
-if [ -r "$HOME/.zshrc.local" ]; then
-  source $HOME/.zshrc.local
 fi
 # }}}
