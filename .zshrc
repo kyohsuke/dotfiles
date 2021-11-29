@@ -21,7 +21,7 @@ fpath=($fpath $HOME/.zsh-completions)
 plugins=(bundler rails rake-fast redis-cli vagrant docker docker-compose)
 source $ZSH/oh-my-zsh.sh
 autoload -Uz compinit
-compinit -C -i -d "${ZSH_COMPDUMP}"
+compinit -C -d "${ZSH_COMPDUMP}"
 # }}}
 # {{{ Sources
 # {{{ Zaw
@@ -162,7 +162,7 @@ function zrebuild() {
   zmodload -i zsh/complist
   zcompile ~/.zshrc
   autoload -Uz compinit
-  compinit -C -i -d "${ZSH_COMPDUMP}"
+  compinit -C -d "${ZSH_COMPDUMP}"
 }
 if [ ! -f ~/.zshrc.zwc -o ~/.zshrc -nt ~/.zshrc.zwc ]; then
   echo ".zshrc has been changed. recompiling."
