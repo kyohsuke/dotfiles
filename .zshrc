@@ -24,10 +24,6 @@ autoload -Uz compinit
 compinit -C -d "${ZSH_COMPDUMP}"
 # }}}
 # {{{ Sources
-# {{{ Zaw
-source $HOME/.zsh/zaw/zaw.zsh
-bindkey -v '^h' zaw-history
-# }}}
 source $HOME/.zsh/bd/bd.zsh
 source $HOME/.zsh/zsh-system-clipboard/zsh-system-clipboard.zsh
 # }}}

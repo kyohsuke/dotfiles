@@ -47,9 +47,13 @@ function loc() {
   mdfind -onlyin $PWD -name $*
 }
 
-function spellout() {
-  rbenv exec rails new $* -m https://raw.github.com/RailsApps/rails-composer/master/composer.rb
+function peco-history-selection() {
+    BUFFER=`history -n 1 | tail -r  | awk '!a[$0]++' | peco`
+    CURSOR=$#BUFFER
+    zle reset-prompt
 }
+zle -N peco-history-selection
+bindkey -v '^h' peco-history-selection
 
 function ghq-cd() {
   local DEST=$(ghq list --full-path | peco --query "$LBUFFER")
@@ -62,7 +66,7 @@ zle -N ghq-cd
 bindkey -v '^O' ghq-cd
 
 function git-checkout-other-branch() {
-  git checkout $(git branch | peco --query "$LBUFFER" | awk '{print $NF}')
+  git checkout "$(git branch | peco --query "$LBUFFER" | awk '{print $NF}')"
   zle accept-line
 }
 zle -N git-checkout-other-branch
