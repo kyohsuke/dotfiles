@@ -31,6 +31,9 @@ if ! [ -f "$HOME/.install" ]; then
 
     # Make sure we’re using the latest Homebrew.
     brew update
+
+    # shellcheck disable=SC2016
+    grep --quiet HOMEBREW_PREFIX "$HOME/.zshenv.local" || echo "export HOMEBREW_PREFIX=\"$(brew --prefix)\"" >> "$HOME/.zshenv.local"
   fi
 
   # clone dotfiles and convert https to ssh

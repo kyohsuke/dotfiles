@@ -4,7 +4,6 @@
 
 # {{{ Add Homebrew completion
 if type brew &>/dev/null; then
-  HOMEBREW_PREFIX="$(brew --prefix)"
   SHARE_DIRECTORY="$HOMEBREW_PREFIX/share"
   if [[ -d "$SHARE_DIRECTORY" ]]; then
     fpath=("$HOMEBREW_PREFIX/share/zsh-completions" "$HOMEBREW_PREFIX/share/zsh/site-functions" $fpath)
