@@ -33,18 +33,10 @@ alias ohmyzsh="$EDITOR ~/.oh-my-zsh"
 alias vimrc="$EDITOR ~/.vimrc"
 alias f='thefuck'
 
-if [ -r "/usr/local/bin/docker" ]; then
-  cloud_sdk_commands=('gcloud' 'gsutil' 'bq')
-  for command in $cloud_sdk_commands
-  do
-    alias $command="docker run --rm -it --workdir='/gcloud' -v ~/.config/gcloud:/root/.config/gcloud -v \$(pwd):/gcloud google/cloud-sdk $command"
-  done
-fi
-
 # }}}
 # {{{ Functions
 function loc() {
-  mdfind -onlyin $PWD -name $*
+  mdfind -onlyin "$PWD" -name $*
 }
 
 function peco-history-selection() {
