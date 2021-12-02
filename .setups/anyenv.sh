@@ -5,6 +5,7 @@ ANYENVS=(
   pyenv
   nodenv
   plenv
+  goenv
 )
 
 NODENV_PLUGINS=(
