@@ -12,18 +12,18 @@
         if [[ -s $PYENV_ROOT_PATH ]] {
           export PATH="$PYENV_ROOT_PATH/shims:$PATH"
         }
-        eval "$(anyenv init --no-rehash - zsh)"
+        _evalcache anyenv init --no-rehash - zsh
       }
       export PATH="$HOME/bin:$HOME/sbin:$PATH"
     # }}} 
     # {{{ direnv
       if type direnv &>/dev/null; then
-        eval "$(direnv hook zsh)"
+        _evalcache direnv hook zsh
       fi
     # }}}
     # {{{ docker-machine
       if type docker-machine &>/dev/null; then
-        eval "$(docker-machine env default)"
+        _evalcache docker-machine env default
       fi
     # }}}
   # }}}

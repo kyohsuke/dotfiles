@@ -4,6 +4,10 @@
 
 # {{{ Pragma Once
 if [[ -z $ZSHENV_LOAD ]] {
+  if [[ -s $HOME/.zsh/evalcache/evalcache.plugin.zsh ]] {
+    source $HOME/.zsh/evalcache/evalcache.plugin.zsh
+  }
+
   # {{{ Exports
   export ZSH_DISABLE_COMPFIX='true'
   export ZSHENV_LOAD="1"
