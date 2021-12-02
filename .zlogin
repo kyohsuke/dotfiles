@@ -7,13 +7,11 @@
 alias dcs='docker stats $(docker-compose ps -q || echo "#")'
 alias gup='git pull --rebase'
 alias rm='rm -i'
-alias ll='ls -l'
 alias df='df -h'
 alias bc='bc -l'
 alias gd="source $HOME/sbin/cd-git-root"
 alias scrr='screen -U -D -RR'
 alias diff='diff -W ${COLUMNS}'
-alias ber='bundle exec ruby'
 alias time='/usr/bin/time'
 alias locate='mdfind -name'
 alias top='top -o cpu'
@@ -27,7 +25,6 @@ alias cat='bat --paging=never'
 alias ls='ls -G'
 alias cp='cp -v -i'
 alias mv='mv -v -i'
-alias git=hub
 alias zshconfig="$EDITOR ~/.zshrc"
 alias ohmyzsh="$EDITOR ~/.oh-my-zsh"
 alias vimrc="$EDITOR ~/.vimrc"
