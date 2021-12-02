@@ -27,6 +27,7 @@ source $HOME/.zsh/bd/bd.zsh
 source $HOME/.zsh/zsh-system-clipboard/zsh-system-clipboard.zsh
 # }}}
 # {{{ auto build ssh/config file.
+alias sshconfig="$EDITOR -o \"$HOME/.ssh_config.d/before_config\" \"$HOME/.ssh_config.local\" \"$HOME/.ssh_config.d/after_config\" && check_ssh_config"
 function check_ssh_config {
   case $OSTYPE in
   darwin*)
