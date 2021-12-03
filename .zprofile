@@ -2,6 +2,11 @@
 # vim: foldmethod=marker
 # vim: filetype=zsh
 
+if [[ -s $HOME/.zsh/evalcache/evalcache.plugin.zsh ]] {
+  source $HOME/.zsh/evalcache/evalcache.plugin.zsh
+}
+
+
 # {{{ Evaluates
   # {{{ Additional Path
     export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
