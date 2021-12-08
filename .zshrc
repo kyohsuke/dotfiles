@@ -155,10 +155,12 @@ zle -N zle-keymap-select
 # {{{ Cache Rebuild
 function zrebuild() {
   rm -f ~/.zcompdump;
+  rm -f ~/.zsh-evalcache/*.sh
   zmodload -i zsh/complist
   zcompile ~/.zshrc
   autoload -Uz compinit
   compinit -C -d "${ZSH_COMPDUMP}"
+  zsh -l -c exit
 }
 if [ ! -f ~/.zshrc.zwc -o ~/.zshrc -nt ~/.zshrc.zwc ]; then
   echo ".zshrc has been changed. recompiling."
