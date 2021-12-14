@@ -17,7 +17,7 @@ augroup VimRuby
   autocmd!
 
   " Ruby
-  autocmd FileType ruby setlocal expandtab foldmethod=marker omnifunc=
+  autocmd FileType ruby setlocal formatoptions-=ro expandtab foldmethod=marker omnifunc=
   autocmd FileType ruby,eruby nnoremap <silent> <Leader>t :split<Return> <C-]>
 
   " Rspec / TestUnit
@@ -30,4 +30,6 @@ augroup VimRuby
   autocmd BufRead,BufNewFile *.rhtml  setlocal ts=2 sw=2
   autocmd BufRead,BufNewFile *.rb     setlocal ts=2 sw=2
   autocmd BufRead,BufNewFile *.yml    setlocal ts=2 sw=2
+
+
 augroup END
