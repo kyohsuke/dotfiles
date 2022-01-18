@@ -42,6 +42,9 @@ defaults write com.apple.universalaccess reduceTransparency -bool true
 #     "/System/Library/CoreServices/Menu Extras/Battery.menu" \
 #     "/System/Library/CoreServices/Menu Extras/Clock.menu"
 
+# Show Proxy Icon immediately on TitleView in Finder
+defaults write com.apple.Finder NSToolbarTitleViewRolloverDelay -float 0
+
 # Set highlight color to green
 #defaults write NSGlobalDomain AppleHighlightColor -string "0.764700 0.976500 0.568600"
 
