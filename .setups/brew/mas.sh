@@ -5,12 +5,13 @@ if [ "$WITH_MAS" != "false"]; then
     brew install mas
 
     # install applications from App Store
-    mas install 1187772509 --force # stts
     mas install 497799835  --force # Xcode
     mas install 425424353  --force # The Unarchiver
+    mas install 1429033973 --force # RunCat
 
     # Indivisual
     if [ "$WORK" != "true" ]; then
+      mas install 1187772509 --force # stts
       mas install 450664466  --force # NAS Navigator2
       mas install 540348655  --force # Monosnap
       mas install 407066957  --force # iVolume
