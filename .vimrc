@@ -240,11 +240,18 @@ call plug#begin('~/.vim/plugged')
     Plug 'mattn/ctrlp-matchfuzzy'
 
   " Vim-LSP & AsynComplete
-  Plug 'prabirshrestha/asyncomplete.vim'
-  Plug 'prabirshrestha/asyncomplete-lsp.vim'
+  " Plug 'prabirshrestha/asyncomplete.vim'
+  " Plug 'prabirshrestha/asyncomplete-lsp.vim'
   Plug 'prabirshrestha/vim-lsp'
     Plug 'mattn/vim-lsp-settings'
     Plug 'mattn/ctrlp-lsp'
+
+    " ddc.vim
+  Plug 'Shougo/ddc.vim'
+  Plug 'Shougo/ddc-matcher_head'
+  Plug 'vim-denops/denops.vim'
+    Plug 'shun/ddc-vim-lsp'
+
 
   Plug 'LeafCage/foldCC.vim'
 
