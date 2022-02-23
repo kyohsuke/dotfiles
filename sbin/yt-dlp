@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 CMD_NAME="$(basename $0)"
-VERSION="2021.12.27"
+VERSION="2022.02.04"
 CONTAINER="jauderho/yt-dlp"
 SUEXEC="$(id -u):$(id -g)"
 PWD="$(pwd)"
