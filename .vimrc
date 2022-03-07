@@ -186,12 +186,12 @@ call plug#begin('~/.vim/plugged')
   Plug 'mrkn/mrkn256.vim'
 
   " Syntax Plugins
-  Plug 'mechatroner/rainbow_csv'
   Plug 'direnv/direnv.vim'
   Plug 'ekalinin/Dockerfile.vim'
   Plug 'hashivim/vim-terraform'
   Plug 'jparise/vim-graphql'
   Plug 'dart-lang/dart-vim-plugin'
+  Plug 'chrisbra/csv.vim'
 
   " Markdown
   Plug 'tpope/vim-markdown'
