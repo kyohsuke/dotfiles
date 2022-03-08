@@ -31,5 +31,10 @@ if [[ -s $HOME/.zsh/evalcache/evalcache.plugin.zsh ]] {
         _evalcache docker-machine env default
       fi
     # }}}
+    # {{{ cargo
+      if [[ -s $HOME/.cargo/bin ]] {
+        export PATH="$HOME/.cargo/bin:$PATH"
+      }
+    # }}}
   # }}}
 # }}} 

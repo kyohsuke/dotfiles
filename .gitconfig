@@ -59,11 +59,11 @@
 	diffFilter = diff-highlight
 [diff]
 	compactionHeuristic = true
-	tool=icdiff
+	tool = difftastic
 [difftool]
 	prompt = false
-[difftool "icdiff"]
-	cmd = icdiff \"$LOCAL\" \"$REMOTE\"
+[difftool "difftastic"]
+	cmd = difft "$LOCAL" "$REMOTE"
 [merge]
 	tool = gvimdiff
 [mergetool]
