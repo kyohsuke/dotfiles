@@ -7,6 +7,7 @@ tap "nektos/tap"
 tap "genkiroid/cert"
 
 brew "kyohsuke/misc/files"
+brew "kyohsuke/misc/difftastic"
 brew "nektos/tap/act"
 brew "genkiroid/cert/cert"
 cask "macface-haruhi"
