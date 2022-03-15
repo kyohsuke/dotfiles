@@ -5,8 +5,6 @@
 if [[ -s $HOME/.zsh/evalcache/evalcache.plugin.zsh ]] {
   source $HOME/.zsh/evalcache/evalcache.plugin.zsh
 }
-
-
 # {{{ Evaluates
   # {{{ Additional Path
     export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
@@ -19,7 +17,6 @@ if [[ -s $HOME/.zsh/evalcache/evalcache.plugin.zsh ]] {
         }
         _evalcache anyenv init --no-rehash - zsh
       }
-      export PATH="$HOME/bin:$HOME/sbin:$PATH"
     # }}} 
     # {{{ direnv
       if type direnv &>/dev/null; then
@@ -41,5 +38,6 @@ if [[ -s $HOME/.zsh/evalcache/evalcache.plugin.zsh ]] {
         export PATH="$HOME/.cargo/bin:$PATH"
       }
     # }}}
+    export PATH="$HOME/bin:$HOME/sbin:$PATH"
   # }}}
 # }}} 
