@@ -15,12 +15,12 @@ if [ "$WITH_MAS" != "false"]; then
       mas install 450664466  --force # NAS Navigator2
       mas install 540348655  --force # Monosnap
       mas install 407066957  --force # iVolume
-      mas install 1429033973 --force # RunCat
       mas install 430255202  --force # Mactracker
       mas install 539883307  --force # LINE
       mas install 409203825  --force # Numbers
       mas install 1289583905 --force # Pixelmator Pro
       mas install 444425546  --force # BarTunes
+      mas install 405399194  --force # Kindle
     else
       mas install 1298486723 --force # FileZilla Pro
     fi
