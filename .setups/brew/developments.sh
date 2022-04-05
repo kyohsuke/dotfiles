@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 BREWFILE=$(cat << EOS
+brew "difftastic"
 brew "parallel"
 brew "ctags"
 brew "git"
@@ -22,7 +23,6 @@ brew "cmake"
 brew "bat"
 brew "ipcalc"
 brew "direnv"
-brew "git-extras"
 brew "go"
 brew "aria2"
 brew "libpq"
