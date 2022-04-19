@@ -1,3 +1,3 @@
 UsePlugin 'vimdoc-ja'
 
-set helplang=ja
+set helplang=ja,en

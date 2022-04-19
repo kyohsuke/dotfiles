@@ -191,7 +191,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'hashivim/vim-terraform'
   Plug 'jparise/vim-graphql'
   Plug 'dart-lang/dart-vim-plugin'
-  Plug 'chrisbra/csv.vim'
+  Plug 'mechatroner/rainbow_csv'
 
   " Markdown
   Plug 'tpope/vim-markdown'
