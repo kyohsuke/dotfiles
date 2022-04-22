@@ -66,6 +66,9 @@ endif
     noremap : ;
     noremap ; :
 
+    nnoremap <silent> <D-[> :<C-u>bprev<Return>
+    nnoremap <silent> <D-]> :<C-u>bnexxt<Return>
+
     nnoremap j gj
     nnoremap k gk
     nnoremap gj j
