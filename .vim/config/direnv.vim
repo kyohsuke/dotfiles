@@ -1,3 +1,3 @@
 UsePlugin 'direnv.vim'
 
-let g:direnv_auto = 0
+let g:direnv_silent_load = 1
