@@ -195,6 +195,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'jparise/vim-graphql'
   Plug 'dart-lang/dart-vim-plugin'
   Plug 'mechatroner/rainbow_csv'
+  Plug 'autowitch/hive.vim'
 
   " Markdown
   Plug 'tpope/vim-markdown'

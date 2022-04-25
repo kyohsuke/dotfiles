@@ -30,6 +30,4 @@ augroup VimRuby
   autocmd BufRead,BufNewFile *.rhtml  setlocal ts=2 sw=2
   autocmd BufRead,BufNewFile *.rb     setlocal ts=2 sw=2
   autocmd BufRead,BufNewFile *.yml    setlocal ts=2 sw=2
-
-
 augroup END
