@@ -1,7 +1,3 @@
-[submodule ".zsh/zaw"]
-	shallow = true
-	path = .zsh/zaw
-	url = https://github.com/zsh-users/zaw.git
 [submodule ".zsh/bd"]
 	shallow = true
 	path = .zsh/bd
