@@ -1,12 +1,16 @@
 [submodule ".zsh/zaw"]
+	shallow = true
 	path = .zsh/zaw
 	url = https://github.com/zsh-users/zaw.git
 [submodule ".zsh/bd"]
+	shallow = true
 	path = .zsh/bd
 	url = https://github.com/Tarrasch/zsh-bd.git
 [submodule ".zsh/zsh-system-clipboard"]
+	shallow = true
 	path = .zsh/zsh-system-clipboard
 	url = https://github.com/kutsan/zsh-system-clipboard
 [submodule ".zsh/evalcache"]
+	shallow = true
 	path = .zsh/evalcache
 	url = https://github.com/mroth/evalcache.git
