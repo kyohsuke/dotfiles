@@ -24,7 +24,6 @@ brew "bat"
 brew "ipcalc"
 brew "direnv"
 brew "go"
-brew "aria2"
 brew "libpq"
 EOS
 )
