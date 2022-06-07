@@ -4,7 +4,6 @@ ANYENVS=(
   rbenv
   pyenv
   nodenv
-  plenv
   goenv
 )
 
