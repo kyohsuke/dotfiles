@@ -235,6 +235,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'kyohsuke/sinplu.vim'
   Plug 'kyohsuke/yaml-key.vim'
 
+  Plug 'itspriddle/vim-shellcheck' 
+
   " Git
   Plug 'tpope/vim-fugitive'
   Plug 'hotwatermorning/auto-git-diff'
@@ -260,6 +262,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'markonm/traces.vim'
 
   Plug 'tyru/current-func-info.vim'
+
   
   " Devicons
   Plug 'ryanoasis/vim-devicons'
