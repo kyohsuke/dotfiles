@@ -19,11 +19,9 @@ PYENV_PLUGINS=(
 )
 
 RBENV_PLUGINS=(
-  mlafeldt/rbenv-man
-  tpope/rbenv-readline
   rbenv/rbenv-default-gems
-  rbenv/rbenv-each
 )
+
 
 install_nodenv_plugins() {
   for PLUGIN in "${NODENV_PLUGINS[@]}";
@@ -57,7 +55,6 @@ do
 done
 ln -s "$HOME/.default-gems" "$(rbenv root)/default-gems"
 }
-
 
 # install Anyenv
 if ! [ -e "$HOME/.anyenv" ]; then
