@@ -43,6 +43,7 @@
 	last = sdiff HEAD~1
 	dig = log -p --pickaxe-all -S
 	precommit = diff --cached --diff-algorithm=minimal -w
+	dmb = delete-merged-branches
 
 	squash-all = "!f(){ git reset $(git commit-tree HEAD^{tree} -m \"${1:-A new start}\");};f"
 
