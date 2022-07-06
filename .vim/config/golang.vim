@@ -1,7 +1,7 @@
 UsePlugin 'vim-go-syntax'
 
 augroup VimGoSyntax
-  autocmd!
+  autocmd! * <buffer>
 
   " Golang
   autocmd FileType go setlocal noexpandtab ts=4 sts=4 sw=4

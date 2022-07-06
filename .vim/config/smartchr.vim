@@ -3,7 +3,7 @@ UsePlugin 'vim-smartchr'
 inoremap <expr> / smartchr#loop('/', '//', '\/')
 
 augroup SmartChr
-  autocmd!
+  autocmd! * <buffer>
 
   " Ruby
   autocmd FileType ruby,rails inoremap <buffer> <expr> <bar> smartchr#one_of('<bar>', '<bar><bar>', '<bar><bar>=')

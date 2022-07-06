@@ -156,7 +156,7 @@ augroup DetectFileTypes
   " Type Detect
   autocmd BufRead,BufNewFile *.json.tpl                                     setf json
   autocmd BufRead,BufNewFile {before_config,.ssh_config.local,after_config} setf sshconfig
-  autocmd BufRead,BufNewFile .env.*                                         setf sh
+  autocmd BufRead,BufNewFile .env.*                                         setf sh.env
   autocmd BufRead,BufNewFile .babelrc                                       setf json
   " autocmd BufRead,BufNewFile {*.js,*.jsx,*.es6}                           setf javascript
   " autocmd BufRead,BufNewFile *.ts                                         setf typescript

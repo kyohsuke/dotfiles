@@ -1,7 +1,7 @@
 UsePlugin 'hive.vim'
 
 augroup HiveVim
-  autocmd!
+  autocmd! * <buffer>
 
   " for .hql files
   autocmd BufNewFile,BufRead *.hql set filetype=hive expandtab

@@ -11,7 +11,7 @@ nnoremap <silent> ,nf :<C-u>NERDTreeFind<Return>
 nnoremap <silent> <C-e> :<C-u>NERDTreeToggle<Return>
 
 augroup NerdTree
-  autocmd!
+  autocmd! * <buffer>
 
   function! s:auCloseWindow()
     if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree())

@@ -14,7 +14,7 @@ let g:ruby_minlines = 500
 let g:ruby_spellcheck_strings = 1
 
 augroup VimRuby
-  autocmd!
+  autocmd! * <buffer>
 
   " Ruby
   autocmd FileType ruby setlocal formatoptions-=ro expandtab foldmethod=marker omnifunc=
