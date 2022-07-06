@@ -1,12 +1,30 @@
 #!/usr/bin/env bash
 CURRENT_BRANCH_NAME="$(git current)"
 DEFAULT_BRANCH_NAME="$(git default-branch)"
-MERGED_BRANCHES="$(git merged-branches)"
 
+MERGED_BRANCHES="$(git merged-branches | xargs)"
+MERGED_BRANCHES="${MERGED_BRANCHES//,/ }"
+IFS=" " read -r -a MERGED_BRANCHES <<< "$MERGED_BRANCHES"
 
-for BRANCH_NAME in $MERGED_BRANCHES; do
-  if [ "$CURRENT_BRANCH_NAME" != "$BRANCH_NAME" ] && [ "$DEFAULT_BRANCH_NAME" != "$BRANCH_NAME" ]; then
-    echo "Delete $BRANCH_NAME"
-    git branch -d "$BRANCH_NAME"
-  fi
+PROTECTED_BRANCHES="${PROTECTED_BRANCHES//,/ }"
+IFS=" " read -r -a PROTECTED_BRANCHES <<< "$PROTECTED_BRANCHES"
+
+PROTECTED_BRANCHES+=("${CURRENT_BRANCH_NAME}")
+PROTECTED_BRANCHES+=("${DEFAULT_BRANCH_NAME}")
+
+function deleteBranch() {
+  local currentBranch="$1"
+
+  for PROTECTED_BRANCH in "${PROTECTED_BRANCHES[@]}"; do
+    if [[ "$currentBranch" =~ $PROTECTED_BRANCH ]]; then
+      return
+    fi
+  done
+
+  echo "Delete $currentBranch"
+  git branch -d "$currentBranch"
+}
+
+for BRANCH_NAME in "${MERGED_BRANCHES[@]}"; do
+  deleteBranch "$BRANCH_NAME"
 done
