@@ -25,6 +25,7 @@
 [push]
 	default = current
 	followTags = true
+	autoSetupRemote = true
 [gc]
 	reflogExpire = 0
 	reflogExpireUnreachable = 0
