@@ -25,6 +25,7 @@ brew "ipcalc"
 brew "direnv"
 brew "go"
 brew "libpq"
+brew "dsq"
 EOS
 )
 
