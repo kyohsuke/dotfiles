@@ -38,6 +38,11 @@ if [[ -s $HOME/.zsh/evalcache/evalcache.plugin.zsh ]] {
         export PATH="$HOME/.cargo/bin:$PATH"
       }
     # }}}
+    # {{{ rancher desktop
+      if [[ -s $HOME/.rd/bin ]] {
+        export PATH="$HOME/.rd/bin:$PATH"
+      }
+    # }}}
     export PATH="$HOME/bin:$HOME/sbin:$PATH"
   # }}}
 # }}} 
