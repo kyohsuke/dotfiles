@@ -31,7 +31,7 @@ destructive_warning = True
 expand = False
 
 # Enables auto expand mode, which is similar to `\x auto` in psql.
-auto_expand = False
+auto_expand = True
 
 # If set to True, table suggestions will include a table alias
 generate_aliases = False
@@ -40,7 +40,7 @@ generate_aliases = False
 # In Unix/Linux: ~/.config/pgcli/log
 # In Windows: %USERPROFILE%\AppData\Local\dbcli\pgcli\log
 # %USERPROFILE% is typically C:\Users\{username}
-log_file = default
+log_file = ~/.local/share/pgcli/log 
 
 # keyword casing preference. Possible values "lower", "upper", "auto"
 keyword_casing = auto
@@ -62,7 +62,7 @@ case_column_headers = True
 # In Unix/Linux: ~/.config/pgcli/history
 # In Windows: %USERPROFILE%\AppData\Local\dbcli\pgcli\history
 # %USERPROFILE% is typically C:\Users\{username}
-history_file = default
+history_file = ~/.local/share/pgcli/history
 
 # Default log level. Possible values: "CRITICAL", "ERROR", "WARNING", "INFO"
 # and "DEBUG". "NONE" disables logging.
