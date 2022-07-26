@@ -38,6 +38,9 @@ if [[ -z $ZSHENV_LOAD ]] {
   export GOPATH=$HOME
   export MANPATH="/usr/local/share/man:$MANPATH"
 
+  # Docker for mac
+  export DOCKER_DEFAULT_PLATFORM="linux/amd64"
+
   # Google Cloud SDK
   export CLOUDSDK_PYTHON="/usr/local/opt/python@3.8/libexec/bin/python"
   if [ -r "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc" ]; then
