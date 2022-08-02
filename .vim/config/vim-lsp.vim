@@ -33,9 +33,12 @@ function! s:on_lsp_buffer_enabled() abort
 
   inoremap <buffer> <expr> <C-o> lsp#internal#document_hover#under_cursor#do({}) ? '' : ''
   inoremap <buffer> <expr> <cr> pumvisible() ? "\<c-y>\<cr>" : "\<cr>"
+
+  setlocal foldmethod=expr foldexpr=lsp#ui#vim#folding#foldexpr() foldtext=lsp#ui#vim#folding#foldtext()
 endfunction
 
 augroup LspInstall
-  autocmd! * <buffer>
+  autocmd!
   autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
+  autocmd BufWritePre *.rs,*.go call execute('LspDocumentFormatSync')
 augroup END

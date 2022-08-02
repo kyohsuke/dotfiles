@@ -140,6 +140,7 @@ endif
   set ignorecase
   set smartcase
   set noshowmode
+  set foldlevel=99
 
   autocmd WinEnter * checktime
   " {{{ Kill Auto Commentout
