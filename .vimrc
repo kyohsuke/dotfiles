@@ -176,6 +176,9 @@ augroup DetectFileTypes
   autocmd FileType markdown setlocal ts=2 sts=2 sw=2
   autocmd FileType markdown syntax sync fromstart
 
+  " golang
+  autocmd FileType go setlocal foldmethod=syntax
+
   " Remap vim help
   autocmd FileType help nnoremap <buffer> <CR> <C-]>
   autocmd FileType help nnoremap <buffer> <BS> <C-O>
