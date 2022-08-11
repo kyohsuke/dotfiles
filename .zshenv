@@ -74,6 +74,11 @@ if [[ -z $ZSHENV_LOAD ]] {
   fi
   export PSQL_EDITOR='gvim +"set syntax=sql" '
   # }}}
+  # {{{ rustup
+  if [ -r "$HOME/.cargo/env" ]; then
+    source "$HOME/.cargo/env"
+  fi
+  # }}}
   # {{{ load localfile
   if [ -r "$HOME/.zshenv.local" ]; then
     source $HOME/.zshenv.local
