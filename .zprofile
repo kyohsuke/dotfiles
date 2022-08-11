@@ -33,11 +33,6 @@ if [[ -s $HOME/.zsh/evalcache/evalcache.plugin.zsh ]] {
         _evalcache brew shellenv
       fi
     # }}}
-    # {{{ cargo
-      if [[ -s $HOME/.cargo/bin ]] {
-        export PATH="$HOME/.cargo/bin:$PATH"
-      }
-    # }}}
     # {{{ rancher desktop
       if [[ -s $HOME/.rd/bin ]] {
         export PATH="$HOME/.rd/bin:$PATH"
