@@ -31,7 +31,7 @@ if [[ -z $ZSHENV_LOAD ]] {
     export FILES_IGNORE_PATTERN='(^(\.git|\.hg|\.svn|_darcs|\.bzr|tmp|\.vagrant|\.keep|\.log|.tmp|\.DS_Store)$|node_modules)'
   fi
 
-  export HOMEBREW_INSTALL_CLEANUP="1"
+  export HOMEBREW_INSTALL_CLEANUP=1
   export EDITOR="mvim -f --cmd 'autocmd VimLeave * :!open -a Terminal'"
   [[ -r "/usr/local/bin/gpg" ]] && export GPG_TTY=$(tty)
 
@@ -61,6 +61,9 @@ if [[ -z $ZSHENV_LOAD ]] {
 
   # pyenv
   export PYTHON_CONFIGURE_OPTS="--enable-framework --enable-optimizations --with-lto"
+
+  # goenv
+  export GOENV_DISABLE_GOPATH=1
 
   # bat
   export BAT_STYLE="plain"

@@ -16,6 +16,7 @@ if [[ -s $HOME/.zsh/evalcache/evalcache.plugin.zsh ]] {
           export PATH="$PYENV_ROOT_PATH/shims:$PATH"
         }
         _evalcache anyenv init --no-rehash - zsh
+        export GOBIN="$GOROOT/bin"
       }
     # }}} 
     # {{{ direnv
