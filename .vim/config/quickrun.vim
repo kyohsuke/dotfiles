@@ -8,6 +8,13 @@ let g:quickrun_config = {
       \     'outputter/buffer/opener': 'rightbelow split',
       \     'runner': 'job',
       \   },
+      \     'go/bench': {
+      \     'command': 'go',
+      \     'tempfile': '%{printf("%s_test.go", tempname())}',
+      \     'exec': ['%C test -bench . -benchmem'],
+      \     'type': 'go',
+      \     'runner': 'terminal',
+      \   },
       \   'ruby': {
       \     'command': 'ruby',
       \     'cmdopt': '-C '.$PWD.' -r '.$HOME.'/.vim/stash/rubyopts.rb'
