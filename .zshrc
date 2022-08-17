@@ -31,9 +31,9 @@ alias sshconfig="$EDITOR -o \"$HOME/.ssh_config.d/before_config\" \"$HOME/.ssh_c
 function check_ssh_config {
   case $OSTYPE in
   darwin*)
-    local CMD_CAT=$(whereis cat)
-    local CMD_HEAD=$(whereis head)
-    local CMD_SED=$(whereis sed)
+    local CMD_CAT="/bin/cat"
+    local CMD_HEAD="/usr/bin/head"
+    local CMD_SED="/usr/bin/sed"
     ;;
   linux*)
     local CMD_CAT="/bin/cat"
