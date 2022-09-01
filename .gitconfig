@@ -3,6 +3,7 @@
 	name = KAWAHARA Keisuke
 [ghq]
 	root = ~/src
+	user = kyohsuke
 [core]
 	excludesfile = ~/.gitignore.global
 	compression = 9
