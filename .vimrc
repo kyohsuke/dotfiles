@@ -200,6 +200,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'dart-lang/dart-vim-plugin'
   Plug 'mechatroner/rainbow_csv'
   Plug 'autowitch/hive.vim'
+  Plug 'google/vim-jsonnet'
 
   " Markdown
   Plug 'tpope/vim-markdown'
