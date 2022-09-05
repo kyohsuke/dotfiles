@@ -17,7 +17,8 @@ fi
 # }}}
 # {{{ Init oh-my-zsh
 fpath=($fpath $HOME/.zsh-completions)
-plugins=(bundler rails rake-fast redis-cli vagrant docker)
+
+plugins=(aws brew bundler cp direnv docker docker-compose dotenv gem gh gitfast gpg-agent heroku kubectl man node npm perl pip pod pyenv python rails rake-fast rbenv redis-cli rsync ruby thefuck yarn)
 source $ZSH/oh-my-zsh.sh
 autoload -Uz compinit
 compinit -C -d "${ZSH_COMPDUMP}"
