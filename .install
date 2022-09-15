@@ -15,6 +15,8 @@ if ! [ -f "$HOME/.install" ]; then
   grep --quiet BUNDLE_JOBS "$HOME/.zshenv.local" || echo 'export BUNDLE_JOBS=$MACHINE_PROCESSORS' >> "$HOME/.zshenv.local"
   # shellcheck disable=SC2016
   grep --quiet MAKE_OPTS "$HOME/.zshenv.local" || echo 'export MAKE_OPTS="-j $MACHINE_PROCESSORS"' >> "$HOME/.zshenv.local"
+  # shellcheck disable=SC2016
+  grep --quiet ARCHFLAGS "$HOME/.zshenv.local" || echo "export ARCHFLAGS=\"-arch $(uname -m)\"" >> "$HOME/.zshenv.local"
 
   # Ask for the administrator password upfront
   sudo -v

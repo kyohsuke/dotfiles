@@ -14,7 +14,6 @@ if [[ -z $ZSHENV_LOAD ]] {
   export LANG=ja_JP.UTF-8
   export LESSCHARSET=UTF-8
   export OUTPUT_CHARSET=UTF-8
-  export ARCHFLAGS="-arch x86_64"
 
   export ZSH=$HOME/.oh-my-zsh
   export ZSH_CUSTOM=$HOME/.zsh-custom
@@ -59,6 +58,9 @@ if [[ -z $ZSHENV_LOAD ]] {
   # for python and pyenv
   export PYTHONDONTWRITEBYTECODE=1
   export PYENV_VIRTUALENV_DISABLE_PROMPT=1
+
+  # rbenv
+  export RUBY_YJIT_ENABLE=1
 
   # pyenv
   export PYTHON_CONFIGURE_OPTS="--enable-framework --enable-optimizations --with-lto"
