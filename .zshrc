@@ -15,14 +15,6 @@ if type brew &>/dev/null; then
   fi
 fi
 # }}}
-# {{{ Init oh-my-zsh
-fpath=($fpath $HOME/.zsh-completions)
-
-plugins=(aws brew bundler cp direnv docker docker-compose dotenv gem gh gitfast gpg-agent heroku kubectl man node npm perl pip pod pyenv python rails rake-fast rbenv redis-cli rsync ruby thefuck yarn)
-source $ZSH/oh-my-zsh.sh
-autoload -Uz compinit
-compinit -C -d "${ZSH_COMPDUMP}"
-# }}}
 # {{{ Sources
 source $HOME/.zsh/bd/bd.zsh
 source $HOME/.zsh/zsh-system-clipboard/zsh-system-clipboard.zsh
@@ -143,6 +135,25 @@ setopt prompt_subst
 # zsh option setting
 setopt auto_cd
 # }}}
+# {{{ Cache Rebuild
+function zrebuild() {
+  rm -f ~/.zcompdump;
+  rm -f ~/.zcompdump.zwc;
+  rm -f ~/.zsh-evalcache/*.sh
+  zmodload -i zsh/complist
+  zcompile ~/.zshrc
+  compinit -u -d "$ZSH_COMPDUMP"
+  zsh -l -c exit
+}
+if [ ! -f ~/.zshrc.zwc -o ~/.zshrc -nt ~/.zshrc.zwc ]; then
+  echo ".zshrc has been changed. recompiling."
+  zrebuild
+fi
+# {{{ Init oh-my-zsh
+plugins=(aws gh heroku rake-fast redis-cli)
+fpath=($fpath $HOME/.zsh-completions)
+source $ZSH/oh-my-zsh.sh
+# }}}
 # {{{ PROMPT Theme
 if [[ $ZSH_THEME -eq "robbyrussel" ]] {
   export PROMPT=$'%{$fg[yellow]%}[ %~ ] %{$reset_color%}${${KEYMAP/vicmd/[N]}/(main|viins)/$fg_bold[yellow]-I-${reset_color}}\n ${ret_status}%{$fg_bold[green]%}%p %{$fg[cyan]%}%c %{$fg_bold[blue]%}$(git_prompt_info)%{$fg_bold[blue]%} % %{$reset_color%}'
@@ -153,18 +164,7 @@ function zle-line-init zle-keymap-select {
 zle -N zle-line-init
 zle -N zle-keymap-select
 # }}}
-# {{{ Cache Rebuild
-function zrebuild() {
-  rm -f ~/.zcompdump;
-  rm -f ~/.zsh-evalcache/*.sh
-  zmodload -i zsh/complist
-  zcompile ~/.zshrc
-  autoload -Uz compinit
-  compinit -C -d "${ZSH_COMPDUMP}"
-  zsh -l -c exit
-}
-if [ ! -f ~/.zshrc.zwc -o ~/.zshrc -nt ~/.zshrc.zwc ]; then
-  echo ".zshrc has been changed. recompiling."
-  zrebuild
+if (which zprof > /dev/null 2>&1) ;then
+  zprof
 fi
 # }}}

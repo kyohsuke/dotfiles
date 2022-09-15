@@ -2,6 +2,8 @@
 # vim: foldmethod=marker
 # vim: filetype=zsh
 
+# zmodload zsh/zprof && zprof
+
 # {{{ Pragma Once
 if [[ -z $ZSHENV_LOAD ]] {
   # {{{ Exports
