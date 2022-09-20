@@ -16,7 +16,6 @@ if [[ -z $ZSHENV_LOAD ]] {
   export OUTPUT_CHARSET=UTF-8
 
   export ZSH=$HOME/.oh-my-zsh
-  export ZSH_CUSTOM=$HOME/.zsh-custom
   export ZSH_THEME="robbyrussell"
   export GEM_EDITOR="mvim"
   export MONO_GAC_PREFIX="/usr/local"
@@ -90,5 +89,9 @@ if [[ -z $ZSHENV_LOAD ]] {
     source $HOME/.zshenv.local
   fi
   # }}}
+  if [ ! -f ~/.zshenv.zwc -o ~/.zshenv -nt ~/.zshenv.zwc ]; then
+    echo ".zshenv has been changed. recompiling."
+    zcompile "$HOME/.zshenv"
+  fi
 }
 # }}}

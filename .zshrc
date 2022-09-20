@@ -6,8 +6,7 @@
 if type brew &>/dev/null; then
   SHARE_DIRECTORY="$HOMEBREW_PREFIX/share"
   if [[ -d "$SHARE_DIRECTORY" ]]; then
-    fpath=("$HOMEBREW_PREFIX/share/zsh-completions" "$HOMEBREW_PREFIX/share/zsh/site-functions" $fpath)
-
+    FPATH="$FPATH:$SHARE_DIRECTORY/zsh-completions:$SHARE_DIRECTORY/zsh/site-functions"
     SHARE_PERMISSION="$(stat -f '%A' "$SHARE_DIRECTORY")"
     if [[ "$SHARE_PERMISSION" -ne 755 ]]; then
       chmod -R go-w "$SHARE_PERMISSION"
@@ -126,6 +125,7 @@ zstyle ':completion:*' verbose yes
 zstyle ':completion:*:descriptions' format '%B%d%b'
 zstyle ':completion:*:messages' format '%d'
 zstyle ':completion:*:warnings' format 'No matches for: %d'
+zstyle ":completion:*:commands" rehash 1
 zstyle ':completion:*' group-name ''
 zstyle ':completion:*' list-colors $LSCOLORS
 zstyle ':completion:*' matcher-list '' 'm:{[:lower:]}={[:upper:]}' '+m:{[:upper:]}={[:lower:]}'
@@ -137,12 +137,8 @@ setopt auto_cd
 # }}}
 # {{{ Cache Rebuild
 function zrebuild() {
-  rm -f ~/.zcompdump;
-  rm -f ~/.zcompdump.zwc;
   rm -f ~/.zsh-evalcache/*.sh
-  zmodload -i zsh/complist
   zcompile ~/.zshrc
-  compinit -u -d "$ZSH_COMPDUMP"
   zsh -l -c exit
 }
 if [ ! -f ~/.zshrc.zwc -o ~/.zshrc -nt ~/.zshrc.zwc ]; then
@@ -150,8 +146,9 @@ if [ ! -f ~/.zshrc.zwc -o ~/.zshrc -nt ~/.zshrc.zwc ]; then
   zrebuild
 fi
 # {{{ Init oh-my-zsh
-plugins=(aws gh heroku rake-fast redis-cli)
-fpath=($fpath $HOME/.zsh-completions)
+FPATH="$HOME/.zsh-completions:$FPATH"
+plugins=(git aws rake-fast)
+fpath=("${(@u)fpath}")
 source $ZSH/oh-my-zsh.sh
 # }}}
 # {{{ PROMPT Theme
@@ -164,7 +161,7 @@ function zle-line-init zle-keymap-select {
 zle -N zle-line-init
 zle -N zle-keymap-select
 # }}}
-if (which zprof > /dev/null 2>&1) ;then
-  zprof
-fi
+# if (which zprof > /dev/null 2>&1) ;then
+#   zprof
+# fi
 # }}}

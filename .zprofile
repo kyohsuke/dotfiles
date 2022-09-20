@@ -42,3 +42,7 @@ if [[ -s $HOME/.zsh/evalcache/evalcache.plugin.zsh ]] {
     export PATH="$HOME/bin:$HOME/sbin:$PATH"
   # }}}
 # }}} 
+if [ ! -f ~/.zprofile.zwc -o ~/.zprofile -nt ~/.zprofile.zwc ]; then
+  echo ".zprofile has been changed. recompiling."
+  zcompile "$HOME/.zprofile"
+fi
