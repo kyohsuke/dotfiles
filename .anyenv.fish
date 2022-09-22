@@ -1,5 +1,5 @@
 if test -s "$HOME/.anyenv/bin/anyenv"
-  fish_add_path "$HOME/.anyenv/bin"
+  fish_add_path -m "$HOME/.anyenv/bin"
   _evalcache anyenv init --no-rehash - fish
 
   # goenv
