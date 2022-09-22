@@ -40,6 +40,11 @@
 !/.rubocop.yml
 !/.github
 !/.fontgen
+!/.fish-functions
+!/.fishrc
+!/.environments
+!/.aliases
+!/.anyenv.fish
 
 # Add .config file
 !/.config
@@ -50,6 +55,9 @@
 !/.config/nodenv
 /.config/nodenv/*
 !/.config/nodenv/default-packages
+!/.config/fish
+/.config/fish/*
+!/.config/fish/config.fish
 
 # Add Tracking only .bundle/config
 !/.bundle
