@@ -2,16 +2,6 @@
 # vim: foldmethod=marker
 # vim: filetype=fish
 
-# {{{ _evalcache
-if test -f "$HOME/.config/fish/functions/_evalcache.fish"
-  source "$HOME/.config/fish/functions/_evalcache.fish"
-else
-  function _evalcache
-    eval ($argv | source)
-  end
-end
-# }}}
-
 # {{{ Add PATH
   # {{{ rustup
   if test -d "$HOME/.cargo/bin"
