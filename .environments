@@ -24,3 +24,7 @@ set -gx PSQL_EDITOR 'gvim +"set syntax=sql" '
 
 # LSCOLORS
 set -gx LSCOLORS "Gxfxcxdxbxegedabagacad"
+
+if test -f "$HOME/.environments.local"
+  source "$HOME/.environments.local"
+end
