@@ -27,16 +27,12 @@ if test -z $FISHENV_LOAD
   # Docker for mac
   set -gx DOCKER_DEFAULT_PLATFORM "linux/amd64"
 
-  set -gx MANPAGER "sh -c 'col -bx | bat -pl man'"
-  set -gx BAT_PAGER "less -FR"
-
   if test -f "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.fish.inc"
     source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.fish.inc"
   end
 
   # bat
   if test -x "/usr/local/bin/bat"
-    set -gx MANPAGER "sh -c 'col -bx | bat -pl man'"
     set -gx BAT_PAGER "less -FR"
     set -gx BAT_STYLE "plain"
   end
