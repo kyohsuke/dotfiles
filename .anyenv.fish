@@ -1,4 +1,7 @@
 if test -s "$HOME/.anyenv/bin/anyenv"
+  if test -f "$HOME/.config/fish/functions/_evalcache.fish"
+    source "$HOME/.config/fish/functions/_evalcache.fish"
+  end
   fish_add_path -m "$HOME/.anyenv/bin"
   _evalcache anyenv init --no-rehash - fish
 
