@@ -1,0 +1,68 @@
+# vim: expandtab softtabstop=2 shiftwidth=2
+# vim: foldmethod=marker
+# vim: filetype=fish
+
+# {{{ _evalcache
+if test -f "$HOME/.config/fish/functions/_evalcache.fish"
+  source "$HOME/.config/fish/functions/_evalcache.fish"
+else
+  function _evalcache
+    eval ($argv | source)
+  end
+end
+# }}}
+
+# {{{ Add PATH
+  # {{{ rustup
+  if test -d "$HOME/.cargo/bin"
+    fish_add_path -m "$HOME/.cargo/bin"
+  end
+  # }}}
+  # {{{ anyenv
+  if test -x "$HOME/.anyenv/bin/anyenv"
+    fish_add_path -m "$HOME/.anyenv/bin"
+    _evalcache anyenv init --no-rehash - fish
+
+    set -f envPath "$HOME/.anyenv/envs"
+
+    # goenv
+    if test -x "$envPath/goenv/bin/goenv"
+      set -gx GOENV_DISABLE_GOPATH 1
+      set -gx GOPATH "$HOME"
+      set -gx GOBIN "$GOROOT/bin"
+    end
+
+    # pyenv
+    if test -x "$envPath/pyenv/bin/pyenv"
+      fish_add_path -m "$envPath/pyenv/shims"
+
+      set -gx PYTHONDONTWRITEBYTECODE 1
+      set -gx PYENV_VIRTUALENV_DISABLE_PROMPT 1
+      set -gx PYTHON_CONFIGURE_OPTS "--enable-framework --enable-optimizations --with-lto"
+    end
+
+    # rbenv
+    if test -x "$envPath/rbenv/bin/rbenv"
+      set -gx GEM_EDITOR "mvim"
+      set -gx RUBY_YJIT_ENABLE 1
+      set -gx UNBUNDLED_COMMANDS rake cap irb
+    end
+  end
+  # }}}
+
+  if test -r "/usr/local/bin/brew"
+    _evalcache /usr/local/bin/brew shellenv
+  end
+
+  if command -v direnv > /dev/null
+    _evalcache direnv hook fish
+  end
+
+  if command -v docker-machine > /dev/null
+    _evalcache docker-machine env default
+  end
+
+  if test -s "$HOME/.rd/bin"
+    fish_add_path -m "$HOME/.rd/bin"
+  end
+# }}}

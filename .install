@@ -8,16 +8,16 @@ trap cleanup EXIT
 
 if ! [ -f "$HOME/.install" ]; then
   # Put machine processors to environment
-  grep --quiet MACHINE_PROCESSORS "$HOME/.zshenv.local" || echo "export MACHINE_PROCESSORS=$(ruby -retc -e 'puts Etc.nprocessors')" >> "$HOME/.zshenv.local"
+  grep --quiet MACHINE_PROCESSORS "$HOME/.fishenv.local" || echo "set -gx MACHINE_PROCESSORS $(ruby -retc -e 'puts Etc.nprocessors')" >> "$HOME/.fishenv.local"
   # shellcheck disable=SC2016
-  grep --quiet HOMEBREW_MAKE_JOBS "$HOME/.zshenv.local" || echo 'export HOMEBREW_MAKE_JOBS=$MACHINE_PROCESSORS' >> "$HOME/.zshenv.local"
+  grep --quiet HOMEBREW_MAKE_JOBS "$HOME/.fishenv.local" || echo 'set -gx HOMEBREW_MAKE_JOBS $MACHINE_PROCESSORS' >> "$HOME/.fishenv.local"
   # shellcheck disable=SC2016
-  grep --quiet BUNDLE_JOBS "$HOME/.zshenv.local" || echo 'export BUNDLE_JOBS=$MACHINE_PROCESSORS' >> "$HOME/.zshenv.local"
+  grep --quiet BUNDLE_JOBS "$HOME/.fishenv.local" || echo 'set -gx BUNDLE_JOBS $MACHINE_PROCESSORS' >> "$HOME/.fishenv.local"
   # shellcheck disable=SC2016
-  grep --quiet MAKE_OPTS "$HOME/.zshenv.local" || echo 'export MAKE_OPTS="-j $MACHINE_PROCESSORS"' >> "$HOME/.zshenv.local"
+  grep --quiet MAKE_OPTS "$HOME/.fishenv.local" || echo 'set -gx MAKE_OPTS "-j $MACHINE_PROCESSORS"' >> "$HOME/.fishenv.local"
   # shellcheck disable=SC2016
-  grep --quiet ARCHFLAGS "$HOME/.zshenv.local" || echo "export ARCHFLAGS=\"-arch $(uname -m)\"" >> "$HOME/.zshenv.local"
-
+  grep --quiet ARCHFLAGS "$HOME/.fishenv.local" || echo "set -gx ARCHFLAGS \"-arch $(uname -m)\"" >> "$HOME/.fishenv.local"
+  
   # Ask for the administrator password upfront
   sudo -v
 

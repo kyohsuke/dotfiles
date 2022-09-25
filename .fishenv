@@ -1,0 +1,68 @@
+# vim: expandtab softtabstop=2 shiftwidth=2
+# vim: filetype=fish
+# vim: foldmethod=marker
+
+# {{{ Pragma Once
+if test -z $FISHENV_LOAD
+  # {{{ set environments
+  set -gx DISABLE_AUTO_UPDATE "true"
+  set -gx TZ "Asia/Tokyo"
+  set -gx LANG "ja_JP.UTF-8"
+  set -gx LESSCHARSET "UTF-8"
+  set -gx OUTPUT_CHARSET "UTF-8"
+
+  set -gx MONO_GAC_PREFIX "/usr/local"
+
+  if test -x "/usr/local/bin/files"
+    set -gx FILES_IGNORE_PATTERN='(^(\.git|\.hg|\.svn|_darcs|\.bzr|tmp|\.vagrant|\.keep|\.log|.tmp|\.DS_Store)$|node_modules)'
+  end
+
+  if test -x "/usr/local/bin/gpg"
+    set -gx GPG_TTY (tty)
+  end
+
+  set -gx HOMEBREW_INSTALL_CLEANUP 1
+  set -gx EDITOR "mvim -f --cmd 'autocmd VimLeave * :!open -a Terminal'"
+
+  # Docker for mac
+  set -gx DOCKER_DEFAULT_PLATFORM "linux/amd64"
+
+  set -gx MANPAGER "sh -c 'col -bx | bat -pl man'"
+  set -gx BAT_PAGER "less -FR"
+
+  if test -f "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.fish.inc"
+    source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.fish.inc"
+  end
+
+  # bat
+  if test -x "/usr/local/bin/bat"
+    set -gx MANPAGER "sh -c 'col -bx | bat -pl man'"
+    set -gx BAT_PAGER "less -FR"
+    set -gx BAT_STYLE "plain"
+  end
+
+  # libffi
+  if test -d "/usr/local/opt/libffi/lib/pkgconfig"
+    set -gx PKG_CONFIG_PATH "/usr/local/opt/libffi/lib/pkgconfig"
+  end
+
+  # psql editor
+  set -gx PSQL_EDITOR 'gvim +"set syntax=sql" '
+
+  # LSCOLORS
+  set -gx LSCOLORS "Gxfxcxdxbxegedabagacad"
+
+  # CA Bundle
+  if test -r "/usr/local/opt/curl-ca-bundle/share/ca-bundle.crt"
+    set -gx SSL_CERT_FILE "/usr/local/opt/curl-ca-bundle/share/ca-bundle.crt"
+  end
+
+  # }}}
+  # {{{ source .local
+  if test -f "$HOME/.fishenv.local"
+    source "$HOME/.fishenv.local"
+  end
+  # }}}
+  set -gx FISHENV_LOAD 1
+end
+# }}}

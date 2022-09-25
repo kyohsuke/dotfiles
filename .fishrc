@@ -1,33 +1,39 @@
 # vim: filetype=fish
 set -gx fish_function_path $fish_function_path "$HOME/.fish-functions"
 
-source "$HOME/.anyenv.fish"
-source "$HOME/.environments"
-source "$HOME/.aliases"
-
-if test -f /usr/local/bin/brew
-  _evalcache /usr/local/bin/brew shellenv
-end
-
-if command -v direnv > /dev/null
-  _evalcache direnv hook fish
-end
-
-if command -v docker-machine > /dev/null
-  _evalcache docker-machine env default
-end
-
 fish_add_path -m "$HOME/sbin"
 fish_add_path -m "$HOME/bin"
 
-if status is-interactive
-  function fish_user_key_bindings
-    bind -M insert \co __ghq_cd
-    bind -M insert \ch __peco_history
-    bind -M insert \ck __peco_branch
-  end
+# {{{ KeyBindings 
+function fish_user_key_bindings
+  bind -M insert \co __ghq_cd
+  bind -M insert \ch __peco_history
+  bind -M insert \ck __peco_branch
 
-  # Commands to run in interactive sessions can go here
-  set -f vim_version (vim --version | head -1 | sed 's/^.*\ \([0-9]\)\.\([0-9]\)\ .*$/\1\2/')
-  alias less="/usr/share/vim/vim$vim_version/macros/less.sh"
+  # Accept Autosuggestion like python prompt Kit
+  bind -M insert \ce accept-autosuggestion
 end
+# }}}
+# {{{ Aliases
+set -f vim_version (vim --version | head -1 | sed 's/^.*\ \([0-9]\)\.\([0-9]\)\ .*$/\1\2/')
+alias less="/usr/share/vim/vim$vim_version/macros/less.sh"
+alias dcs='docker stats $(docker-compose ps -q || echo "#")'
+alias gup='git pull --rebase'
+alias rm='rm -i'
+alias df='df -h'
+alias bc='bc -l'
+alias scrr='screen -U -D -RR'
+alias diff='diff -W $COLUMNS'
+alias locate='mdfind -name'
+alias top='top -o cpu'
+alias svc='brew services'
+alias vim='/Applications/MacVim.app/Contents/MacOS/Vim'
+alias toweb='ruby -run -e httpd . -p5000'
+alias vcat='vimcat'
+alias cat='bat --paging=never'
+alias ls='ls -G'
+alias cp='cp -v -i'
+alias mv='mv -v -i'
+alias vimrc="$EDITOR ~/.vimrc"
+alias f='thefuck'
+# }}}

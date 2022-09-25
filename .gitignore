@@ -24,7 +24,6 @@
 !/.ssh_config.d
 !/.gitignore.global
 !/.vromerc
-!/.Brewfile
 !/.install
 !/.default-gems
 !/.default-packages
@@ -40,11 +39,6 @@
 !/.rubocop.yml
 !/.github
 !/.fontgen
-!/.fish-functions
-!/.fishrc
-!/.environments
-!/.aliases
-!/.anyenv.fish
 
 # Add .config file
 !/.config
@@ -55,9 +49,17 @@
 !/.config/nodenv
 /.config/nodenv/*
 !/.config/nodenv/default-packages
+
+# fish shell
+!/.fishenv
+!/.fishrc
+!/.fish_profile
+!/.fish_login
+!/.fish-functions
 !/.config/fish
 /.config/fish/*
 !/.config/fish/config.fish
+!/.config/fish/fish_plugins
 
 # Add Tracking only .bundle/config
 !/.bundle
