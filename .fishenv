@@ -14,7 +14,7 @@ if test -z $FISHENV_LOAD
   set -gx MONO_GAC_PREFIX "/usr/local"
 
   if test -x "/usr/local/bin/files"
-    set -gx FILES_IGNORE_PATTERN='(^(\.git|\.hg|\.svn|_darcs|\.bzr|tmp|\.vagrant|\.keep|\.log|.tmp|\.DS_Store)$|node_modules)'
+    set -gx FILES_IGNORE_PATTERN '(^(\.git|\.hg|\.svn|_darcs|\.bzr|tmp|\.vagrant|\.keep|\.log|.tmp|\.DS_Store)$|node_modules)'
   end
 
   if test -x "/usr/local/bin/gpg"
