@@ -12,9 +12,10 @@ fish_add_path -m "$HOME/bin"
 
 # {{{ KeyBindings 
 function fish_user_key_bindings
-  bind -M insert \co __ghq_cd
-  bind -M insert \ch __peco_history
-  bind -M insert \ck __peco_branch
+  bind -s \cc cancel-commandline
+  bind -s -M insert \co __ghq_cd
+  bind -s -M insert \ch __peco_history
+  bind -s -M insert \ck __peco_branch
 
   # Accept Autosuggestion like python prompt Kit
   bind -M insert \ce accept-autosuggestion
