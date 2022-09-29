@@ -3,6 +3,10 @@
 # vim: filetype=fish
 set -gx fish_function_path $fish_function_path "$HOME/.fish-functions"
 
+if test $fish_key_bindings != 'fish_vi_key_bindings'
+  fish_vi_key_bindings
+end
+
 if test -f "$HOME/.fish-functions/check_ssh_config.fish"
   source "$HOME/.fish-functions/check_ssh_config.fish"
 end
@@ -22,9 +26,9 @@ function fish_user_key_bindings
 end
 # }}}
 # {{{ Aliases
+alias vim='/Applications/MacVim.app/Contents/MacOS/Vim'
 set -f vim_version (vim --version | head -1 | sed 's/^.*\ \([0-9]\)\.\([0-9]\)\ .*$/\1\2/')
 alias less="/usr/share/vim/vim$vim_version/macros/less.sh"
-alias dcs='docker stats $(docker-compose ps -q || echo "#")'
 alias gup='git pull --rebase'
 alias rm='rm -i'
 alias df='df -h'
@@ -34,13 +38,16 @@ alias diff='diff -W $COLUMNS'
 alias locate='mdfind -name'
 alias top='top -o cpu'
 alias svc='brew services'
-alias vim='/Applications/MacVim.app/Contents/MacOS/Vim'
 alias toweb='ruby -run -e httpd . -p5000'
 alias vcat='vimcat'
 alias cat='bat --paging=never'
 alias ls='ls -G'
 alias cp='cp -v -i'
 alias mv='mv -v -i'
-alias vimrc="$EDITOR ~/.vimrc"
-alias f='thefuck'
+if command -v docker-compose > /dev/null
+  alias dcs='docker stats $(docker-compose ps -q || echo "#")'
+end
+if command -v thefuck > /dev/null
+  alias f='thefuck'
+end
 # }}}
