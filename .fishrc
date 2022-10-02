@@ -3,13 +3,11 @@
 # vim: filetype=fish
 set -gx fish_function_path $fish_function_path "$HOME/.fish-functions"
 
-if test $fish_key_bindings != 'fish_vi_key_bindings'
-  fish_vi_key_bindings
-end
+test $fish_key_bindings != 'fish_vi_key_bindings'
+and fish_vi_key_bindings
 
-if test -f "$HOME/.fish-functions/check_ssh_config.fish"
-  source "$HOME/.fish-functions/check_ssh_config.fish"
-end
+test -f "$HOME/.fish-functions/check_ssh_config.fish"
+and source "$HOME/.fish-functions/check_ssh_config.fish"
 
 fish_add_path -m "$HOME/sbin"
 fish_add_path -m "$HOME/bin"
@@ -44,10 +42,10 @@ alias cat='bat --paging=never'
 alias ls='ls -G'
 alias cp='cp -v -i'
 alias mv='mv -v -i'
-if command -v docker-compose > /dev/null
-  alias dcs='docker stats $(docker-compose ps -q || echo "#")'
-end
-if command -v thefuck > /dev/null
-  alias f='thefuck'
-end
+
+command -v docker-compose > /dev/null
+and alias dcs='docker stats $(docker-compose ps -q || echo "#")'
+
+command -v thefuck > /dev/null
+and alias f='thefuck'
 # }}}

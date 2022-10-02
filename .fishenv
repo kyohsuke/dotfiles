@@ -13,13 +13,11 @@ if test -z $FISHENV_LOAD
 
   set -gx MONO_GAC_PREFIX "/usr/local"
 
-  if test -x "/usr/local/bin/files"
-    set -gx FILES_IGNORE_PATTERN '(^(\.git|\.hg|\.svn|_darcs|\.bzr|tmp|\.vagrant|\.keep|\.log|.tmp|\.DS_Store)$|node_modules)'
-  end
+  test -x "/usr/local/bin/files"
+  and set -gx FILES_IGNORE_PATTERN '(^(\.git|\.hg|\.svn|_darcs|\.bzr|tmp|\.vagrant|\.keep|\.log|.tmp|\.DS_Store)$|node_modules)'
 
-  if test -x "/usr/local/bin/gpg"
-    set -gx GPG_TTY (tty)
-  end
+  test -x "/usr/local/bin/gpg"
+  and set -gx GPG_TTY (tty)
 
   set -gx HOMEBREW_INSTALL_CLEANUP 1
   set -gx EDITOR "mvim -f --cmd 'autocmd VimLeave * :!open -a Terminal'"
@@ -27,9 +25,8 @@ if test -z $FISHENV_LOAD
   # Docker for mac
   set -gx DOCKER_DEFAULT_PLATFORM "linux/amd64"
 
-  if test -f "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.fish.inc"
-    source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.fish.inc"
-  end
+  test -f "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.fish.inc"
+  and source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.fish.inc"
 
   # bat
   if test -x "/usr/local/bin/bat"
@@ -38,9 +35,8 @@ if test -z $FISHENV_LOAD
   end
 
   # libffi
-  if test -d "/usr/local/opt/libffi/lib/pkgconfig"
-    set -gx PKG_CONFIG_PATH "/usr/local/opt/libffi/lib/pkgconfig"
-  end
+  test -d "/usr/local/opt/libffi/lib/pkgconfig"
+  and set -gx PKG_CONFIG_PATH "/usr/local/opt/libffi/lib/pkgconfig"
 
   # psql editor
   set -gx PSQL_EDITOR 'gvim +"set syntax=sql" '
@@ -49,15 +45,13 @@ if test -z $FISHENV_LOAD
   set -gx LSCOLORS "Gxfxcxdxbxegedabagacad"
 
   # CA Bundle
-  if test -r "/usr/local/opt/curl-ca-bundle/share/ca-bundle.crt"
-    set -gx SSL_CERT_FILE "/usr/local/opt/curl-ca-bundle/share/ca-bundle.crt"
-  end
+  test -r "/usr/local/opt/curl-ca-bundle/share/ca-bundle.crt"
+  and set -gx SSL_CERT_FILE "/usr/local/opt/curl-ca-bundle/share/ca-bundle.crt"
 
   # }}}
   # {{{ source .local
-  if test -f "$HOME/.fishenv.local"
-    source "$HOME/.fishenv.local"
-  end
+  test -f "$HOME/.fishenv.local"
+  and source "$HOME/.fishenv.local"
   # }}}
   set -gx FISHENV_LOAD 1
 end

@@ -4,9 +4,8 @@
 
 # {{{ Add PATH
   # {{{ rustup
-  if test -d "$HOME/.cargo/bin"
-    fish_add_path -m "$HOME/.cargo/bin"
-  end
+  test -d "$HOME/.cargo/bin"
+  and fish_add_path -m "$HOME/.cargo/bin"
   # }}}
   # {{{ anyenv
   if test -x "$HOME/.anyenv/bin/anyenv"
@@ -40,19 +39,15 @@
   end
   # }}}
 
-  if test -r "/usr/local/bin/brew"
-    _evalcache /usr/local/bin/brew shellenv
-  end
+  test -r "/usr/local/bin/brew"
+  and _evalcache /usr/local/bin/brew shellenv
 
-  if command -v direnv > /dev/null
-    _evalcache direnv hook fish
-  end
+  command -v direnv > /dev/null
+  and _evalcache direnv hook fish
 
-  if command -v docker-machine > /dev/null
-    _evalcache docker-machine env default
-  end
+  command -v docker-machine > /dev/null
+  and _evalcache docker-machine env default
 
-  if test -s "$HOME/.rd/bin"
-    fish_add_path -m "$HOME/.rd/bin"
-  end
+  test -s "$HOME/.rd/bin"
+  and fish_add_path -m "$HOME/.rd/bin"
 # }}}
