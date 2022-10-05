@@ -20,32 +20,10 @@ function fish_user_key_bindings
   bind -s -M insert \ck __peco_branch
 
   # Accept Autosuggestion like python prompt Kit
-  bind -M insert \ce accept-autosuggestion
+  bind -s -M insert \ce accept-autosuggestion
+
+  bind -s -M visual y "fish_clipboard_copy; commandline -f end-selection repaint-mode"
+
+  bind -s -M default p fish_clipboard_paste
 end
-# }}}
-# {{{ Aliases
-alias vim='/Applications/MacVim.app/Contents/MacOS/Vim'
-set -f vim_version (vim --version | head -1 | sed 's/^.*\ \([0-9]\)\.\([0-9]\)\ .*$/\1\2/')
-alias less="/usr/share/vim/vim$vim_version/macros/less.sh"
-alias gup='git pull --rebase'
-alias rm='rm -i'
-alias df='df -h'
-alias bc='bc -l'
-alias scrr='screen -U -D -RR'
-alias diff='diff -W $COLUMNS'
-alias locate='mdfind -name'
-alias top='top -o cpu'
-alias svc='brew services'
-alias toweb='ruby -run -e httpd . -p5000'
-alias vcat='vimcat'
-alias cat='bat --paging=never'
-alias ls='ls -G'
-alias cp='cp -v -i'
-alias mv='mv -v -i'
-
-command -v docker-compose > /dev/null
-and alias dcs='docker stats $(docker-compose ps -q || echo "#")'
-
-command -v thefuck > /dev/null
-and alias f='thefuck'
 # }}}
