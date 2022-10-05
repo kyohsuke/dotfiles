@@ -3,9 +3,10 @@
 # vim: filetype=fish
 
 # {{{ Aliases
-alias vim='/Applications/MacVim.app/Contents/MacOS/Vim'
 set -f vim_version (vim --version | head -1 | sed 's/^.*\ \([0-9]\)\.\([0-9]\)\ .*$/\1\2/')
+alias vim='/Applications/MacVim.app/Contents/MacOS/Vim'
 alias less="/usr/share/vim/vim$vim_version/macros/less.sh"
+
 abbr -a gup git pull --rebase
 abbr -a rm rm -i
 abbr -a df df -h
@@ -14,7 +15,6 @@ abbr -a scrr screen -U -D -RR
 abbr -a diff diff -W $COLUMNS
 abbr -a locate mdfind -name
 abbr -a top top -o cpu
-abbr -a svc brew services
 abbr -a cat bat --paging=never
 abbr -a ls ls -G
 abbr -a cp cp -v -i
@@ -25,4 +25,5 @@ and alias dcs='docker stats $(docker-compose ps -q || echo "#")'
 
 command -v thefuck > /dev/null
 and abbr -a f thefuck
+
 # }}}
