@@ -27,3 +27,6 @@ function fish_user_key_bindings
   bind -s -M default p fish_clipboard_paste
 end
 # }}}
+
+test -f "$HOME/.fishrc.local"
+and source "$HOME/.fishrc.local"
