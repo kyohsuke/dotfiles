@@ -14,7 +14,8 @@ fish_add_path -m "$HOME/bin"
 
 # {{{ KeyBindings 
 function fish_user_key_bindings
-  bind -s \cc cancel-commandline
+  bind -s -M default \cc cancel-commandline force-repaint
+
   bind -s -M insert \co __ghq_cd
   bind -s -M insert \ch __peco_history
   bind -s -M insert \ck __peco_branch
@@ -22,9 +23,10 @@ function fish_user_key_bindings
   # Accept Autosuggestion like python prompt Kit
   bind -s -M insert \ce accept-autosuggestion
 
-  bind -s -M visual y "fish_clipboard_copy; commandline -f end-selection repaint-mode"
+  bind -s -M visual y "fish_clipboard_copy; commandline -f end-selection force-repaint; set fish_bind_mode default"
 
   bind -s -M default p fish_clipboard_paste
+  bind -s -M default P fish_clipboard_paste
 end
 # }}}
 
