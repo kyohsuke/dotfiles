@@ -19,6 +19,8 @@
       set -gx GOENV_DISABLE_GOPATH 1
       set -gx GOPATH "$HOME"
       set -gx GOBIN "$GOROOT/bin"
+      set -gx GOCACHE "$HOME/.cache/go-build"
+      set -gx GOMODCACHE "$HOME/.cache/pkg/mod"
     end
 
     # pyenv
