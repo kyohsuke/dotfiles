@@ -49,7 +49,4 @@
 
   command -v docker-machine > /dev/null
   and _evalcache docker-machine env default
-
-  test -s "$HOME/.rd/bin"
-  and fish_add_path -m "$HOME/.rd/bin"
 # }}}
