@@ -10,6 +10,6 @@ if status --is-login || status --is-interactive
   and source "$HOME/.fishrc"
 end
 
-test -f "$HOME/.fish_login"
-and status --is-login
-and source "$HOME/.fish_login"
+if status --is-login && test -f "$HOME/.fish_login" && not test -f "$HOME/.fish_profile"
+  and source "$HOME/.fish_login"
+end
