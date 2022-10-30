@@ -5,12 +5,12 @@
 # {{{ Add PATH
   # {{{ rustup
   test -d "$HOME/.cargo/bin"
-  and fish_add_path -m "$HOME/.cargo/bin"
+  and set -gx PATH "$HOME/.cargo/bin" $PATH
   # }}}
   # {{{ anyenv
   if test -x "$HOME/.anyenv/bin/anyenv"
-    fish_add_path -m "$HOME/.anyenv/bin"
-    _evalcache anyenv init --no-rehash - fish
+    set -gx PATH "$HOME/.anyenv/bin" $PATH
+    _evalcache anyenv init - fish
 
     set -f envPath "$HOME/.anyenv/envs"
 
@@ -25,8 +25,6 @@
 
     # pyenv
     if test -x "$envPath/pyenv/bin/pyenv"
-      fish_add_path -m "$envPath/pyenv/shims"
-
       set -gx PYTHONDONTWRITEBYTECODE 1
       set -gx PYENV_VIRTUALENV_DISABLE_PROMPT 1
       set -gx PYTHON_CONFIGURE_OPTS "--enable-framework --enable-optimizations --with-lto"

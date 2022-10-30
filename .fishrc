@@ -9,8 +9,8 @@ and fish_vi_key_bindings
 test -f "$HOME/.fish-functions/check_ssh_config.fish"
 and source "$HOME/.fish-functions/check_ssh_config.fish"
 
-fish_add_path -m "$HOME/sbin"
-fish_add_path -m "$HOME/bin"
+set -gx PATH "$HOME/sbin" $PATH
+set -gx PATH "$HOME/bin" $PATH
 
 # {{{ KeyBindings 
 function fish_user_key_bindings
