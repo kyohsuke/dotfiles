@@ -10,7 +10,7 @@ let g:ctrlp_open_new_file = 'h'
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
 let g:ctrlp_match_current_file = 1
 
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip 
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip
 
 function! CtrlPCommand()
   let c = 0

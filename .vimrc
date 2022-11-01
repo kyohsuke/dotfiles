@@ -41,7 +41,7 @@ if has('vim_starting') && has('mac')
 endif
 " }}}
 " {{{ Indivisual Settings
-  " {{{ Reset Global 
+  " {{{ Reset Global
     set wildignore&
     set statusline&
   " }}}
@@ -62,7 +62,7 @@ endif
     nnoremap <silent> ,rt :<C-u>set<Space>ft=ruby<Return>
     nnoremap <silent> ,md :<C-u>set<Space>ft=markdown<Return>
 
-    " {{{ key mappings tradition of Vim 
+    " {{{ key mappings tradition of Vim
     noremap : ;
     noremap ; :
 
@@ -78,7 +78,7 @@ endif
     nnoremap <C-h> :<C-u>help<Space>
     nnoremap <C-f> :<C-u>setf<Space>
     " }}}
-    " {{{ Folding Remap 
+    " {{{ Folding Remap
     nnoremap <expr> h virtcol('.') == 1 && foldlevel(line('.')) > 0 ? 'zc' : 'h'
     nnoremap <expr> l foldclosed(line('.')) != -1 ? 'zo0' : 'l'
     vnoremap <expr> h virtcol('.') == 1 && foldlevel(line('.')) > 0 ? 'zcgv' : 'h'
@@ -96,14 +96,14 @@ endif
     autocmd InsertLeave * hi StatusLine guifg=DarkBlue guibg=DarkGray gui=none ctermfg=Blue ctermbg=DarkGray cterm=none
   augroup END
   " }}}
-  " {{{ Kill Indent 
+  " {{{ Kill Indent
   set noautoindent
   set nocindent
   set nocopyindent
   set nopreserveindent
   set nosmartindent
   " }}}
-  " {{{ Kill Backup 
+  " {{{ Kill Backup
   set nobackup
   set noundofile
   set noswapfile " Kill Swapfile
@@ -211,7 +211,7 @@ call plug#begin('~/.vim/plugged')
 
   " TOML
   Plug 'cespare/vim-toml'
-    Plug 'maralla/vim-toml-enhance' 
+    Plug 'maralla/vim-toml-enhance'
 
   " JavaScript
   Plug 'othree/yajs.vim'
@@ -241,7 +241,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'kyohsuke/sinplu.vim'
   Plug 'kyohsuke/yaml-key.vim'
 
-  Plug 'itspriddle/vim-shellcheck' 
+  Plug 'itspriddle/vim-shellcheck'
 
   " Git
   Plug 'tpope/vim-fugitive'
@@ -269,7 +269,8 @@ call plug#begin('~/.vim/plugged')
 
   Plug 'tyru/current-func-info.vim'
 
-  
+  Plug 'ntpeters/vim-better-whitespace'
+
   " Devicons
   Plug 'ryanoasis/vim-devicons'
     Plug 'Xuyuanp/nerdtree-git-plugin'

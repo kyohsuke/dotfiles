@@ -9,7 +9,7 @@ augroup VimGoSyntax
   " GoHtmlTmpl
   function! s:DetectGoHtmlTmpl()
     if expand('%:e') == "html" && search("{{") != 0
-      setf gohtmltmpl 
+      setf gohtmltmpl
     endif
   endfunction
 
