@@ -7,7 +7,7 @@ let g:lsp_settings_filetype_sql = [ 'sqls' ]
 augroup JsonnetLanguageServer
   autocmd!
   if executable('jsonnet-language-server')
-    autocmd User lsp_setup call lsp#register_server({
+    autocmd User lsp_setup call lsp_settings#register_server({
           \ 'name': 'jsonnet-language-server',
           \ 'cmd': {
           \   server_info->lsp_settings#get(
