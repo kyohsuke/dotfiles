@@ -796,7 +796,7 @@ function! plug#helptags()
   endif
   for spec in values(g:plugs)
     let docd = join([s:rtp(spec), 'doc'], '/')
-    if isdirectory(docd)
+    if isdirectory(docd) && get(spec, 'helptags', v:true)
       silent! execute 'helptags' s:esc(docd)
     endif
   endfor
