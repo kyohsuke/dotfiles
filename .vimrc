@@ -230,7 +230,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'vim-ruby/vim-ruby'
 
   " NerdTree
-  Plug 'scrooloose/nerdtree'
+  Plug 'preservim/nerdtree'
 
   Plug 'previm/previm'
 
