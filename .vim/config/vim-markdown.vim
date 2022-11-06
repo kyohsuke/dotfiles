@@ -16,4 +16,5 @@ let g:markdown_fenced_languages = [
       \ 'gql=graphql',
       \ 'sshconfig',
       \ 'sh',
+      \ 'fish',
       \ ]
