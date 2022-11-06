@@ -202,7 +202,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'mechatroner/rainbow_csv'
   Plug 'autowitch/hive.vim'
   Plug 'google/vim-jsonnet'
-  Plug 'dag/vim-fish'
+  Plug 'khaveesh/vim-fish-syntax'
 
   " Markdown
   Plug 'tpope/vim-markdown'
