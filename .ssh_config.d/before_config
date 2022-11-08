@@ -11,5 +11,5 @@ ServerAliveCountMax 3
 
 # Identity Files
 IdentityFile ~/.ssh/id_ed25519
-IdentityFile ~/.ssh/id_ecdsa
+# IdentityFile ~/.ssh/id_ecdsa
 IdentityFile ~/.ssh/id_rsa
