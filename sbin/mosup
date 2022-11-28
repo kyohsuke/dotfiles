@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+export GIT_MERGE_AUTOEDIT='no'
+
+# Ask for the administrator password upfront
+sudo -v
+
+# Keep-alive: update existing `sudo` time stamp until `brew-world` has finished
+while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+
+
+fish -C "source $HOME/.config/fish/functions/fisher.fish && fisher update; exit"
+anyenv update
+brew update
+brew upgrade
+brew upgrade --cask
+brew cleanup --prune 0
