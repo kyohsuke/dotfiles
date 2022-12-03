@@ -65,7 +65,7 @@ if command -v brew > /dev/null
   set -gx PATH "/usr/local/bin" $PATH
 
   not contains "/usr/local/share/man" $MANPATH
-  and set -gx MANPATH "/usr/local/share/man" $MANPATH 
+  and set -gx MANPATH "/usr/local/share/man" $MANPATH
 
   not contains "/usr/local/share/info" $INFOPATH
   and set -gx INFOPATH "/usr/local/share/info" $INFOPATH
