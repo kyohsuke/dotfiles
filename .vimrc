@@ -179,6 +179,9 @@ augroup DetectFileTypes
   " golang
   autocmd FileType go setlocal foldmethod=syntax
 
+  " jsonnet
+  autocmd FileType jsonnet setlocal smartindent
+
   " Remap vim help
   autocmd FileType help nnoremap <buffer> <CR> <C-]>
   autocmd FileType help nnoremap <buffer> <BS> <C-O>
