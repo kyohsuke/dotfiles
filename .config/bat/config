@@ -1,0 +1,3 @@
+# vim: filetype=config
+
+--map-syntax ".fish*:Fish"

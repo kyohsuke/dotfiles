@@ -47,8 +47,8 @@
 /.config/pgcli/*
 !/.config/pgcli/config
 !/.config/nodenv
-/.config/nodenv/*
-!/.config/nodenv/default-packages
+!/.config/bat
+!/.config/mpv
 
 # fish shell
 !/.fishenv
