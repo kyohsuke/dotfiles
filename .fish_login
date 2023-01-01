@@ -11,7 +11,8 @@ and fish_vi_key_bindings
 # }}}
 # {{{ KeyBindings
 function fish_user_key_bindings
-  bind -s -M default \cc cancel-commandline force-repaint
+  bind -s -M default -m insert \cc cancel-commandline repaint-mode force-repaint
+  bind -s -M visual  -m insert \cc end-selection cancel-commandline repaint-mode force-repaint
 
   bind -s -M insert \co __ghq_cd
   bind -s -M insert \ch __peco_history
