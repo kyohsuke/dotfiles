@@ -21,7 +21,8 @@ function fish_user_key_bindings
   # Accept Autosuggestion like python prompt Kit
   bind -s -M insert \ce accept-autosuggestion
 
-  bind -s -M visual y "fish_clipboard_copy; commandline -f end-selection force-repaint; set fish_bind_mode default"
+  bind -s -M visual -m default d "fish_clipboard_copy; commandline -f kill-selection end-selection repaint-mode;"
+  bind -s -M visual -m default y "fish_clipboard_copy; commandline -f end-selection repaint-mode;"
 
   bind -s -M default p fish_clipboard_paste
   bind -s -M default P fish_clipboard_paste
