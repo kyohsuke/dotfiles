@@ -1,8 +1,8 @@
 test -f "$HOME/.fishenv"
 and source "$HOME/.fishenv"
 
-test -f "$HOME/.fish_profile"
-and status --is-login
+status --is-login
+and test -f "$HOME/.fish_profile"
 and source "$HOME/.fish_profile"
 
 if status --is-login || status --is-interactive
@@ -10,6 +10,7 @@ if status --is-login || status --is-interactive
   and source "$HOME/.fishrc"
 end
 
-if status --is-login && test -f "$HOME/.fish_login" && not test -f "$HOME/.fish_profile"
-  and source "$HOME/.fish_login"
-end
+status --is-login
+and not test -f "$HOME/.fish_profile"
+and test -f "$HOME/.fish_login"
+and source "$HOME/.fish_login"
