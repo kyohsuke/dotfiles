@@ -1,26 +1,21 @@
-# vim: expandtab softtabstop=2 shiftwidth=2
-# vim: foldmethod=marker
-# vim: filetype=fish
-
 # See Also: https://zenn.dev/kyoh86/articles/291618538dcf0d
 function gobin-update
-  set -f gobin "$(go env GOBIN)"
-  set -f currentVersion "$(go version | awk '{print $3}')"
-  echo "[INFO] current golang version is $currentVersion"
-  echo "[INFO] check for build versions..."
+    set -f gobin "$(go env GOBIN)"
+    set -f currentVersion "$(go version | awk '{print $3}')"
+    echo "[INFO] current golang version is $currentVersion"
+    echo "[INFO] check for build versions..."
 
-  for file in "$gobin"/*
-    set -f temp "$(go version -m "$file" 2> /dev/null)"
-    set -f pkg "$(echo "$temp" | head -n2 | tail -n1 | awk '{print $2}')"
-    set -f binVersion "$(echo "$temp" | head -n1 | awk '{print $2}')"
-    set -f binName "$(basename $pkg)"
+    for file in "$gobin"/*
+        set -f temp "$(go version -m "$file" 2> /dev/null)"
+        set -f pkg "$(echo "$temp" | head -n2 | tail -n1 | awk '{print $2}')"
+        set -f binVersion "$(echo "$temp" | head -n1 | awk '{print $2}')"
+        set -f binName "$(basename $pkg)"
 
-    if test -n "$pkg" && test "$currentVersion" != "$binVersion"
-      echo "[INFO] rebuild $(basename $pkg) from $binVersion to $currentVersion."
-      go install "$pkg@latest"
+        if test -n "$pkg" && test "$currentVersion" != "$binVersion"
+            echo "[INFO] rebuild $(basename $pkg) from $binVersion to $currentVersion."
+            go install "$pkg@latest"
+        end
     end
-  end
 
-  echo "[INFO] finished."
+    echo "[INFO] finished."
 end
-
