@@ -1,31 +1,29 @@
-# vim: expandtab softtabstop=2 shiftwidth=2
-# vim: foldmethod=marker
-# vim: filetype=fish
+# vim: filetype=fish foldmethod=marker
 
 # {{{ Add Function Path
 set -gx fish_function_path $fish_function_path "$HOME/.fish-functions"
 # }}}
 # {{{ Change Key Bindings
-test $fish_key_bindings != 'fish_vi_key_bindings'
+test $fish_key_bindings != fish_vi_key_bindings
 and fish_vi_key_bindings
 # }}}
 # {{{ KeyBindings
 function fish_user_key_bindings
-  bind -s -M default -m insert \cc cancel-commandline repaint-mode force-repaint
-  bind -s -M visual  -m insert \cc end-selection cancel-commandline repaint-mode force-repaint
+    bind -s -M default -m insert \cc cancel-commandline repaint-mode force-repaint
+    bind -s -M visual -m insert \cc end-selection cancel-commandline repaint-mode force-repaint
 
-  bind -s -M insert \co __ghq_cd
-  bind -s -M insert \ch __peco_history
-  bind -s -M insert \ck __peco_branch
+    bind -s -M insert \co __ghq_cd
+    bind -s -M insert \ch __peco_history
+    bind -s -M insert \ck __peco_branch
 
-  # Accept Autosuggestion like python prompt Kit
-  bind -s -M insert \ce accept-autosuggestion
+    # Accept Autosuggestion like python prompt Kit
+    bind -s -M insert \ce accept-autosuggestion
 
-  bind -s -M visual -m default d "fish_clipboard_copy; commandline -f kill-selection end-selection repaint-mode;"
-  bind -s -M visual -m default y "fish_clipboard_copy; commandline -f end-selection repaint-mode;"
+    bind -s -M visual -m default d "fish_clipboard_copy; commandline -f kill-selection end-selection repaint-mode;"
+    bind -s -M visual -m default y "fish_clipboard_copy; commandline -f end-selection repaint-mode;"
 
-  bind -s -M default p fish_clipboard_paste
-  bind -s -M default P fish_clipboard_paste
+    bind -s -M default p fish_clipboard_paste
+    bind -s -M default P fish_clipboard_paste
 end
 # }}}
 # {{{ check_ssh_config
@@ -33,7 +31,7 @@ test -f "$HOME/.fish-functions/check_ssh_config.fish"
 and source "$HOME/.fish-functions/check_ssh_config.fish"
 # }}}
 # {{{ Direnv
-command -v direnv > /dev/null
+command -v direnv >/dev/null
 and _evalcache direnv hook fish
 # }}}
 # {{{ Add home path
@@ -63,9 +61,9 @@ abbr -a ls ls -G
 abbr -a cp cp -v -i
 abbr -a mv mv -v -i
 
-command -v docker-compose > /dev/null
+command -v docker-compose >/dev/null
 and alias dcs='docker stats $(docker-compose ps -q || echo "#")'
 
-command -v thefuck > /dev/null
+command -v thefuck >/dev/null
 and abbr -a f thefuck
 # }}}
