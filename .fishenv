@@ -45,10 +45,6 @@ if test -z $FISHENV_LOAD
     # LSCOLORS
     set -gx LSCOLORS Gxfxcxdxbxegedabagacad
 
-    # CA Bundle
-    test -r "/usr/local/opt/curl-ca-bundle/share/ca-bundle.crt"
-    and set -gx SSL_CERT_FILE "/usr/local/opt/curl-ca-bundle/share/ca-bundle.crt"
-
     # }}}
     # {{{ source .local
     test -f "$HOME/.fishenv.local"
