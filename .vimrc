@@ -176,12 +176,6 @@ augroup DetectFileTypes
   autocmd FileType markdown setlocal ts=2 sts=2 sw=2
   autocmd FileType markdown syntax sync fromstart
 
-  " golang
-  autocmd FileType go setlocal foldmethod=syntax
-
-  " jsonnet
-  autocmd FileType jsonnet setlocal smartindent
-
   " Remap vim help
   autocmd FileType help nnoremap <buffer> <CR> <C-]>
   autocmd FileType help nnoremap <buffer> <BS> <C-O>
@@ -189,6 +183,7 @@ augroup END
 " }}}
 " {{{ vim-plug
 call plug#begin('~/.vim/plugged')
+  " Plug 'mattn/vim-treesitter'
 
   " Japanese Help
   Plug 'vim-jp/vimdoc-ja', { 'helptags': v:false }
