@@ -1,4 +1,5 @@
-" MacVim Setting
+vim9script
+# MacVim Setting
 if has('gui_running')
   if has('win32')
     source $VIMRUNTIME/delmenu.vim
@@ -7,11 +8,11 @@ if has('gui_running')
   endif
 
 
-  " Kill IME
+  # Kill IME
   set imdisable
 
   set antialias
-  set guioptions& " Win: egmrLtT / MacVim-Kaoriya : egimrL / Other : aegimrLtT
+  set guioptions& # Win: egmrLtT / MacVim-Kaoriya : egimrL / Other : aegimrLtT
   set guioptions=egimrL
   set guioptions-=mrLtT
   set guioptions+=c
@@ -19,9 +20,9 @@ if has('gui_running')
   set lines=60
   set columns=200
 
-  " MacVim
+  # MacVim
   if has('gui_macvim')
-    " Cursorline 
+    # Cursorline
     set cursorline
     augroup cch
       autocmd!

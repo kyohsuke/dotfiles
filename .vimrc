@@ -1,32 +1,33 @@
-" vim: expandtab softtabstop=2 shiftwidth=2
-" vim: foldmethod=marker
+vim9script
+# vim: expandtab softtabstop=2 shiftwidth=2
+# vim: foldmethod=marker
 
-" {{{ Skip Loading Default plugins
+# {{{ Skip Loading Default plugins
 if has('gui_macvim')
-  let g:macvim_skip_colorscheme=1
+  g:macvim_skip_colorscheme = 1
 endif
-let g:no_gvimrc_example = 1
-let g:no_vimrc_example  = 1
+g:no_gvimrc_example = 1
+g:no_vimrc_example  = 1
 
-let g:loaded_gzip               = 1
-let g:loaded_tar                = 1
-let g:loaded_tarPlugin          = 1
-let g:loaded_zip                = 1
-let g:loaded_zipPlugin          = 1
-let g:loaded_rrhelper           = 1
-let g:loaded_vimball            = 1
-let g:loaded_vimballPlugin      = 1
-let g:loaded_getscript          = 1
-let g:loaded_getscriptPlugin    = 1
-let g:loaded_netrw              = 1
-let g:loaded_netrwPlugin        = 1
-let g:loaded_netrwSettings      = 1
-let g:loaded_netrwFileHandlers  = 1
-let g:skip_loading_mswin        = 1
-let g:did_install_syntax_menu   = 1
-let g:loaded_2html_plugin       = 1
-" }}}
-" {{{ Setup PytonX
+g:loaded_gzip               = 1
+g:loaded_tar                = 1
+g:loaded_tarPlugin          = 1
+g:loaded_zip                = 1
+g:loaded_zipPlugin          = 1
+g:loaded_rrhelper           = 1
+g:loaded_vimball            = 1
+g:loaded_vimballPlugin      = 1
+g:loaded_getscript          = 1
+g:loaded_getscriptPlugin    = 1
+g:loaded_netrw              = 1
+g:loaded_netrwPlugin        = 1
+g:loaded_netrwSettings      = 1
+g:loaded_netrwFileHandlers  = 1
+g:skip_loading_mswin        = 1
+g:did_install_syntax_menu   = 1
+g:loaded_2html_plugin       = 1
+# }}}
+# {{{ Setup PytonX
 if has('vim_starting') && has('mac')
   set pythonthreehome&
   set pythonthreedll&
@@ -34,35 +35,33 @@ if has('vim_starting') && has('mac')
   set pyxversion&
   set pyx=3
   set pyxversion=3
-  let s:pyenv_root_path = system('pyenv prefix')
-  let s:pyenv_dll_path = substitute(system("ls \"$(pyenv prefix)/lib/libpython3.\"*m.dylib"), "\n", '', 'g')
-  exe 'set pythonthreehome='.s:pyenv_root_path
-  exe 'set pythonthreedll='.s:pyenv_dll_path
+  exe 'set pythonthreehome=' .. system('pyenv prefix')
+  exe 'set pythonthreedll=' .. substitute(system("ls \"$(pyenv prefix)/lib/libpython3.\"*m.dylib"), "\n", '', 'g')
 endif
-" }}}
-" {{{ Indivisual Settings
-  " {{{ Reset Global
+# }}}
+# {{{ Indivisual Settings
+  # {{{ Reset Global
     set wildignore&
     set statusline&
-  " }}}
-  " {{{ Language & Encodings
+  # }}}
+  # {{{ Language & Encodings
   set encoding=utf-8
   set fileencodings=ucs-bom,utf-8,euc-jp,cp932,iso-2022-jp
   set fileformats=unix,dos,mac
   set langmenu=ja_JP.utf-8
-  " Kill termencoding on MacVim
+  # Kill termencoding on MacVim
   if !has('gui_macvim')
     set termencoding=utf-8
   endif
-  " }}}
-  " {{{ Keybind ReMap
+  # }}}
+  # {{{ Keybind ReMap
     nnoremap <silent> ,sh :<C-u>:terminal<Return>
     nnoremap <silent> ,gvimrc :<C-u>e<Space>$MYGVIMRC<Return>
     nnoremap <silent> ,vimrc :<C-u>e<Space>$MYVIMRC<Return>
     nnoremap <silent> ,rt :<C-u>set<Space>ft=ruby<Return>
     nnoremap <silent> ,md :<C-u>set<Space>ft=markdown<Return>
 
-    " {{{ key mappings tradition of Vim
+    # {{{ key mappings tradition of Vim
     noremap : ;
     noremap ; :
 
@@ -77,43 +76,43 @@ endif
     nnoremap <silent> <Esc><Esc> :<C-u>noh<Return>
     nnoremap <C-h> :<C-u>help<Space>
     nnoremap <C-f> :<C-u>setf<Space>
-    " }}}
-    " {{{ Folding Remap
+    # }}}
+    # {{{ Folding Remap
     nnoremap <expr> h virtcol('.') == 1 && foldlevel(line('.')) > 0 ? 'zc' : 'h'
     nnoremap <expr> l foldclosed(line('.')) != -1 ? 'zo0' : 'l'
     vnoremap <expr> h virtcol('.') == 1 && foldlevel(line('.')) > 0 ? 'zcgv' : 'h'
     vnoremap <expr> l foldclosed(line('.')) != -1 ? 'zogv0' : 'l'
-    " }}}
-    " {{{ Commandline Remap
+    # }}}
+    # {{{ Commandline Remap
     cnoremap <C-h> <Left>
     cnoremap <C-l> <Right>
-    " }}}
-  " }}}
-  " {{{ Mode Color StatusLine ( Vim Technique Bible 1-10 )
+    # }}}
+  # }}}
+  # {{{ Mode Color StatusLine ( Vim Technique Bible 1-10 )
   augroup VimrcTechniqueBible_1_10
     autocmd!
     autocmd InsertEnter * hi StatusLine guifg=DarkBlue guibg=DarkYellow gui=none ctermfg=Blue ctermbg=Yellow cterm=none
     autocmd InsertLeave * hi StatusLine guifg=DarkBlue guibg=DarkGray gui=none ctermfg=Blue ctermbg=DarkGray cterm=none
   augroup END
-  " }}}
-  " {{{ Kill Indent
+  # }}}
+  # {{{ Kill Indent
   set noautoindent
   set nocindent
   set nocopyindent
   set nopreserveindent
   set nosmartindent
-  " }}}
-  " {{{ Kill Backup
+  # }}}
+  # {{{ Kill Backup
   set nobackup
   set noundofile
-  set noswapfile " Kill Swapfile
-  " }}}
-  " {{{ Paste withmut space on virtual edit ( vim hacks #195 )
+  set noswapfile # Kill Swapfile
+  # }}}
+  # {{{ Paste withmut space on virtual edit ( vim hacks #195 )
   set virtualedit=all
   if has('virtualedit') && &virtualedit =~# '\<all\>'
-    nnoremap <expr> p (col('.') >= col('$') ? '$' : '') . 'p'
+    nnoremap <expr> p (col('.') >= col('$') ? '$' : '') .. 'p'
   endif
-  " }}}
+  # }}}
 
   set ts=2 sts=2 sw=2
   set wildmode=list:full
@@ -143,55 +142,55 @@ endif
   set foldlevel=99
 
   autocmd WinEnter * checktime
-  " {{{ Kill Auto Commentout
+  # {{{ Kill Auto Commentout
   augroup VimrcKillAutoCommentOut
     autocmd!
     autocmd FileType * setlocal formatoptions-=ro
   augroup END
-  " }}}
-" }}}
-" {{{ Detect FileTypes
+  # }}}
+# }}}
+# {{{ Detect FileTypes
 augroup DetectFileTypes
   autocmd!
 
-  " Type Detect
+  # Type Detect
   autocmd BufRead,BufNewFile *.json.tpl                                     setf json
   autocmd BufRead,BufNewFile {before_config,.ssh_config.local,after_config} setf sshconfig
   autocmd BufRead,BufNewFile .env.*                                         setf sh.env
   autocmd BufRead,BufNewFile .babelrc                                       setf json
-  " autocmd BufRead,BufNewFile {*.js,*.jsx,*.es6}                           setf javascript
-  " autocmd BufRead,BufNewFile *.ts                                         setf typescript
-  " autocmd BufRead,BufNewFile {*.ts,*.tsx}                                 setf typescript
+  # autocmd BufRead,BufNewFile {*.js,*.jsx,*.es6}                           setf javascript
+  # autocmd BufRead,BufNewFile *.ts                                         setf typescript
+  # autocmd BufRead,BufNewFile {*.ts,*.tsx}                                 setf typescript
 
-  " Set up synclines
+  # Set up synclines
   autocmd FileType jsp,asp,php,ruby,xml,perl,markdown syntax sync minlines=500 maxlines=1000
 
-  " YAML
+  # YAML
   autocmd FileType yaml setlocal indentexpr=
 
-  " gitconfig
+  # gitconfig
   autocmd FileType gitconfig setlocal noexpandtab ts=4 sts=4 sw=4
 
-  " Markdown
+  # Markdown
   autocmd FileType markdown setlocal ts=2 sts=2 sw=2
   autocmd FileType markdown syntax sync fromstart
 
-  " Remap vim help
+  # Remap vim help
   autocmd FileType help nnoremap <buffer> <CR> <C-]>
   autocmd FileType help nnoremap <buffer> <BS> <C-O>
 augroup END
-" }}}
-" {{{ vim-plug
+# }}}
+# {{{ vim-plug
 call plug#begin('~/.vim/plugged')
-  " Plug 'mattn/vim-treesitter'
+  # Plug 'mattn/vim-treesitter'
 
-  " Japanese Help
+  # Japanese Help
   Plug 'vim-jp/vimdoc-ja', { 'helptags': v:false }
 
-  " Color Scheme
+  # Color Scheme
   Plug 'mrkn/mrkn256.vim'
 
-  " Syntax Plugins
+  # Syntax Plugins
   Plug 'direnv/direnv.vim'
   Plug 'ekalinin/Dockerfile.vim'
   Plug 'hashivim/vim-terraform'
@@ -202,33 +201,33 @@ call plug#begin('~/.vim/plugged')
   Plug 'google/vim-jsonnet'
   Plug 'khaveesh/vim-fish-syntax'
 
-  " Markdown
+  # Markdown
   Plug 'tpope/vim-markdown'
 
-  " PostgreSQL
+  # PostgreSQL
   Plug 'lifepillar/pgsql.vim'
 
-  " TOML
+  # TOML
   Plug 'cespare/vim-toml'
     Plug 'maralla/vim-toml-enhance'
 
-  " JavaScript
+  # JavaScript
   Plug 'othree/yajs.vim'
     Plug 'othree/es.next.syntax.vim'
   Plug 'othree/javascript-libraries-syntax.vim'
   Plug 'maxmellon/vim-jsx-pretty'
 
-  " html5
+  # html5
   Plug 'othree/html5.vim'
 
-  " golang
+  # golang
   Plug 'mattn/vim-goimports'
   Plug 'kyohsuke/vim-go-syntax'
 
-  " ruby
+  # ruby
   Plug 'vim-ruby/vim-ruby'
 
-  " NerdTree
+  # NerdTree
   Plug 'preservim/nerdtree'
 
   Plug 'previm/previm'
@@ -242,15 +241,15 @@ call plug#begin('~/.vim/plugged')
 
   Plug 'itspriddle/vim-shellcheck'
 
-  " Git
+  # Git
   Plug 'tpope/vim-fugitive'
   Plug 'hotwatermorning/auto-git-diff'
 
-  " CtrlP
+  # CtrlP
   Plug 'ctrlpvim/ctrlp.vim'
     Plug 'mattn/ctrlp-matchfuzzy'
 
-  " Vim-LSP & AsynComplete
+  # Vim-LSP & AsynComplete
   Plug 'prabirshrestha/asyncomplete.vim'
   Plug 'prabirshrestha/asyncomplete-lsp.vim'
   Plug 'prabirshrestha/vim-lsp'
@@ -270,23 +269,23 @@ call plug#begin('~/.vim/plugged')
 
   Plug 'ntpeters/vim-better-whitespace'
 
-  " Devicons
+  # Devicons
   Plug 'ryanoasis/vim-devicons'
     Plug 'Xuyuanp/nerdtree-git-plugin'
 call plug#end()
 
-if !isdirectory($HOME.'/.vim/plugged')
+if !isdirectory($HOME .. '/.vim/plugged')
   PlugInstall
 endif
 
-let s:plugs = get(s:, 'plugs', get(g:, 'plugs', {}))
-function! FindPlugin(name) abort
-  return has_key(s:plugs, a:name) ? isdirectory(s:plugs[a:name].dir) : 0
-endfunction
-command! -nargs=1 UsePlugin if !FindPlugin(<args>) | finish | endif
+def g:FindPlugin(name: string): bool
+  var plugs = get(g:, 'plugs', {})
+  return has_key(plugs, name) ? isdirectory(plugs[name].dir) : 0
+enddef
+command! -nargs=1 UsePlugin if !g:FindPlugin(<args>) | finish | endif
 
 runtime! config/*.vim
-" }}}
+# }}}
 
 set secure
 syntax on
