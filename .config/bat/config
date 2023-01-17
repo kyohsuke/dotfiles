@@ -1,3 +1,5 @@
 # vim: filetype=config
 
 --map-syntax ".fish*:Fish"
+--paging=never
+--style=plain
