@@ -181,7 +181,7 @@ augroup DetectFileTypes
 augroup END
 # }}}
 # {{{ vim-plug
-call plug#begin('~/.vim/plugged')
+plug#begin('~/.vim/plugged')
   # Plug 'mattn/vim-treesitter'
 
   # Japanese Help
@@ -272,7 +272,7 @@ call plug#begin('~/.vim/plugged')
   # Devicons
   Plug 'ryanoasis/vim-devicons'
     Plug 'Xuyuanp/nerdtree-git-plugin'
-call plug#end()
+plug#end()
 
 if !isdirectory($HOME .. '/.vim/plugged')
   PlugInstall

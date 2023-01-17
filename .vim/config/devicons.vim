@@ -1,5 +1,6 @@
+vim9script
 UsePlugin 'vim-devicons'
 
-let g:webdevicons_enable_ctrlp = 0
-let g:WebDevIconsNerdTreeGitPluginForceVAlign = 0
-let g:WebDevIconsNerdTreeAfterGlyphPadding = ''
+g:webdevicons_enable_ctrlp = 0
+g:WebDevIconsNerdTreeGitPluginForceVAlign = 0
+g:WebDevIconsNerdTreeAfterGlyphPadding = ''

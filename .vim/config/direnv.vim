@@ -1,3 +1,4 @@
+vim9script
 UsePlugin 'direnv.vim'
 
-let g:direnv_silent_load = 1
+g:direnv_silent_load = 1

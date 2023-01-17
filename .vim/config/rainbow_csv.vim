@@ -1,3 +1,4 @@
+vim9script
 UsePlugin 'rainbow_csv'
 
-let g:disable_rainbow_key_mappings = 1
+g:disable_rainbow_key_mappings = 1

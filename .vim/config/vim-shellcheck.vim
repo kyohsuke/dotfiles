@@ -1,3 +1,4 @@
+vim9script
 UsePlugin 'vim-shellcheck'
 
 augroup vim_shellcheck_autocmd

@@ -1,17 +1,19 @@
+vim9script
 UsePlugin 'vim-go-syntax'
 
 augroup VimGoSyntax
   autocmd! * <buffer>
 
-  " Golang
+  # Golang
   autocmd FileType go setlocal noexpandtab ts=4 sts=4 sw=4 foldmethod=syntax
 
-  " GoHtmlTmpl
-  function! s:DetectGoHtmlTmpl()
+  # GoHtmlTmpl
+  def DetectGoHtmlTmpl()
     if expand('%:e') == "html" && search("{{") != 0
       setf gohtmltmpl
     endif
-  endfunction
+  enddef
+  defc
 
-  autocmd BufRead,BufNewFile * call s:DetectGoHtmlTmpl()
+  autocmd BufRead,BufNewFile * DetectGoHtmlTmpl()
 augroup END

@@ -1,3 +1,4 @@
+vim9script
 UsePlugin 'pgsql.vim'
 
-let g:sql_type_default = 'pgsql'
+g:sql_type_default = 'pgsql'
