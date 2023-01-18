@@ -25,9 +25,10 @@ def OnLspBufferEnabled()
   nmap <buffer> ge <plug>(lsp-document-diagnostics)
   nmap <buffer> <f2> <plug>(lsp-rename)
   nmap <buffer> gr <plug>(lsp-references)
-  nmap <buffer> <c-o> <plug>(lsp-hover)
   nmap <buffer> gi <plug>(lsp-implementation)
+  nmap <buffer> gt <plug>(lsp-type-definition)
   nmap <buffer> K <plug>(lsp-hover)
+  nmap <buffer> <c-o> <plug>(lsp-hover)
   nnoremap <buffer> gs :<C-u>CtrlPLspDocumentSymbol<Return>
   nnoremap <buffer> gS :<C-u>CtrlPLspWorkspaceSymbol<Return>
 
