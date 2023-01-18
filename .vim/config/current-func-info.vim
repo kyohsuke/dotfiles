@@ -1,3 +1,4 @@
+vim9script
 UsePlugin 'current-func-info.vim'
 
-let &statusline .= ' [%{cfi#format("%s", "")}]'
+&statusline = &statusline .. ' [%{cfi#format("%s", "")}]'

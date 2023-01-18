@@ -1,23 +1,24 @@
+vim9script
 UsePlugin 'vim-lsp'
 
-let g:lsp_use_lua = has('nvim-0.4.0') || (has('lua') && has('patch-8.2.0775'))
-let g:lsp_diagnostics_echo_cursor = 1
-let g:lsp_diagnostics_float_cursor = 1
-let g:lsp_format_sync_timeout = 1000
-let g:lsp_diagnostics_virtual_text_prefix = '» '
+g:lsp_use_lua = has('nvim-0.4.0') || (has('lua') && has('patch-8.2.0775'))
+g:lsp_diagnostics_echo_cursor = 1
+g:lsp_format_sync_timeout = 1000
+g:lsp_diagnostics_virtual_text_enabled = 0
+g:lsp_diagnostics_virtual_text_prefix = '» '
 
-command! LspDebug let lsp_log_verbose=1 | let lsp_log_file = expand('~/lsp.log')
+command! LspDebug g:lsp_log_verbose = 1 | g:lsp_log_file = expand('~/lsp.log')
 
-function! s:on_lsp_buffer_enabled() abort
+def g:LspDefinitionSplitWindow()
+  split
+  execute "normal \<plug>(lsp-definition)"
+enddef
+nnoremap <Plug>LspDefinitionS :<C-u>call LspDefinitionSplitWindow()<Return>
+
+def OnLspBufferEnabled()
   setlocal omnifunc=lsp#complete
   setlocal signcolumn=yes
   if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
-
-  function! s:lsp_definition_split_window() abort
-    split
-    execute "normal \<plug>(lsp-definition)"
-  endfunction
-  nnoremap <Plug>LspDefinitionS :<C-u>call <SID>lsp_definition_split_window()<Return>
 
   nmap <buffer> gd <plug>(lsp-definition)
   nmap <buffer> <C-]> <plug>LspDefinitionS
@@ -32,12 +33,10 @@ function! s:on_lsp_buffer_enabled() abort
 
   inoremap <buffer> <expr> <C-o> lsp#internal#document_hover#under_cursor#do({}) ? '' : ''
   inoremap <buffer> <expr> <cr> pumvisible() ? "\<c-y>\<cr>" : "\<cr>"
-
-  " setlocal foldmethod=expr foldexpr=lsp#ui#vim#folding#foldexpr() foldtext=lsp#ui#vim#folding#foldtext() " 激重なので常用するのは無理
-endfunction
+enddef
 
 augroup LspInstall
-  autocmd!
-  autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
-  autocmd BufWritePre *.rs,*.go call execute('LspDocumentFormatSync')
+  autocmd! * <buffer>
+  autocmd User lsp_buffer_enabled OnLspBufferEnabled()
+  autocmd BufWritePre *.rs,*.go execute('LspDocumentFormatSync')
 augroup END

@@ -37,6 +37,10 @@ if has('vim_starting') && has('mac')
   set pyxversion=3
   exe 'set pythonthreehome=' .. system('pyenv prefix')
   exe 'set pythonthreedll=' .. substitute(system("ls \"$(pyenv prefix)/lib/libpython3.\"*m.dylib"), "\n", '', 'g')
+  var lualib = "/usr/local/lib/liblua.dylib"
+  if filereadable(lualib)
+    exe 'set luadll=' .. lualib
+  endif
 endif
 # }}}
 # {{{ Indivisual Settings
