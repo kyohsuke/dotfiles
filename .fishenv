@@ -28,9 +28,6 @@ if test -z $FISHENV_LOAD
     set -gx HOMEBREW_BAT 1
     set -gx EDITOR "mvim -f --cmd 'autocmd VimLeave * :!open -a Terminal'"
 
-    # Docker for mac
-    set -gx DOCKER_DEFAULT_PLATFORM linux/amd64
-
     # bat
     if test -x /usr/local/bin/bat
         set -gx BAT_PAGER "less -FR"
