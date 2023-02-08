@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-if [ "$WITH_MAS" != "false"]; then
+if [ "$WITH_MAS" != "false" ]; then
   if test ! "$(command -v mas)"; then
     brew install mas
 
