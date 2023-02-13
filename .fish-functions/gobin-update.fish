@@ -5,8 +5,8 @@ function gobin-update
     echo "[INFO] current golang version is $currentVersion"
     echo "[INFO] check for build versions..."
 
-    for file in "$gobin"/*
-        set -f temp "$(go version -m "$file" 2> /dev/null)"
+    for fname in "$gobin"/*
+        set -f temp "$(go version -m "$fname" 2> /dev/null)"
         set -f pkg "$(echo "$temp" | head -n2 | tail -n1 | awk '{print $2}')"
         set -f binVersion "$(echo "$temp" | head -n1 | awk '{print $2}')"
         set -f binName "$(basename $pkg)"
