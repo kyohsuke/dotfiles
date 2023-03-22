@@ -1,4 +1,5 @@
 {
+  "FuzzyLongestSort": true,
   "Keymap": {
     "C-\\": "peco.ToggleSelectionAndSelectNext",
     "C-c": "peco.Cancel",
