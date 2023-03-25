@@ -7,7 +7,7 @@ brew "ctags"
 brew "git"
 brew "git-hooks-go"
 brew "ghq"
-brew "gnupg"
+brew "gmp"
 brew "gh"
 brew "libsodium"
 brew "libyaml"
@@ -24,6 +24,7 @@ brew "ipcalc"
 brew "direnv"
 brew "libpq"
 brew "lua"
+cask "gpg-suite-no-mail"
 EOS
 )
 
