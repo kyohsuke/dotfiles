@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
-CMD_NAME="$(basename $0)"
+CMD_NAME="$(basename "$0")"
 VERSION="2023.03.04"
 CONTAINER="jauderho/yt-dlp"
 SUEXEC="$(id -u):$(id -g)"
 PWD="$(pwd)"
 
-docker run --rm -e SUEXEC="$SUEXEC" -v "$PWD":/app -w /app "$CONTAINER:$VERSION" "$CMD_NAME" "$@"
+docker run --rm -e SUEXEC="$SUEXEC" -v "$PWD":/app:delegated -w /app "$CONTAINER:$VERSION" "$CMD_NAME" "$@"
