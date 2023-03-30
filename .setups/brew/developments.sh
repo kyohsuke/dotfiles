@@ -24,6 +24,8 @@ brew "ipcalc"
 brew "direnv"
 brew "libpq"
 brew "lua"
+brew "readline"
+brew "openssl"
 cask "gpg-suite-no-mail"
 EOS
 )

@@ -77,11 +77,11 @@ echo "CHANGE_OSX_DEFAULTS: $CHANGE_OSX_DEFAULTS"
 TARGET_DIR="$HOME/.setups"
 for STEP in $(find "$TARGET_DIR" -name '*.sh'| sort)
 do
-  STEP_FILE="${STEP##$TARGET_DIR/}"
+  STEP_FILE="${STEP##"$TARGET_DIR"/}"
   echo "[EXEC] $STEP_FILE"
   bash "$HOME/.setups/$STEP_FILE"
 done
 
 echo "Cleaning up homebrew..."
 brew cleanup --prune 0
-# vim: filetype=sh foldmethod=marker expandtab softtabstop=2 shiftwidth=2 
+# vim: filetype=sh foldmethod=marker expandtab softtabstop=2 shiftwidth=2
