@@ -10,10 +10,6 @@ set -gx PATH "$HOME/.cargo/bin" $PATH
 command -v docker-machine >/dev/null
 and _evalcache docker-machine env default
 # }}}
-# {{{ google cloud SDK
-test -f "/usr/local/share/google-cloud-sdk/path.fish.inc"
-and source "/usr/local/share/google-cloud-sdk/path.fish.inc"
-# }}}
 # {{{ anyenv
 if test -x "$HOME/.anyenv/bin/anyenv"
     set -l ind (contains -i -- "$HOME/.anyenv/bin" $PATH)
@@ -55,6 +51,12 @@ else if test -x "/opt/homebrew/bin/brew"
     _evalcache /opt/homebrew/bin/brew shellenv
 end
 # }}}
+
+# {{{ google cloud SDK
+test -f "$HOMEBREW_PREFIX/share/google-cloud-sdk/path.fish.inc"
+and source "$HOMEBREW_PREFIX/share/google-cloud-sdk/path.fish.inc"
+# }}}
+
 
 set -l upath
 for npath in $PATH
