@@ -18,4 +18,4 @@ anyenv update
 brew update
 brew upgrade
 brew upgrade --cask
-brew cleanup --prune 0
+brew cleanup --prune 7
