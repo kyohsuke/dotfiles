@@ -5,7 +5,7 @@ let g:lsp_settings_filetype_sql = [ 'sqls' ]
 " let g:lsp_settings_filetype_go = [ 'gopls', 'golangci-lint-langserver' ]
 
 augroup JsonnetLanguageServer
-  autocmd!
+  autocmd! * <buffer>
   if executable('jsonnet-language-server')
     autocmd User lsp_setup call lsp_settings#register_server({
           \ 'name': 'jsonnet-language-server',

@@ -7,4 +7,8 @@ g:strip_whitespace_confirm  = 0
 g:strip_only_modified_lines = 1
 g:strip_whitelines_at_eof   = 1
 
-autocmd FileType MAKE DisableStripWhitespaceOnSave
+augroup BetterWhiteSpace
+  autocmd! * <buffer>
+
+  autocmd FileType MAKE DisableStripWhitespaceOnSave
+augroup END
