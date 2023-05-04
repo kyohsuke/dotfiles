@@ -168,7 +168,7 @@ augroup DetectFileTypes
   # autocmd BufRead,BufNewFile {*.ts,*.tsx}                                 setf typescript
 
   # Set up synclines
-  autocmd FileType jsp,asp,php,ruby,xml,perl,markdown syntax sync minlines=500 maxlines=1000
+  autocmd FileType jsp,asp,php,ruby,xml,perl,markdown setlocal syntax sync minlines=500 maxlines=1000
 
   # YAML
   autocmd FileType yaml setlocal indentexpr=
@@ -178,7 +178,7 @@ augroup DetectFileTypes
 
   # Markdown
   autocmd FileType markdown setlocal ts=2 sts=2 sw=2
-  autocmd FileType markdown syntax sync fromstart
+  autocmd FileType markdown setlocal syntax sync fromstart
 
   # Remap vim help
   autocmd FileType help nnoremap <buffer> <CR> <C-]>
@@ -187,8 +187,6 @@ augroup END
 # }}}
 # {{{ vim-plug
 plug#begin('~/.vim/plugged')
-  # Plug 'mattn/vim-treesitter'
-
   # Japanese Help
   Plug 'vim-jp/vimdoc-ja', { 'helptags': v:false }
 
@@ -198,11 +196,9 @@ plug#begin('~/.vim/plugged')
   # Syntax Plugins
   Plug 'direnv/direnv.vim'
   Plug 'ekalinin/Dockerfile.vim'
-  Plug 'hashivim/vim-terraform'
   Plug 'jparise/vim-graphql'
   Plug 'dart-lang/dart-vim-plugin'
   Plug 'mechatroner/rainbow_csv'
-  Plug 'autowitch/hive.vim'
   Plug 'google/vim-jsonnet'
   Plug 'khaveesh/vim-fish-syntax'
 
@@ -265,10 +261,7 @@ plug#begin('~/.vim/plugged')
 
   Plug 'vim-skk/eskk.vim'
   Plug 'tyru/open-browser.vim'
-  Plug 'kyohsuke/vimlc.vim'
   Plug 'chrisbra/matchit'
-
-  Plug 'markonm/traces.vim'
 
   Plug 'tyru/current-func-info.vim'
 
