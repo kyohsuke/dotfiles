@@ -23,3 +23,6 @@ def g:CtrlPCommand()
   exec 'CtrlP'
 enddef
 g:ctrlp_cmd = 'call CtrlPCommand()'
+
+UsePlugin 'ctrlp-matchfuzzy'
+g:ctrlp_match_func = {'match': 'ctrlp_matchfuzzy#matcher'}
