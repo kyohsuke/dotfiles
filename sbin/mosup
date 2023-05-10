@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
 trap exit SIGINT
 
-export GIT_MERGE_AUTOEDIT='no'
-
 # Ask for the administrator password upfront
 sudo -v
 
@@ -14,7 +12,10 @@ if which rustup > /dev/null  2>&1; then
   rustup completions fish > "$HOME/.config/fish/completions/rustup.fish"
 fi
 
-fish -C "source $HOME/.config/fish/functions/fisher.fish && fisher update; exit"
+if test -f "$HOME/.config/fish/functions/fisher.fish"; then
+  fish -C "source $HOME/.config/fish/functions/fisher.fish && fisher update; exit"
+fi
+
 anyenv update
 brew update
 brew upgrade
