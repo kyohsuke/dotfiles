@@ -7,7 +7,7 @@ sudo -v
 # Keep-alive: update existing `sudo` time stamp until `brew-world` has finished
 while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
-if which rustup > /dev/null  2>&1; then
+if which rustup > /dev/null 2>&1; then
   rustup update
   rustup completions fish > "$HOME/.config/fish/completions/rustup.fish"
 fi
@@ -16,8 +16,13 @@ if test -f "$HOME/.config/fish/functions/fisher.fish"; then
   fish -C "source $HOME/.config/fish/functions/fisher.fish && fisher update; exit"
 fi
 
-anyenv update
-brew update
-brew upgrade
-brew upgrade --cask
-brew cleanup --prune 7
+if which anyenv > /dev/null 2>&1; then
+  anyenv update
+fi
+
+if which brew > /dev/null 2>&1; then
+  brew update
+  brew upgrade
+  brew upgrade --cask
+  brew cleanup --prune 7
+fi
