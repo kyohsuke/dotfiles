@@ -1,7 +1,6 @@
 vim9script
 UsePlugin 'vim-lsp'
 
-g:lsp_use_native_client = 1
 g:lsp_use_lua = has('nvim-0.4.0') || (has('lua') && has('patch-8.2.0775'))
 g:lsp_diagnostics_echo_cursor = 1
 g:lsp_format_sync_timeout = 1000
