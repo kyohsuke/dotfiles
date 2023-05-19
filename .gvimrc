@@ -8,8 +8,7 @@ if has('gui_running')
   endif
 
 
-  # Kill IME
-  set imdisable
+  set imdisable # Kill IME
 
   set antialias
   set guioptions& # Win: egmrLtT / MacVim-Kaoriya : egimrL / Other : aegimrLtT
@@ -24,25 +23,28 @@ if has('gui_running')
   if has('gui_macvim')
     # Cursorline
     set cursorline
+    highlight clear CursorLine
+    highlight CursorLine gui=underline guibg=black ctermbg=black
+
     augroup cch
       autocmd!
       autocmd WinLeave * set nocursorline
       autocmd WinEnter,BufRead * set cursorline
-    augroup END
 
-    highlight clear CursorLine
-    highlight CursorLine gui=underline guibg=black ctermbg=black
-    autocmd InsertEnter * set nocursorline
-    autocmd InsertLeave * set cursorline
+      autocmd InsertEnter * set nocursorline
+      autocmd InsertLeave * set cursorline
+    augroup END
 
     set transparency=15
     set guifont=Cica-Regular:h14,Osaka-Mono:h14
     set guifontwide=Cica-Regular:h14,Osaka-Mono:h14
 
-    augroup hack234
-      autocmd!
-      autocmd FocusGained * set transparency=10 cursorline
-      autocmd FocusLost * set transparency=50 nocursorline
-    augroup END
+    if has('transparency') || exists('+transparency')
+      augroup hack234
+        autocmd!
+        autocmd FocusGained * set transparency=10 cursorline
+        autocmd FocusLost * set transparency=50 nocursorline
+      augroup END
+    endif
   endif
 endif
