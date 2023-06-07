@@ -168,7 +168,7 @@ augroup DetectFileTypes
   # autocmd BufRead,BufNewFile {*.ts,*.tsx}                                 setf typescript
 
   # Set up synclines
-  autocmd FileType jsp,asp,php,ruby,xml,perl,markdown setlocal syntax sync minlines=500 maxlines=1000
+  autocmd FileType jsp,asp,php,ruby,xml,perl,markdown syntax sync minlines=500 maxlines=1000
 
   # YAML
   autocmd FileType yaml setlocal indentexpr=
@@ -178,7 +178,7 @@ augroup DetectFileTypes
 
   # Markdown
   autocmd FileType markdown setlocal ts=2 sts=2 sw=2
-  autocmd FileType markdown setlocal syntax sync fromstart
+  autocmd FileType markdown syntax sync fromstart
 
   # Remap vim help
   autocmd FileType help nnoremap <buffer> <CR> <C-]>
