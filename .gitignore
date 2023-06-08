@@ -39,6 +39,7 @@
 !/.rubocop.yml
 !/.github
 !/.fontgen
+!/.dircolors
 
 # Add .config file
 !/.config
