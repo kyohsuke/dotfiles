@@ -58,6 +58,10 @@ test -f "$HOMEBREW_PREFIX/share/google-cloud-sdk/path.fish.inc"
 and source "$HOMEBREW_PREFIX/share/google-cloud-sdk/path.fish.inc"
 # }}}
 
+if test -d "$HOMEBREW_PREFIX/opt/coreutils"
+    set -gx PATH "$HOMEBREW_PREFIX/opt/coreutils/libexec/gnubin" $PATH
+    set -gx MANPATH "$HOMEBREW_PREFIX/opt/coreutils/libexec/gnuman" $MANPATH
+end
 
 set -l upath
 for npath in $PATH
