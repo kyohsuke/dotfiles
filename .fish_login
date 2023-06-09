@@ -57,7 +57,6 @@ abbr -a diff diff -W $COLUMNS
 abbr -a locate mdfind -name
 abbr -a top top -o cpu
 abbr -a cat bat
-abbr -a ls ls -G
 abbr -a cp cp -v -i
 abbr -a mv mv -v -i
 
