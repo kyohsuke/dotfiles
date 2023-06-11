@@ -12,6 +12,10 @@ if which rustup > /dev/null 2>&1; then
   rustup completions fish > "$HOME/.config/fish/completions/rustup.fish"
 fi
 
+if test -f "$HOME/.local/share/omf/pkg/omf/functions/omf.fish"; then
+  fish -C "source $HOME/.local/share/omf/pkg/omf/functions/omf.fish && omf update; exit"
+fi
+
 if test -f "$HOME/.config/fish/functions/fisher.fish"; then
   fish -C "source $HOME/.config/fish/functions/fisher.fish && fisher update; exit"
 fi
