@@ -11,4 +11,5 @@ augroup BetterWhiteSpace
   autocmd! * <buffer>
 
   autocmd FileType MAKE DisableStripWhitespaceOnSave
+  autocmd FileType GOHTMLTMPL DisableStripWhitespaceOnSave
 augroup END
