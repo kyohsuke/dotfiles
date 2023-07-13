@@ -53,12 +53,13 @@ abbr -a rm rm -i
 abbr -a df df -h
 abbr -a bc bc -l
 abbr -a scrr screen -U -D -RR
-abbr -a diff diff -W $COLUMNS
+# abbr -a diff diff -W $COLUMNS
 abbr -a locate mdfind -name
 abbr -a top top -o cpu
 abbr -a cat bat
 abbr -a cp cp -v -i
 abbr -a mv mv -v -i
+abbr -a gce "gcloud compute ssh --zone=us-west1-a --tunnel-through-iap"
 
 command -v docker-compose >/dev/null
 and alias dcs='docker stats $(docker-compose ps -q || echo "#")'

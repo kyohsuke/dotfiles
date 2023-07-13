@@ -265,8 +265,6 @@ plug#begin('~/.vim/plugged')
 
   Plug 'tyru/current-func-info.vim'
 
-  Plug 'ntpeters/vim-better-whitespace'
-
   # Devicons
   Plug 'ryanoasis/vim-devicons'
     Plug 'Xuyuanp/nerdtree-git-plugin'
