@@ -53,7 +53,7 @@ abbr -a rm rm -i
 abbr -a df df -h
 abbr -a bc bc -l
 abbr -a scrr screen -U -D -RR
-# abbr -a diff diff -W $COLUMNS
+abbr -a diff diff -W $COLUMNS
 abbr -a locate mdfind -name
 abbr -a top top -o cpu
 abbr -a cat bat
