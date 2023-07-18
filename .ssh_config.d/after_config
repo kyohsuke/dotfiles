@@ -5,6 +5,7 @@ Host github.com bitbucket.org gitlab.com
   Ciphers aes128-gcm@openssh.com,aes256-gcm@openssh.com,aes128-ctr,aes192-ctr,aes256-ctr,chacha20-poly1305@openssh.com
 
 Host *
+  SendEnv LANG LC_*
   ControlMaster auto
   ControlPath ~/.ssh/mux-%C
   Ciphers chacha20-poly1305@openssh.com,aes256-gcm@openssh.com,aes128-gcm@openssh.com,aes256-ctr,aes192-ctr,aes128-ctr
