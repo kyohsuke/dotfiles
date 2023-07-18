@@ -63,6 +63,14 @@ if test -d "$HOMEBREW_PREFIX/opt/coreutils"
     set -gx MANPATH "$HOMEBREW_PREFIX/opt/coreutils/libexec/gnuman" $MANPATH
 end
 
+# {{{ util-linux
+# }}}
+if test -d "$HOMEBREW_PREFIX/opt/util-linux"
+    set -gx PATH "$HOMEBREW_PREFIX/opt/util-linux/bin" $PATH
+    set -gx PATH "$HOMEBREW_PREFIX/opt/util-linux/sbin" $PATH
+    set -gx MANPATH "$HOMEBREW_PREFIX/opt/util-linux/share/man" $MANPATH
+end
+
 set -l upath
 for npath in $PATH
     not contains -- $npath $upath
