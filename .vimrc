@@ -201,6 +201,7 @@ plug#begin('~/.vim/plugged')
   Plug 'mechatroner/rainbow_csv'
   Plug 'google/vim-jsonnet'
   Plug 'khaveesh/vim-fish-syntax'
+  Plug 'hashivim/vim-terraform'
 
   # Markdown
   Plug 'tpope/vim-markdown'
