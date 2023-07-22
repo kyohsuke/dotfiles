@@ -45,8 +45,12 @@ set -gx PATH "$HOME/bin" $PATH
 # }}}
 # {{{ Aliases
 set -f vim_version (vim --version | head -1 | sed 's/^.*\ \([0-9]\)\.\([0-9]\)\ .*$/\1\2/')
-alias vim='/Applications/MacVim.app/Contents/MacOS/Vim'
-alias less="/usr/share/vim/vim$vim_version/macros/less.sh"
+
+test -f "/Applications/MacVim.app/Contents/MacOS/Vim"
+and alias vim='/Applications/MacVim.app/Contents/MacOS/Vim'
+
+test -f "/usr/share/vim/vim$vim_version/macros/less.sh"
+and alias less="/usr/share/vim/vim$vim_version/macros/less.sh"
 
 abbr -a gup git pull --rebase
 abbr -a rm rm -i
