@@ -12,8 +12,10 @@ function gobin-update
         set -f binName "$(basename $pkg)"
 
         if test -n "$pkg" && test "$currentVersion" != "$binVersion"
-            echo "[INFO] rebuild $(basename $pkg) from $binVersion to $currentVersion."
+            echo "[INFO] rebuild $binName from $binVersion to $currentVersion."
             go install "$pkg@latest"
+        else
+            echo "[INFO] $binName is up to date."
         end
     end
 
