@@ -2,6 +2,8 @@
 
 # {{{ Pragma Once
 if test -z $FISHENV_LOAD
+    set -gx DETECT_OSTYPE (uname)
+
     # {{{ set environments
     for mPath in /usr/share/man /Library/Apple/usr/share/man /Library/Developer/CommandLineTools/usr/share/man
         not contains $mPath $MANPATH
