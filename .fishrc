@@ -10,6 +10,12 @@ set -gx PATH "$HOME/.cargo/bin" $PATH
 command -v docker-machine >/dev/null
 and _evalcache docker-machine env default
 # }}}
+
+# {{{ Homebrew
+test -x "$HOMEBREW_PREFIX/bin/brew"
+and _evalcache "$HOMEBREW_PREFIX/bin/brew" shellenv
+# }}}
+
 # {{{ anyenv
 if test -x "$HOME/.anyenv/bin/anyenv"
     set -l ind (contains -i -- "$HOME/.anyenv/bin" $PATH)
@@ -48,13 +54,6 @@ if test -x "$HOME/.anyenv/bin/anyenv"
         set -gx UNBUNDLED_COMMANDS rake cap irb
         set -gx RUBY_CONFIGURE_OPTS "--disable-install-doc --disable-install-rdoc"
     end
-end
-# }}}
-# {{{ Homebrew
-if test -x "/usr/local/bin/brew"
-    _evalcache /usr/local/bin/brew shellenv
-else if test -x "/opt/homebrew/bin/brew"
-    _evalcache /opt/homebrew/bin/brew shellenv
 end
 # }}}
 
