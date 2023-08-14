@@ -12,8 +12,17 @@ and _evalcache docker-machine env default
 # }}}
 
 # {{{ Homebrew
-test -x "$HOMEBREW_PREFIX/bin/brew"
-and _evalcache "$HOMEBREW_PREFIX/bin/brew" shellenv
+test -x "/usr/local/bin/brew"
+and set -l BREW_BIN "/usr/local/bin/brew"
+
+test -x "/opt/homebrew/bin/brew"
+and set -l BREW_BIN "/opt/homebrew/bin/brew"
+
+test -x "/home/linuxbrew/.linuxbrew/bin/brew"
+and set -l BREW_BIN "/home/linuxbrew/.linuxbrew/bin/brew"
+
+test -x "$BREW_BIN"
+and _evalcache "$BREW_BIN" shellenv
 # }}}
 
 # {{{ anyenv
