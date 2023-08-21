@@ -50,6 +50,7 @@
 !/.config/nodenv
 !/.config/bat
 !/.config/mpv
+!/.config/streamlink
 
 # fish shell
 !/.fishenv

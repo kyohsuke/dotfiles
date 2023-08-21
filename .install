@@ -42,6 +42,7 @@ if ! [ -f "$HOME/.install" ]; then
   # copy dotfiles
   find . -mindepth 1 -maxdepth 1 -print0 | xargs -P 4 -0 -I{} mv -f {} "$HOME/"
   cd "$HOME" || exit
+  ln -s "$HOME/.config/streamlink" "$HOME/Library/Application Support/streamlink"
   git submodule update --init
 fi
 
