@@ -64,6 +64,7 @@ abbr -a cat bat
 abbr -a cp cp -v -i
 abbr -a mv mv -v -i
 abbr -a gce "gcloud compute ssh --zone=us-west1-a --tunnel-through-iap"
+abbr -a youtube --set-cursor "streamlink '%'"
 
 command -v docker-compose >/dev/null
 and alias dcs='docker stats $(docker-compose ps -q || echo "#")'
