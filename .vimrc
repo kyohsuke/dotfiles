@@ -35,10 +35,15 @@ if has('vim_starting') && has('mac')
   set pyxversion&
   set pyx=3
   set pyxversion=3
-  var python_home = substitute(system('pyenv prefix'), "\n", '', 'g')
-  exe 'set pythonthreehome=' .. python_home
-  exe 'set pythonthreedll=' .. substitute(glob(python_home .. "/lib/libpython3*.dylib"), "\n", '', 'g')
-  var lualib = "/usr/local/lib/liblua.dylib"
+
+  var python_home = substitute(system('brew --prefix python'), "\n", '', 'g') .. "/Frameworks/Python.framework/Versions/Current"
+  var python_dll = substitute(glob(python_home .. "/lib/libpython3*.dylib"), "\n", '', 'g')
+  if filereadable(python_dll)
+    exe 'set pythonthreehome=' .. python_home
+    exe 'set pythonthreedll=' .. python_dll
+  endif
+
+  var lualib = substitute(system('brew --prefix lua'), "\n", '', 'g') .. "/lib/liblua.dylib"
   if filereadable(lualib)
     exe 'set luadll=' .. lualib
   endif
