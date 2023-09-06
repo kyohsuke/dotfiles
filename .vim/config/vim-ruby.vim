@@ -25,9 +25,4 @@ augroup VimRuby
   autocmd BufRead,BufNewFile *_spec.rb setlocal filetype=ruby.rspec
   autocmd BufRead,BufNewFile *_test.rb setlocal filetype=ruby.testunit
   autocmd BufRead,BufNewFile {Schemafile,Gemfile,Rakefile,Thorfile,config.ru,.caprc,.irbrc,irb_tempfile*,*.arb} setlocal filetype=ruby
-
-  autocmd BufRead,BufNewFile *.haml   setlocal ts=2 sw=2
-  autocmd BufRead,BufNewFile *.rhtml  setlocal ts=2 sw=2
-  autocmd BufRead,BufNewFile *.rb     setlocal ts=2 sw=2
-  autocmd BufRead,BufNewFile *.yml    setlocal ts=2 sw=2
 augroup END

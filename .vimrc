@@ -168,9 +168,6 @@ augroup DetectFileTypes
   autocmd BufRead,BufNewFile {before_config,.ssh_config.local,after_config} setf sshconfig
   autocmd BufRead,BufNewFile .env.*                                         setf sh.env
   autocmd BufRead,BufNewFile .babelrc                                       setf json
-  # autocmd BufRead,BufNewFile {*.js,*.jsx,*.es6}                           setf javascript
-  # autocmd BufRead,BufNewFile *.ts                                         setf typescript
-  # autocmd BufRead,BufNewFile {*.ts,*.tsx}                                 setf typescript
 
   # Set up synclines
   autocmd FileType jsp,asp,php,ruby,xml,perl,markdown syntax sync minlines=500 maxlines=1000
@@ -182,7 +179,6 @@ augroup DetectFileTypes
   autocmd FileType gitconfig setlocal noexpandtab ts=4 sts=4 sw=4
 
   # Markdown
-  autocmd FileType markdown setlocal ts=2 sts=2 sw=2
   autocmd FileType markdown syntax sync fromstart
 
   # Remap vim help
@@ -197,6 +193,9 @@ plug#begin('~/.vim/plugged')
 
   # Color Scheme
   Plug 'mrkn/mrkn256.vim'
+
+  # Code Format
+  Plug 'editorconfig/editorconfig-vim'
 
   # Syntax Plugins
   Plug 'direnv/direnv.vim'

@@ -4,9 +4,6 @@ UsePlugin 'hive.vim'
 augroup HiveVim
   autocmd! * <buffer>
 
-  # for .hql files
-  autocmd BufNewFile,BufRead *.hql setlocal filetype=hive expandtab
-
-  # for .q files
-  autocmd BufNewFile,BufRead *.q setlocal filetype=hive expandtab
+  # for (*.hql,*.q} files
+  autocmd BufNewFile,BufRead {*.hql,*.q} setlocal filetype=hive
 augroup END

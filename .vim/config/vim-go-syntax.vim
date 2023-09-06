@@ -5,7 +5,7 @@ augroup VimGoSyntax
   autocmd! * <buffer>
 
   # Golang
-  autocmd FileType go setlocal noexpandtab ts=4 sts=4 sw=4 foldmethod=syntax
+  autocmd FileType go setlocal foldmethod=syntax
 
   # GoHtmlTmpl
   def DetectGoHtmlTmpl()
