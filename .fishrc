@@ -1,10 +1,22 @@
 # vim: filetype=fish foldmethod=marker
 
+function __source -a fileName
+    test -f "$fileName"
+    and source "$fileName"
+end
+
+function __add_path -a pathName
+    test -d "$pathName"
+    and set -gx PATH "$pathName" $PATH
+end
+
+function __add_manpath -a pathName
+    test -d "$pathName"
+    and set -gx MANPATH "$pathName" $MANPATH
+end
+
 # {{{ rustup
-test -d "$HOME/.cargo/bin"
-and set -l ind (contains -i -- "$HOME/.cargo/bin" $PATH)
-and set -e PATH[$ind]
-set -gx PATH "$HOME/.cargo/bin" $PATH
+__add_path "$HOME/.cargo/bin"
 # }}}
 # {{{ docker-machine
 command -v docker-machine >/dev/null
@@ -27,10 +39,7 @@ and _evalcache "$BREW_BIN" shellenv
 
 # {{{ anyenv
 if test -x "$HOME/.anyenv/bin/anyenv"
-    set -l ind (contains -i -- "$HOME/.anyenv/bin" $PATH)
-    and set -e PATH[$ind]
-    set -gx PATH "$HOME/.anyenv/bin" $PATH
-
+    __add_path "$HOME/.anyenv/bin"
     _evalcache anyenv init - fish
     set -f envPath "$HOME/.anyenv/envs"
 
@@ -68,32 +77,57 @@ end
 # }}}
 
 # {{{ google cloud SDK
-test -f "$HOMEBREW_PREFIX/share/google-cloud-sdk/path.fish.inc"
-and source "$HOMEBREW_PREFIX/share/google-cloud-sdk/path.fish.inc"
+__source "$HOMEBREW_PREFIX/share/google-cloud-sdk/path.fish.inc"
 # }}}
 
+# {{{ coreutils
 if test -d "$HOMEBREW_PREFIX/opt/coreutils"
-    set -gx PATH "$HOMEBREW_PREFIX/opt/coreutils/libexec/gnubin" $PATH
-    set -gx MANPATH "$HOMEBREW_PREFIX/opt/coreutils/libexec/gnuman" $MANPATH
+    __add_path "$HOMEBREW_PREFIX/opt/coreutils/libexec/gnubin"
+    __add_manpath "$HOMEBREW_PREFIX/opt/coreutils/share/man"
 end
+# }}}
+
+# {{{ libpq
+if test -d "$HOMEBREW_PREFIX/opt/libpq/bin"
+    __add_path "$HOMEBREW_PREFIX/opt/libpq/bin"
+    __add_manpath "$HOMEBREW_PREFIX/opt/libpq/share/man"
+end
+# }}}
 
 # {{{ util-linux
-# }}}
 if test -d "$HOMEBREW_PREFIX/opt/util-linux"
-    set -gx PATH "$HOMEBREW_PREFIX/opt/util-linux/bin" $PATH
-    set -gx PATH "$HOMEBREW_PREFIX/opt/util-linux/sbin" $PATH
-    set -gx MANPATH "$HOMEBREW_PREFIX/opt/util-linux/share/man" $MANPATH
+    __add_path "$HOMEBREW_PREFIX/opt/util-linux/bin"
+    __add_path "$HOMEBREW_PREFIX/opt/util-linux/sbin"
+    __add_manpath "$HOMEBREW_PREFIX/opt/util-linux/share/man"
 
     set -gx LDFLAGS "-L$HOMEBREW_PREFIX/opt/util-linux/lib" $LDFLAGS
     set -gx CPPFLAGS "-I$HOMEBREW_PREFIX/opt/util-linux/include" $CPPFLAGS
 end
+# }}}
 
-set -l upath
-for npath in $PATH
-    not contains -- $npath $upath
-    and set upath $upath $npath
+# {{{ manpath
+__add_manpath "$HOMEBREW_PREFIX/share/man"
+# }}}
+
+function _upath
+    set -l upath
+    for npath in $PATH
+        not contains -- $npath $upath
+        and set upath $upath $npath
+    end
+    set -gx PATH $upath
 end
-set -gx PATH $upath
+_upath
+
+function _umanpath
+    set -l upath
+    for npath in $MANPATH
+        not contains -- $npath $upath
+        and set upath $upath $npath
+    end
+    set -gx MANPATH $upath
+end
+_umanpath
 
 test -f "$HOME/.fishrc.local"
 and source "$HOME/.fishrc.local"
