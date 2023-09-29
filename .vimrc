@@ -152,12 +152,8 @@ endif
   set foldlevel=99
 
   autocmd WinEnter * checktime
-  # {{{ Kill Auto Commentout
-  augroup VimrcKillAutoCommentOut
-    autocmd!
-    autocmd FileType * setlocal formatoptions-=ro
-  augroup END
-  # }}}
+  set formatoptions&
+  set formatoptions+=l
 # }}}
 # {{{ Detect FileTypes
 augroup DetectFileTypes
