@@ -153,6 +153,7 @@ endif
 
   autocmd WinEnter * checktime
   set formatoptions&
+  set formatoptions-=tc
   set formatoptions+=l
 # }}}
 # {{{ Detect FileTypes
