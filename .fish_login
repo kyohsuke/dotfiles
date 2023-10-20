@@ -77,3 +77,6 @@ function zpack -a dirName
     echo (basename $dirName) | xargs -I{} zpaq a "{}.zpaq" "{}" -m5 -not "*/.DS_Store"
 end
 # }}}
+
+test -f "$HOME/.fish_login.local"
+and source "$HOME/.fish_login.local"
