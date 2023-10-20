@@ -194,6 +194,9 @@ plug#begin('~/.vim/plugged')
   # Code Format
   Plug 'editorconfig/editorconfig-vim'
 
+  # Substitute preview
+  Plug 'markonm/traces.vim'
+
   # Syntax Plugins
   Plug 'direnv/direnv.vim'
   Plug 'ekalinin/Dockerfile.vim'
