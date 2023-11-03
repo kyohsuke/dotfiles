@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-exit EXIT_FAILURE if ARGV.empty?
+exit false if ARGV.empty?
 
 require 'fileutils'
 
