@@ -178,6 +178,9 @@ augroup DetectFileTypes
   # Markdown
   autocmd FileType markdown syntax sync fromstart
 
+  # SQL
+  autocmd FileType sql setlocal foldmethod=syntax
+
   # Remap vim help
   autocmd FileType help nnoremap <buffer> <CR> <C-]>
   autocmd FileType help nnoremap <buffer> <BS> <C-O>
