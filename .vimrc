@@ -231,7 +231,7 @@ plug#begin('~/.vim/plugged')
 
   # golang
   Plug 'mattn/vim-goimports'
-  # Plug 'kyohsuke/vim-go-syntax'
+  Plug 'kyohsuke/vim-go-syntax'
 
   # ruby
   Plug 'vim-ruby/vim-ruby'
@@ -278,9 +278,6 @@ plug#begin('~/.vim/plugged')
   # Devicons
   Plug 'ryanoasis/vim-devicons'
     Plug 'Xuyuanp/nerdtree-git-plugin'
-
-    # Treesitter
-  Plug 'mattn/vim-treesitter', { 'do': 'cd cmd/treesitter-server && go build' }
 plug#end()
 
 if !isdirectory($HOME .. '/.vim/plugged')
