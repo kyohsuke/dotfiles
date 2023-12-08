@@ -49,6 +49,10 @@ if test -x "$HOME/.anyenv/bin/anyenv"
         set -gx GOPATH "$HOME"
         set -gx GOBIN "$HOME/bin"
         set -gx GOCACHE "$HOME/.cache/go-build"
+        set -gx GOCOVERDIR "$HOME/.cache/go-covdata"
+        if test ! -d "$GOCOVERDIR"
+            mkdir -p "$GOCOVERDIR"
+        end
         set -gx GOMODCACHE "$HOME/.cache/pkg/mod"
     end
 
