@@ -11,6 +11,7 @@ NODENV_PLUGINS=(
   pine/nodenv-yarn-install
   ouchxp/nodenv-nvmrc
   nodenv/nodenv-default-packages
+  nodenv/nodenv-npm-migrate
 )
 
 PYENV_PLUGINS=(
