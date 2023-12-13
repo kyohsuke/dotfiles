@@ -278,6 +278,10 @@ plug#begin('~/.vim/plugged')
   # Devicons
   Plug 'ryanoasis/vim-devicons'
     Plug 'Xuyuanp/nerdtree-git-plugin'
+
+  if !empty($ENABLE_GITHUB_COPILOT)
+    Plug 'github/copilot.vim'
+  endif
 plug#end()
 
 if !isdirectory($HOME .. '/.vim/plugged')
