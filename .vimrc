@@ -29,16 +29,15 @@ g:loaded_2html_plugin       = 1
 # }}}
 # {{{ Setup PytonX
 if has('vim_starting') && has('mac')
-  set pythonthreehome&
-  set pythonthreedll&
-  set pyx&
-  set pyxversion&
-  set pyx=3
-  set pyxversion=3
-
   var python_home = substitute(system('brew --prefix python'), "\n", '', 'g') .. "/Frameworks/Python.framework/Versions/Current"
   var python_dll = substitute(glob(python_home .. "/lib/libpython3*.dylib"), "\n", '', 'g')
   if filereadable(python_dll)
+    set pythonthreehome&
+    set pythonthreedll&
+    set pyx&
+    set pyxversion&
+    set pyx=3
+    set pyxversion=3
     exe 'set pythonthreehome=' .. python_home
     exe 'set pythonthreedll=' .. python_dll
   endif
@@ -117,7 +116,7 @@ endif
   set noundofile
   set noswapfile # Kill Swapfile
   # }}}
-  # {{{ Paste withmut space on virtual edit ( vim hacks #195 )
+  # {{{ Paste without space on virtual edit ( vim hacks #195 )
   set virtualedit=all
   if has('virtualedit') && &virtualedit =~# '\<all\>'
     nnoremap <expr> p (col('.') >= col('$') ? '$' : '') .. 'p'
