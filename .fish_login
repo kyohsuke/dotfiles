@@ -66,6 +66,11 @@ abbr -a mv mv -v -i
 abbr -a gce "gcloud compute ssh --zone=us-west1-a --tunnel-through-iap"
 abbr -a youtube --set-cursor "streamlink '%'"
 
+# Enable AWS CLI autocompletion: github.com/aws/aws-cli/issues/1079
+command -v aws >/dev/null
+and complete --command aws --no-files --arguments '(begin; set --local --export COMP_SHELL fish; set --local --export COMP_LINE (commandline); aws_completer | sed \'s/ $//\'; end)'
+
+
 command -v docker-compose >/dev/null
 and alias dcs='docker stats $(docker-compose ps -q || echo "#")'
 
