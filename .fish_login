@@ -78,8 +78,22 @@ command -v thefuck >/dev/null
 and abbr -a f thefuck
 # }}}
 # {{{ Functions
-function zpack -a dirName
-    echo (basename $dirName) | xargs -I{} zpaq a "{}.zpaq" "{}" -m5 -not "*/.DS_Store"
+if command -v zpaq
+    function zpack -a dirName
+        echo (basename $dirName) | xargs -I{} zpaq a "{}.zpaq" "{}" -m5 -not "*/.DS_Store"
+    end
+end
+# }}}
+
+# {{{ Transient
+if type --query __transient
+    function transient_rprompt_func
+        date +%H:%M:%S
+    end
+
+    function fish_right_prompt
+        date +%H:%M:%S
+    end
 end
 # }}}
 
