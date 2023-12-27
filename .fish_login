@@ -78,7 +78,7 @@ command -v thefuck >/dev/null
 and abbr -a f thefuck
 # }}}
 # {{{ Functions
-if command -v zpaq
+if command -v zpaq >/dev/null
     function zpack -a dirName
         echo (basename $dirName) | xargs -I{} zpaq a "{}.zpaq" "{}" -m5 -not "*/.DS_Store"
     end
