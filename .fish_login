@@ -86,13 +86,13 @@ end
 # }}}
 
 # {{{ Transient
-if type --query __transient
+if type -q __transient
+    functions --copy fish_prompt transient_prompt_func
     function transient_rprompt_func
-        date +%H:%M:%S
+        date +%T
     end
-
     function fish_right_prompt
-        date +%H:%M:%S
+        date +%T
     end
 end
 # }}}
