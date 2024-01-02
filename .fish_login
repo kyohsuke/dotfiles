@@ -70,9 +70,10 @@ abbr -a youtube --set-cursor "streamlink '%'"
 command -v aws >/dev/null
 and complete --command aws --no-files --arguments '(begin; set --local --export COMP_SHELL fish; set --local --export COMP_LINE (commandline); aws_completer | sed \'s/ $//\'; end)'
 
-
-command -v docker-compose >/dev/null
-and alias dcs='docker stats $(docker-compose ps -q || echo "#")'
+# Add alias for docker-compose
+if command -v docker-compose >/dev/null
+    alias dcs='docker stats $(docker-compose ps -q || echo "#")'
+end
 
 command -v thefuck >/dev/null
 and abbr -a f thefuck
@@ -83,6 +84,12 @@ if command -v zpaq >/dev/null
         echo (basename $dirName) | xargs -I{} zpaq a "{}.zpaq" "{}" -m5 -not "*/.DS_Store"
     end
 end
+# }}}
+
+# {{{ Set LS_COLORS
+command -v dircolors >/dev/null
+and test -f "$HOME/.dircolors"
+and set -gx LS_COLORS (dircolors -c "$HOME/.dircolors" | string split ' ' | string replace -a "'" '')[3]
 # }}}
 
 # {{{ Transient
