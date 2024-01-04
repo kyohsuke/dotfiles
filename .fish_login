@@ -27,8 +27,8 @@ function fish_user_key_bindings
 end
 # }}}
 # {{{ check_ssh_config
-test -f "$HOME/.fish-functions/check_ssh_config.fish"
-and source "$HOME/.fish-functions/check_ssh_config.fish"
+command -v check_ssh_config >/dev/null
+and check_ssh_config
 # }}}
 # {{{ Direnv
 command -v direnv >/dev/null
