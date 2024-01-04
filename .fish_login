@@ -71,9 +71,8 @@ command -v aws >/dev/null
 and complete --command aws --no-files --arguments '(begin; set --local --export COMP_SHELL fish; set --local --export COMP_LINE (commandline); aws_completer | sed \'s/ $//\'; end)'
 
 # Add alias for docker-compose
-if command -v docker-compose >/dev/null
-    alias dcs='docker stats $(docker-compose ps -q || echo "#")'
-end
+command -v docker-compose >/dev/null
+and alias dcs='docker stats $(docker-compose ps -q || echo "#")'
 
 command -v thefuck >/dev/null
 and abbr -a f thefuck
