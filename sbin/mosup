@@ -13,11 +13,11 @@ if which rustup > /dev/null 2>&1; then
 fi
 
 if test -f "$HOME/.local/share/omf/pkg/omf/functions/omf.fish"; then
-  fish -C "source $HOME/.local/share/omf/pkg/omf/functions/omf.fish && omf update; exit"
+  fish -l -c "omf update"
 fi
 
 if test -f "$HOME/.config/fish/functions/fisher.fish"; then
-  fish -C "source $HOME/.config/fish/functions/fisher.fish && fisher update; exit"
+  fish -l -c "fisher update"
 fi
 
 if which anyenv > /dev/null 2>&1; then

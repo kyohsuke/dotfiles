@@ -1,7 +1,7 @@
 # vim: filetype=fish foldmethod=marker
 
 # {{{ Add Function Path
-set -gx fish_function_path $fish_function_path "$HOME/.fish-functions"
+set -a fish_function_path "$HOME/.fish-functions"
 # }}}
 # {{{ Change Key Bindings
 test $fish_key_bindings != fish_vi_key_bindings
