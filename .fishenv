@@ -11,6 +11,7 @@ if test -z $FISHENV_LOAD
         and set -gx MANPATH $mPath $MANPATH
     end
 
+    set -gx GREP_OPTIONS '--color=auto'
     set -gx DISABLE_AUTO_UPDATE true
     set -gx TZ Asia/Tokyo
     set -gx LANG "ja_JP.UTF-8"
