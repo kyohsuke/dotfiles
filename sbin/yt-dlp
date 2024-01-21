@@ -5,4 +5,4 @@ CONTAINER="jauderho/yt-dlp"
 SUEXEC="$(id -u):$(id -g)"
 PWD="$(pwd)"
 
-docker run --rm -e SUEXEC="$SUEXEC" -v "$PWD":/app:delegated -w /app "$CONTAINER:$VERSION" "$*"
+docker run --rm -e SUEXEC="$SUEXEC" -v "$PWD":/app:delegated -w /app "$CONTAINER:$VERSION" "$@"
