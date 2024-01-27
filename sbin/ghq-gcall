@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+get_repo_size() {
+  du -sk .git | awk '{print $1}'
+}
+
+total_previous_size=0
+total_current_size=0
+
+for path in $(ghq list); do
+  dir="$HOME/src/$path"
+
+  [[ -d "$dir/.git" ]] || continue
+  cd "$dir" || continue
+
+  echo "DIR: $dir"
+
+  previous_size=$(get_repo_size)
+  (( total_previous_size += previous_size ))
+
+  echo "$ git reflog expire --all --expire=now"
+  git reflog expire --all --expire=now
+
+  echo "$ git gc --prune=now --aggressive"
+  git gc --prune=now --aggressive
+
+  current_size=$(get_repo_size)
+  (( total_current_size += current_size ))
+
+  echo "${previous_size}KB -> ${current_size}KB"
+  echo
+done
+echo "Total: ${total_previous_size}KB -> ${total_current_size}KB"
