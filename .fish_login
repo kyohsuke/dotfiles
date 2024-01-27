@@ -27,7 +27,7 @@ function fish_user_key_bindings
 end
 # }}}
 # {{{ check_ssh_config
-command -v check_ssh_config >/dev/null
+type -q check_ssh_config
 and check_ssh_config
 # }}}
 # {{{ Direnv
