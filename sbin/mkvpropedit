@@ -1,7 +1,1 @@
-#!/usr/bin/env bash
-CMD_NAME="$(basename "$0")"
-CONTAINER="jlesage/mkvtoolnix"
-SUEXEC="$(id -u):$(id -g)"
-PWD="$(pwd)"
-
-docker run --rm -e SUEXEC="$SUEXEC" -v "$PWD":/app:delegated -w /app "$CONTAINER" "$CMD_NAME" "$@"
+mkvmerge
