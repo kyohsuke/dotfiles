@@ -40,7 +40,7 @@
 	aggressiveWindow = 250
 [alias]
 	branches = branch -a
-	tags = tag
+	tags = tag -l --sort=v:refname
 	stashes = stash list
 	remotes = remote -v
 
