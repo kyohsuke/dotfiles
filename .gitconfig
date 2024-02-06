@@ -51,6 +51,7 @@
 	dmb = delete-merged-branches
 
 	squash-all = "!f(){ git reset $(git commit-tree HEAD^{tree} -m \"${1:-A new start}\");};f"
+	reinstate = "!f(){ git reset --hard && git clean -f; };f"
 
 	amend = commit --amend
 	unstage = reset -q HEAD --
