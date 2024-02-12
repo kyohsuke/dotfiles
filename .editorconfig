@@ -28,3 +28,7 @@ indent_style = space
 [*.{haml,rhtml,rb,yml}]
 indent_style = space
 indent_size = 2
+
+[*.sh]
+indent_style = space
+indent_size = 2
