@@ -10,6 +10,8 @@
 	compression = 9
 [rerere]
 	enabled = true
+[transfer]
+	fsckobjects = true
 [include]
 	path = ~/.gitconfig.local
 [submodule]
@@ -23,13 +25,22 @@
 	branch = auto
 	diff = auto
 	status = auto
+[status]
+	submoduleSummary = true
 [fetch]
 	recurseSubmodules = true
 	parallel = 8
+	fsckobjects = true
+[receive]
+	fsckobjects = true
+[pull]
+	rebase = true
 [push]
 	default = current
 	followTags = true
 	autoSetupRemote = true
+[commit]
+	verbose = true
 [gc]
 	reflogExpire = 0
 	reflogExpireUnreachable = 0
@@ -57,15 +68,15 @@
 	unstage = reset -q HEAD --
 	discard = checkout --
 	uncommit = reset --mixed HEAD~
-
-
 [pager]
 	difftool = true
 	branch = false
 [interactive]
 	diffFilter = diff-highlight
 [diff]
+	algorithm = histogram
 	compactionHeuristic = true
+	submodule = log
 	tool = difftastic
 [difftool]
 	prompt = false
