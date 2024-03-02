@@ -87,7 +87,7 @@ __source "$HOMEBREW_PREFIX/share/google-cloud-sdk/path.fish.inc"
 # {{{ coreutils
 if test -d "$HOMEBREW_PREFIX/opt/coreutils"
     __add_path "$HOMEBREW_PREFIX/opt/coreutils/libexec/gnubin"
-    __add_manpath "$HOMEBREW_PREFIX/opt/coreutils/share/man"
+    __add_manpath "$HOMEBREW_PREFIX/opt/coreutils/libexec/gnuman"
 end
 # }}}
 
