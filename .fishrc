@@ -60,7 +60,7 @@ if test -x "$HOME/.anyenv/bin/anyenv"
     if test -x "$envPath/pyenv/bin/pyenv"
         set -gx PYTHONDONTWRITEBYTECODE 1
         set -gx PYENV_VIRTUALENV_DISABLE_PROMPT 1
-        set -gx PYTHON_CFLAGS='-march=native -mtune=native'
+        set -gx PYTHON_CFLAGS '-march=native -mtune=native'
         switch $DETECT_OSTYPE
             case Darwin
                 set -gx PYTHON_CONFIGURE_OPTS "--enable-framework --enable-optimizations --with-lto"
