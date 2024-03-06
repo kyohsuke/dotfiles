@@ -28,6 +28,7 @@ brew "libpq"
 brew "lua"
 brew "readline"
 brew "openssl"
+cask "homebrew/cask-fonts/font-cica"
 cask "gpg-suite-no-mail"
 EOS
 )

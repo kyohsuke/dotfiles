@@ -11,5 +11,6 @@ if [ "$SHELL" != "/usr/local/bin/fish" ]; then
   fish -C "omf update && omf install coffeeandcode && omf theme coffeeandcode"
 
   # Change to the new shell, prompts for password
+  echo "/usr/local/bin/fish" >> /etc/shells
   sudo chsh -s /usr/local/bin/fish "$USER"
 fi
