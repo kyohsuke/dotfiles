@@ -2,13 +2,9 @@
 /*
 /.*
 # add tracking files
-!/.zshrc
 !/.gvimrc
 !/.vimrc
 !/.vimlc
-!/.zsh
-!/.zshenv
-!/.zprofile
 !/.vimshrc
 !/.vimrc.d
 !/.vim
@@ -28,9 +24,6 @@
 !/.default-gems
 !/.default-packages
 !/.go-package
-!/.zsh-completions
-!/.zsh-custom
-!/.zlogin
 !/.setups
 !/.inputrc
 !/.pryrc
@@ -62,6 +55,17 @@
 !/.config/git
 /.config/git/*
 !/.config/git/config
+!/.config/git/ignore.global
+
+# pry
+!/.config/pry
+/.config/pry/*
+!/.config/pry/config
+
+# rubygems
+!/.config/rubygems
+/.config/rubygems/*
+!/.config/rubygems/config
 
 # fish shell
 !/.fishenv

@@ -6,7 +6,7 @@
 	user = kyohsuke
 	completeUser = kyohsuke
 [core]
-	excludesfile = ~/.gitignore.global
+	excludesfile = ~/.config/git/ignore.global
 	compression = 9
 [rerere]
 	enabled = true
