@@ -28,5 +28,5 @@ if which brew > /dev/null 2>&1; then
   brew update
   brew upgrade
   brew upgrade --cask
-  brew cleanup --prune 7
+  brew cleanup
 fi

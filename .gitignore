@@ -53,6 +53,11 @@
 !/.config/mpv
 !/.config/streamlink
 
+# homebrew environments
+!/.config/homebrew
+/.config/homebrew/*
+!/.config/homebrew/brew.env
+
 # fish shell
 !/.fishenv
 !/.fishrc
