@@ -58,6 +58,11 @@
 /.config/homebrew/*
 !/.config/homebrew/brew.env
 
+# git
+!/.config/git
+/.config/git/*
+!/.config/git/config
+
 # fish shell
 !/.fishenv
 !/.fishrc
