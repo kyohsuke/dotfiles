@@ -74,8 +74,6 @@ and complete --command aws --no-files --arguments '(begin; set --local --export 
 command -v docker-compose >/dev/null
 and alias dcs='docker stats $(docker-compose ps -q || echo "#")'
 
-command -v thefuck >/dev/null
-and abbr -a f thefuck
 # }}}
 # {{{ Functions
 if command -v zpaq >/dev/null

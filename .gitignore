@@ -46,6 +46,18 @@
 !/.config/mpv
 !/.config/streamlink
 
+# htop
+!/.config/htop
+/.config/htop/*
+!/.config/htop/htoprc
+
+# omf
+!/.config/omf
+/.config/omf/*
+!/.config/omf/bundle
+!/.config/omf/channel
+!/.config/omf/theme
+
 # homebrew environments
 !/.config/homebrew
 /.config/homebrew/*

@@ -2,3 +2,4 @@
 .python-version
 .rake_tasks
 .envrc
+*.env.local
