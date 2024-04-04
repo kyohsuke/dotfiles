@@ -73,21 +73,6 @@ and complete --command aws --no-files --arguments '(begin; set --local --export 
 # Add alias for docker-compose
 command -v docker-compose >/dev/null
 and alias dcs='docker stats $(docker-compose ps -q || echo "#")'
-
-# }}}
-# {{{ Functions
-if command -v zpaq >/dev/null
-    function zpack -a dirName
-        set -f baseName (basename $dirName)
-        echo "$baseName"
-
-        if test "." = "$baseName"
-            echo "[Usage] zpack <DirName>"
-            return 1
-        end
-        echo "$baseName" | xargs -I{} zpaq a "{}.zpaq" "{}" -m5 -not "*/.DS_Store"
-    end
-end
 # }}}
 
 # {{{ Set LS_COLORS
