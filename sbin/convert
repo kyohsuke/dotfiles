@@ -1,8 +1,0 @@
-#!/usr/bin/env bash
-CMD_NAME="$(basename "$0")"
-VERSION="alpine-3.18.4-imagemagick-7.1.1.23-r0"
-CONTAINER="islandora/imagemagick"
-SUEXEC="$(id -u):$(id -g)"
-PWD="$(pwd)"
-
-docker run --rm -e SUEXEC="$SUEXEC" -v "$PWD":/app:delegated -w /app "$CONTAINER:$VERSION" "$CMD_NAME" "$@"
