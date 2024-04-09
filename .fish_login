@@ -16,6 +16,11 @@ function fish_user_key_bindings
     bind -s -M insert \ch __peco_history
     bind -s -M insert \ck __peco_branch
 
+    bind -s -M default -m insert \n cancel-commandline repaint-mode force-repaint
+    bind -s -M default -m insert \r cancel-commandline repaint-mode force-repaint
+    bind -s -M visual -m insert \n end-selection cancel-commandline repaint-mode force-repaint
+    bind -s -M visual -m insert \r end-selection cancel-commandline repaint-mode force-repaint
+
     # Accept Autosuggestion like python prompt Kit
     bind -s -M insert \ce accept-autosuggestion
 
