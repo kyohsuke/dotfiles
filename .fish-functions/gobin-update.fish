@@ -6,9 +6,8 @@ function gobin-update
     echo "[INFO] check for build versions..."
 
     for fname in "$gobin"/*
-        set -l temp (go version -m "$fname" 2> /dev/null)
-        set -l pkg (echo "$temp" | grep path | awk '{print $2}')
-        set -l binVersion (echo "$temp" | head -n1 | awk '{print $2}')
+        set -l pkg (go version -m "$fname" 2> /dev/null | grep path | awk '{print $2}')
+        set -l binVersion (go version -m "$fname" 2> /dev/null | head -n1 | awk '{print $2}')
         set -l binName (basename $fname)
 
         if test -z "$binVersion"
