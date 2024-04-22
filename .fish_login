@@ -1,6 +1,12 @@
 # vim: filetype=fish foldmethod=marker
 
+# {{{ Add Completion Path
+test -d "$HOME/.fish-completions"
+and set -a fish_complete_path "$HOME/.fish-completions"
+# }}}
+
 # {{{ Add Function Path
+test -d "$HOME/.fish-functions"
 set -a fish_function_path "$HOME/.fish-functions"
 # }}}
 # {{{ Change Key Bindings
