@@ -1,5 +1,5 @@
 function zpack -a dirName
-    if command -v zpaq
+    if command -vq zpaq
         set -f baseName (basename $dirName)
         echo "$baseName"
 
