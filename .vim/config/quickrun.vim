@@ -9,12 +9,15 @@ g:quickrun_config = {
     'outputter/buffer/opener': 'rightbelow split',
     'runner': 'job',
   },
-    'go/bench': {
+  'go/bench': {
     'command': 'go',
     'tempfile': '%{printf("%s_test.go", tempname())}',
     'exec': ['%C test -bench . -benchmem'],
     'type': 'go',
     'runner': 'terminal',
+  },
+  'go.test': {
+    'exec': 'go test ./...',
   },
   'ruby': {
     'command': 'ruby',

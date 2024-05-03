@@ -165,6 +165,8 @@ augroup DetectFileTypes
   autocmd BufRead,BufNewFile .env.*                                         setf sh.env
   autocmd BufRead,BufNewFile .babelrc                                       setf json
 
+  autocmd BufRead,BufNewFile *_test.go                                      setf go.test
+
   # Set up synclines
   autocmd FileType jsp,asp,php,ruby,xml,perl,markdown syntax sync minlines=500 maxlines=1000
 
