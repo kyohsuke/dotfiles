@@ -21,7 +21,8 @@ function symbolic_link(){
   ln -s "$2" "$1"
 }
 
-Chrome_Cache
+# symlink Chrome_Cache
 SRC="${HOME}/Library/Caches/Google/Chrome"
 DST="/Volumes/${DISK_NAME}/Caches/Chrome"
+mkdir -p "${HOME}/Library/Caches/Google"
 symbolic_link "${SRC}" "${DST}"
