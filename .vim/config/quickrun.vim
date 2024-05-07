@@ -1,7 +1,8 @@
 vim9script
 UsePlugin 'vim-quickrun'
 
-nmap <Leader>r <Plug>(quickrun)
+nnoremap <Leader>r <Plug>(quickrun)
+nnoremap <expr><Leader>t ":<C-u>QuickRun " .. expand(&ft) .. "/test" .. "<Return>"
 
 g:quickrun_config = {
   '_': {
@@ -9,14 +10,7 @@ g:quickrun_config = {
     'outputter/buffer/opener': 'rightbelow split',
     'runner': 'job',
   },
-  'go/bench': {
-    'command': 'go',
-    'tempfile': '%{printf("%s_test.go", tempname())}',
-    'exec': ['%C test -bench . -benchmem'],
-    'type': 'go',
-    'runner': 'terminal',
-  },
-  'go.test': {
+  'go/test': {
     'exec': 'go test ./...',
   },
   'ruby': {
