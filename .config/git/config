@@ -1,12 +1,13 @@
 # vim: filetype=gitconfig
 [user]
 	name = KAWAHARA Keisuke
+	useConfigOnly = true
 [ghq]
 	root = ~/src
 	user = kyohsuke
 	completeUser = kyohsuke
 [core]
-	excludesfile = ~/.config/git/ignore.global
+	excludesFile = ~/.config/git/ignore.global
 	compression = 9
 [rerere]
 	enabled = true
@@ -15,7 +16,6 @@
 [include]
 	path = ~/.gitconfig.local
 [submodule]
-	fetchJobs = 4
 	recurse = true
 [remote "origin"]
 	prune = true
@@ -26,8 +26,8 @@
 	diff = auto
 	status = auto
 [fetch]
+	all = true
 	recurseSubmodules = true
-	parallel = 8
 	fsckobjects = true
 [receive]
 	fsckobjects = true
@@ -72,6 +72,7 @@
 [interactive]
 	diffFilter = diff-highlight
 [diff]
+	nmemonicPrefix = true
 	algorithm = histogram
 	compactionHeuristic = true
 	submodule = log

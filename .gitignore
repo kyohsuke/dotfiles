@@ -8,10 +8,8 @@
 !/.vimshrc
 !/.vimrc.d
 !/.vim
-!/.gitconfig
 !/.gitignore
 !/.gitmodules
-!/.gitattributes
 !/.gemrc
 !/.rspec
 !/.peco
@@ -19,6 +17,7 @@
 !/skkdic
 !/.ssh_config.d
 !/.gitignore.global
+!/.gitignore
 !/.vromerc
 !/.install
 !/.default-gems
@@ -67,6 +66,7 @@
 !/.config/git
 /.config/git/*
 !/.config/git/config
+!/.config/git/attributes
 !/.config/git/ignore.global
 
 # pry
