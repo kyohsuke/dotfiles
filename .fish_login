@@ -40,7 +40,7 @@ type -q check_ssh_config
 and check_ssh_config
 # }}}
 # {{{ Direnv
-command -v direnv >/dev/null
+command -q direnv
 and _evalcache direnv hook fish
 # }}}
 # {{{ Add home path
@@ -76,16 +76,16 @@ abbr -a gce "gcloud compute ssh --zone=us-west1-a --tunnel-through-iap"
 abbr -a youtube --set-cursor "streamlink '%'"
 
 # Enable AWS CLI autocompletion: github.com/aws/aws-cli/issues/1079
-command -v aws >/dev/null
+command -q aws
 and complete --command aws --no-files --arguments '(begin; set --local --export COMP_SHELL fish; set --local --export COMP_LINE (commandline); aws_completer | sed \'s/ $//\'; end)'
 
 # Add alias for docker-compose
-command -v docker-compose >/dev/null
+command -q docker-compose
 and alias dcs='docker stats $(docker-compose ps -q || echo "#")'
 # }}}
 
 # {{{ Set LS_COLORS
-command -v dircolors >/dev/null
+command -q dircolors
 and test -f "$HOME/.dircolors"
 and set -gx LS_COLORS (dircolors -c "$HOME/.dircolors" | string split ' ' | string replace -a "'" '')[3]
 # }}}
