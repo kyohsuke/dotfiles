@@ -9,6 +9,6 @@ augroup AutoGitDiff
   enddef
   defc
 
-  autocmd! * <buffer>
+  autocmd!
   autocmd FileType gitrebase SetupAutoGitDiff()
 augroup END

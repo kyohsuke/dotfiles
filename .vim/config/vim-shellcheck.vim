@@ -2,6 +2,6 @@ vim9script
 UsePlugin 'vim-shellcheck'
 
 augroup vim_shellcheck_autocmd
-  autocmd! * <buffer>
+  autocmd!
   autocmd FileType sh autocmd BufWritePre <buffer> ShellCheck!
 augroup END

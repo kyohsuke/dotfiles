@@ -15,14 +15,10 @@ g:ruby_minlines = 500
 g:ruby_spellcheck_strings = 1
 
 augroup VimRuby
-  autocmd! * <buffer>
+  autocmd!
 
   # Ruby
   autocmd FileType ruby setlocal formatoptions-=ro expandtab foldmethod=marker omnifunc=
-  autocmd FileType ruby,eruby nnoremap <buffer> <silent> <Leader>t :split<Return> <C-]>
-
-  # Rspec / TestUnit
-  autocmd BufRead,BufNewFile *_spec.rb setlocal filetype=ruby.rspec
-  autocmd BufRead,BufNewFile *_test.rb setlocal filetype=ruby.testunit
   autocmd BufRead,BufNewFile {Schemafile,Gemfile,Rakefile,Thorfile,config.ru,.caprc,.irbrc,irb_tempfile*,*.arb} setlocal filetype=ruby
+  autocmd BufRead,BufNewFile *_spec.rb nnoremap <buffer> <expr><Leader>t ":<C-u>QuickRun " .. expand(&ft) .. "/rspec" .. "<Return>"
 augroup END

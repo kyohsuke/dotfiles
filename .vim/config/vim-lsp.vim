@@ -13,7 +13,7 @@ def g:LspDefinitionSplitWindow()
   split
   execute "normal \<plug>(lsp-definition)"
 enddef
-nnoremap <Plug>LspDefinitionS :<C-u>call LspDefinitionSplitWindow()<Return>
+nnoremap <plug>LspDefinitionS :<C-u>call LspDefinitionSplitWindow()<Return>
 
 def OnLspBufferEnabled()
   setlocal omnifunc=lsp#complete
@@ -36,8 +36,8 @@ def OnLspBufferEnabled()
   inoremap <buffer> <expr> <cr> pumvisible() ? "\<c-y>\<cr>" : "\<cr>"
 enddef
 
-augroup LspInstall
-  autocmd! * <buffer>
+augroup VimLsp
+  autocmd!
   autocmd User lsp_buffer_enabled OnLspBufferEnabled()
   autocmd BufWritePre *.rs,*.go execute('LspDocumentFormatSync')
 augroup END

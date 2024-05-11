@@ -13,8 +13,6 @@ nnoremap <silent> ,nf :<C-u>NERDTreeFind<Return>
 nnoremap <silent> <C-e> :<C-u>NERDTreeToggle<Return>
 
 augroup NerdTree
-  autocmd! * <buffer>
-
   def AuCloseWindow()
     if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree())
       q
@@ -22,5 +20,6 @@ augroup NerdTree
   enddef
   defc
 
+  autocmd!
   autocmd BufEnter * AuCloseWindow()
 augroup END

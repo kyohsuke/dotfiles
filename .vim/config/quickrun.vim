@@ -17,19 +17,19 @@ g:quickrun_config = {
     'command': 'ruby',
     'cmdopt': '-C ' .. $PWD .. ' -r ' .. $HOME .. '/.vim/stash/rubyopts.rb',
   },
-  'ruby.rspec': {
+  'ruby/rspec': {
     'command': 'rspec',
     'cmdopt': '-r ' .. $HOME .. '/.vim/stash/rubyopts.rb -r ' .. $HOME .. '/.vim/stash/vim_rspec_formatter.rb --format QuickfixFormatter',
     'exec': "%c %o %s:%{line('.')}",
     'outputter': 'quickfix',
   },
-  'ruby.rspec_all': {
+  'ruby/rspec_all': {
     'command': 'rspec',
     'cmdopt': '-r ' .. $HOME .. '/.vim/stash/rubyopts.rb -r ' .. $HOME .. '/.vim/stash/vim_rspec_formatter.rb --format QuickfixFormatter',
     'exec': "%c %o",
     'outputter': 'quickfix',
   },
-  'ruby.testunit': {
+  'ruby/test': {
     'exec': 'rake test',
   },
   'cpp': {

@@ -2,8 +2,8 @@ vim9script
 UsePlugin 'hive.vim'
 
 augroup HiveVim
-  autocmd! * <buffer>
+  autocmd!
 
   # for (*.hql,*.q} files
-  autocmd BufNewFile,BufRead {*.hql,*.q} setlocal filetype=hive
+  autocmd BufNewFile,BufRead {*.hql,*.q} setf hive
 augroup END
