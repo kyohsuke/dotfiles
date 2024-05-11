@@ -21,20 +21,6 @@ if has('gui_running')
 
   # MacVim
   if has('gui_macvim')
-    # Cursorline
-    set cursorline
-    highlight clear CursorLine
-    highlight CursorLine gui=underline guibg=black ctermbg=black
-
-    augroup cch
-      autocmd!
-      autocmd WinLeave * set nocursorline
-      autocmd WinEnter,BufRead * set cursorline
-
-      autocmd InsertEnter * set nocursorline
-      autocmd InsertLeave * set cursorline
-    augroup END
-
     set transparency=15
     set guifont=Cica-Regular:h14,Osaka-Mono:h14
     set guifontwide=Cica-Regular:h14,Osaka-Mono:h14
@@ -42,8 +28,8 @@ if has('gui_running')
     if has('transparency') || exists('+transparency')
       augroup hack234
         autocmd!
-        autocmd FocusGained * set transparency=10 cursorline
-        autocmd FocusLost * set transparency=50 nocursorline
+        autocmd FocusGained * set transparency=10
+        autocmd FocusLost * set transparency=50
       augroup END
     endif
   endif
