@@ -22,6 +22,8 @@ function fish_user_key_bindings
     bind -s -M insert \ch __peco_history
     bind -s -M insert \ck __peco_branch
 
+    bind -s -M default -m insert \n execute repaint-mode force-repaint
+    bind -s -M default -m insert \r execute repaint-mode force-repaint
     bind -s -M visual -m insert \n end-selection repaint-mode force-repaint
     bind -s -M visual -m insert \r end-selection repaint-mode force-repaint
 
