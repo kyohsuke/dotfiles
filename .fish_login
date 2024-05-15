@@ -93,7 +93,7 @@ and set -gx LS_COLORS (dircolors -c "$HOME/.dircolors" | string split ' ' | stri
 # }}}
 
 # {{{ Transient
-if type -q __transient
+if type -q __transient_execute
     functions --copy fish_prompt transient_prompt_func
     function transient_rprompt_func
         date +%T
