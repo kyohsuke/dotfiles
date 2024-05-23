@@ -268,7 +268,7 @@ plug#begin('~/.vim/plugged')
 
   Plug 'vim-skk/eskk.vim'
   Plug 'tyru/open-browser.vim'
-  Plug 'chrisbra/matchit'
+  Plug 'chrisbra/matchit', { 'helptags': v:false }
 
   Plug 'tyru/current-func-info.vim'
 
