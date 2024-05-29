@@ -9,6 +9,7 @@
 [core]
 	excludesFile = ~/.config/git/ignore.global
 	compression = 9
+	quotepath = false
 [rerere]
 	enabled = true
 [transfer]
