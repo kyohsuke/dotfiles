@@ -188,7 +188,7 @@ augroup END
 # {{{ vim-plug
 plug#begin('~/.vim/plugged')
   # Japanese Help
-  Plug 'vim-jp/vimdoc-ja', { 'helptags': v:false }
+  Plug 'vim-jp/vimdoc-ja'
 
   # Color Scheme
   Plug 'mrkn/mrkn256.vim'
