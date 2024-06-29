@@ -26,3 +26,6 @@ SRC="${HOME}/Library/Caches/Google/Chrome"
 DST="/Volumes/${DISK_NAME}/Caches/Chrome"
 mkdir -p "${HOME}/Library/Caches/Google"
 symbolic_link "${SRC}" "${DST}"
+
+# Create Firefox Cache Directory
+mkdir -p "/Volumes/${DISK_NAME}/Caches/Firefox"
