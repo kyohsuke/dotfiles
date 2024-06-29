@@ -231,6 +231,7 @@ plug#begin('~/.vim/plugged')
   # golang
   Plug 'mattn/vim-goimports'
   Plug 'kyohsuke/vim-go-syntax'
+  Plug 'sebdah/vim-delve'
 
   # ruby
   Plug 'vim-ruby/vim-ruby'
