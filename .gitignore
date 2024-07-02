@@ -18,6 +18,7 @@
 !/.ssh_config.d
 !/.gitignore.global
 !/.gitignore
+!/.gitattributes
 !/.vromerc
 !/.install
 !/.default-gems
