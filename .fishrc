@@ -73,7 +73,6 @@ if test -x "$HOME/.anyenv/bin/anyenv"
     # rbenv
     if test -x "$envPath/rbenv/bin/rbenv"
         set -gx GEM_EDITOR mvim
-        set -gx RUBY_YJIT_ENABLE 1
         set -gx UNBUNDLED_COMMANDS rake cap irb
         set -gx RUBY_CONFIGURE_OPTS "--disable-install-doc --disable-install-rdoc"
     end

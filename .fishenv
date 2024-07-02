@@ -37,7 +37,7 @@ if test -z $FISHENV_LOAD
     set -gx EDITOR "mvim -f --cmd 'autocmd VimLeave * :!open -a Terminal'"
 
     # Set flags
-    set -l COMMON_FLAGS "-O2 -flto -pipe -march=native"
+    set -l COMMON_FLAGS "-pipe -march=native"
     set -gx CFLAGS $COMMON_FLAGS $CFLAGS
     set -gx CXXFLAGS $COMMON_FLAGS $CXXFLAGS
 
