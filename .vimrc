@@ -193,6 +193,7 @@ endif
 # }}}
 # {{{ vim-plug
 if installed_plug_vim
+  g:plug_window = 'vnew'
   plug#begin('~/.vim/plugged')
     # Japanese Help
     Plug 'vim-jp/vimdoc-ja'
