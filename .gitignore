@@ -2,6 +2,8 @@
 /*
 /.*
 # add tracking files
+/.vim/autoload/
+!/.vim/autoload/.empty
 !/.gvimrc
 !/.vimrc
 !/.vimlc
@@ -101,4 +103,3 @@
 /.vim/.netrwhist
 /.vim/pack
 /.oh-my-zsh
-/.vim/autoload/plug.vim.old

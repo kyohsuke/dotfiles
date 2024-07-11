@@ -185,115 +185,125 @@ augroup DetectFileTypes
   autocmd FileType help nnoremap <buffer> <BS> <C-O>
 augroup END
 # }}}
-# {{{ vim-plug
-plug#begin('~/.vim/plugged')
-  # Japanese Help
-  Plug 'vim-jp/vimdoc-ja'
-
-  # Color Scheme
-  Plug 'mrkn/mrkn256.vim'
-
-  # Code Format
-  Plug 'editorconfig/editorconfig-vim'
-
-  # Substitute preview
-  Plug 'markonm/traces.vim'
-
-  # Syntax Plugins
-  Plug 'direnv/direnv.vim'
-  Plug 'ekalinin/Dockerfile.vim'
-  Plug 'jparise/vim-graphql'
-  Plug 'dart-lang/dart-vim-plugin'
-  Plug 'mechatroner/rainbow_csv'
-  Plug 'google/vim-jsonnet'
-  Plug 'khaveesh/vim-fish-syntax'
-  Plug 'hashivim/vim-terraform'
-
-  # Markdown
-  Plug 'tpope/vim-markdown'
-
-  # PostgreSQL
-  Plug 'lifepillar/pgsql.vim'
-
-  # TOML
-  Plug 'cespare/vim-toml'
-    Plug 'maralla/vim-toml-enhance'
-
-  # JavaScript
-  Plug 'othree/yajs.vim'
-    Plug 'othree/es.next.syntax.vim'
-  Plug 'othree/javascript-libraries-syntax.vim'
-  Plug 'maxmellon/vim-jsx-pretty'
-
-  # html5
-  Plug 'othree/html5.vim'
-
-  # golang
-  Plug 'mattn/vim-goimports'
-  Plug 'kyohsuke/vim-go-syntax'
-  Plug 'sebdah/vim-delve'
-
-  # ruby
-  Plug 'vim-ruby/vim-ruby'
-
-  # NerdTree
-  Plug 'preservim/nerdtree'
-
-  Plug 'previm/previm'
-
-  Plug 'thinca/vim-quickrun'
-  Plug 'kana/vim-smartchr'
-  Plug 'yssl/QFEnter'
-
-  Plug 'kyohsuke/sinplu.vim'
-  Plug 'kyohsuke/yaml-key.vim'
-
-  Plug 'itspriddle/vim-shellcheck'
-
-  # Git
-  Plug 'tpope/vim-fugitive'
-  Plug 'hotwatermorning/auto-git-diff'
-
-  # CtrlP
-  Plug 'ctrlpvim/ctrlp.vim'
-    Plug 'mattn/ctrlp-matchfuzzy'
-
-  # Vim-LSP & AsynComplete
-  Plug 'prabirshrestha/asyncomplete.vim'
-  Plug 'prabirshrestha/asyncomplete-lsp.vim'
-  Plug 'prabirshrestha/vim-lsp'
-    Plug 'mattn/vim-lsp-settings'
-    Plug 'mattn/ctrlp-lsp'
-
-  Plug 'LeafCage/foldCC.vim'
-
-  Plug 'vim-skk/eskk.vim'
-  Plug 'tyru/open-browser.vim'
-
-  Plug 'tyru/current-func-info.vim'
-
-  Plug 'ntpeters/vim-better-whitespace'
-
-  # Devicons
-  Plug 'ryanoasis/vim-devicons'
-    Plug 'Xuyuanp/nerdtree-git-plugin'
-
-  if !empty($ENABLE_GITHUB_COPILOT)
-    Plug 'github/copilot.vim'
-  endif
-plug#end()
-
-if !isdirectory($HOME .. '/.vim/plugged')
-  PlugInstall
+# {{{ Setup plug.vim
+var installed_plug_vim = 0
+if filereadable($HOME .. '/.vim/autoload/plug.vim')
+  installed_plug_vim = 1
 endif
+# }}}
+# {{{ vim-plug
+if installed_plug_vim
+  plug#begin('~/.vim/plugged')
+    # Japanese Help
+    Plug 'vim-jp/vimdoc-ja'
 
-def g:FindPlugin(name: string): bool
-  var plugs = get(g:, 'plugs', {})
-  return has_key(plugs, name) ? isdirectory(plugs[name].dir) : 0
-enddef
-command! -nargs=1 UsePlugin if !g:FindPlugin(<args>) | finish | endif
+    # Color Scheme
+    Plug 'mrkn/mrkn256.vim'
 
-runtime! config/*.vim
+    # Code Format
+    Plug 'editorconfig/editorconfig-vim'
+
+    # Substitute preview
+    Plug 'markonm/traces.vim'
+
+    # Syntax Plugins
+    Plug 'direnv/direnv.vim'
+    Plug 'ekalinin/Dockerfile.vim'
+    Plug 'jparise/vim-graphql'
+    Plug 'dart-lang/dart-vim-plugin'
+    Plug 'mechatroner/rainbow_csv'
+    Plug 'google/vim-jsonnet'
+    Plug 'khaveesh/vim-fish-syntax'
+    Plug 'hashivim/vim-terraform'
+
+    # Markdown
+    Plug 'tpope/vim-markdown'
+
+    # PostgreSQL
+    Plug 'lifepillar/pgsql.vim'
+
+    # TOML
+    Plug 'cespare/vim-toml'
+      Plug 'maralla/vim-toml-enhance'
+
+    # JavaScript
+    Plug 'othree/yajs.vim'
+      Plug 'othree/es.next.syntax.vim'
+    Plug 'othree/javascript-libraries-syntax.vim'
+    Plug 'maxmellon/vim-jsx-pretty'
+
+    # html5
+    Plug 'othree/html5.vim'
+
+    # golang
+    Plug 'mattn/vim-goimports'
+    Plug 'kyohsuke/vim-go-syntax'
+    Plug 'sebdah/vim-delve'
+
+    # ruby
+    Plug 'vim-ruby/vim-ruby'
+
+    # NerdTree
+    Plug 'preservim/nerdtree'
+
+    Plug 'previm/previm'
+
+    Plug 'thinca/vim-quickrun'
+    Plug 'kana/vim-smartchr'
+    Plug 'yssl/QFEnter'
+
+    Plug 'kyohsuke/sinplu.vim'
+    Plug 'kyohsuke/yaml-key.vim'
+
+    Plug 'itspriddle/vim-shellcheck'
+
+    # Git
+    Plug 'tpope/vim-fugitive'
+    Plug 'hotwatermorning/auto-git-diff'
+
+    # CtrlP
+    Plug 'ctrlpvim/ctrlp.vim'
+      Plug 'mattn/ctrlp-matchfuzzy'
+
+    # Vim-LSP & AsynComplete
+    Plug 'prabirshrestha/asyncomplete.vim'
+    Plug 'prabirshrestha/asyncomplete-lsp.vim'
+    Plug 'prabirshrestha/vim-lsp'
+      Plug 'mattn/vim-lsp-settings'
+      Plug 'mattn/ctrlp-lsp'
+
+    Plug 'LeafCage/foldCC.vim'
+
+    Plug 'vim-skk/eskk.vim'
+    Plug 'tyru/open-browser.vim'
+
+    Plug 'tyru/current-func-info.vim'
+
+    Plug 'ntpeters/vim-better-whitespace'
+
+    # Devicons
+    Plug 'ryanoasis/vim-devicons'
+      Plug 'Xuyuanp/nerdtree-git-plugin'
+
+    if !empty($ENABLE_GITHUB_COPILOT)
+      Plug 'github/copilot.vim'
+    endif
+  plug#end()
+
+  if !isdirectory($HOME .. '/.vim/plugged')
+    PlugInstall
+  endif
+
+  def g:FindPlugin(name: string): bool
+    var plugs = get(g:, 'plugs', {})
+    return has_key(plugs, name) ? isdirectory(plugs[name].dir) : 0
+  enddef
+  command! -nargs=1 UsePlugin if !g:FindPlugin(<args>) | finish | endif
+
+  runtime! config/*.vim
+else
+  execute "!curl -fLo \"$HOME/.vim/autoload/plug.vim\" --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
+endif
 # }}}
 
 set secure
