@@ -196,6 +196,7 @@ augroup END
 # }}}
 # {{{ vim-plug
 g:plug_window = 'vnew'
+g:plug_pwindow = 'sview'
 plug#begin('~/.vim/plugged')
   # Japanese Help
   Plug 'vim-jp/vimdoc-ja'
