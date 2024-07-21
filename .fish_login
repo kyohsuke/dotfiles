@@ -92,6 +92,11 @@ and test -f "$HOME/.dircolors"
 and set -gx LS_COLORS (dircolors -c "$HOME/.dircolors" | string split ' ' | string replace -a "'" '')[3]
 # }}}
 
+# {{{ terragrunt
+command -q terragrunt
+and complete -c terragrunt -w terraform
+# }}}
+
 # {{{ Transient
 if type -q __transient_execute
     functions --copy fish_prompt transient_prompt_func
