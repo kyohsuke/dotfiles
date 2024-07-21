@@ -195,8 +195,8 @@ augroup DetectFileTypes
 augroup END
 # }}}
 # {{{ vim-plug
-g:plug_window = 'vnew'
-g:plug_pwindow = 'sview'
+g:plug_window = 'vertical topleft new'
+g:plug_pwindow = 'above 12new'
 plug#begin('~/.vim/plugged')
   # Japanese Help
   Plug 'vim-jp/vimdoc-ja'
