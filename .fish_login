@@ -97,6 +97,11 @@ command -q terragrunt
 and complete -c terragrunt -w terraform
 # }}}
 
+# {{{ localstack
+command -q localstack
+and localstack completion fish | source
+# }}}
+
 # {{{ Transient
 if type -q __transient_execute
     functions --copy fish_prompt transient_prompt_func
