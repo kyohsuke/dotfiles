@@ -16,7 +16,7 @@ function __add_manpath -a pathName
 end
 
 # {{{ rustup
-__add_path "$HOME/.cargo/bin"
+__add_path "/usr/local/opt/rustup/bin"
 # }}}
 # {{{ docker-machine
 command -v docker-machine >/dev/null
