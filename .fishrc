@@ -79,6 +79,12 @@ if test -x "$HOME/.anyenv/bin/anyenv"
 end
 # }}}
 
+# {{{ cargo bin
+if test -d "$HOME/.cargo/bin"
+    __add_path "$HOME/.cargo/bin"
+end
+# }}}
+
 # {{{ google cloud SDK
 __source "$HOMEBREW_PREFIX/share/google-cloud-sdk/path.fish.inc"
 # }}}
