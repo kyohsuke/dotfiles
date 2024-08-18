@@ -6,11 +6,9 @@ if test ! "$(command -v whalebrew)"; then
 
     WHALEBREWS=(
       imagemagick
-      ffmpeg
     )
 
-    for WHALEBREW in "${WHALEBREWS[@]}"
-    do
+    for WHALEBREW in "${WHALEBREWS[@]}"; do
       whalebrew "whalebrew/${WHALEBREW}"
     done
   fi

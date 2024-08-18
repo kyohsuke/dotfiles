@@ -23,38 +23,34 @@ RBENV_PLUGINS=(
   rbenv/rbenv-default-gems
 )
 
-
 install_nodenv_plugins() {
-  for PLUGIN in "${NODENV_PLUGINS[@]}";
-  do
+  for PLUGIN in "${NODENV_PLUGINS[@]}"; do
     echo "[CHECK] ${PLUGIN}"
     if [ ! -d "$(nodenv root)/plugins/${PLUGIN##*/}" ]; then
       git clone "https://github.com/${PLUGIN}" "$(nodenv root)/plugins/${PLUGIN##*/}"
     fi
   done
-ln -s "$HOME/.default-node-packages" "$(nodenv root)/default-packages"
+  ln -s "$HOME/.default-node-packages" "$(nodenv root)/default-packages"
 }
 
 install_pyenv_plugins() {
-  for PLUGIN in "${PYENV_PLUGINS[@]}";
-  do
+  for PLUGIN in "${PYENV_PLUGINS[@]}"; do
     echo "[CHECK] ${PLUGIN}"
     if [ ! -d "$(pyenv root)/plugins/${PLUGIN##*/}" ]; then
       git clone "https://github.com/${PLUGIN}" "$(pyenv root)/plugins/${PLUGIN##*/}"
     fi
   done
-ln -s "$HOME/.default-packages" "$(pyenv root)/default-packages"
+  ln -s "$HOME/.default-packages" "$(pyenv root)/default-packages"
 }
 
 install_rbenv_plugins() {
-for PLUGIN in "${RBENV_PLUGINS[@]}";
-do
-  echo "[CHECK] ${PLUGIN}"
-  if [ ! -d "$(rbenv root)/plugins/${PLUGIN##*/}" ]; then
-    git clone "https://github.com/${PLUGIN}" "$(rbenv root)/plugins/${PLUGIN##*/}"
-  fi
-done
-ln -s "$HOME/.default-gems" "$(rbenv root)/default-gems"
+  for PLUGIN in "${RBENV_PLUGINS[@]}"; do
+    echo "[CHECK] ${PLUGIN}"
+    if [ ! -d "$(rbenv root)/plugins/${PLUGIN##*/}" ]; then
+      git clone "https://github.com/${PLUGIN}" "$(rbenv root)/plugins/${PLUGIN##*/}"
+    fi
+  done
+  ln -s "$HOME/.default-gems" "$(rbenv root)/default-gems"
 }
 
 # install Anyenv
@@ -67,8 +63,7 @@ if ! [ -e "$HOME/.anyenv" ]; then
   "$HOME/.anyenv/bin/anyenv" install --force-init
 
   # Install envs
-  for ANYENV in "${ANYENVS[@]}"
-  do
+  for ANYENV in "${ANYENVS[@]}"; do
     anyenv install "$ANYENV"
   done
   eval "$("$HOME/.anyenv/bin/anyenv" init -)"
@@ -96,8 +91,7 @@ if ! [ -e "$HOME/.anyenv" ]; then
   # install python
   if [ -f .python-version ]; then
     VERSIONS=$(cat .python-version)
-    for VERSION in $VERSIONS
-    do
+    for VERSION in $VERSIONS; do
       pyenv install "$VERSION"
     done
     pyenv rehash

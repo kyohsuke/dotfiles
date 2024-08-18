@@ -2,85 +2,87 @@
 TEMPDIR=$(mktemp -d)
 
 function cleanup {
-  rm -rf "$TEMPDIR"
+	rm -rf "$TEMPDIR"
 }
 trap cleanup EXIT
 
 if ! [ -f "$HOME/.install" ]; then
-  # Put machine processors to environment
-  grep --quiet MACHINE_PROCESSORS "$HOME/.fishenv.local" || echo "set -gx MACHINE_PROCESSORS $(ruby -retc -e 'puts Etc.nprocessors')" >> "$HOME/.fishenv.local"
-  # shellcheck disable=SC2016
-  grep --quiet HOMEBREW_MAKE_JOBS "$HOME/.fishenv.local" || echo 'set -gx HOMEBREW_MAKE_JOBS $MACHINE_PROCESSORS' >> "$HOME/.fishenv.local"
-  # shellcheck disable=SC2016
-  grep --quiet BUNDLE_JOBS "$HOME/.fishenv.local" || echo 'set -gx BUNDLE_JOBS $MACHINE_PROCESSORS' >> "$HOME/.fishenv.local"
-  # shellcheck disable=SC2016
-  grep --quiet MAKE_OPTS "$HOME/.fishenv.local" || echo 'set -gx MAKE_OPTS "-j $MACHINE_PROCESSORS"' >> "$HOME/.fishenv.local"
-  # shellcheck disable=SC2016
-  grep --quiet ARCHFLAGS "$HOME/.fishenv.local" || echo "set -gx ARCHFLAGS \"-arch $(uname -m)\"" >> "$HOME/.fishenv.local"
+	# Put machine processors to environment
+	grep --quiet MACHINE_PROCESSORS "$HOME/.fishenv.local" || echo "set -gx MACHINE_PROCESSORS $(ruby -retc -e 'puts Etc.nprocessors')" >>"$HOME/.fishenv.local"
+	# shellcheck disable=SC2016
+	grep --quiet HOMEBREW_MAKE_JOBS "$HOME/.fishenv.local" || echo 'set -gx HOMEBREW_MAKE_JOBS $MACHINE_PROCESSORS' >>"$HOME/.fishenv.local"
+	# shellcheck disable=SC2016
+	grep --quiet BUNDLE_JOBS "$HOME/.fishenv.local" || echo 'set -gx BUNDLE_JOBS $MACHINE_PROCESSORS' >>"$HOME/.fishenv.local"
+	# shellcheck disable=SC2016
+	grep --quiet MAKE_OPTS "$HOME/.fishenv.local" || echo 'set -gx MAKE_OPTS "-j $MACHINE_PROCESSORS"' >>"$HOME/.fishenv.local"
+	# shellcheck disable=SC2016
+	grep --quiet ARCHFLAGS "$HOME/.fishenv.local" || echo "set -gx ARCHFLAGS \"-arch $(uname -m)\"" >>"$HOME/.fishenv.local"
 
-  # Ask for the administrator password upfront
-  sudo -v
+	# Ask for the administrator password upfront
+	sudo -v
 
-  # Keep-alive: update existing `sudo` time stamp until the script has finished
-  while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+	# Keep-alive: update existing `sudo` time stamp until the script has finished
+	while true; do
+		sudo -n true
+		sleep 60
+		kill -0 "$$" || exit
+	done 2>/dev/null &
 
+	# Check for Homebrew,
+	# Install if we don't have it
+	if test ! "$(command -v brew)"; then
+		echo "Installing homebrew..."
+		bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 
-  # Check for Homebrew,
-  # Install if we don't have it
-  if test ! "$(command -v brew)"; then
-    echo "Installing homebrew..."
-    bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+		# Make sure we’re using the latest Homebrew.
+		brew update
+	fi
 
-    # Make sure we’re using the latest Homebrew.
-    brew update
-  fi
+	# clone dotfiles and convert https to ssh
+	git clone https://github.com/kyohsuke/dotfiles.git "$TEMPDIR"
+	cd "$TEMPDIR" || exit
 
-  # clone dotfiles and convert https to ssh
-  git clone https://github.com/kyohsuke/dotfiles.git "$TEMPDIR"
-  cd "$TEMPDIR" || exit
-
-  # copy dotfiles
-  find . -mindepth 1 -maxdepth 1 -print0 | xargs -P 4 -0 -I{} mv -f {} "$HOME/"
-  cd "$HOME" || exit
-  ln -s "$HOME/.config/streamlink" "$HOME/Library/Application Support/streamlink"
-  git submodule update --init
+	# copy dotfiles
+	find . -mindepth 1 -maxdepth 1 -print0 | xargs -P 4 -0 -I{} mv -f {} "$HOME/"
+	cd "$HOME" || exit
+	ln -s "$HOME/.config/streamlink" "$HOME/Library/Application Support/streamlink"
+	git submodule update --init
 fi
 
 if [ -z "$WORK" ]; then
-  echo "WORK? [Y/n]"
-  read -r ANSWER
-  case "$ANSWER" in
-      ""|[yY]|[yY][eE][sS])
-        export WORK="true"
-        ;;
-      * )
-        export WORK="false"
-        ;;
-  esac
+	echo "WORK? [Y/n]"
+	read -r ANSWER
+	case "$ANSWER" in
+	"" | [yY] | [yY][eE][sS])
+		export WORK="true"
+		;;
+	*)
+		export WORK="false"
+		;;
+	esac
 fi
 
 if [ -z "$CHANGE_OSX_DEFAULTS" ]; then
-  echo "change OSX defaults? [y/N]"
-  read -r ANSWER
-  case "$ANSWER" in
-      ""[nN]|[nN][oO])
-        export CHANGE_OSX_DEFAULTS="false"
-        ;;
-      * )
-        export CHANGE_OSX_DEFAULTS="true"
-        ;;
-  esac
+	echo "change OSX defaults? [y/N]"
+	read -r ANSWER
+	case "$ANSWER" in
+	""[nN] | [nN][oO])
+		export CHANGE_OSX_DEFAULTS="false"
+		;;
+	*)
+		export CHANGE_OSX_DEFAULTS="true"
+		;;
+	esac
 fi
 
 echo "WORK: $WORK"
 echo "CHANGE_OSX_DEFAULTS: $CHANGE_OSX_DEFAULTS"
 
 TARGET_DIR="$HOME/.setups"
-for STEP in $(find "$TARGET_DIR" -name '*.sh'| sort)
-do
-  STEP_FILE="${STEP##"$TARGET_DIR"/}"
-  echo "[EXEC] $STEP_FILE"
-  bash "$HOME/.setups/$STEP_FILE"
+for STEP in $(find "$TARGET_DIR" -name '*.sh' | sort); do
+	STEP_FILE="${STEP##"$TARGET_DIR"/}"
+	echo "[EXEC] $STEP_FILE"
+	bash "$HOME/.setups/$STEP_FILE"
 done
 
 echo "Cleaning up homebrew..."

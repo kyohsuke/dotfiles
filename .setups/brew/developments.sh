@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-BREWFILE=$(cat << EOS
+BREWFILE=$(
+  cat <<EOS
 brew "difftastic"
 brew "parallel"
 brew "ctags"

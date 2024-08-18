@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-BREWFILE=$(cat << EOS
+BREWFILE=$(
+  cat <<EOS
 tap "kyohsuke/misc"
 tap "homebrew/cask-fonts"
 tap "nektos/tap"
