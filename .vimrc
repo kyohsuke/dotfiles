@@ -271,10 +271,10 @@ plug#begin('~/.vim/plugged')
 
   # Vim-LSP & AsynComplete
   Plug 'prabirshrestha/asyncomplete.vim'
-  Plug 'prabirshrestha/asyncomplete-lsp.vim'
   Plug 'prabirshrestha/vim-lsp'
     Plug 'mattn/vim-lsp-settings'
     Plug 'mattn/ctrlp-lsp'
+  Plug 'prabirshrestha/asyncomplete-lsp.vim'
 
   Plug 'LeafCage/foldCC.vim'
 
