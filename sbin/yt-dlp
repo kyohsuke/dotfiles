@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-VERSION="2024.07.02"
+VERSION="2024.09.27"
 CONTAINER="jauderho/yt-dlp"
 SUEXEC="$(id -u):$(id -g)"
 PWD="$(pwd)"
