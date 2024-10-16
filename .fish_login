@@ -97,9 +97,14 @@ command -q terragrunt
 and complete -c terragrunt -w terraform
 # }}}
 
+# {{{ go-blueprint
+command -q go-blueprint
+and _evalcache go-blueprint completion fish
+# }}}
+
 # {{{ localstack
 command -q localstack
-and localstack completion fish | source
+and _evalcache localstack completion fish
 # }}}
 
 # {{{ Transient
