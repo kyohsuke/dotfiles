@@ -74,7 +74,17 @@ if test -x "$HOME/.anyenv/bin/anyenv"
     if test -x "$envPath/rbenv/bin/rbenv"
         set -gx GEM_EDITOR mvim
         set -gx UNBUNDLED_COMMANDS rake cap irb
-        set -gx RUBY_CONFIGURE_OPTS "--disable-install-doc --disable-install-rdoc"
+
+        if test -x "$BREW_BIN"
+            set -l libressl ($BREW_BIN --prefix libressl)
+            if test -d $libressl
+                set -gx RUBY_CONFIGURE_OPTS "--with-openssl-dir=$libressl --disable-install-doc --disable-install-rdoc"
+            else
+                set -gx RUBY_CONFIGURE_OPTS "--disable-install-doc --disable-install-rdoc"
+            end
+        else
+            set -gx RUBY_CONFIGURE_OPTS "--disable-install-doc --disable-install-rdoc"
+        end
     end
 end
 # }}}
