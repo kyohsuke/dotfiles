@@ -54,8 +54,7 @@
 	stashes = stash list
 	remotes = remote -v
 
-	sdiff = difftool
-	last = sdiff HEAD~1
+	last = diff HEAD~1
 	dig = log -p --pickaxe-all -S
 	precommit = diff --cached --diff-algorithm=minimal -w
 	dmb = delete-merged-branches
@@ -77,11 +76,7 @@
 	algorithm = histogram
 	compactionHeuristic = true
 	submodule = log
-	tool = difftastic
-[difftool]
-	prompt = false
-[difftool "difftastic"]
-	cmd = difft "$LOCAL" "$REMOTE"
+	external = difft
 [merge]
 	tool = gvimdiff
 [mergetool]
