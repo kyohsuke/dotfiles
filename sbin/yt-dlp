@@ -1,8 +1,0 @@
-#!/usr/bin/env bash
-
-VERSION="2024.09.27"
-CONTAINER="jauderho/yt-dlp"
-SUEXEC="$(id -u):$(id -g)"
-PWD="$(pwd)"
-
-docker run --rm -e SUEXEC="$SUEXEC" -v "$PWD":/app:delegated -w /app "$CONTAINER:$VERSION" "$@"
