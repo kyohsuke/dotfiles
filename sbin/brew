@@ -15,7 +15,7 @@ if test -f "/home/linuxbrew/.linuxbrew/bin/brew"; then
 fi
 
 if which pyenv > /dev/null 2>&1; then
-  /usr/bin/env PATH="${PATH//$(pyenv root)\/shims:/}" "$BREW_BIN" "$@"
+  /usr/bin/env PATH="${PATH//$(pyenv root)\/shims:/}" "$BREW_BIN" "$@" # shellcheck disable=SC3060
 else
   "$BREW_BIN" "$@"
 fi

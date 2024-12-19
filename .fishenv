@@ -2,7 +2,156 @@
 
 # {{{ Pragma Once
 if test -z $FISHENV_LOAD
+    # {{{ Homebrew
+    test -x "/usr/local/bin/brew"
+    and set -l BREW_BIN "/usr/local/bin/brew"
+
+    test -x "/opt/homebrew/bin/brew"
+    and set -l BREW_BIN "/opt/homebrew/bin/brew"
+
+    test -x "/home/linuxbrew/.linuxbrew/bin/brew"
+    and set -l BREW_BIN "/home/linuxbrew/.linuxbrew/bin/brew"
+
+    test -x "$BREW_BIN"
+    and _evalcache "$BREW_BIN" shellenv
+    # }}}
+
+    function __source -a fileName
+        test -f "$fileName"
+        and source "$fileName"
+    end
+
+    function __add_path -a pathName
+        test -d "$pathName"
+        and set -gx PATH "$pathName" $PATH
+    end
+
+    function __add_manpath -a pathName
+        test -d "$pathName"
+        and set -gx MANPATH "$pathName" $MANPATH
+    end
+
+    # {{{ rustup
+    if test -x "$HOMEBREW_PREFIX/opt/rustup/bin"
+        __add_path "$HOMEBREW_PREFIX/opt/rustup/bin"
+    end
+    # }}}
+    # {{{ docker-machine
+    command -v docker-machine >/dev/null
+    and _evalcache docker-machine env default
+    # }}}
+
+    # {{{ anyenv
+    if test -x "$HOME/.anyenv/bin/anyenv"
+        __add_path "$HOME/.anyenv/bin"
+        _evalcache anyenv init - fish
+        set -f envPath "$HOME/.anyenv/envs"
+
+        # goenv
+        if test -x "$envPath/goenv/bin/goenv"
+            set -gx GOENV_DISABLE_GOPATH 1
+            set -gx GOPATH "$HOME"
+            set -gx GOBIN "$HOME/bin"
+            set -gx GOCACHE "$HOME/.cache/go-build"
+            set -gx GOCOVERDIR "$HOME/.cache/go-covdata"
+            if test ! -d "$GOCOVERDIR"
+                mkdir -p "$GOCOVERDIR"
+            end
+            set -gx GOMODCACHE "$HOME/.cache/pkg/mod"
+        end
+
+        # pyenv
+        if test -x "$envPath/pyenv/bin/pyenv"
+            set -gx PYTHONDONTWRITEBYTECODE 1
+            set -gx PYENV_VIRTUALENV_DISABLE_PROMPT 1
+            set -gx PYTHON_CFLAGS '-march=native -mtune=native'
+            switch $DETECT_OSTYPE
+                case Darwin
+                    set -gx PYTHON_CONFIGURE_OPTS "--enable-framework --enable-optimizations --with-lto"
+                case Linux
+                    set -gx PYTHON_CONFIGURE_OPTS "--enable-shared --enable-optimizations --with-lto"
+            end
+            set -gx PYTHONWARNINGS 'ignore::DeprecationWarning'
+        end
+
+        # rbenv
+        if test -x "$envPath/rbenv/bin/rbenv"
+            set -gx GEM_EDITOR mvim
+            set -gx UNBUNDLED_COMMANDS rake cap irb
+
+            if test -x "$BREW_BIN"
+                set -l libressl ($BREW_BIN --prefix libressl)
+                if test -d $libressl
+                    set -gx RUBY_CONFIGURE_OPTS "--with-openssl-dir=$libressl --disable-install-doc --disable-install-rdoc"
+                else
+                    set -gx RUBY_CONFIGURE_OPTS "--disable-install-doc --disable-install-rdoc"
+                end
+            else
+                set -gx RUBY_CONFIGURE_OPTS "--disable-install-doc --disable-install-rdoc"
+            end
+        end
+    end
+    # }}}
+
+    # {{{ cargo bin
+    if test -d "$HOME/.cargo/bin"
+        __add_path "$HOME/.cargo/bin"
+    end
+    # }}}
+
+    # {{{ google cloud SDK
+    __source "$HOMEBREW_PREFIX/share/google-cloud-sdk/path.fish.inc"
+    # }}}
+
+    # {{{ coreutils
+    if test -d "$HOMEBREW_PREFIX/opt/coreutils"
+        __add_path "$HOMEBREW_PREFIX/opt/coreutils/libexec/gnubin"
+        __add_manpath "$HOMEBREW_PREFIX/opt/coreutils/libexec/gnuman"
+    end
+    # }}}
+
+    # {{{ libpq
+    if test -d "$HOMEBREW_PREFIX/opt/libpq/bin"
+        __add_path "$HOMEBREW_PREFIX/opt/libpq/bin"
+        __add_manpath "$HOMEBREW_PREFIX/opt/libpq/share/man"
+    end
+    # }}}
+
+    # {{{ util-linux
+    if test -d "$HOMEBREW_PREFIX/opt/util-linux"
+        __add_path "$HOMEBREW_PREFIX/opt/util-linux/bin"
+        __add_path "$HOMEBREW_PREFIX/opt/util-linux/sbin"
+        __add_manpath "$HOMEBREW_PREFIX/opt/util-linux/share/man"
+
+        set -gx LDFLAGS "-L$HOMEBREW_PREFIX/opt/util-linux/lib" $LDFLAGS
+        set -gx CPPFLAGS "-I$HOMEBREW_PREFIX/opt/util-linux/include" $CPPFLAGS
+    end
+    # }}}
+
+    # {{{ manpath
+    __add_manpath "$HOMEBREW_PREFIX/share/man"
+    # }}}
+
+    function _upath
+        set -l upath
+        for npath in $PATH
+            not contains -- $npath $upath
+            and set upath $upath $npath
+        end
+        set -gx PATH $upath
+    end
+
+    function _umanpath
+        set -l upath
+        for npath in $MANPATH
+            not contains -- $npath $upath
+            and set upath $upath $npath
+        end
+        set -gx MANPATH $upath
+    end
+
     set -gx DETECT_OSTYPE (uname)
+    set -gx PATH "$HOMEBREW_PREFIX/bin" $PATH
 
     # {{{ set environments
     for mPath in /usr/share/man /Library/Apple/usr/share/man /Library/Developer/CommandLineTools/usr/share/man
@@ -18,7 +167,7 @@ if test -z $FISHENV_LOAD
     set -gx LESSCHARSET UTF-8
     set -gx OUTPUT_CHARSET UTF-8
 
-    set -gx MONO_GAC_PREFIX /usr/local
+    set -gx MONO_GAC_PREFIX "$HOMEBREW_PREFIX"
 
     # Set XDG Environments
     set -gx XDG_CONFIG_HOME "$HOME/.config"
@@ -26,10 +175,10 @@ if test -z $FISHENV_LOAD
     set -gx XDG_DATA_HOME "$HOME/.local/share"
     set -gx XDG_STATE_HOME "$HOME/.local/state"
 
-    test -x /usr/local/bin/files
+    test -x "$HOMEBREW_PREFIX/bin/files"
     and set -gx FILES_IGNORE_PATTERN '(^(\.git|\.hg|\.svn|_darcs|\.bzr|tmp|\.vagrant|\.keep|\.log|.tmp|\.DS_Store)$|node_modules)'
 
-    test -x /usr/local/bin/gpg
+    test -x "/usr/local/bin/gpg" # こいつはなぜか /usr/local/bin に link がある
     and set -gx GPG_TTY (tty)
 
     set -gx HOMEBREW_NO_INSTALL_CLEANUP 1
@@ -42,13 +191,13 @@ if test -z $FISHENV_LOAD
     set -gx CXXFLAGS $COMMON_FLAGS $CXXFLAGS
 
     # bat
-    if test -x /usr/local/bin/bat
+    if test -x "$HOMEBREW_PREFIX/bin/bat"
         set -gx BAT_PAGER "less -FR"
     end
 
     # libffi
-    test -d /usr/local/opt/libffi/lib/pkgconfig
-    and set -gx PKG_CONFIG_PATH /usr/local/opt/libffi/lib/pkgconfig
+    test -d "$HOMEBREW_PREFIX/opt/libffi/lib/pkgconfig"
+    and set -gx PKG_CONFIG_PATH "$HOMEBREW_PREFIX/opt/libffi/lib/pkgconfig"
 
     # psql editor
     set -gx PSQL_EDITOR 'gvim +"set syntax=sql" '
@@ -61,6 +210,10 @@ if test -z $FISHENV_LOAD
     test -f "$HOME/.fishenv.local"
     and source "$HOME/.fishenv.local"
     # }}}
+
+    _upath
+    _umanpath
+
     set -gx FISHENV_LOAD 1
 end
 # }}}
