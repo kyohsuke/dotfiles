@@ -1,0 +1,15 @@
+background-opacity = 0.85
+font-family = Cica
+font-size = 14
+font-thicken = true
+font-feature = -calt
+font-feature = -liga
+font-feature = -dlig
+
+theme = "Pro"
+cursor-style = block
+cursor-style-blink = false
+
+window-theme = system
+window-width = 180
+window-height = 50

@@ -82,6 +82,11 @@
 /.config/rubygems/*
 !/.config/rubygems/config
 
+# Ghostty
+!/.config/ghostty
+/.config/ghostty/*
+!/.config/ghostty/config
+
 # fish shell
 !/.fishenv
 !/.fishrc
@@ -97,6 +102,7 @@
 !/.bundle
 /.bundle/*
 !/.bundle/config
+
 
 # Ignore Files
 /.vim/plugged/
