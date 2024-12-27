@@ -15,7 +15,7 @@
 
 if [ -z "$VIM_APP_DIR" ]
 then
-	myDir="`dirname "$0"`"
+  myDir="$(dirname "$0")"
 	myAppDir="$myDir/../Applications"
 	for i in ~/Applications ~/Applications/vim $myDir $myDir/vim $myAppDir $myAppDir/vim /Applications /Applications/vim /Applications/Utilities /Applications/Utilities/vim; do
 		if [ -x "$i/MacVim.app" ]; then
@@ -34,7 +34,7 @@ binary="$VIM_APP_DIR/MacVim.app/Contents/MacOS/Vim"
 # Next, peek at the name used to invoke this script, and set options
 # accordingly.
 
-name="`basename "$0"`"
+name="$(basename "$0")"
 gui=
 opts=
 
@@ -57,6 +57,13 @@ case "$name" in
 		;;
 esac
 
+RETURN_APP="Terminal"
+case "$TERM_PROGRAM" in
+  ghostty)
+    RETURN_APP="Ghostty"
+    ;;
+esac
+
 # Last step:  fire up vim.
 # The program should fork by default when started in GUI mode, but it does
 # not; we work around this when this script is invoked as "gvim" or "rgview"
@@ -66,8 +73,10 @@ if [ "$gui" ]; then
 	# terminal instead of the console log.
 	# But if you use open instead, you will need to fully qualify the
 	# path names for any filenames you specify, which is hard.
-	exec "$binary" --cmd 'autocmd VimLeave * :!open -a Terminal' -g $opts ${1:+"$@"}
+  # shellcheck disable=SC2086
+	exec "$binary" --cmd "autocmd VimLeave * :!open -a $RETURN_APP" -g $opts ${1:+"$@"}
 else
+  # shellcheck disable=SC2086
 	exec "$binary" $opts ${1:+"$@"}
 fi
 normal
