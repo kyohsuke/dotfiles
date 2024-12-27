@@ -6,7 +6,12 @@ font-feature = -calt
 font-feature = -liga
 font-feature = -dlig
 
+bold-is-bright = true
+selection-background = C0C0C0
+
 theme = "Pro"
+
+shell-integration-features = no-cursor
 cursor-style = block
 cursor-style-blink = false
 
