@@ -1,23 +1,31 @@
+# vim: filetype=config
 background-opacity = 0.85
+
+# fonts
 font-family = Cica
 font-size = 14
 font-thicken = true
+
+# disable ligatures,
 font-feature = -calt
 font-feature = -liga
 font-feature = -dlig
 
-bold-is-bright = true
-selection-background = C0C0C0
-
-theme = "Pro"
-
+# cursor
 shell-integration-features = no-cursor
 cursor-style = block
 cursor-style-blink = false
 
+# window styles
+theme = "Pro"
+bold-is-bright = true
+selection-background = C0C0C0
+
+# window size
 window-theme = system
 window-width = 180
 window-height = 50
 
+# keybinds
 keybind = home=scroll_to_top
 keybind = end=scroll_to_bottom
