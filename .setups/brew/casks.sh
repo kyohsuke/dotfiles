@@ -3,7 +3,6 @@
 BREWFILE=$(
   cat <<EOS
 cask "firefox"
-cask "docker"
 cask "keka"
 EOS
 )

@@ -69,8 +69,6 @@
 [pager]
 	difftool = true
 	branch = false
-[interactive]
-	diffFilter = diff-highlight
 [diff]
 	nmemonicPrefix = true
 	algorithm = histogram
