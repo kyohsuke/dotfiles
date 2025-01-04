@@ -1,0 +1,12 @@
+---
+- name: brew | install indiviaual formulas
+  community.general.homebrew:
+    name:
+      - "rename"
+
+- name: brew | install indiviaual casks
+  community.general.homebrew_cask:
+    name:
+      - "xld"
+      - "cooviewer"
+      - "parallels"

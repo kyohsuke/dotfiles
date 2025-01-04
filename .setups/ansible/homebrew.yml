@@ -1,0 +1,62 @@
+---
+- name: brew | Tap a Homebrew repository
+  community.general.homebrew_tap:
+    name:
+      - "kyohsuke/misc"
+      - "nektos/tap"
+      - "genkiroid/cert"
+
+
+- name: brew | Install formulas
+  community.general.homebrew:
+    name:
+      # requirements
+      - "mas"
+
+      # fish
+      - "fish"
+      - "fisher"
+
+      # developments
+      - "difftastic"
+      - "parallel"
+      - "ctags"
+      - "git"
+      - "git-hooks-go"
+      - "ghq"
+      - "gh"
+      - "libsodium"
+      - "libyaml"
+      - "p7zip"
+      - "peco"
+      - "pstree"
+      - "rustup-init"
+      - "shellcheck"
+      - "skktools"
+      - "watch"
+      - "coreutils"
+      - "cmake"
+      - "cmake-docs"
+      - "bat"
+      - "ipcalc"
+      - "direnv"
+      - "libpq"
+      - "lua"
+      - "readline"
+      - "openssl"
+      - "libressl"
+
+      # taps
+      - "act"
+      - "genkiroid/cert/cert"
+
+- name: brew | Install casks
+  community.general.homebrew_cask:
+    name:
+      # developments
+      - "font-cica"
+      - "gpg-suite-no-mail"
+
+      # taps
+      - "kyohsuke/misc/macface-haruhi"
+      - "kyohsuke/misc/cooviewer"

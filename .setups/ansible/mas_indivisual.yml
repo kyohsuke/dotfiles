@@ -1,0 +1,11 @@
+---
+- name: mas | install indivisual apps from App Store
+  community.general.mas:
+    id:
+      - 450664466   # NAS Navigator2
+      - 407066957   # iVolume
+      - 430255202   # Mactracker
+      - 539883307   # LINE
+      - 409203825   # Numbers
+      - 1289583905  # Pixelmator Pro
+      - 302584613   # Kindle

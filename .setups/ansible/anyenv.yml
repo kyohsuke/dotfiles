@@ -1,0 +1,44 @@
+---
+
+- name: anyenv | Checking anyenv exists
+  stat:
+    path: "{{ lookup('env', 'HOME') }}/.anyenv"
+  register: anyenv
+
+- name: anyenv | Install anyenv
+  when: not anyenv.stat.exists
+  command: git clone https://github.com/riywo/anyenv "{{ anyenv.path }}"
+
+- name: anyenv | Install update plugin
+  when: not anyenv.stat.exists
+  command: git clone https://github.com/znz/anyenv-update "{{ anyenv.path }}/plugins/anyenv-update"
+
+- name: anyenv | Install update plugin
+  when: not anyenv.stat.exists
+  command: git clone https://github.com/znz/anyenv-git "{{ anyenv.path }}/plugins/anyenv-git"
+
+- name: anyenv | Initialize anyenv
+  when: not anyenv.stat.exists
+  command: "anyenv install --force-init"
+  environment:
+    PATH: "{{ anyenv.path }}/bin:{{ lookup('env', 'PATH') }}"
+
+- name: anyenv Install envs
+  include_tasks: anyenv_inner.yml
+  loop_control:
+    loop_var: envs
+  with_items:
+    - name: rbenv
+      plugins:
+        - rbenv/rbenv-default-gems
+      symlink:
+        from: .default-gems
+        to: default-gems
+    - name: nodenv
+      plugins:
+        - pine/nodenv-yarn-install
+        - nodenv/nodenv-default-packages
+      symlink:
+        from: .default-node-packages
+        to: default-packages
+    - name: goenv

@@ -1,0 +1,7 @@
+---
+- name: osx | {{ defaults.title }}
+  community.general.osx_defaults:
+    domain: "{{ defaults.domain | default('NSGlobalDomain')}}"
+    key: "{{ defaults.key }}"
+    type: "{{ defaults.type | default('string') }}"
+    value: "{{ defaults.value }}"

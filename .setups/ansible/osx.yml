@@ -1,0 +1,319 @@
+---
+# Originally from https://mths.be/osx
+
+- include_tasks: osx_inner.yml
+  loop_control:
+    loop_var: defaults
+  with_items:
+    - title: Show Proxy Icon immediately on TitleView in Finder
+      domain: com.apple.Finder
+      key: NSToolbarTitleViewRolloverDelay
+      type: float
+      value: 0
+
+    - title: Expand save panel by default
+      key: NSNavPanelExpandedStateForSaveMode
+      type: bool
+      value: true
+
+    - title: Expand save panel by default2
+      key: NSNavPanelExpandedStateForSaveMode2
+      type: bool
+      value: true
+
+    - title: Expand print panel by default
+      key: PMPrintingExpandedStateForPrint
+      type: bool
+      value: true
+
+    - title: Expand print panel by default2
+      key: PMPrintingExpandedStateForPrint2
+      type: bool
+      value: true
+
+    - title: Save to disk (not to iCloud) by default
+      key: NSDocumentSaveNewDocumentsToCloud
+      type: bool
+      value: false
+
+    - title: Automatically quit printer app once the print jobs complete
+      domain: com.apple.print.PrintingPrefs
+      key: "Quit When Finished"
+      type: bool
+      value: true
+
+    - title: Disable Resume system-wide
+      domain: com.apple.systempreferences
+      key: NSQuitAlwaysKeepsWindows
+      type: bool
+      value: false
+
+    - title: Disable automatic termination of inactive apps
+      key: NSDisableAutomaticTermination
+      type: bool
+      value: true
+
+    - title: Disable the crash reporter
+      domain: com.apple.CrashReporter
+      key: DialogType
+      value: none
+
+    - title: Check for software updates daily, not just once per week
+      domain: com.apple.SoftwareUpdate
+      key: ScheduleFrequency
+      type: int
+      value: 1
+
+    - title: Disable smart quotes as they’re annoying when typing code
+      key: NSAutomaticQuoteSubstitutionEnabled
+      type: bool
+      value: false
+
+    - title: Disable smart dashes as they’re annoying when typing code
+      key: NSAutomaticDashSubstitutionEnabled
+      type: bool
+      value: false
+
+    - title: Enable full keyboard access for all controls
+      key: AppleKeyboardUIMode
+      type: int
+      value: 3
+
+    - title: Use scroll gesture with the Ctrl (^) modifier key to zoom
+      domain: com.apple.universalaccess
+      key: closeViewScrollWheelToggle
+      type: bool
+      value: true
+
+    - title: Disable press-and-hold for keys in favor of key repeat
+      key: ApplePressAndHoldEnabled
+      type: bool
+      value: false
+
+    - title: Set a blazingly fast keyboard repeat rate
+      key: KeyRepeat
+      type: float
+      value: 2
+
+    - title: Set a blazingly fast keyboard initial repeat rate
+      key: InitialKeyRepeat
+      type: float
+      value: 15
+
+    - title: Disable auto-correct
+      key: NSAutomaticSpellingCorrectionEnabled
+      type: bool
+      value: false
+
+    - title: MenuIcon Visibility for AudioVideoModule
+      domain: com.apple.controlcenter
+      key: "NSStatusItem Visible AudioVideoModule"
+      type: bool
+      value: false
+
+    - title: MenuIcon Visibility for BentoBox
+      domain: com.apple.controlcenter
+      key: "NSStatusItem Visible BentoBox"
+      type: bool
+      value: true
+
+    - title: MenuIcon Visibility for Bluetooth
+      domain: com.apple.controlcenter
+      key: "NSStatusItem Visible Bluetooth"
+      type: bool
+      value: true
+
+    - title: MenuIcon Visibility for Clock
+      domain: com.apple.controlcenter
+      key: "NSStatusItem Visible Clock"
+      type: bool
+      value: true
+
+    - title: MenuIcon Visibility for Display
+      domain: com.apple.controlcenter
+      key: "NSStatusItem Visible Display"
+      type: bool
+      value: false
+
+    - title: MenuIcon Visibility for ScreenMirroring
+      domain: com.apple.controlcenter
+      key: "NSStatusItem Visible ScreenMirroring"
+      type: bool
+      value: false
+
+    - title: MenuIcon Visibility for Shortcuts
+      domain: com.apple.controlcenter
+      key: "NSStatusItem Visible Shortcuts"
+      type: bool
+      value: false
+
+    - title: MenuIcon Visibility for Sound
+      domain: com.apple.controlcenter
+      key: "NSStatusItem Visible Sound"
+      type: bool
+      value: true
+
+    - title: MenuIcon Visibility for WiFi
+      domain: com.apple.controlcenter
+      key: "NSStatusItem Visible WiFi"
+      type: bool
+      value: true
+
+    - title: Save screenshots to the desktop
+      domain: com.apple.screencapture
+      key: location
+      value: "{{ lookup('env', 'HOME') }}/Desktop"
+
+    - title: Save screenshots in PNG format
+      domain: com.apple.screencapture
+      key: type
+      value: png
+
+    - title: Disable shadow in screenshots
+      domain: com.apple.screencapture
+      key: disable-shadow
+      type: bool
+      value: true
+
+    - title: Disable thumbnail in screenshots
+      domain: com.apple.screencapture
+      key: show-thumbnail
+      type: bool
+      value: false
+
+    - title: "Finder: show all filename extensions"
+      key: AppleShowAllExtensions
+      type: bool
+      value: true
+
+    - title: "Finder: show status bar"
+      domain: com.apple.finder
+      key: ShowStatusBar
+      type: bool
+      value: true
+
+    - title: "Finder: show path bar"
+      domain: com.apple.finder
+      key: ShowPathbar
+      type: bool
+      value: true
+
+    - title: "Finder: Display full POSIX path as Finder window title"
+      domain: com.apple.finder
+      key: _FXShowPosixPathInTitle
+      type: bool
+      value: true
+
+    - title: "Finder: When performing a search, search the current folder by default"
+      domain: com.apple.finder
+      key: FXDefaultSearchScope
+      value: "SCcf"
+
+    - title: "Finder: Disable the warning when changing a file extension"
+      domain: com.apple.finder
+      key: FXEnableExtensionChangeWarning
+      type: bool
+      value: false
+
+    - title: "Enable spring loading for directories"
+      key: "com.apple.springing.enabled"
+      type: bool
+      value: true
+
+    - title: "Tweak the spring loading delay for directories"
+      key: "com.apple.springing.delay"
+      type: float
+      value: "0.5"
+
+    - title: "Avoid creating .DS_Store files on usb volumes"
+      domain: com.apple.desktopservices
+      key: DSDontWriteUSBStores
+      type: bool
+      value: true
+
+    - title: "Finder: Automatically open a new Finder window when a volume is mounted"
+      domain: com.apple.finder
+      key: OpenWindowForNewRemovableDisk
+      type: bool
+      value: true
+
+    - title: "Finder: Disable the warning before emptying the Trash"
+      domain: com.apple.finder
+      key: WarnOnEmptyTrash
+      type: bool
+      value: false
+
+    - title: "Finder: Empty Trash securely by default"
+      domain: com.apple.finder
+      key: EmptyTrashSecurely
+      type: bool
+      value: true
+
+    - title: "Dock: Automatically hide and show the Dock"
+      domain: com.apple.dock
+      key: autohide
+      type: bool
+      value: true
+
+    - title: "Dock: Change position on screen to the left"
+      domain: com.apple.dock
+      key: orientation
+      value: "left"
+
+    - title: "Dock: Speed up Mission Control animations"
+      domain: com.apple.dock
+      key: "expose-animation-duration"
+      type: float
+      value: "0.1"
+
+    - title: "Dock: Don’t group windows by application in Mission Control"
+      domain: com.apple.dock
+      key: "expose-group-by-app"
+      type: bool
+      value: false
+
+    - title: "Dock: Change Top-Right Hot Corner"
+      domain: com.apple.dock
+      key: "wvous-tr-corner"
+      type: int
+      value: 4
+
+    - title: "Dock: Change Top-Right Modifier"
+      domain: com.apple.dock
+      key: "wvous-tr-modifier"
+      type: int
+      value: 0
+
+    - title: "Dock: Change Bottom-Right Hot Corner"
+      domain: com.apple.dock
+      key: "wvous-br-corner"
+      type: int
+      value: 2
+
+    - title: "Dock: Change Bottom-Right Modifier"
+      domain: com.apple.dock
+      key: "wvous-br-modifier"
+      type: int
+      value: 0
+
+    - title: "Dock: Change Tile size"
+      domain: com.apple.dock
+      key: tilesize
+      type: float
+      value: 128
+
+    - title: "Dock: Disable magnification"
+      domain: com.apple.dock
+      key: magnification
+      type: bool
+      value: false
+
+    - title: "Dock: Disable largesize"
+      domain: com.apple.dock
+      key: largesize
+      type: float
+      value: 16
+
+    - title: "Dock: Minimize when double click window title"
+      key: AppleActionOnDoubleClick
+      value: "Minimize"
