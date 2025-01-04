@@ -1,0 +1,45 @@
+---
+- name: fish | determine shell executable location
+  command: type -p fish
+  register: fish
+  check_mode: no
+
+- name: fish | change default shell
+  become: yes
+  become_user: root
+  user: name="{{ lookup('env', 'USER') }}" shell="{{ fish.stdout }}"
+  when: (lookup('env', 'SHELL') != fish.stdout)
+
+- name: fish | Install fisher
+  shell: "source {{ lookup('env', 'HOMEBREW_PREFIX') }}/share/fish/vendor_functions.d/fisher.fish && fisher update"
+
+- name: fish | Install oh-my-fish
+  shell: "curl https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install | fish"
+
+- name: fish | Install theme"
+  shell: "omf update && omf install coffeeandcode && omf theme coffeeandcode"
+
+- name: fish | Checking .fishenv.local exists
+  stat:
+    path: "{{ lookup('env', 'HOME') }}/.fishenv.local"
+  register: env_local
+
+- name: fish | Detect Machine processors
+  when: not env_local.stat.exists
+  command: ruby -retc -e 'puts Etc.nprocessors'
+  register: processors
+
+- name: fish | Detect Machine Arch
+  when: not env_local.stat.exists
+  command: uname -m
+  register: arch
+
+- name: fish | Generate .fishenv.local
+  when: not env_local.stat.exists
+  command: |
+    echo "" > {{ env_local.path }}
+    echo "set -gx MACHINE_PROCESSORS {{ processors.stdout }}" >> {{ env_local.path }}
+    echo "set -gx HOMEBREW_MAKE_JOBS $MACHINE_PROCESSORS" >> {{ env_local.path }}
+    echo "set -gx BUNDLE_JOBS $MACHINE_PROCESSORS" >> {{ env_local.path }}
+    echo "set -gx MAKE_OPTS \"-j $MACHINE_PROCESSORS\"" >> {{ env_local.path }}
+    echo "set -gx ARCHFLAGS \"-arch {{ arch.stdout }}\"" >> {{ env_local.path }}

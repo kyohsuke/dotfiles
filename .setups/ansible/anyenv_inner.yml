@@ -1,0 +1,38 @@
+---
+- name: anyenv | Install {{ envs.name }}
+  command: "anyenv install {{ envs.name }}"
+  environment:
+    PATH: "{{ lookup('env', 'HOME') }}/.anyenv/bin:{{ lookup('env', 'PATH') }}"
+
+- name: anyenv | Detect {{ envs.name }} root directory
+  when: envs.plugins is defined
+  shell: "{{ envs.name }} root"
+  register: env_root
+  check_mode: no
+  environment:
+    PATH: "{{ lookup('env', 'HOME') }}/.anyenv/bin:{{ lookup('env', 'PATH') }}"
+
+- name: anyenv | Checking plugin exists
+  when: envs.plugins is defined
+  stat:
+    path: "{{ env_root.stdout }}/plugins"
+  register: plug
+
+- name: anyenv | Make directory
+  when: envs.plugins is defined and not plug.stat.exists
+  shell: mkdir -p "{{ env_root.stdout }}/plugins"
+
+- name: anyenv | Install {{ envs.name }} plugins
+  when: envs.plugins is defined and not plug.stat.exists
+  shell: git clone "https://github.com/{{ item }}" "{{ env_root.stdout }}/plugins/{{ item | split('/') | last }}"
+  loop: "{{ envs.plugins }}"
+
+- name: anyenv | Check symlink
+  when: envs.symlink is defined
+  stat:
+    path: "{{ env_root.stdout }}/{{ envs.symlink.to }}"
+  register: symlink
+
+- name: anyenv | Add symlink from {{ envs.symlink.from }} to {{ envs.symlink.to }}
+  when: envs.symlink is defined and not symlink.stat.exists
+  shell: "ln -s {{ lookup('env', 'HOME') }}/.default-packages {{ env_root.stdout }}/default-packages"

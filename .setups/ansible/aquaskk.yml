@@ -1,0 +1,22 @@
+---
+- name: skk | Install AquaSKK
+  community.general.homebrew_cask:
+    name: "aquaskk"
+
+- name: skk | Applies direct write
+  community.general.osx_defaults:
+    domain: "jp.sourceforge.inputmethod.aquaskk"
+    key: direct_clients
+    type: array
+    array_add: true
+    value:
+      - "com.apple.Terminal"
+      - "org.vim.MacVim"
+      - "com.apple.Spotlight"
+      - "com.mitchellh.ghostty"
+
+- name: skk | Install question.rule
+  command: cp -f "{{ lookup('env', 'HOME') }}/skkdic/question.rule" "{{ lookup('env', 'HOME') }}/Library/Application Support/AquaSKK/"
+
+- name: skk | Install sub-rule.desc
+  command: cp -f "{{ lookup('env', 'HOME') }}/skkdic/sub-rule.desc" "{{ lookup('env', 'HOME') }}/Library/Application Support/AquaSKK/"

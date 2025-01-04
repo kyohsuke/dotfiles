@@ -1,0 +1,9 @@
+---
+- name: mas | install apps from App Store
+  community.general.mas:
+    id:
+      - 497799835   # Xcode
+      - 425424353   # The Unarchiver
+      - 6446431862  # EmptyStorage
+      - 1187772509  # stts
+
