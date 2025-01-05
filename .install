@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+#
+# ATHOME=true bash -c "$(curl -fsSL https://raw.githubusercontent.com/kyohsuke/dotfiles/master/.install)"
+#
+
 TEMPDIR=$(mktemp -d)
 
 function cleanup {
