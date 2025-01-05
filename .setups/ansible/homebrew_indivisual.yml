@@ -3,6 +3,7 @@
   community.general.homebrew:
     name:
       - "rename"
+      - "zpaq"
 
 - name: brew | install indiviaual casks
   community.general.homebrew_cask:

@@ -45,6 +45,7 @@
       - "readline"
       - "openssl"
       - "libressl"
+      - "ghostty"
 
       # taps
       - "act"

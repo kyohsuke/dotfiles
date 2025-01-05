@@ -15,7 +15,6 @@ if ! [ -f "$HOME/.install" ]; then
   if test ! "$(command -v brew)"; then
     echo "Installing homebrew..."
     bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
-    xcode-select --install
 
     if [ -f "/usr/local/bin/brew" ]; then
       BREW_BIN="/usr/local/bin/brew"
