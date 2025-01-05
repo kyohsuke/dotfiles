@@ -5,36 +5,50 @@
 #
 
 TEMPDIR=$(mktemp -d)
+CURRENT_DIR="$(pwd)"
 
 function cleanup {
   rm -rf "$TEMPDIR"
+  cd "$CURRENT_DIR" || exit
 }
 trap cleanup EXIT
 
-if ! [ -f "$HOME/.install" ]; then
-  if test ! "$(command -v brew)"; then
-    echo "Installing homebrew..."
-    bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+# Ask for the administrator password upfront
+sudo -v
 
-    if [ -f "/usr/local/bin/brew" ]; then
-      BREW_BIN="/usr/local/bin/brew"
-    fi
+# Keep-alive: update existing `sudo` time stamp until `osx.sh` has finished
+while true; do
+  sudo -n true
+  sleep 60
+  kill -0 "$$" || exit
+done 2>/dev/null &
 
-    if [ -f "/opt/homebrew/bin/brew" ]; then
-      BREW_BIN="/opt/homebrew/bin/brew"
-    fi
+# Install homebrew
+if test ! "$(command -v brew)"; then
+  echo "Installing homebrew..."
+  bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 
-    if [ -f "/home/linuxbrew/.linuxbrew/bin/brew" ];then
-      BREW_BIN="/home/linuxbrew/.linuxbrew/bin/brew"
-    fi
-
-    eval "$($BREW_BIN shellenv)"
-
-    # Make sure we’re using the latest Homebrew.
-    brew update
-    brew install ansible
+  if [ -f "/usr/local/bin/brew" ]; then
+    BREW_BIN="/usr/local/bin/brew"
   fi
 
+  if [ -f "/opt/homebrew/bin/brew" ]; then
+    BREW_BIN="/opt/homebrew/bin/brew"
+  fi
+
+  if [ -f "/home/linuxbrew/.linuxbrew/bin/brew" ];then
+    BREW_BIN="/home/linuxbrew/.linuxbrew/bin/brew"
+  fi
+
+  eval "$($BREW_BIN shellenv)"
+
+  # Make sure we’re using the latest Homebrew.
+  brew update
+  brew install ansible
+fi
+
+# Copy dotfiles
+if ! [ -f "$HOME/.install" ]; then
   # clone dotfiles and convert https to ssh
   git clone -b move_to_ansible https://github.com/kyohsuke/dotfiles "$TEMPDIR"
   cd "$TEMPDIR" || exit
@@ -44,15 +58,19 @@ if ! [ -f "$HOME/.install" ]; then
   cd "$HOME" || exit
   ln -s "$HOME/.config/streamlink" "$HOME/Library/Application Support/streamlink"
   git submodule update --init
+fi
 
+# Execute Ansible
+if [ -d "$HOME/.setups" ]; then
   cd "$HOME/.setups" || exit
   if [ "$ATHOME" == "true" ]; then
-    ansible-playbook ansible.yml -c local -i localhost, --skip-tags indivisual
-  else
     ansible-playbook ansible.yml -c local -i localhost,
+  else
+    ansible-playbook ansible.yml -c local -i localhost, --skip-tags indivisual
   fi
 
   echo "Cleaning up homebrew..."
   brew cleanup --prune 0
 fi
+
 # vim: filetype=sh foldmethod=marker expandtab softtabstop=2 shiftwidth=2
