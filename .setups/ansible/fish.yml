@@ -1,23 +1,40 @@
 ---
-- name: fish | determine shell executable location
+- name: fish | Determine shell executable location
   command: type -p fish
   register: fish
   check_mode: no
 
-- name: fish | change default shell
+- name: fish | Change default shell
   become: yes
   become_user: root
   user: name="{{ lookup('env', 'USER') }}" shell="{{ fish.stdout }}"
   when: (lookup('env', 'SHELL') != fish.stdout)
 
-- name: fish | Install fisher
-  shell: "source {{ lookup('env', 'HOMEBREW_PREFIX') }}/share/fish/vendor_functions.d/fisher.fish && fisher update"
+- name: fish | Determine fisher executable location
+  stat:
+    path: "{{ lookup('env', 'HOMEBREW_PREFIX') }}/share/fish/vendor_functions.d/fisher.fish"
+  register: fisher_path
+
+- name: fish | Initialize fisher
+  when: (fisher_path.stat.exists)
+  shell: "{{ fish.stdout }} -c \"source {{ lookup('env', 'HOMEBREW_PREFIX') }}/share/fish/vendor_functions.d/fisher.fish && fisher update\""
+
+- name: fish | Determine oh-my-fish XDG_DATA_HOME
+  stat:
+    path: "{{ lookup('env', 'XDG_DATA_HOME') }}/omf"
+  register: omf_dir_xdg
+
+- name: fish | Determine oh-my-fish HOME
+  stat:
+    path: "{{ lookup('env', 'HOME') }}/.local/share/omf"
+  register: omf_dir_home
 
 - name: fish | Install oh-my-fish
-  shell: "curl https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install | fish"
+  shell: "curl https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install | {{ fish.stdout }}"
+  when: ((not omf_dir_xdg.stat.exists) and (not omf_dir_home.stat.exists))
 
 - name: fish | Install theme"
-  shell: "omf update && omf install coffeeandcode && omf theme coffeeandcode"
+  shell: "{{ fish.stdout }} -c \"omf update && omf install coffeeandcode && omf theme coffeeandcode\""
 
 - name: fish | Checking .fishenv.local exists
   stat:

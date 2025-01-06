@@ -1,5 +1,12 @@
 ---
+- name: anyenv | Detect {{ envs.name }} has already installed.
+  command: "whereis {{ envs.name }}"
+  register: env_path
+  environment:
+    PATH: "{{ lookup('env', 'HOME') }}/.anyenv/bin:{{ lookup('env', 'PATH') }}"
+
 - name: anyenv | Install {{ envs.name }}
+  when: (env_path.stdout == "")
   command: "anyenv install {{ envs.name }}"
   environment:
     PATH: "{{ lookup('env', 'HOME') }}/.anyenv/bin:{{ lookup('env', 'PATH') }}"
