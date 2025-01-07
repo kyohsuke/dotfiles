@@ -1,9 +1,5 @@
 # write your settings with Host/Match
 
-Host github.com bitbucket.org gitlab.com
-  IdentitiesOnly yes
-  Ciphers aes128-gcm@openssh.com,aes256-gcm@openssh.com,aes128-ctr,aes192-ctr,aes256-ctr,chacha20-poly1305@openssh.com
-
 Host *
   IPQoS none
   SendEnv LANG LC_*
