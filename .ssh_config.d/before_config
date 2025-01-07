@@ -10,3 +10,4 @@ ServerAliveCountMax 3
 
 # Identity Files
 IdentityFile ~/.ssh/id_ed25519
+SetEnv TERM=xterm-256color
