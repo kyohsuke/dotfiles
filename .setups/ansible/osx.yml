@@ -5,38 +5,38 @@
   loop_control:
     loop_var: defaults
   with_items:
-    - title: Show Proxy Icon immediately on TitleView in Finder
+    - title: "Finder: Show Proxy Icon immediately on TitleView"
       domain: com.apple.Finder
       key: NSToolbarTitleViewRolloverDelay
       type: float
       value: 0
 
-    - title: Expand save panel by default
+    - title: "Finder: Expand save panel by default"
       key: NSNavPanelExpandedStateForSaveMode
       type: bool
       value: true
 
-    - title: Expand save panel by default2
+    - title: "Finder: Expand save panel by default2"
       key: NSNavPanelExpandedStateForSaveMode2
       type: bool
       value: true
 
-    - title: Expand print panel by default
+    - title: "Finder: Expand print panel by default"
       key: PMPrintingExpandedStateForPrint
       type: bool
       value: true
 
-    - title: Expand print panel by default2
+    - title: "Finder: Expand print panel by default2"
       key: PMPrintingExpandedStateForPrint2
       type: bool
       value: true
 
-    - title: Save to disk (not to iCloud) by default
+    - title: "Finder: Save to disk (not to iCloud) by default"
       key: NSDocumentSaveNewDocumentsToCloud
       type: bool
       value: false
 
-    - title: Automatically quit printer app once the print jobs complete
+    - title: "Finder: Automatically quit printer app once the print jobs complete"
       domain: com.apple.print.PrintingPrefs
       key: "Quit When Finished"
       type: bool
