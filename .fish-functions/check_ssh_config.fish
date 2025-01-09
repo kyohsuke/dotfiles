@@ -71,7 +71,12 @@ function check_ssh_config
             set -f NEXT_CONFIG_MD5 ($CMD_CAT $NEXT_CONFIG_FILES | md5sum | awk '{print $1}')
     end
 
-    alias sshconfig="$EDITOR -o $SSH_CONFIG_FILES"
+    switch $EDITOR
+        case '*vim'
+            alias sshconfig="$EDITOR -o $NEXT_CONFIG_FILES && check_ssh_config"
+        case '*'
+            alias sshconfig="$EDITOR $NEXT_CONFIG_FILES"
+    end
 
     if test "$CURRENT_CONFIG_MD5" != "$NEXT_CONFIG_MD5"
         echo "ssh_config has been changed. rebuilding. $CURRENT_CONFIG_MD5 vs $NEXT_CONFIG_MD5"
