@@ -41,6 +41,11 @@ if test -z $FISHENV_LOAD
     and _evalcache docker-machine env default
     # }}}
 
+    # {{{ Docker
+    if test -d "$HOME/.docker/bin"
+        __add_path "$HOME/.docker/bin"
+    end
+    # }}}
     # {{{ anyenv
     if test -x "$HOME/.anyenv/bin/anyenv"
         __add_path "$HOME/.anyenv/bin"
@@ -209,6 +214,11 @@ if test -z $FISHENV_LOAD
     # {{{ source .local
     test -f "$HOME/.fishenv.local"
     and source "$HOME/.fishenv.local"
+    # }}}
+
+    # {{{ Docker Socket
+    test "$HOME/.docker/run/docker.sock"
+    and set -gx DOCKER_HOST "unix://$HOME/.docker/run/docker.sock"
     # }}}
 
     _upath
