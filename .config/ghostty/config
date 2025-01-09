@@ -1,10 +1,10 @@
 # vim: filetype=config
-background-opacity = 0.85
 
 # fonts
 font-family = Cica
 font-size = 14
 font-thicken = true
+bold-is-bright = true
 
 # disable ligatures,
 font-feature = -calt
@@ -15,17 +15,22 @@ font-feature = -dlig
 shell-integration-features = no-cursor
 cursor-style = block
 cursor-style-blink = false
-
-# window styles
-theme = "Pro"
-bold-is-bright = true
 selection-background = C0C0C0
+mouse-hide-while-typing = true
 
-# window size
+# window
+background-opacity = 0.85
+theme = "Pro"
+custom-shader-animation = true
 window-theme = system
 window-width = 180
 window-height = 50
+macos-titlebar-style = native
+
+# Shell Integration
+shell-integration-features = no-cursor,no-sudo,title
 
 # keybinds
 keybind = home=scroll_to_top
 keybind = end=scroll_to_bottom
+
