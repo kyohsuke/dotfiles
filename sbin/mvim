@@ -74,7 +74,7 @@ if [ "$gui" ]; then
   # But if you use open instead, you will need to fully qualify the
   # path names for any filenames you specify, which is hard.
   # shellcheck disable=SC2086
-  exec "$binary" --nofork --cmd "autocmd VimLeave * :!open -a $RETURN_APP" -g $opts ${1:+"$@"}
+  exec "$binary" --cmd "autocmd VimLeave * :!open -a $RETURN_APP" -g $opts ${1:+"$@"}
 else
   # shellcheck disable=SC2086
   exec "$binary" $opts ${1:+"$@"}

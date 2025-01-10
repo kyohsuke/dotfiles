@@ -73,7 +73,7 @@ function check_ssh_config
 
     switch $EDITOR
         case '*vim'
-            alias sshconfig="$EDITOR -o $NEXT_CONFIG_FILES && check_ssh_config"
+            alias sshconfig="$EDITOR -f -o $NEXT_CONFIG_FILES && check_ssh_config"
         case '*'
             alias sshconfig="$EDITOR $NEXT_CONFIG_FILES"
     end
