@@ -3,7 +3,6 @@ LogLevel ERROR
 TcpKeepAlive no
 Compression yes
 ForwardAgent yes
-SetEnv TERM=xterm-256color
 
 # PersistControl
 ServerAliveInterval 15

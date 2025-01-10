@@ -1,5 +1,7 @@
 # vim: filetype=config
 
+term = xterm-256color
+
 # fonts
 font-family = Cica
 font-size = 14
