@@ -28,6 +28,8 @@ window-theme = system
 window-width = 180
 window-height = 50
 macos-titlebar-style = native
+working-directory = home
+window-inherit-working-directory = true
 
 # Shell Integration
 shell-integration-features = no-cursor,no-sudo,title
