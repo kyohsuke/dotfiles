@@ -7,7 +7,7 @@
 	user = kyohsuke
 	completeUser = kyohsuke
 [core]
-	editor = "gvim -f"
+	editor = "gvim --nofork"
 	excludesFile = ~/.config/git/ignore.global
 	compression = 9
 	quotepath = false
