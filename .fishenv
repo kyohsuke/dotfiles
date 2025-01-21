@@ -2,6 +2,11 @@
 
 # {{{ Pragma Once
 if test -z $FISHENV_LOAD
+    # Set CFLAGS/CXXFLAGS
+    set -l COMMON_FLAGS "-O2 -pipe -march=native"
+    set -gx CFLAGS $COMMON_FLAGS $CFLAGS
+    set -gx CXXFLAGS $COMMON_FLAGS $CXXFLAGS
+
     # {{{ Homebrew
     test -x "/usr/local/bin/brew"
     and set -l BREW_BIN "/usr/local/bin/brew"
@@ -69,7 +74,7 @@ if test -z $FISHENV_LOAD
         if test -x "$envPath/pyenv/bin/pyenv"
             set -gx PYTHONDONTWRITEBYTECODE 1
             set -gx PYENV_VIRTUALENV_DISABLE_PROMPT 1
-            set -gx PYTHON_CFLAGS '-march=native -mtune=native'
+            set -gx PYTHON_CFLAGS "$COMMON_FLAGS -mtune=native"
             switch $DETECT_OSTYPE
                 case Darwin
                     set -gx PYTHON_CONFIGURE_OPTS "--enable-framework --enable-optimizations --with-lto"
@@ -189,11 +194,6 @@ if test -z $FISHENV_LOAD
     set -gx HOMEBREW_NO_INSTALL_CLEANUP 1
     set -gx HOMEBREW_BAT 1
     set -gx EDITOR gvim
-
-    # Set flags
-    set -l COMMON_FLAGS "-pipe -march=native"
-    set -gx CFLAGS $COMMON_FLAGS $CFLAGS
-    set -gx CXXFLAGS $COMMON_FLAGS $CXXFLAGS
 
     # bat
     if test -x "$HOMEBREW_PREFIX/bin/bat"
