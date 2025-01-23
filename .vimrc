@@ -157,6 +157,7 @@ endif
   set ignorecase
   set smartcase
   set noshowmode
+  set foldcolumn=3
   set foldlevel=99
 
   autocmd WinEnter * checktime
@@ -261,6 +262,8 @@ plug#begin('~/.vim/plugged')
 
   Plug 'itspriddle/vim-shellcheck'
 
+  Plug 'bimlas/vim-eightheader'
+
   # Git
   Plug 'tpope/vim-fugitive'
   Plug 'hotwatermorning/auto-git-diff'
@@ -275,8 +278,6 @@ plug#begin('~/.vim/plugged')
     Plug 'mattn/vim-lsp-settings'
     Plug 'mattn/ctrlp-lsp'
   Plug 'prabirshrestha/asyncomplete-lsp.vim'
-
-  Plug 'LeafCage/foldCC.vim'
 
   Plug 'vim-skk/eskk.vim'
   Plug 'tyru/open-browser.vim'
