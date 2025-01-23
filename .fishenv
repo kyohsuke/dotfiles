@@ -2,11 +2,26 @@
 
 # {{{ Pragma Once
 if test -z $FISHENV_LOAD
-    # Set CFLAGS/CXXFLAGS
+    function __source -a fileName
+        test -f "$fileName"
+        and source "$fileName"
+    end
+
+    function __add_path -a pathName
+        test -d "$pathName"
+        and fish_add_path --global --move --path "$pathName"
+    end
+
+    function __add_manpath -a pathName
+        test -d "$pathName"
+        and set -gx MANPATH "$pathName" $MANPATH
+    end
+
+    # {{{ Set CFLAGS/CXXFLAGS
     set -l COMMON_FLAGS "-O2 -pipe -march=native"
     set -gx CFLAGS $COMMON_FLAGS $CFLAGS
     set -gx CXXFLAGS $COMMON_FLAGS $CXXFLAGS
-
+    # }}}
     # {{{ Homebrew
     test -x "/usr/local/bin/brew"
     and set -l BREW_BIN "/usr/local/bin/brew"
@@ -18,44 +33,12 @@ if test -z $FISHENV_LOAD
     and set -l BREW_BIN "/home/linuxbrew/.linuxbrew/bin/brew"
 
     test -x "$BREW_BIN"
-    and _evalcache "$BREW_BIN" shellenv
-    # }}}
-
-    function __source -a fileName
-        test -f "$fileName"
-        and source "$fileName"
-    end
-
-    function __add_path -a pathName
-        test -d "$pathName"
-        and set -gx PATH "$pathName" $PATH
-    end
-
-    function __add_manpath -a pathName
-        test -d "$pathName"
-        and set -gx MANPATH "$pathName" $MANPATH
-    end
-
-    # {{{ rustup
-    if test -x "$HOMEBREW_PREFIX/opt/rustup/bin"
-        __add_path "$HOMEBREW_PREFIX/opt/rustup/bin"
-    end
-    # }}}
-    # {{{ docker-machine
-    command -v docker-machine >/dev/null
-    and _evalcache docker-machine env default
-    # }}}
-
-    # {{{ Docker
-    if test -d "$HOME/.docker/bin"
-        __add_path "$HOME/.docker/bin"
-    end
+    and _evalcache "$BREW_BIN" shellenv fish
     # }}}
     # {{{ anyenv
     if test -x "$HOME/.anyenv/bin/anyenv"
         __add_path "$HOME/.anyenv/bin"
-        _evalcache anyenv init - fish
-        set -f envPath "$HOME/.anyenv/envs"
+        set -l envPath "$HOME/.anyenv/envs"
 
         # goenv
         if test -x "$envPath/goenv/bin/goenv"
@@ -63,70 +46,81 @@ if test -z $FISHENV_LOAD
             set -gx GOPATH "$HOME"
             set -gx GOBIN "$HOME/bin"
             set -gx GOCACHE "$HOME/.cache/go-build"
-            set -gx GOCOVERDIR "$HOME/.cache/go-covdata"
-            if test ! -d "$GOCOVERDIR"
-                mkdir -p "$GOCOVERDIR"
-            end
             set -gx GOMODCACHE "$HOME/.cache/pkg/mod"
+            set -gx GOCOVERDIR "$HOME/.cache/go-covdata"
+            set -gx GOENV_PATH_ORDER "front"
+
+            test ! -d "$GOCOVERDIR"
+            and mkdir -p "$GOCOVERDIR"
         end
 
         # pyenv
         if test -x "$envPath/pyenv/bin/pyenv"
+            set -l DETECT_OSTYPE (uname)
             set -gx PYTHONDONTWRITEBYTECODE 1
             set -gx PYENV_VIRTUALENV_DISABLE_PROMPT 1
-            set -gx PYTHON_CFLAGS "$COMMON_FLAGS -mtune=native"
+            set -gx PYTHON_CFLAGS "$COMMON_FLAGS"
+            set -gx PYTHONWARNINGS 'ignore::DeprecationWarning'
+
+            set -l opts "--enable-optimizations" "--with-lto"
+
             switch $DETECT_OSTYPE
                 case Darwin
-                    set -gx PYTHON_CONFIGURE_OPTS "--enable-framework --enable-optimizations --with-lto"
+                    set opts "--enable-framework"
                 case Linux
-                    set -gx PYTHON_CONFIGURE_OPTS "--enable-shared --enable-optimizations --with-lto"
+                    set opts "--enable-shared"
             end
-            set -gx PYTHONWARNINGS 'ignore::DeprecationWarning'
+
+            set -gx PYTHON_CONFIGURE_OPTS $opts
         end
 
         # rbenv
         if test -x "$envPath/rbenv/bin/rbenv"
             set -gx GEM_EDITOR mvim
             set -gx UNBUNDLED_COMMANDS rake cap irb
+            set -l opts "--disable-install-doc" "--disable-install-rdoc"
 
             if test -x "$BREW_BIN"
                 set -l libressl ($BREW_BIN --prefix libressl)
-                if test -d $libressl
-                    set -gx RUBY_CONFIGURE_OPTS "--with-openssl-dir=$libressl --disable-install-doc --disable-install-rdoc"
-                else
-                    set -gx RUBY_CONFIGURE_OPTS "--disable-install-doc --disable-install-rdoc"
-                end
-            else
-                set -gx RUBY_CONFIGURE_OPTS "--disable-install-doc --disable-install-rdoc"
+
+                test -d $libressl
+                and set opts "--with-openssl-dir=$libressl" $opts
             end
+
+            set -gx RUBY_CONFIGURE_OPTS "$opts"
         end
+
+        _evalcache anyenv init - fish
     end
     # }}}
-
+    # {{{ rustup
+    __add_path "$HOMEBREW_PREFIX/opt/rustup/bin"
+    # }}}
+    # {{{ docker-machine
+    command -v docker-machine >/dev/null
+    and _evalcache docker-machine env default
+    # }}}
+    # {{{ Docker
+    __add_path "$HOME/.docker/bin"
+    # }}}
     # {{{ cargo bin
-    if test -d "$HOME/.cargo/bin"
-        __add_path "$HOME/.cargo/bin"
-    end
+    __add_path "$HOME/.cargo/bin"
     # }}}
-
     # {{{ google cloud SDK
     __source "$HOMEBREW_PREFIX/share/google-cloud-sdk/path.fish.inc"
     # }}}
-
     # {{{ coreutils
     if test -d "$HOMEBREW_PREFIX/opt/coreutils"
         __add_path "$HOMEBREW_PREFIX/opt/coreutils/libexec/gnubin"
         __add_manpath "$HOMEBREW_PREFIX/opt/coreutils/libexec/gnuman"
     end
     # }}}
-
     # {{{ libpq
     if test -d "$HOMEBREW_PREFIX/opt/libpq/bin"
         __add_path "$HOMEBREW_PREFIX/opt/libpq/bin"
         __add_manpath "$HOMEBREW_PREFIX/opt/libpq/share/man"
     end
     # }}}
-
     # {{{ util-linux
     if test -d "$HOMEBREW_PREFIX/opt/util-linux"
         __add_path "$HOMEBREW_PREFIX/opt/util-linux/bin"
@@ -137,32 +131,9 @@ if test -z $FISHENV_LOAD
         set -gx CPPFLAGS "-I$HOMEBREW_PREFIX/opt/util-linux/include" $CPPFLAGS
     end
     # }}}
-
     # {{{ manpath
     __add_manpath "$HOMEBREW_PREFIX/share/man"
     # }}}
-
-    function _upath
-        set -l upath
-        for npath in $PATH
-            not contains -- $npath $upath
-            and set upath $upath $npath
-        end
-        set -gx PATH $upath
-    end
-
-    function _umanpath
-        set -l upath
-        for npath in $MANPATH
-            not contains -- $npath $upath
-            and set upath $upath $npath
-        end
-        set -gx MANPATH $upath
-    end
-
-    set -gx DETECT_OSTYPE (uname)
-    set -gx PATH "$HOMEBREW_PREFIX/bin" $PATH
-
     # {{{ set environments
     for mPath in /usr/share/man /Library/Apple/usr/share/man /Library/Developer/CommandLineTools/usr/share/man
         not contains $mPath $MANPATH
@@ -215,14 +186,10 @@ if test -z $FISHENV_LOAD
     test -f "$HOME/.fishenv.local"
     and source "$HOME/.fishenv.local"
     # }}}
-
     # {{{ Docker Socket
     test "$HOME/.docker/run/docker.sock"
     and set -gx DOCKER_HOST "unix://$HOME/.docker/run/docker.sock"
     # }}}
-
-    _upath
-    _umanpath
 
     set -gx FISHENV_LOAD 1
 end

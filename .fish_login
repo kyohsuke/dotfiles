@@ -46,13 +46,11 @@ command -q direnv
 and _evalcache direnv hook fish
 # }}}
 # {{{ Add home path
-set -l ind (contains -i -- "$HOME/sbin" $PATH)
-and set -e PATH[$ind]
-set -gx PATH "$HOME/sbin" $PATH
+test -d "$HOME/sbin"
+and fish_add_path --global --move --path "$HOME/sbin"
 
-set -l ind (contains -i -- "$HOME/bin" $PATH)
-and set -e PATH[$ind]
-set -gx PATH "$HOME/bin" $PATH
+test -d "$HOME/bin"
+fish_add_path --global --move --path "$HOME/bin"
 # }}}
 # {{{ Aliases
 set -f vim_version (vim --version | head -1 | sed 's/^.*\ \([0-9]\)\.\([0-9]\)\ .*$/\1\2/')
