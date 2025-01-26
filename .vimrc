@@ -262,7 +262,8 @@ plug#begin('~/.vim/plugged')
 
   Plug 'itspriddle/vim-shellcheck'
 
-  Plug 'bimlas/vim-eightheader'
+  # Plug 'bimlas/vim-eightheader'
+  Plug 'LeafCage/foldCC.vim'
 
   # Git
   Plug 'tpope/vim-fugitive'
