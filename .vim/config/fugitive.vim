@@ -1,4 +1,3 @@
-vim9script
 UsePlugin 'vim-fugitive'
 
 nnoremap <expr><Leader>gg ":<C-u>Ggrep " .. expand('<cword>') .. "<Return>"

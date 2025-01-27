@@ -1,14 +1,13 @@
-vim9script
 UsePlugin 'vim-lsp-settings'
 
-g:lsp_settings_filetype_graphql = [ 'graphql-language-server' ]
-g:lsp_settings_filetype_sql = [ 'sqls' ]
-g:lsp_settings_filetype_go = [ 'gopls' ]
-g:lsp_settings = {
-  gopls: {
-    args: [
-      '-rpc.trace',
-      '-debug=localhost:6060',
-    ],
-  },
-}
+let g:lsp_settings_filetype_graphql = [ 'graphql-language-server' ]
+let g:lsp_settings_filetype_sql = [ 'sqls' ]
+let g:lsp_settings_filetype_go = [ 'gopls' ]
+let g:lsp_settings = {
+      \   'gopls': {
+      \     'args': [
+      \       '-rpc.trace',
+      \       '-debug=localhost:6060',
+      \     ],
+      \   },
+      \ }

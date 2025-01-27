@@ -126,7 +126,7 @@ endif
   " }}}
   " {{{ Paste without space on virtual edit ( vim hacks #195 )
   set virtualedit=all
-  if has('virtualedit') && &virtualedit =~" '\<all\>'
+  if has('virtualedit') && &virtualedit =~" '\<all\>'"
     nnoremap <expr> p (col('.') >= col('$') ? '$' : '') .. 'p'
   endif
   " }}}

@@ -1,4 +1,3 @@
-vim9script
 UsePlugin 'javascript-libraries-syntax.vim'
 
-g:used_javascript_libs = 'react,flux'
+let g:used_javascript_libs = 'react,flux'

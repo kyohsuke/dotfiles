@@ -1,7 +1,6 @@
-vim9script
 UsePlugin 'asyncomplete.vim'
 
-g:asyncomplete_popup_delay = 200
+let g:asyncomplete_popup_delay = 200
 
 inoremap <expr> <C-y>     pumvisible() ? asyncomplete#cancel_popup() : "\<C-y>"
 inoremap <expr> <TAB>     pumvisible() ? "\<C-n>" : "\<TAB>"

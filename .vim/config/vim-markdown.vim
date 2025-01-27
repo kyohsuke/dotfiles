@@ -1,9 +1,8 @@
-vim9script
 UsePlugin 'vim-markdown'
 
-g:vim_markdown_folding_disabled = 1
-g:markdown_minlines = 500
-g:markdown_fenced_languages = [
+let g:vim_markdown_folding_disabled = 1
+let g:markdown_minlines = 500
+let g:markdown_fenced_languages = [
       \ 'coffee',
       \ 'css',
       \ 'erb=eruby',

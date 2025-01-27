@@ -1,5 +1,4 @@
-vim9script
-# MacVim Setting
+" MacVim Setting
 if has('gui_running')
   if has('win32')
     source $VIMRUNTIME/delmenu.vim
@@ -8,10 +7,10 @@ if has('gui_running')
   endif
 
 
-  set imdisable # Kill IME
+  set imdisable " Kill IME
 
   set antialias
-  set guioptions& # Win: egmrLtT / MacVim-Kaoriya : egimrL / Other : aegimrLtT
+  set guioptions& " Win: egmrLtT / MacVim-Kaoriya : egimrL / Other : aegimrLtT
   set guioptions=egimrL
   set guioptions-=mrLtT
   set guioptions+=c
@@ -19,7 +18,7 @@ if has('gui_running')
   set lines=60
   set columns=200
 
-  # MacVim
+  " MacVim
   if has('gui_macvim')
     set transparency=15
     set guifont=Cica-Regular:h14,Osaka-Mono:h14

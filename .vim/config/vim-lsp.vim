@@ -1,21 +1,20 @@
-vim9script
 UsePlugin 'vim-lsp'
 
-g:lsp_use_lua = has('nvim-0.4.0') || (has('lua') && has('patch-8.2.0775'))
-g:lsp_diagnostics_echo_cursor = 1
-g:lsp_format_sync_timeout = 1000
-g:lsp_diagnostics_virtual_text_enabled = 0
-g:lsp_diagnostics_virtual_text_prefix = '» '
+let g:lsp_use_lua = has('nvim-0.4.0') || (has('lua') && has('patch-8.2.0775'))
+let g:lsp_diagnostics_echo_cursor = 1
+let g:lsp_format_sync_timeout = 1000
+let g:lsp_diagnostics_virtual_text_enabled = 0
+let g:lsp_diagnostics_virtual_text_prefix = '» '
 
 command! LspDebug g:lsp_log_verbose = 1 | g:lsp_log_file = expand('~/lsp.log')
 
-def g:LspDefinitionSplitWindow()
+function! g:LspDefinitionSplitWindow()
   split
   execute "normal \<plug>(lsp-definition)"
-enddef
+endfunction
 nnoremap <plug>LspDefinitionS :<C-u>call LspDefinitionSplitWindow()<Return>
 
-def OnLspBufferEnabled()
+function! s:OnLspBufferEnabled()
   setlocal omnifunc=lsp#complete
   setlocal signcolumn=yes
   if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
@@ -34,10 +33,10 @@ def OnLspBufferEnabled()
 
   inoremap <buffer> <expr> <C-o> lsp#internal#document_hover#under_cursor#do({}) ? '' : ''
   inoremap <buffer> <expr> <cr> pumvisible() ? "\<c-y>\<cr>" : "\<cr>"
-enddef
+endfunction
 
 augroup VimLsp
   autocmd!
-  autocmd User lsp_buffer_enabled OnLspBufferEnabled()
+  autocmd User lsp_buffer_enabled call <SID>OnLspBufferEnabled()
   autocmd BufWritePre *.rs,*.go execute('LspDocumentFormatSync')
 augroup END
