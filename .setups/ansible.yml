@@ -1,7 +1,10 @@
 ---
 - hosts: all
   tasks:
+    - import_tasks: "ansible/launchctl.yml"
+
     - import_tasks: "ansible/homebrew.yml"
+
     - import_tasks: "ansible/homebrew_indivisual.yml"
       tags: indivisual
 
@@ -14,6 +17,7 @@
     - import_tasks: "ansible/fish.yml"
 
     - import_tasks: "ansible/mas.yml"
+
     - import_tasks: "ansible/mas_indivisual.yml"
       tags: indivisual
 

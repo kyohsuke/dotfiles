@@ -1,6 +1,5 @@
 ---
 # Originally from https://mths.be/osx
-
 - include_tasks: osx_inner.yml
   loop_control:
     loop_var: defaults

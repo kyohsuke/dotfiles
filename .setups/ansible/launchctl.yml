@@ -1,0 +1,24 @@
+---
+- name: launchctl | Checking plist exists
+  stat:
+    path: /Library/LaunchDaemons/limit.maxfiles.plist
+  register: plist
+
+- name: launchctl | create maxfiles
+  when: not plist.stat.exists
+  become_user: root
+  copy:
+    src: files/limit.maxfiles.plist
+    dest: /Library/LaunchDaemons/limit.maxfiles.plist
+    owner: root
+    group: wheel
+    mode: '0644'
+
+- name: launchctl | current maxfiles
+  shell: "launchctl limit maxfiles | awk '{print $2}'"
+  register: maxfile
+
+- name: launchctl | Set maxfiles
+  when: (maxfile.stdout == 65536)
+  command: "launchctl load -w /Library/LaunchDaemons/limit.maxfiles.plist"
+  become_user: root
