@@ -14,7 +14,7 @@ let g:ctrlp_cmd = 'call CtrlPCommand()'
 
 function! g:CtrlPCommand()
   let wincount = winnr('$')
-  var curr: number = 0
+  let curr = 0
   " Don't open it here if current buffer is not writable (e.g. NERDTree)
   while !empty(getbufvar(str2nr(expand("<abuf>")), "&buftype")) && curr < wincount
     exec 'wincmd w'
