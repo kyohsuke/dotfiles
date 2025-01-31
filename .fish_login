@@ -32,6 +32,32 @@ function fish_user_key_bindings
 
     bind -s -M visual -m default d "fish_clipboard_copy; commandline -f kill-selection end-selection repaint-mode;"
     bind -s -M visual -m default y "fish_clipboard_copy; commandline -f end-selection repaint-mode;"
+    bind -s -M visual -m default p __visual_paste
+    bind -s -M visual -m default P "__visual_paste \"large\""
+
+    function __visual_paste -a large
+        # vim like visual paste
+        set -l buffer (commandline -b)
+        set -l cursor (commandline -C)
+        set -l selStart (commandline -B)
+        set -l selEnd (commandline -E)
+        set -l clipboard (fish_clipboard_paste)
+
+        set -l selBefore ""
+        if test $selStart -gt 0
+            set selBefore (string sub -e $selStart $buffer)
+        end
+        set -l currentSelected (string sub -s (math $selStart + 1) -e $selEnd $buffer)
+        set -l selAfter (string sub -s (math $selEnd + 1) $buffer)
+
+        if test -z "$large"
+            echo -n "$currentSelected" | fish_clipboard_copy
+        end
+
+        commandline --replace "$selBefore$clipboard$selAfter"
+        commandline -f end-selection force-repaint repaint-mode
+        commandline -C (math $selEnd - 1)
+    end
 
     bind -s -M default p fish_clipboard_paste
     bind -s -M default P fish_clipboard_paste
