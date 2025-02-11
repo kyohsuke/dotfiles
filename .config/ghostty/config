@@ -1,6 +1,7 @@
 # vim: filetype=config
 
 term = xterm-256color
+clipboard-paste-protection = false
 
 # fonts
 font-family = Cica
