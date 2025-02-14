@@ -235,6 +235,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'othree/es.next.syntax.vim'
   Plug 'othree/javascript-libraries-syntax.vim'
   Plug 'maxmellon/vim-jsx-pretty'
+  Plug 'leafgarland/typescript-vim'
 
   " html5
   Plug 'othree/html5.vim'
