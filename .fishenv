@@ -78,7 +78,6 @@ if test -z $FISHENV_LOAD
         if test -x "$envPath/rbenv/bin/rbenv"
             set -gx GEM_EDITOR mvim
             set -gx UNBUNDLED_COMMANDS rake cap irb
-            set -l opts "--disable-install-doc" "--disable-install-rdoc"
 
             if test -x "$BREW_BIN"
                 set -l libressl ($BREW_BIN --prefix libressl)

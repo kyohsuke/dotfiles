@@ -78,9 +78,9 @@
 !/.config/pry/config
 
 # rubygems
-!/.config/rubygems
-/.config/rubygems/*
-!/.config/rubygems/config
+!/.config/gem
+/.config/gem/*
+!/.config/gem/gemrc
 
 # Ghostty
 !/.config/ghostty
