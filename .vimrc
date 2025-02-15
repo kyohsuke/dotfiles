@@ -29,7 +29,7 @@ let g:loaded_2html_plugin       = 1
 " {{{ Setup PytonX
 if has('vim_starting')
   " {{{ Setup plug.vim
-  if !filereadable($HOME .. "aaa/.vim/autoload/plug.vim")
+  if !filereadable($HOME .. "/.vim/autoload/plug.vim")
     execute "silent !mkdir -p \"$HOME/.vim/autoload\""
     execute "silent !curl -sfLo \"$HOME/.vim/autoload/plug.vim\" --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
   endif
@@ -83,7 +83,7 @@ endif
     noremap ; :
 
     nnoremap <silent> <D-[> :<C-u>bprev<Return>
-    nnoremap <silent> <D-]> :<C-u>bnexxt<Return>
+    nnoremap <silent> <D-]> :<C-u>bnext<Return>
 
     nnoremap j gj
     nnoremap k gk
