@@ -140,6 +140,10 @@ if test -z $FISHENV_LOAD
         and set -gx MANPATH $mPath $MANPATH
     end
 
+    # {{{ pipx
+    __add_path "$HOME/.local/bin"
+    # }}}
+
     set -gx GREP_OPTIONS '--color=auto'
     set -gx DISABLE_AUTO_UPDATE true
     set -gx TZ Asia/Tokyo
