@@ -112,8 +112,8 @@ and alias dcs='docker stats $(docker-compose ps -q || echo "#")'
 
 # {{{ Set LS_COLORS
 command -q dircolors
-and test -f "$HOME/.dircolors"
-and set -gx LS_COLORS (dircolors -c "$HOME/.dircolors" | string split ' ' | string replace -a "'" '')[3]
+and test -f "$XDG_CONFIG_HOME/dircolors/config"
+and set -gx LS_COLORS (dircolors -c "$XDG_CONFIG_HOME/dircolors/config" | string split ' ' | string replace -a "'" '')[3]
 # }}}
 
 # {{{ terragrunt

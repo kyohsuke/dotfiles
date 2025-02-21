@@ -32,7 +32,6 @@
 !/.rubocop.yml
 !/.github
 !/.fontgen
-!/.dircolors
 !/.editorconfig
 
 # Add .config file
@@ -47,6 +46,9 @@
 !/.config/streamlink
 !/.config/peco
 !/.config/npm
+!/.config/dircolors
+/.config/dircolors/*
+!/.config/dircolors/config
 
 # htop
 !/.config/htop
