@@ -197,6 +197,9 @@ if test -z $FISHENV_LOAD
     test -d "$HOMEBREW_PREFIX/opt/libffi/lib/pkgconfig"
     and set -gx PKG_CONFIG_PATH "$HOMEBREW_PREFIX/opt/libffi/lib/pkgconfig"
 
+    # ansible
+    set -gx ANSIBLE_HOME "$XDG_CACHE_HOME/ansible"
+
     # psql editor
     set -gx PSQL_EDITOR 'gvim +"set syntax=sql" '
 
