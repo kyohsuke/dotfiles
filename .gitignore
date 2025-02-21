@@ -47,6 +47,7 @@
 !/.config/mpv
 !/.config/streamlink
 !/.config/peco
+!/.config/npm
 
 # htop
 !/.config/htop

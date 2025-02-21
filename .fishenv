@@ -96,6 +96,22 @@ if test -z $FISHENV_LOAD
             set -gx RUBY_CONFIGURE_OPTS "$opts"
         end
 
+        # rbenv
+        if test -x "$envPath/rbenv/bin/nodenv"
+            set -gx NPM_CONFIG_USERCONFIG "$XDG_CONFIG_HOME/npm/config"
+            set -gx GEM_EDITOR mvim
+            set -gx UNBUNDLED_COMMANDS rake cap irb
+
+            if test -x "$BREW_BIN"
+                set -l libressl ($BREW_BIN --prefix libressl)
+
+                test -d $libressl
+                and set opts "--with-openssl-dir=$libressl" $opts
+            end
+
+            set -gx RUBY_CONFIGURE_OPTS "$opts"
+        end
+
         _evalcache anyenv init - fish
     end
     # }}}
