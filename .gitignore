@@ -14,7 +14,6 @@
 !/.gitmodules
 !/.gemrc
 !/.rspec
-!/.peco
 !/sbin
 !/skkdic
 !/.ssh_config.d
@@ -47,6 +46,7 @@
 !/.config/bat
 !/.config/mpv
 !/.config/streamlink
+!/.config/peco
 
 # htop
 !/.config/htop
