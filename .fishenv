@@ -22,6 +22,7 @@ if test -z $FISHENV_LOAD
     set -gx XDG_CACHE_HOME "$HOME/.cache"
     set -gx XDG_DATA_HOME "$HOME/.local/share"
     set -gx XDG_STATE_HOME "$HOME/.local/state"
+    set -gx XDG_RUNTIME_DIR "$TEMPDIR"
     # }}}
 
     # {{{ Set CFLAGS/CXXFLAGS
@@ -50,12 +51,12 @@ if test -z $FISHENV_LOAD
         # goenv
         if test -x "$envPath/goenv/bin/goenv"
             set -gx GOENV_DISABLE_GOPATH 1
-            set -gx GOPATH "$HOME"
-            set -gx GOBIN "$HOME/bin"
-            set -gx GOCACHE "$HOME/.cache/go-build"
-            set -gx GOMODCACHE "$HOME/.cache/pkg/mod"
-            set -gx GOCOVERDIR "$HOME/.cache/go-covdata"
             set -gx GOENV_PATH_ORDER "front"
+
+            set -gx GOPATH "$HOME"
+            set -gx GOCACHE "$XDG_CACHE_HOME/go-build"
+            set -gx GOMODCACHE "$XDG_CACHE_HOME/pkg/mod"
+            set -gx GOCOVERDIR "$XDG_CACHE_HOME/go-covdata"
 
             test ! -d "$GOCOVERDIR"
             and mkdir -p "$GOCOVERDIR"
@@ -85,7 +86,13 @@ if test -z $FISHENV_LOAD
         if test -x "$envPath/rbenv/bin/rbenv"
             set -gx GEM_EDITOR mvim
             set -gx UNBUNDLED_COMMANDS rake cap irb
+
+            set -gx GEM_HOME "$XDG_DATA_HOME/gem"
+            set -gx GEM_SPEC_CACHE "$XDG_CACHE_HOME/gem"
             set -gx BUNDLE_APP_CONFIG "$XDG_CONFIG_HOME/bundle"
+            set -gx BUNDLE_USER_CONFIG "$XDG_CONFIG_HOME/bundle"
+            set -gx BUNDLE_USER_CACHE "$XDG_CACHE_HOME/bundle"
+            set -gx BUNDLE_USER_PLUGIN "$XDG_DATA_HOME/bundle"
 
             if test -x "$BREW_BIN"
                 set -l libressl ($BREW_BIN --prefix libressl)
@@ -97,28 +104,18 @@ if test -z $FISHENV_LOAD
             set -gx RUBY_CONFIGURE_OPTS "$opts"
         end
 
-        # rbenv
+        # nodenv
         if test -x "$envPath/rbenv/bin/nodenv"
-            set -gx NPM_CONFIG_USERCONFIG "$XDG_CONFIG_HOME/npm/config"
-            set -gx GEM_EDITOR mvim
-            set -gx UNBUNDLED_COMMANDS rake cap irb
-
-            if test -x "$BREW_BIN"
-                set -l libressl ($BREW_BIN --prefix libressl)
-
-                test -d $libressl
-                and set opts "--with-openssl-dir=$libressl" $opts
-            end
-
-            set -gx RUBY_CONFIGURE_OPTS "$opts"
+            set -gx NPM_CONFIG_USERCONFIG "$XDG_CONFIG_HOME/npm/npmrc"
+            set -gx NODE_REPL_HISTORY "$XDG_DATA_HOME/node_repl_history"
         end
 
         _evalcache anyenv init - fish
     end
     # }}}
     # {{{ rustup
-    set -gx RUSTUP_HOME "$XDG_CACHE_HOME/rustup"
-    set -gx CARGO_HOME "$XDG_CACHE_HOME/cargo"
+    set -gx RUSTUP_HOME "$XDG_DATA_HOME/rustup"
+    set -gx CARGO_HOME "$XDG_DATA_HOME/cargo"
     __add_path "$HOMEBREW_PREFIX/opt/rustup/bin"
     __add_path "$CARGO_HOME/bin"
     # }}}
@@ -187,7 +184,7 @@ if test -z $FISHENV_LOAD
     set -gx HOMEBREW_BAT 1
     set -gx EDITOR gvim
 
-    set -gx GNUPGHOME "$XDG_CACHE_HOME/gnupg"
+    set -gx GNUPGHOME "$XDG_DATA_HOME/gnupg"
 
     # bat
     if test -x "$HOMEBREW_PREFIX/bin/bat"
@@ -203,12 +200,24 @@ if test -z $FISHENV_LOAD
 
     # psql editor
     set -gx PSQL_EDITOR 'gvim +"set syntax=sql" '
+    set -gx PSQLRC "$XDG_CONFIG_HOME/pg/psqlrc",
+    set -gx PSQL_HISTORY "$XDG_CACHE_HOME/pg/psql_history-:DBNAME",
+    set -gx PGPASSFILE "$XDG_CONFIG_HOME/pg/pgpass",
+    set -gx PGSERVICEFILE "$XDG_CONFIG_HOME/pg/pg_service.conf"
+    not test -d "$XDG_CONFIG_HOME/pg"
+    and mkdir "$XDG_CONFIG_HOME/pg"
+
+    not test -d "$XDG_CACHE_HOME/pg"
+    and mkdir "$XDG_CACHE_HOME/pg"
 
     # LSCOLORS
     set -gx LSCOLORS Gxfxcxdxbxegedabagacad
 
     # cpanm
     set -gx PERL_CPANM_HOME "$XDG_CACHE_HOME/cpanm"
+
+    # sqlite
+    set -gx SQLITE_HISTORY "$XDG_STATE_HOME/sqlite_history"
 
     # }}}
     # {{{ source .local
