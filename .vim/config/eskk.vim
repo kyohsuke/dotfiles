@@ -6,7 +6,7 @@ let g:eskk#fix_extra_okuri = 0
 let g:eskk#enable_completion = 0
 let g:eskk#directory = $XDG_CACHE_HOME .. "eskk"
 let g:eskk#large_dictionary = {
-      \ 'path': '~/.vim/stash/SKK-JISYO.L',
+      \ 'path': $XDG_CONFIG_HOME .. '/skkdic/SKK-JISYO.L',
       \ 'sorted': 1,
       \ 'encoding': 'euc-jp',
       \ }

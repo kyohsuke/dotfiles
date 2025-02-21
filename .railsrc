@@ -2,7 +2,7 @@
 
 --skip-action-mailer
 --skip-action-mailbox
---skip-active-storage 
+--skip-active-storage
 --skip-action-text
 
 --skip-spring

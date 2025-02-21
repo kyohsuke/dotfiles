@@ -16,7 +16,7 @@
       - "com.mitchellh.ghostty"
 
 - name: skk | Install question.rule
-  command: cp -f "{{ lookup('env', 'HOME') }}/skkdic/question.rule" "{{ lookup('env', 'HOME') }}/Library/Application Support/AquaSKK/"
+  command: cp -f "{{ lookup('env', 'HOME') }}/.config/skkdic/question.rule" "{{ lookup('env', 'HOME') }}/Library/Application Support/AquaSKK/"
 
 - name: skk | Install sub-rule.desc
-  command: cp -f "{{ lookup('env', 'HOME') }}/skkdic/sub-rule.desc" "{{ lookup('env', 'HOME') }}/Library/Application Support/AquaSKK/"
+  command: cp -f "{{ lookup('env', 'HOME') }}/.config/skkdic/sub-rule.desc" "{{ lookup('env', 'HOME') }}/Library/Application Support/AquaSKK/"

@@ -15,7 +15,6 @@
 !/.gemrc
 !/.rspec
 !/sbin
-!/skkdic
 !/.ssh_config.d
 !/.gitignore.global
 !/.gitignore
@@ -58,6 +57,9 @@
 !/.config/bundle
 /.config/bundle/*
 !/.config/bundle/config
+
+# skkdic
+!/.config/skkdic
 
 # omf
 !/.config/omf
