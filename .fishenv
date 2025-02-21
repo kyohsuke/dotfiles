@@ -17,6 +17,13 @@ if test -z $FISHENV_LOAD
         and set -gx MANPATH "$pathName" $MANPATH
     end
 
+    # {{ Set XDG Environments
+    set -gx XDG_CONFIG_HOME "$HOME/.config"
+    set -gx XDG_CACHE_HOME "$HOME/.cache"
+    set -gx XDG_DATA_HOME "$HOME/.local/share"
+    set -gx XDG_STATE_HOME "$HOME/.local/state"
+    # }}}
+
     # {{{ Set CFLAGS/CXXFLAGS
     set -l COMMON_FLAGS "-O2 -pipe -march=native"
     set -gx CFLAGS $COMMON_FLAGS $CFLAGS
@@ -93,7 +100,10 @@ if test -z $FISHENV_LOAD
     end
     # }}}
     # {{{ rustup
+    set -gx RUSTUP_HOME "$XDG_CACHE_HOME/rustup"
+    set -gx CARGO_HOME "$XDG_CACHE_HOME/cargo"
     __add_path "$HOMEBREW_PREFIX/opt/rustup/bin"
+    __add_path "$CARGO_HOME/bin"
     # }}}
     # {{{ docker-machine
     command -v docker-machine >/dev/null
@@ -101,9 +111,6 @@ if test -z $FISHENV_LOAD
     # }}}
     # {{{ Docker
     __add_path "$HOME/.docker/bin"
-    # }}}
-    # {{{ cargo bin
-    __add_path "$HOME/.cargo/bin"
     # }}}
     # {{{ google cloud SDK
     __source "$HOMEBREW_PREFIX/share/google-cloud-sdk/path.fish.inc"
@@ -152,12 +159,6 @@ if test -z $FISHENV_LOAD
     set -gx OUTPUT_CHARSET UTF-8
 
     set -gx MONO_GAC_PREFIX "$HOMEBREW_PREFIX"
-
-    # Set XDG Environments
-    set -gx XDG_CONFIG_HOME "$HOME/.config"
-    set -gx XDG_CACHE_HOME "$HOME/.cache"
-    set -gx XDG_DATA_HOME "$HOME/.local/share"
-    set -gx XDG_STATE_HOME "$HOME/.local/state"
 
     test -x "$HOMEBREW_PREFIX/bin/files"
     and set -gx FILES_IGNORE_PATTERN '(^(\.git|\.hg|\.svn|_darcs|\.bzr|tmp|\.vagrant|\.keep|\.log|.tmp|\.DS_Store)$|node_modules)'
