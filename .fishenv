@@ -206,6 +206,9 @@ if test -z $FISHENV_LOAD
     # LSCOLORS
     set -gx LSCOLORS Gxfxcxdxbxegedabagacad
 
+    # cpanm
+    set -gx PERL_CPANM_HOME "$XDG_CACHE_HOME/cpanm"
+
     # }}}
     # {{{ source .local
     test -f "$HOME/.fishenv.local"
