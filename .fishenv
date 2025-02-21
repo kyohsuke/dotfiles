@@ -85,6 +85,7 @@ if test -z $FISHENV_LOAD
         if test -x "$envPath/rbenv/bin/rbenv"
             set -gx GEM_EDITOR mvim
             set -gx UNBUNDLED_COMMANDS rake cap irb
+            set -gx BUNDLE_APP_CONFIG "$XDG_CONFIG_HOME/bundle"
 
             if test -x "$BREW_BIN"
                 set -l libressl ($BREW_BIN --prefix libressl)
