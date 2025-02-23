@@ -17,6 +17,9 @@ if test -z $FISHENV_LOAD
         and set -gx MANPATH "$pathName" $MANPATH
     end
 
+    set -gx EDITOR "gvim --nofork"
+    set -gx VISUAL "$EDITOR"
+
     # {{ Set XDG Environments
     set -gx XDG_CONFIG_HOME "$HOME/.config"
     set -gx XDG_CACHE_HOME "$HOME/.cache"
@@ -84,7 +87,7 @@ if test -z $FISHENV_LOAD
 
         # rbenv
         if test -x "$envPath/rbenv/bin/rbenv"
-            set -gx GEM_EDITOR mvim
+            set -gx GEM_EDITOR "$EDITOR"
             set -gx UNBUNDLED_COMMANDS rake cap irb
 
             set -gx GEM_HOME "$XDG_DATA_HOME/gem"
@@ -182,7 +185,6 @@ if test -z $FISHENV_LOAD
 
     set -gx HOMEBREW_NO_INSTALL_CLEANUP 1
     set -gx HOMEBREW_BAT 1
-    set -gx EDITOR gvim
 
     set -gx GNUPGHOME "$XDG_DATA_HOME/gnupg"
 
@@ -199,7 +201,7 @@ if test -z $FISHENV_LOAD
     set -gx ANSIBLE_HOME "$XDG_CACHE_HOME/ansible"
 
     # psql editor
-    set -gx PSQL_EDITOR 'gvim +"set syntax=sql" '
+    set -gx PSQL_EDITOR "$EDITOR +\"set syntax=sql\""
     set -gx PSQLRC "$XDG_CONFIG_HOME/pg/psqlrc",
     set -gx PSQL_HISTORY "$XDG_CACHE_HOME/pg/psql_history-:DBNAME",
     set -gx PGPASSFILE "$XDG_CONFIG_HOME/pg/pgpass",
