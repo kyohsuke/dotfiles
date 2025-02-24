@@ -1,6 +1,7 @@
 # write your settings with Host/Match
 
 Host *
+  SetEnv TERM=xterm-256color
   IPQoS none
   SendEnv LANG LC_*
   ControlMaster auto

@@ -1,6 +1,5 @@
 # vim: filetype=config
 
-term = xterm-256color
 clipboard-paste-protection = false
 
 # fonts
@@ -33,9 +32,8 @@ working-directory = home
 window-inherit-working-directory = true
 
 # Shell Integration
-shell-integration-features = no-cursor,no-sudo,title
+shell-integration-features = no-cursor,sudo,title
 
 # keybinds
 keybind = home=scroll_to_top
 keybind = end=scroll_to_bottom
-
