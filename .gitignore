@@ -1,47 +1,37 @@
 # Ignore All Files
 /*
 /.*
+
 # add tracking files
-/.vim/autoload/
-!/.vim/autoload/.empty
-!/.gvimrc
-!/.vimrc
-!/.vimlc
-!/.vimshrc
-!/.vimrc.d
-!/.vim
 !/.gitignore
-!/.gitmodules
-!/.gemrc
 !/.ssh_config.d
-!/.gitignore.global
 !/.gitignore
 !/.gitattributes
-!/.vromerc
 !/.install
 !/.default-gems
 !/.default-packages
-!/.go-package
 !/.setups
-!/.pryrc
 !/.*-version
-!/.rubocop.yml
-!/.github
 !/.fontgen
 !/.editorconfig
 
 # Add .config file
 !/.config
 /.config/*
+
+# pgcli
 !/.config/pgcli
 /.config/pgcli/*
 !/.config/pgcli/config
+
 !/.config/nodenv
 !/.config/bat
 !/.config/mpv
 !/.config/streamlink
 !/.config/peco
 !/.config/npm
+
+# dircolors
 !/.config/dircolors
 /.config/dircolors/*
 !/.config/dircolors/config
@@ -131,9 +121,3 @@
 /.config/fish/*
 !/.config/fish/config.fish
 !/.config/fish/fish_plugins
-
-# Ignore Files
-/.vim/plugged/
-/.vim/.netrwhist
-/.vim/pack
-/.oh-my-zsh
