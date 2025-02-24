@@ -33,6 +33,7 @@ if test -z $FISHENV_LOAD
     set -gx CFLAGS $COMMON_FLAGS $CFLAGS
     set -gx CXXFLAGS $COMMON_FLAGS $CXXFLAGS
     # }}}
+
     # {{{ Homebrew
     test -x "/usr/local/bin/brew"
     and set -l BREW_BIN "/usr/local/bin/brew"
@@ -220,6 +221,9 @@ if test -z $FISHENV_LOAD
 
     # sqlite
     set -gx SQLITE_HISTORY "$XDG_STATE_HOME/sqlite_history"
+
+    # inputrc
+    set -gx INPUTRC "$XDG_CONFIG_HOME/readline/inputrc"
 
     # }}}
     # {{{ source .local

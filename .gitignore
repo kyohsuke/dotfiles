@@ -54,6 +54,11 @@
 /.config/rails/*
 !/.config/rails/railsrc
 
+# readline
+!/.config/readline
+/.config/readline/*
+!/.config/readline/inputrc
+
 # htop
 !/.config/htop
 /.config/htop/*
