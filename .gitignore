@@ -61,6 +61,11 @@
 /.config/rspec/*
 !/.config/rspec/options
 
+# rubocop
+!/.config/rubocop
+/.config/rubocop/*
+!/.config/rubocop/config.yml
+
 # htop
 !/.config/htop
 /.config/htop/*
