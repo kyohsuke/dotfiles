@@ -22,7 +22,7 @@
 [remote "origin"]
 	prune = true
 [credential]
-	helper = store --file ~/.git-credentials
+	helper = store --file ~/.local/share/git-credentials
 [color]
 	branch = auto
 	diff = auto
