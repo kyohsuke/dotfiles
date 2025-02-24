@@ -96,7 +96,7 @@
 /.config/git/*
 !/.config/git/config
 !/.config/git/attributes
-!/.config/git/ignore.global
+!/.config/git/ignore
 
 # pry
 !/.config/pry
