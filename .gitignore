@@ -13,8 +13,6 @@
 !/.gitignore
 !/.gitmodules
 !/.gemrc
-!/.rspec
-!/sbin
 !/.ssh_config.d
 !/.gitignore.global
 !/.gitignore
@@ -25,7 +23,6 @@
 !/.default-packages
 !/.go-package
 !/.setups
-!/.inputrc
 !/.pryrc
 !/.*-version
 !/.rubocop.yml
@@ -58,6 +55,11 @@
 !/.config/readline
 /.config/readline/*
 !/.config/readline/inputrc
+
+# rspec
+!/.config/rspec
+/.config/rspec/*
+!/.config/rspec/options
 
 # htop
 !/.config/htop
