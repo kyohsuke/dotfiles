@@ -46,6 +46,14 @@
 /.config/dircolors/*
 !/.config/dircolors/config
 
+# vim
+!/.config/vim
+/.config/vim/*
+!/.config/vim/vimrc
+!/.config/vim/gvimrc
+!/.config/vim/config
+!/.config/vim/stash
+
 # rails
 !/.config/rails
 /.config/rails/*

@@ -14,11 +14,11 @@ let g:quickrun_config = {
       \   },
       \   'ruby': {
       \     'command': 'ruby',
-      \     'cmdopt': '-C ' .. $PWD .. ' -r ' .. $HOME .. '/.vim/stash/rubyopts.rb',
+      \     'cmdopt': '-C ' .. $PWD .. ' -r ' .. $XDG_CONFIG_HOME .. '/vim/stash/rubyopts.rb',
       \   },
       \   'ruby/rspec': {
       \     'command': 'rspec',
-      \     'cmdopt': '-r ' .. $HOME .. '/.vim/stash/rubyopts.rb -r ' .. $HOME .. '/.vim/stash/vim_rspec_formatter.rb --format QuickfixFormatter',
+      \     'cmdopt': '-r ' .. $XDG_CONFIG_HOME .. '/vim/stash/rubyopts.rb -r ' .. $XDG_CONFIG_HOME .. '/vim/stash/vim_rspec_formatter.rb --format QuickfixFormatter',
       \     'exec': "%c %o %s:%{line('.')}",
       \     'outputter': 'quickfix',
       \   },
