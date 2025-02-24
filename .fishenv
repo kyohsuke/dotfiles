@@ -93,10 +93,9 @@ if test -z $FISHENV_LOAD
 
             set -gx GEM_HOME "$XDG_DATA_HOME/gem"
             set -gx GEM_SPEC_CACHE "$XDG_CACHE_HOME/gem"
-            set -gx BUNDLE_APP_CONFIG "$XDG_CONFIG_HOME/bundle"
-            set -gx BUNDLE_USER_CONFIG "$XDG_CONFIG_HOME/bundle"
-            set -gx BUNDLE_USER_CACHE "$XDG_CACHE_HOME/bundle"
-            set -gx BUNDLE_USER_PLUGIN "$XDG_DATA_HOME/bundle"
+            set -gx BUNDLE_USER_CONFIG "$XDG_CONFIG_HOME/bundle/config"
+            set -gx BUNDLE_USER_CACHE "$XDG_CACHE_HOME/bundle/cache"
+            set -gx BUNDLE_USER_PLUGIN "$XDG_DATA_HOME/bundle/plugin"
 
             if test -x "$BREW_BIN"
                 set -l libressl ($BREW_BIN --prefix libressl)
