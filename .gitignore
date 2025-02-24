@@ -4,8 +4,6 @@
 
 # add tracking files
 !/.gitignore
-!/.ssh_config.d
-!/.gitignore
 !/.gitattributes
 !/.install
 !/.default-gems
@@ -18,6 +16,12 @@
 # Add .config file
 !/.config
 /.config/*
+
+# sshconfig
+!/.config/ssh
+/.config/ssh/*
+!/.config/ssh/before
+!/.config/ssh/after
 
 # pgcli
 !/.config/pgcli
@@ -112,12 +116,12 @@
 !/.config/ghostty/config
 
 # fish shell
-!/.fishenv
-!/.fishrc
-!/.fish_profile
-!/.fish_login
 !/.fish-functions
 !/.config/fish
 /.config/fish/*
 !/.config/fish/config.fish
 !/.config/fish/fish_plugins
+!/.config/fish/env
+!/.config/fish/rc
+!/.config/fish/profile
+!/.config/fish/login

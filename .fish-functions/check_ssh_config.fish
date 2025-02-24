@@ -26,13 +26,13 @@ function check_ssh_config
         set -f CURRENT_CONFIG_MD5 ($CMD_HEAD -1 $CURRENT_CONFIG | $CMD_SED "s/$CMECKSUM_HEADER_PREFIX //g")
     end
 
-    set -f BEFORE_CONFIG "$HOME/.ssh_config.d/before_config"
+    set -f BEFORE_CONFIG "$HOME/.config/ssh/before"
     set -f LOCAL_CONFIG "$HOME/.ssh_config.local"
-    set -f AFTER_CONFIG "$HOME/.ssh_config.d/after_config"
+    set -f AFTER_CONFIG "$HOME/.config/ssh/after"
 
-    if not test -d "$HOME/.ssh_config.d"
+    if not test -d "$HOME/.config/ssh"
         echo "[INFO] migrate directory does not found. create its directory."
-        mkdir "$HOME/.ssh_config.d"
+        mkdir -p "$HOME/.config/ssh"
         if test -f "$CURRENT_CONFIG"
             echo "[INFO] .ssh/config already exists. copy currnet config to .ssh_config.local"
             if test -f "$LOCAL_CONFIG"
