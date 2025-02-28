@@ -1,7 +1,7 @@
 function __fish_subcommands_ordered
     set -l subs (string split " " "$argv")
     set -l argc (count $subs)
-    set -l words (commandline -pco)
+    set -l words (commandline -xpc)
     set -l cword (count $words)
 
     if test $cword -lt 2
