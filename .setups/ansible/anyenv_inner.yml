@@ -42,4 +42,4 @@
 
 - name: anyenv | Add symlink from {{ envs.symlink.from }} to {{ envs.symlink.to }}
   when: envs.symlink is defined and not symlink.stat.exists
-  shell: "ln -s {{ lookup('env', 'HOME') }}/.default-packages {{ env_root.stdout }}/default-packages"
+  shell: "ln -s {{ lookup('env', 'HOME') }}/.config/defaults/{{ envs.symlink.from }} {{ env_root.stdout }}/{{ envs.symlink.to }}"

@@ -6,8 +6,6 @@
 !/.gitignore
 !/.gitattributes
 !/.install
-!/.default-gems
-!/.default-packages
 !/.setups
 !/.*-version
 !/.fontgen
@@ -34,6 +32,12 @@
 !/.config/streamlink
 !/.config/peco
 !/.config/npm
+
+# default packages
+!/.config/defaults
+/.config/defaults/*
+!/.config/defaults/gems
+!/.config/defaults/packages
 
 # act
 !/.config/act

@@ -28,17 +28,19 @@
   loop_control:
     loop_var: envs
   with_items:
+    - name: goenv
+
     - name: rbenv
       plugins:
         - rbenv/rbenv-default-gems
       symlink:
-        from: .default-gems
+        from: gems
         to: default-gems
+
     - name: nodenv
       plugins:
         - pine/nodenv-yarn-install
         - nodenv/nodenv-default-packages
       symlink:
-        from: .default-node-packages
+        from: node-packages
         to: default-packages
-    - name: goenv
