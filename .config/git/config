@@ -6,6 +6,8 @@
 	root = ~/src
 	user = kyohsuke
 	completeUser = kyohsuke
+	untrackedcache = true
+	fsmonitor = true
 [core]
 	editor = "gvim --nofork"
 	compression = 9
