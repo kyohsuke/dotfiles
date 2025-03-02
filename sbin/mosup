@@ -9,14 +9,18 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
 if which rustup > /dev/null 2>&1; then
   rustup update stable
-  rustup completions fish > "$HOME/.config/fish/completions/rustup.fish"
+  rustup completions fish > "$XDG_CONFIG_HOME/fish/completions/rustup.fish"
+
+  if which cargo > /dev/null 2>&1 && cargo --list | grep -q install-update; then
+    cargo install-update
+  fi
 fi
 
-if test -f "$HOME/.local/share/omf/pkg/omf/functions/omf.fish"; then
+if test -f "$XDG_DATA_HOME/omf/pkg/omf/functions/omf.fish"; then
   fish -l -c "omf update"
 fi
 
-if test -f "$HOME/.config/fish/functions/fisher.fish"; then
+if test -f "$XDG_CONFIG_HOME/fish/functions/fisher.fish"; then
   fish -l -c "fisher update"
 fi
 
