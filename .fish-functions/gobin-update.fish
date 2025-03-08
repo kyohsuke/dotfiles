@@ -1,12 +1,16 @@
 # See Also: https://zenn.dev/kyoh86/articles/291618538dcf0d
 function gobin-update
-    set -l gobin "$(go env GOBIN)"
+    set -l gobin (go env GOBIN)
+    if test -z "$gobin"
+        set gobin (go env GOPATH)/bin
+    end
+
     set -l currentVersion "$(go version | awk '{print $3}')"
     echo "[INFO] current golang version is $currentVersion"
-    echo "[INFO] check for build versions..."
+    echo "[INFO] checking build version..."
 
     for fname in "$gobin"/*
-        set -l pkg (go version -m "$fname" 2> /dev/null | grep path | awk '{print $2}')
+        set -l pkg (go version -m "$fname" 2> /dev/null | grep path  | head -n1 | awk '{print $2}')
         set -l binVersion (go version -m "$fname" 2> /dev/null | head -n1 | awk '{print $2}')
         set -l binName (basename $fname)
 
