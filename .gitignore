@@ -7,7 +7,6 @@
 !/.gitattributes
 !/.install
 !/.setups
-!/.*-version
 !/.fontgen
 !/.editorconfig
 
@@ -33,11 +32,15 @@
 !/.config/peco
 !/.config/npm
 
-# default packages
-!/.config/defaults
-/.config/defaults/*
-!/.config/defaults/gems
-!/.config/defaults/packages
+# anyenv
+!/.config/anyenv
+/.config/anyenv/*
+!/.config/anyenv/default-gems
+!/.config/anyenv/default-packages
+!/.config/anyenv/ruby-version
+!/.config/anyenv/perl-version
+!/.config/anyenv/node-version
+!/.config/anyenv/go-version
 
 # act
 !/.config/act

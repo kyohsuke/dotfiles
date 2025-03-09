@@ -55,6 +55,8 @@ if test -z $FISHENV_LOAD
         __add_path "$HOME/.anyenv/bin"
         set -l envPath "$HOME/.anyenv/envs"
 
+        set -gx ANYENV_DEFINITION_ROOT "$XDG_DATA_HOME/anyenv/anyenv-install"
+
         # goenv
         if test -x "$envPath/goenv/bin/goenv"
             set -gx GOENV_DISABLE_GOPATH 1
