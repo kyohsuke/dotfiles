@@ -170,7 +170,10 @@ if test -z $FISHENV_LOAD
     end
 
     # {{{ pipx
-    __add_path "$HOME/.local/bin"
+    set -gx PIPX_BIN_DIR "$XDG_DATA_HOME/pipx/bin"
+    set -gx PIPX_MAN_DIR "$XDG_DATA_HOME/pipx/man"
+    __add_path "$PIPX_BIN_DIR"
+    __add_manpath "$PIPX_MAN_DIR"
     # }}}
 
     set -gx GREP_OPTIONS '--color=auto'
