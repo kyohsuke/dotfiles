@@ -17,7 +17,7 @@
 [transfer]
 	fsckobjects = true
 [include]
-	path = ~/.gitconfig.local
+	path = ~/.local/share/gitconfig
 [submodule]
 	recurse = true
 [remote "origin"]
