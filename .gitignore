@@ -134,3 +134,7 @@
 !/.config/fish/rc
 !/.config/fish/profile
 !/.config/fish/login
+!/.config/fish/indivisuals
+/.config/fish/indivisuals/*
+/.config/fish/indivisuals/functions
+!/.config/fish/indivisuals/functions/*

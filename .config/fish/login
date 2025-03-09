@@ -3,11 +3,15 @@
 # {{{ Add Completion Path
 test -d "$HOME/.fish-completions"
 and set -a fish_complete_path "$HOME/.fish-completions"
+test -d "$XDG_CONFIG_HOME/fish/indivisuals/completions"
+and set -a fish_complete_path "$XDG_CONFIG_HOME/fish/indivisuals/completions"
 # }}}
 
 # {{{ Add Function Path
 test -d "$HOME/.fish-functions"
 set -a fish_function_path "$HOME/.fish-functions"
+test -d "$XDG_CONFIG_HOME/fish/indivisuals/functions"
+set -a fish_function_path "$XDG_CONFIG_HOME/fish/indivisuals/functions"
 # }}}
 # {{{ Change Key Bindings
 test $fish_key_bindings != fish_vi_key_bindings
