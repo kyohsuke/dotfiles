@@ -27,7 +27,7 @@ function check_ssh_config
     end
 
     set -f BEFORE_CONFIG "$HOME/.config/ssh/before"
-    set -f LOCAL_CONFIG "$HOME/.ssh_config.local"
+    set -f LOCAL_CONFIG "$HOME/.ssh/config.local"
     set -f AFTER_CONFIG "$HOME/.config/ssh/after"
 
     if not test -d "$HOME/.config/ssh"
