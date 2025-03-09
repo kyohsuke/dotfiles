@@ -113,7 +113,7 @@ if test -z $FISHENV_LOAD
         end
 
         # nodenv
-        if test -x "$envPath/rbenv/bin/nodenv"
+        if test -x "$envPath/nodenv/bin/nodenv"
             set -gx NPM_CONFIG_USERCONFIG "$XDG_CONFIG_HOME/npm/npmrc"
             set -gx NODE_REPL_HISTORY "$XDG_DATA_HOME/node_repl_history"
         end
