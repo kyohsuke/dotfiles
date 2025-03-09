@@ -38,7 +38,7 @@
 
 - name: fish | Checking .fishenv.local exists
   stat:
-    path: "{{ lookup('env', 'HOME') }}/.fishenv.local"
+    path: "{{ lookup('env', 'HOME') }}/.local/share/fish/env"
   register: env_local
 
 - name: fish | Detect Machine processors
@@ -51,7 +51,11 @@
   command: uname -m
   register: arch
 
-- name: fish | Generate .fishenv.local
+- name: fish | Checking .fishenv.local exists
+  when: not env_local.stat.exists
+  shell: "mkdir -p {{ lookup('env', 'HOME') }}/.local/share/fish"
+
+- name: fish | Generate {{ env_local.path }}
   when: not env_local.stat.exists
   command: |
     echo "" > {{ env_local.path }}

@@ -63,6 +63,7 @@ fi
 # Execute Ansible
 if [ -d "$HOME/.setups" ]; then
   cd "$HOME/.setups" || exit
+
   if [ "$ATHOME" == "true" ]; then
     ansible-playbook ansible.yml -c local -i localhost,
   else

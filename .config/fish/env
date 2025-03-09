@@ -231,8 +231,8 @@ if test -z $FISHENV_LOAD
 
     # }}}
     # {{{ source .local
-    test -f "$HOME/.fishenv.local"
-    and source "$HOME/.fishenv.local"
+    test -f "$XDG_DATA_HOME/fish/env"
+    and source "$XDG_DATA_HOME/fish/env"
     # }}}
     # {{{ Docker Socket
     test "$HOME/.docker/run/docker.sock"
