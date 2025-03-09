@@ -12,7 +12,6 @@
     PATH: "{{ lookup('env', 'HOME') }}/.anyenv/bin:{{ lookup('env', 'PATH') }}"
 
 - name: anyenv | Detect {{ envs.name }} root directory
-  when: envs.plugins is defined
   shell: "{{ envs.name }} root"
   register: env_root
   check_mode: no
@@ -34,12 +33,7 @@
   shell: git clone "https://github.com/{{ item }}" "{{ env_root.stdout }}/plugins/{{ item | split('/') | last }}"
   loop: "{{ envs.plugins }}"
 
-- name: anyenv | Check symlink
-  when: envs.symlink is defined
-  stat:
-    path: "{{ env_root.stdout }}/{{ envs.symlink.to }}"
-  register: symlink
-
-- name: anyenv | Add symlink from {{ envs.symlink.from }} to {{ envs.symlink.to }}
-  when: envs.symlink is defined and not symlink.stat.exists
-  shell: "ln -s {{ lookup('env', 'HOME') }}/.config/defaults/{{ envs.symlink.from }} {{ env_root.stdout }}/{{ envs.symlink.to }}"
+- name: anyenv | Put {{ envs.name }} symlinks
+  when: envs.symlinks is defined
+  shell: "test -f {{ env_root.stdout }}/{{ item.to }} || ln -s {{ lookup('env', 'HOME') }}/.config/anyenv/{{ item.from }} {{ env_root.stdout }}/{{ item.to }}"
+  loop: "{{ envs.symlinks }}"

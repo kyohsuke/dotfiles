@@ -1,5 +1,4 @@
 ---
-
 - name: anyenv | Checking anyenv exists
   stat:
     path: "{{ lookup('env', 'HOME') }}/.anyenv"
@@ -27,20 +26,26 @@
   include_tasks: anyenv_inner.yml
   loop_control:
     loop_var: envs
-  with_items:
+  loop:
     - name: goenv
+      symlinks:
+        - { from: go-version, to: version }
 
     - name: rbenv
       plugins:
         - rbenv/rbenv-default-gems
-      symlink:
-        from: gems
-        to: default-gems
+      symlinks:
+        - { from: default-gems, to: default-gems }
+        - { from: ruby-version, to: version }
 
     - name: nodenv
       plugins:
         - pine/nodenv-yarn-install
         - nodenv/nodenv-default-packages
-      symlink:
-        from: node-packages
-        to: default-packages
+      symlinks:
+        - { from: default-packages, to: default-packages }
+        - { from: node-version, to: version }
+
+    - name: plenv
+      symlinks:
+        - { from: perl-version, to: version }
