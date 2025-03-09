@@ -11,7 +11,7 @@ let g:eskk#large_dictionary = {
       \ 'encoding': 'euc-jp',
       \ }
 let g:eskk#dictionary = {
-      \ 'path': "~/.skk-jisyo",
+      \ 'path': $XDG_DATA_HOME .. "/vim/skk-jisyo",
 	    \ 'sorted': 0,
 	    \ 'encoding': 'utf-8',
       \ }
