@@ -1,3 +1,2 @@
 .config/skkdic/* linguist-documentation
-.vim/stash/* linguist-documentation
-.vim/autoload/* linguist-documentation
+.config/vim/stash/* linguist-documentation
