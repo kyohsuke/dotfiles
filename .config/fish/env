@@ -28,6 +28,9 @@ if test -z $FISHENV_LOAD
     set -gx XDG_RUNTIME_DIR "$TEMPDIR"
     # }}}
 
+    # {{{ fish-evalcache
+    set -gx FISH_EVALCACHE_DIR "$XDG_CACHE_HOME/fish/evalcache"
+
     # {{{ Set CFLAGS/CXXFLAGS
     set -l COMMON_FLAGS "-O2 -pipe -march=native"
     set -gx CFLAGS $COMMON_FLAGS $CFLAGS
