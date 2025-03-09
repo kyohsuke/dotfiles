@@ -1,15 +1,25 @@
 ---
+- name: brew | Tap a Homebrew repository
+  community.general.homebrew_tap:
+    tap:
+      - "kyohsuke/misc"
+
 - name: brew | install indiviaual formulas
   community.general.homebrew:
-    name:
+    formula:
       - "rename"
       - "zpaq"
+      - "ffmpeg"
+
 
 - name: brew | install indiviaual casks
   community.general.homebrew_cask:
-    name:
+    cask:
       - "imageoptim"
       - "xld"
-      - "cooviewer"
       - "parallels"
       - "google-drive"
+      - "keka"
+
+      # taps
+      - "kyohsuke/misc/cooviewer"

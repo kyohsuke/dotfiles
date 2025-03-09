@@ -1,15 +1,14 @@
 ---
 - name: brew | Tap a Homebrew repository
   community.general.homebrew_tap:
-    name:
+    tap:
       - "kyohsuke/misc"
-      - "nektos/tap"
       - "genkiroid/cert"
 
 
 - name: brew | Install formulas
   community.general.homebrew:
-    name:
+    formula:
       # requirements
       - "mas"
 
@@ -18,6 +17,7 @@
       - "fisher"
 
       # developments
+      - "act"
       - "difftastic"
       - "parallel"
       - "ctags"
@@ -30,7 +30,7 @@
       - "p7zip"
       - "peco"
       - "pstree"
-      - "rustup-init"
+      - "rustup"
       - "shellcheck"
       - "skktools"
       - "watch"
@@ -48,17 +48,16 @@
       - "less"
 
       # taps
-      - "act"
       - "genkiroid/cert/cert"
 
 - name: brew | Install casks
   community.general.homebrew_cask:
-    name:
+    cask:
       # developments
       - "font-cica"
       - "gpg-suite-no-mail"
       - "ghostty"
+      - "macvim"
 
       # taps
       - "kyohsuke/misc/macface-haruhi"
-      - "kyohsuke/misc/cooviewer"

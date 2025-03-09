@@ -1,7 +1,7 @@
 ---
 - name: skk | Install AquaSKK
   community.general.homebrew_cask:
-    name: "aquaskk"
+    cask: "aquaskk"
 
 - name: skk | Applies direct write
   community.general.osx_defaults:
