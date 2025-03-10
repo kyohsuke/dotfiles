@@ -220,6 +220,9 @@ if test -z $FISHENV_LOAD
     not test -d "$XDG_CACHE_HOME/pg"
     and mkdir "$XDG_CACHE_HOME/pg"
 
+    # aws-cdk
+    set -gx CDK_HOME "$XDG_DATA_HOME/cdk"
+
     # LSCOLORS
     set -gx LSCOLORS Gxfxcxdxbxegedabagacad
 
