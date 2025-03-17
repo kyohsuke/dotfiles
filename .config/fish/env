@@ -157,11 +157,9 @@ if test -z $FISHENV_LOAD
         __add_path "$HOMEBREW_PREFIX/opt/util-linux/bin"
         __add_path "$HOMEBREW_PREFIX/opt/util-linux/sbin"
         __add_manpath "$HOMEBREW_PREFIX/opt/util-linux/share/man"
-
-        set -gx LDFLAGS "-L$HOMEBREW_PREFIX/opt/util-linux/lib" $LDFLAGS
-        set -gx CPPFLAGS "-I$HOMEBREW_PREFIX/opt/util-linux/include" $CPPFLAGS
     end
     # }}}
+
     # {{{ manpath
     __add_manpath "$HOMEBREW_PREFIX/share/man"
     # }}}
