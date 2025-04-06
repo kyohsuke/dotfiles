@@ -1,3 +1,4 @@
 pynvim
 neovim
 flake8
+ffpb
