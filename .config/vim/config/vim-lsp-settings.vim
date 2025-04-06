@@ -10,4 +10,7 @@ let g:lsp_settings = {
       \       '-debug=localhost:6060',
       \     ],
       \   },
+      \  'efm-langserver': {
+      \     'disabled': v:false
+      \   }
       \ }
