@@ -36,6 +36,7 @@
 !/.config/anyenv
 /.config/anyenv/*
 !/.config/anyenv/default-gems
+!/.config/anyenv/default-packages
 !/.config/anyenv/requirements.txt
 !/.config/anyenv/ruby-version
 !/.config/anyenv/perl-version
