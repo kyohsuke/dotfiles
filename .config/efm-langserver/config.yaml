@@ -1,0 +1,17 @@
+---
+version: 2
+root-merkers:
+  - .git/
+
+tools:
+  markdown-markdownlint: &markdown-markdownlint
+    lint-command: 'markdownlint -s -c "$XDG_CONFIG_HOME/markdownlint/config.json"'
+    lint-stdin: true
+    lint-formats:
+      - '%f:%l %m'
+      - '%f:%l:%c %m'
+      - '%f: %l: %m'
+
+languages:
+  markdown:
+    - <<: *markdown-markdownlint

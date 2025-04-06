@@ -60,6 +60,16 @@
 !/.config/vim/config
 !/.config/vim/stash
 
+# efm-langserver
+!/.config/efm-langserver
+/.config/efm-langserver/*
+!/.config/efm-langserver/config.yaml
+
+# markdownlint
+!/.config/markdownlint
+/.config/markdownlint/*
+!/.config/markdownlint/config.json
+
 # rails
 !/.config/rails
 /.config/rails/*
