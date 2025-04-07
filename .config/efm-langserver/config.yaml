@@ -4,6 +4,11 @@ root-merkers:
   - .git/
 
 tools:
+  dockerfile-hadolint: &dockerfile-hadolint
+    lint-command: 'hadolint'
+    lint-formats:
+      - '%f:%l %m'
+
   markdown-markdownlint: &markdown-markdownlint
     lint-command: 'markdownlint -s -c "$XDG_CONFIG_HOME/markdownlint/config.json"'
     lint-stdin: true
@@ -12,6 +17,29 @@ tools:
       - '%f:%l:%c %m'
       - '%f: %l: %m'
 
+  sh-shellcheck: &sh-shellcheck
+    lint-command: 'shellcheck -f gcc -x'
+    lint-source: 'shellcheck'
+    lint-formats:
+      - '%f:%l:%c: %trror: %m'
+      - '%f:%l:%c: %tarning: %m'
+      - '%f:%l:%c: %tote: %m'
+
+  sh-shfmt: &sh-shfmt
+    format-command: 'shfmt -ci -s -bn'
+    format-stdin: true
+
+  yaml-yamllint: &yaml-yamllint
+    lint-command: 'yamllint -f parsable -'
+    lint-stdin: true
+
 languages:
+  dockerfile:
+    - <<: *dockerfile-hadolint
   markdown:
     - <<: *markdown-markdownlint
+  yaml:
+    - <<: *yaml-yamllint
+  sh:
+    - <<: *sh-shellcheck
+    - <<: *sh-shfmt

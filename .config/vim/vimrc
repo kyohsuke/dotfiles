@@ -275,8 +275,6 @@ call plug#begin($XDG_DATA_HOME .. '/vim/plugged')
   Plug 'kyohsuke/sinplu.vim'
   Plug 'kyohsuke/yaml-key.vim'
 
-  Plug 'itspriddle/vim-shellcheck'
-
   " Plug 'bimlas/vim-eightheader'
   Plug 'LeafCage/foldCC.vim'
 
