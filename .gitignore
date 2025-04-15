@@ -71,6 +71,11 @@
 /.config/markdownlint/*
 !/.config/markdownlint/config.json
 
+# yamllint
+!/.config/yamllint
+/.config/yamllint/*
+!/.config/yamllint/config.yml
+
 # rails
 !/.config/rails
 /.config/rails/*

@@ -30,7 +30,7 @@ tools:
     format-stdin: true
 
   yaml-yamllint: &yaml-yamllint
-    lint-command: 'yamllint -f parsable -'
+    lint-command: 'yamllint -c "$XDG_CONFIG_HOME/yamllint/config.yml" -f parsable -'
     lint-stdin: true
 
 languages:
