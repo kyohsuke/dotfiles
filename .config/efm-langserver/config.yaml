@@ -5,7 +5,7 @@ root-merkers:
 
 tools:
   dockerfile-hadolint: &dockerfile-hadolint
-    lint-command: 'hadolint'
+    lint-command: 'hadolint --no-color'
     lint-formats:
       - '%f:%l %m'
 
