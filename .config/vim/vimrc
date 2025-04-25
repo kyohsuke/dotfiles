@@ -304,8 +304,11 @@ call plug#begin($XDG_DATA_HOME .. '/vim/plugged')
   Plug 'ryanoasis/vim-devicons'
     Plug 'Xuyuanp/nerdtree-git-plugin'
 
+
   if !empty($ENABLE_GITHUB_COPILOT)
     Plug 'github/copilot.vim'
+  elseif executable('llama-server')
+    Plug 'ggml-org/llama.vim'
   endif
 call plug#end()
 
