@@ -305,6 +305,9 @@ call plug#begin($XDG_DATA_HOME .. '/vim/plugged')
   Plug 'ryanoasis/vim-devicons'
     Plug 'Xuyuanp/nerdtree-git-plugin'
 
+  if !empty($CLAUDE_API_KEY)
+    Plug 'pasky/claude.vim'
+  endif
 
   if !empty($ENABLE_GITHUB_COPILOT)
     Plug 'github/copilot.vim'
