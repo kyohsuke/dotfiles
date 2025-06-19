@@ -148,6 +148,11 @@ command -q localstack
 and _evalcache localstack completion fish
 # }}}
 
+# {{{ ghalint
+command -q ghalint
+and _evalcache ghalint completion fish
+# }}}
+
 # {{{ Transient
 if type -q __transient_execute
     functions --copy fish_prompt transient_prompt_func
