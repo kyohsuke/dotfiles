@@ -38,7 +38,14 @@ tools:
     lint-source: 'yamllint'
     lint-stdin: true
 
+  makefile-bake: &makefile-bake
+    lint-command: 'bake format --check --verbose'
+    lint-formats:
+      - '%f:%l: %m'
+
 languages:
+  make:
+    - <<: *makefile-bake
   dockerfile:
     - <<: *dockerfile-hadolint
   markdown:
