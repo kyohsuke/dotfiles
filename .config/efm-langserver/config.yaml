@@ -4,13 +4,20 @@ root-merkers:
   - .git/
 
 tools:
+  sh-shfmt: &sh-shfmt
+    format-command: 'shfmt -ci -s -bn'
+    format-source: 'shfmt'
+    format-stdin: true
+
   dockerfile-hadolint: &dockerfile-hadolint
     lint-command: 'hadolint --no-color'
+    lint-source: 'hadolint'
     lint-formats:
       - '%f:%l %m'
 
   markdown-markdownlint: &markdown-markdownlint
     lint-command: 'markdownlint -s -c "$XDG_CONFIG_HOME/markdownlint/config.json"'
+    lint-source: 'markdownlint'
     lint-stdin: true
     lint-formats:
       - '%f:%l %m'
@@ -18,19 +25,17 @@ tools:
       - '%f: %l: %m'
 
   sh-shellcheck: &sh-shellcheck
-    lint-command: 'shellcheck -f gcc -x'
+    lint-command: 'shellcheck -f gcc -x -'
     lint-source: 'shellcheck'
+    lint-stdin: true
     lint-formats:
       - '%f:%l:%c: %trror: %m'
       - '%f:%l:%c: %tarning: %m'
       - '%f:%l:%c: %tote: %m'
 
-  sh-shfmt: &sh-shfmt
-    format-command: 'shfmt -ci -s -bn'
-    format-stdin: true
-
   yaml-yamllint: &yaml-yamllint
     lint-command: 'yamllint -c "$XDG_CONFIG_HOME/yamllint/config.yml" -f parsable -'
+    lint-source: 'yamllint'
     lint-stdin: true
 
 languages:
@@ -41,5 +46,5 @@ languages:
   yaml:
     - <<: *yaml-yamllint
   sh:
-    - <<: *sh-shellcheck
     - <<: *sh-shfmt
+    - <<: *sh-shellcheck
