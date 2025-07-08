@@ -43,6 +43,11 @@
 !/.config/anyenv/node-version
 !/.config/anyenv/go-version
 
+# mise
+!/.config/mise
+/.config/mise/*
+!/.config/mise/config.toml
+
 # act
 !/.config/act
 /.config/act/*

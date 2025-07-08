@@ -47,6 +47,7 @@
       - "libressl"
       - "less"
       - "hadolint"
+      - "mise"
 
       # taps
       - "genkiroid/cert/cert"
