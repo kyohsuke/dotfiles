@@ -53,35 +53,8 @@ if test -z $FISHENV_LOAD
 
     # {{{ mise
     if command -v mise >/dev/null
+        # golang
         if command -v go >/dev/null
-            set -gx MISE_GO_SET_GOBIN false
-            set -gx GOPATH "$HOME"
-            set -gx GOCACHE "$XDG_CACHE_HOME/go-build"
-            set -gx GOMODCACHE "$XDG_CACHE_HOME/pkg/mod"
-            set -gx GOCOVERDIR "$XDG_CACHE_HOME/go-covdata"
-
-            test ! -d "$GOCOVERDIR"
-            and mkdir -p "$GOCOVERDIR"
-        end
-    end
-    # }}}
-
-
-    # {{{ anyenv
-    if test -x "$HOME/.anyenv/bin/anyenv"
-        __add_path "$HOME/.anyenv/bin"
-        set -l envPath "$HOME/.anyenv/envs"
-
-        test -d "$HOME/.anyenv/completions"
-        and set -a fish_complete_path "$HOME/.anyenv/completions"
-
-        set -gx ANYENV_DEFINITION_ROOT "$XDG_DATA_HOME/anyenv/anyenv-install"
-
-        # goenv
-        if test -x "$envPath/goenv/bin/goenv"
-            set -gx GOENV_DISABLE_GOPATH 1
-            set -gx GOENV_PATH_ORDER "front"
-
             set -gx GOPATH "$HOME"
             set -gx GOCACHE "$XDG_CACHE_HOME/go-build"
             set -gx GOMODCACHE "$XDG_CACHE_HOME/pkg/mod"
@@ -91,54 +64,36 @@ if test -z $FISHENV_LOAD
             and mkdir -p "$GOCOVERDIR"
         end
 
-        # pyenv
-        if test -x "$envPath/pyenv/bin/pyenv"
-            set -l DETECT_OSTYPE (uname)
-            set -gx PYTHONDONTWRITEBYTECODE 1
-            set -gx PYENV_VIRTUALENV_DISABLE_PROMPT 1
-            set -gx PYTHON_CFLAGS "$COMMON_FLAGS"
-            set -gx PYTHONWARNINGS 'ignore::DeprecationWarning'
+        # ruby
+        if test -x "$BREW_BIN"
+            set -l libressl ($BREW_BIN --prefix libressl)
 
-            set -l opts "--enable-optimizations" "--with-lto"
-
-            switch $DETECT_OSTYPE
-                case Darwin
-                    set opts "--enable-framework"
-                case Linux
-                    set opts "--enable-shared"
-            end
-
-            set -gx PYTHON_CONFIGURE_OPTS $opts
+            test -d $libressl
+            and set opts "--with-openssl-dir=$libressl" $opts
+            set -gx MISE_RUBY_BUILD_OPTS "$opts"
         end
 
-        # rbenv
-        if test -x "$envPath/rbenv/bin/rbenv"
-            set -gx GEM_EDITOR "$EDITOR"
-            set -gx UNBUNDLED_COMMANDS rake cap irb
+        # node
+        set -gx NPM_CONFIG_USERCONFIG "$XDG_CONFIG_HOME/npm/npmrc"
+        set -gx NODE_REPL_HISTORY "$XDG_DATA_HOME/node_repl_history"
 
-            set -gx GEM_HOME "$XDG_DATA_HOME/gem"
-            set -gx GEM_SPEC_CACHE "$XDG_CACHE_HOME/gem"
-            set -gx BUNDLE_USER_CONFIG "$XDG_CONFIG_HOME/bundle/config"
-            set -gx BUNDLE_USER_CACHE "$XDG_CACHE_HOME/bundle/cache"
-            set -gx BUNDLE_USER_PLUGIN "$XDG_DATA_HOME/bundle/plugin"
+        # python
+        set -l DETECT_OSTYPE (uname)
+        set -gx PYTHONDONTWRITEBYTECODE 1
+        set -gx PYENV_VIRTUALENV_DISABLE_PROMPT 1
+        set -gx PYTHON_CFLAGS "$COMMON_FLAGS"
+        set -gx PYTHONWARNINGS 'ignore::DeprecationWarning'
 
-            if test -x "$BREW_BIN"
-                set -l libressl ($BREW_BIN --prefix libressl)
+        set -l opts "--enable-optimizations" "--with-lto"
 
-                test -d $libressl
-                and set opts "--with-openssl-dir=$libressl" $opts
-            end
-
-            set -gx RUBY_CONFIGURE_OPTS "$opts"
+        switch $DETECT_OSTYPE
+            case Darwin
+                set opts "--enable-framework"
+            case Linux
+                set opts "--enable-shared"
         end
 
-        # nodenv
-        if test -x "$envPath/nodenv/bin/nodenv"
-            set -gx NPM_CONFIG_USERCONFIG "$XDG_CONFIG_HOME/npm/npmrc"
-            set -gx NODE_REPL_HISTORY "$XDG_DATA_HOME/node_repl_history"
-        end
-
-        _evalcache anyenv init - fish
+        set -gx PYTHON_CONFIGURE_OPTS $opts
     end
     # }}}
     # {{{ rustup
