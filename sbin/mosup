@@ -24,10 +24,6 @@ if test -f "$XDG_CONFIG_HOME/fish/functions/fisher.fish"; then
   fish -l -c "fisher update"
 fi
 
-if which anyenv > /dev/null 2>&1; then
-  anyenv update
-fi
-
 if which brew > /dev/null 2>&1; then
   brew update
   brew upgrade
