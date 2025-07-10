@@ -12,7 +12,7 @@ if which rustup > /dev/null 2>&1; then
   rustup completions fish > "$XDG_CONFIG_HOME/fish/completions/rustup.fish"
 
   if which cargo > /dev/null 2>&1 && cargo --list | grep -q install-update; then
-    cargo install-update
+    cargo install-update --all
   fi
 fi
 
