@@ -50,6 +50,23 @@ if test -z $FISHENV_LOAD
     test -x "$BREW_BIN"
     and _evalcache "$BREW_BIN" shellenv fish
     # }}}
+
+    # {{{ mise
+    if command -v mise >/dev/null
+        if command -v go >/dev/null
+            set -gx MISE_GO_SET_GOBIN false
+            set -gx GOPATH "$HOME"
+            set -gx GOCACHE "$XDG_CACHE_HOME/go-build"
+            set -gx GOMODCACHE "$XDG_CACHE_HOME/pkg/mod"
+            set -gx GOCOVERDIR "$XDG_CACHE_HOME/go-covdata"
+
+            test ! -d "$GOCOVERDIR"
+            and mkdir -p "$GOCOVERDIR"
+        end
+    end
+    # }}}
+
+
     # {{{ anyenv
     if test -x "$HOME/.anyenv/bin/anyenv"
         __add_path "$HOME/.anyenv/bin"
