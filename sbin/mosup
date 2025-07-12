@@ -7,11 +7,17 @@ sudo -v
 # Keep-alive: update existing `sudo` time stamp until `brew-world` has finished
 while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
+if which mise > /dev/null 2>&1; then
+  mise upgrade
+  mise plugins update
+fi
+
 if which rustup > /dev/null 2>&1; then
   rustup update stable
   rustup completions fish > "$XDG_CONFIG_HOME/fish/completions/rustup.fish"
 
-  if which cargo > /dev/null 2>&1 && cargo --list | grep -q install-update; then
+  if which cargo > /dev/null 2>&1; then
+    cargo --list | grep -q install-update || cargo install cargo-update # install cargo-update
     cargo install-update --all
   fi
 fi
