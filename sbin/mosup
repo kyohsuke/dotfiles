@@ -8,29 +8,35 @@ sudo -v
 while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
 if which mise > /dev/null 2>&1; then
-  mise upgrade
-  mise plugins update
+  echo "[INFO] update mise"
+  mise upgrade -v
+  mise plugins update -v
 fi
 
 if which rustup > /dev/null 2>&1; then
+  echo "[INFO] update rust"
   rustup update stable
   rustup completions fish > "$XDG_CONFIG_HOME/fish/completions/rustup.fish"
 
   if which cargo > /dev/null 2>&1; then
+    echo "[INFO] update cargo packages"
     cargo --list | grep -q install-update || cargo install cargo-update # install cargo-update
     cargo install-update --all
   fi
 fi
 
 if test -f "$XDG_DATA_HOME/omf/pkg/omf/functions/omf.fish"; then
+  echo "[INFO] update oh-my-fish"
   fish -l -c "omf update"
 fi
 
 if test -f "$XDG_CONFIG_HOME/fish/functions/fisher.fish"; then
+  echo "[INFO] update fisher"
   fish -l -c "fisher update"
 fi
 
 if which brew > /dev/null 2>&1; then
+  echo "[INFO] update homebrew"
   brew update
   brew upgrade
   brew upgrade --cask
