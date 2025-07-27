@@ -47,6 +47,11 @@
 !/.config/mise
 /.config/mise/*
 !/.config/mise/config.toml
+!/.config/mise/conf.d
+/.config/mise/conf.d/*
+!/.config/mise/conf.d/func-decrypt.toml
+!/.config/mise/conf.d/func-encrypt.toml
+!/.config/mise/conf.d/func-gobin-update.toml
 
 # act
 !/.config/act

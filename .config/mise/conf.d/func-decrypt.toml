@@ -1,0 +1,12 @@
+[tasks.decrypt]
+description = "Decrypt file with public key"
+usage = """
+arg "<fileName>"
+"""
+run = """
+#!/usr/bin/env fish
+set -l fileName "{{arg(name="fileName")}}"
+set -l destName (string trim --chars=.enc "$fileName")
+
+openssl enc -d -aes256 -pbkdf2 -md sha-256 -in "$fileName" -out "$destName"
+"""
