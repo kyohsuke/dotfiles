@@ -154,6 +154,7 @@ if test -z $FISHENV_LOAD
     set -gx TZ Asia/Tokyo
     set -gx LANG "ja_JP.UTF-8"
     set -gx LESSCHARSET UTF-8
+    set -gx LESSHISTFILE "$XDG_STATE_HOME/less/history"
     set -gx OUTPUT_CHARSET UTF-8
 
     set -gx MONO_GAC_PREFIX "$HOMEBREW_PREFIX"
