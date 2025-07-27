@@ -1,4 +1,4 @@
 # vim: filetype=fish foldmethod=marker
 
-test -f "$HOME/.fishrc.local"
-and source "$HOME/.fishrc.local"
+test -f "$XDG_DATA_HOME/fish/rc"
+and source "$XDG_DATA_HOME/fish/rc"

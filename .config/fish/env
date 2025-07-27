@@ -225,3 +225,6 @@ if test -z $FISHENV_LOAD
     set -gx FISHENV_LOAD 1
 end
 # }}}
+
+test -f "$XDG_DATA_HOME/fish/env"
+and source "$XDG_DATA_HOME/fish/env"
