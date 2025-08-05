@@ -9,7 +9,7 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
 if which mise > /dev/null 2>&1; then
   echo "[INFO] update mise"
-  mise upgrade -v
+  mise upgrade -v --bump
   mise plugins update -v
 fi
 
