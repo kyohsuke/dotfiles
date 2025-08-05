@@ -301,6 +301,12 @@ call plug#begin($XDG_DATA_HOME .. '/vim/plugged')
 
   Plug 'ntpeters/vim-better-whitespace'
 
+  " Denops
+  if exepath('deno') != ""
+    Plug 'vim-denops/denops.vim'
+    Plug 'skanehira/denops-docker.vim'
+  endif
+
   " Devicons
   Plug 'ryanoasis/vim-devicons'
     Plug 'Xuyuanp/nerdtree-git-plugin'

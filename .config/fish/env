@@ -214,10 +214,6 @@ if test -z $FISHENV_LOAD
     test -f "$XDG_DATA_HOME/fish/env"
     and source "$XDG_DATA_HOME/fish/env"
     # }}}
-    # {{{ Docker Socket
-    test "$HOME/.docker/run/docker.sock"
-    and set -gx DOCKER_HOST "unix://$HOME/.docker/run/docker.sock"
-    # }}}
 
     # {{ LM Studio CLI
     __add_path "$HOME/.lmstudio/bin"
