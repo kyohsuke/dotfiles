@@ -59,6 +59,7 @@ if test -z $FISHENV_LOAD
             set -gx GOCACHE "$XDG_CACHE_HOME/go-build"
             set -gx GOMODCACHE "$XDG_CACHE_HOME/pkg/mod"
             set -gx GOCOVERDIR "$XDG_CACHE_HOME/go-covdata"
+            set -gx GOSUMDB "off"
 
             test ! -d "$GOCOVERDIR"
             and mkdir -p "$GOCOVERDIR"
