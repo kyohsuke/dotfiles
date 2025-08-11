@@ -2,6 +2,7 @@
 deno = "latest"
 go = "1.24.6"
 node = "24.5.0"
+ruby = "latest"
 
 [settings]
 go_set_gobin = false
