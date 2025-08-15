@@ -1,7 +1,7 @@
 [tools]
 deno = "latest"
 go = "1.25.0"
-node = "24.5.0"
+node = "24"
 ruby = "latest"
 
 [settings]
