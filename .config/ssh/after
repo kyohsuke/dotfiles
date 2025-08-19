@@ -1,3 +1,4 @@
+# vim: filetype=sshconfig
 # write your settings with Host/Match
 
 Host *
