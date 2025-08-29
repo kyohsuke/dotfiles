@@ -65,6 +65,12 @@ function fish_user_key_bindings
 
     bind -s -M default p fish_clipboard_paste
     bind -s -M default P fish_clipboard_paste
+
+    # Kill Ctrl-j for SKK
+    bind --preset -e -M insert ctrl-j
+    bind --preset -e -m insert ctrl-j
+    bind -e -M insert ctrl-j
+    bind -e ctrl-j
 end
 # }}}
 # {{{ check_ssh_config
