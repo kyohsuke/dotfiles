@@ -3,3 +3,5 @@
 .rake_tasks
 .envrc
 *.env.local
+
+**/.claude/settings.local.json
