@@ -150,6 +150,10 @@ if test -z $FISHENV_LOAD
     __add_manpath "$PIPX_MAN_DIR"
     # }}}
 
+    # {{{ Add Local Bin if Exists
+    __add_path "$HOME/.local/bin"
+    # }}}
+
     set -gx GREP_OPTIONS '--color=auto'
     set -gx DISABLE_AUTO_UPDATE true
     set -gx TZ Asia/Tokyo
