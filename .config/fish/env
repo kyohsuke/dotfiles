@@ -224,6 +224,10 @@ if test -z $FISHENV_LOAD
     __add_path "$HOME/.lmstudio/bin"
     # }}}
 
+    # {{{ Claude
+    set -gx CLAUDE_CONFIG_DIR "$XDG_CONFIG_HOME/claude"
+    # }}}
+
     set -gx FISHENV_LOAD 1
 end
 # }}}
