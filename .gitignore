@@ -58,6 +58,11 @@
 /.config/act/*
 !/.config/act/actrc
 
+# claude
+!/.config/claude
+/.config/claude/*
+!/.config/claude/settings.json
+
 # dircolors
 !/.config/dircolors
 /.config/dircolors/*
