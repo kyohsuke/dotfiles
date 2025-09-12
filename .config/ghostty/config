@@ -34,6 +34,15 @@ window-inherit-working-directory = true
 # Shell Integration
 shell-integration-features = no-cursor,sudo,title
 
+# Quick Terminal
+quick-terminal-position = "center"
+quick-terminal-screen = "main"
+quick-terminal-autohide = true
+quick-terminal-animation-duration = 0
+quick-terminal-size = "70%,70%"
+
+
 # keybinds
 keybind = home=scroll_to_top
 keybind = end=scroll_to_bottom
+keybind = global:ctrl+space=toggle_quick_terminal
