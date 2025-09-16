@@ -7,7 +7,12 @@ let g:quickrun_config = {
       \   '_': {
       \     'outputter/buffer/close_on_empty': 1,
       \     'outputter/buffer/opener': 'rightbelow split',
-      \     'runner': 'job',
+      \   },
+      \   'go': {
+      \     'command': 'go',
+      \     'exec': '%c run %s:p %a',
+      \     'tempfile': '%{tempname()}.go',
+      \     'hook/output_encode/encoding': 'utf-8',
       \   },
       \   'go/test': {
       \     'exec': 'go test ./...',
