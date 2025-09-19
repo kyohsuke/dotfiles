@@ -10,5 +10,8 @@
       "Bash(mv:*)",
       "Bash(cp:*)"
     ]
+  },
+  "env": {
+    "DISABLE_AUTOUPDATER": "1"
   }
 }
