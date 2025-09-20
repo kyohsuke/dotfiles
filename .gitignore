@@ -158,6 +158,13 @@
 /.config/ghostty/*
 !/.config/ghostty/config
 
+# Kitty
+!/.config/kitty
+/.config/kitty/*
+!/.config/kitty/kitty.conf
+!/.config/kitty/quick-access-terminal.conf
+
+
 # fish shell
 !/.fish-functions
 !/.config/fish
