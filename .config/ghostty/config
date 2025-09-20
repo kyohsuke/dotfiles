@@ -14,7 +14,7 @@ font-feature = -liga
 font-feature = -dlig
 
 # cursor
-shell-integration-features = no-cursor
+cursor-color = C0C0C0
 cursor-style = block
 cursor-style-blink = false
 selection-background = C0C0C0
@@ -45,4 +45,4 @@ quick-terminal-size = "70%,70%"
 # keybinds
 keybind = home=scroll_to_top
 keybind = end=scroll_to_bottom
-keybind = global:ctrl+space=toggle_quick_terminal
+# keybind = global:ctrl+space=toggle_quick_terminal
