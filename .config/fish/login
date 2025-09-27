@@ -89,13 +89,15 @@ test -d "$HOME/bin"
 fish_add_path --global --move --path "$HOME/bin"
 # }}}
 # {{{ Aliases
-set -f vim_version (vim --version | head -1 | sed 's/^.*\ \([0-9]\)\.\([0-9]\)\ .*$/\1\2/')
-
 test -f "/Applications/MacVim.app/Contents/MacOS/Vim"
 and alias vim='/Applications/MacVim.app/Contents/MacOS/Vim'
 
+# set -f vim_version (vim --version | head -1 | sed 's/^.*\ \([0-9]\)\.\([0-9]\)\ .*$/\1\2/')
 # test -f "/usr/share/vim/vim$vim_version/macros/less.sh"
 # and alias less="/usr/share/vim/vim$vim_version/macros/less.sh"
+
+# test -f "/Applications/Neovide.app/Contents/MacOS/neovide"
+# and alias neovide="/Applications/Neovide.app/Contents/MacOS/neovide"
 
 abbr -a gup git pull --rebase
 abbr -a rm rm -i
