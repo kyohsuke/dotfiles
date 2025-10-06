@@ -5,6 +5,7 @@ nnoremap <expr><Leader>t ":<C-u>QuickRun " .. expand(&ft) .. "/test" .. "<Return
 
 let g:quickrun_config = {
       \   '_': {
+      \     'runner': 'job',
       \     'outputter/buffer/close_on_empty': 1,
       \     'outputter/buffer/opener': 'rightbelow split',
       \   },
