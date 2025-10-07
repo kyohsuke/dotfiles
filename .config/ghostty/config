@@ -1,6 +1,7 @@
 # vim: filetype=config
 
 clipboard-paste-protection = false
+bell-features=border
 
 # fonts
 font-family = Cica
@@ -40,7 +41,6 @@ quick-terminal-screen = "main"
 quick-terminal-autohide = true
 quick-terminal-animation-duration = 0
 quick-terminal-size = "70%,70%"
-
 
 # keybinds
 keybind = home=scroll_to_top
