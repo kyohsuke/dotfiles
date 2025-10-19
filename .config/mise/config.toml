@@ -4,6 +4,7 @@ go = "1"
 node = "24"
 pipx = "latest"
 ruby = "latest"
+uv = "latest"
 
 [settings]
 go_set_gobin = false
