@@ -2,7 +2,6 @@
 deno = "latest"
 go = "1"
 node = "24"
-pipx = "latest"
 ruby = "latest"
 uv = "latest"
 
