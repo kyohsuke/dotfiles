@@ -13,6 +13,14 @@ if which mise > /dev/null 2>&1; then
   mise plugins update -v
 fi
 
+if which uv > /dev/null 2>&1; then
+  uv tool upgrade --all
+fi
+
+if which pipx > /dev/null 2>&1; then
+  pipx reinstall-all
+fi
+
 if which rustup > /dev/null 2>&1; then
   echo "[INFO] update rust"
   rustup update stable
