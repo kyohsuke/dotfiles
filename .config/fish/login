@@ -33,6 +33,7 @@ function fish_user_key_bindings
 
     # Accept Autosuggestion like python prompt Kit
     bind -s -M insert \ce accept-autosuggestion
+    bind -s -M insert \cf forward-word
 
     bind -s -M visual -m default d "fish_clipboard_copy; commandline -f kill-selection end-selection repaint-mode;"
     bind -s -M visual -m default y "fish_clipboard_copy; commandline -f end-selection repaint-mode;"
