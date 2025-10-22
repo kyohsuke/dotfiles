@@ -208,6 +208,9 @@ augroup DetectFileTypes
   " Remap vim help
   autocmd FileType help nnoremap <buffer> <CR> <C-]>
   autocmd FileType help nnoremap <buffer> <BS> <C-O>
+
+  " Javascript
+  autocmd FileType javascript setlocal noexpandtab ts=4 sts=4 sw=4
 augroup END
 " }}}
 " {{{ vim-plug
