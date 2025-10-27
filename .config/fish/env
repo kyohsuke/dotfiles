@@ -220,10 +220,6 @@ if test -z $FISHENV_LOAD
     and source "$XDG_DATA_HOME/fish/env"
     # }}}
 
-    # {{ LM Studio CLI
-    __add_path "$HOME/.lmstudio/bin"
-    # }}}
-
     # {{{ Claude
     set -gx CLAUDE_CONFIG_DIR "$XDG_CONFIG_HOME/claude"
     # }}}
