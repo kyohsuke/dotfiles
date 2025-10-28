@@ -46,4 +46,4 @@ quick-terminal-size = 70%,70%
 # keybinds
 keybind = home=scroll_to_top
 keybind = end=scroll_to_bottom
-keybind = global:ctrl+space=toggle_quick_terminal
+# keybind = global:ctrl+space=toggle_quick_terminal
