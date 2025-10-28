@@ -2,6 +2,15 @@
   "permissions": {
     "allow": {
       "mcp__serena",
+
+      "Bash(gh issue view:*)",
+
+      "Bash(git checkout:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git show:*)",
+
+      "Bash(sed:*)",
       "Bash(cat:*)"
     },
     "deny": [
