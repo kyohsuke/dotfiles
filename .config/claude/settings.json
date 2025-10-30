@@ -1,6 +1,6 @@
 {
   "permissions": {
-    "allow": {
+    "allow": [
       "mcp__serena",
 
       "Bash(gh issue view:*)",
@@ -9,10 +9,11 @@
       "Bash(git add:*)",
       "Bash(git commit:*)",
       "Bash(git show:*)",
+      "Bash(git log:*)",
 
       "Bash(sed:*)",
       "Bash(cat:*)"
-    },
+    ],
     "deny": [
       "Read(.env.*)",
 
