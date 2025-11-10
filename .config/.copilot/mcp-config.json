@@ -1,0 +1,17 @@
+{
+  "mcpServers": {
+    "selena": {
+      "type": "local",
+      "command": "uvx",
+      "tools": [
+        "*"
+      ],
+      "args": [
+        "--from",
+        "git+https://github.com/oraios/serena",
+        "serena",
+        "start-mcp-server"
+      ]
+    }
+  }
+}

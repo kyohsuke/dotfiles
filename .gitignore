@@ -64,6 +64,10 @@
 !/.config/claude/settings.json
 !/.config/claude/commands
 
+# copilot
+!/.config/.copilot
+/.config/.copilot/*
+!/.config/.copilot/mcp-config.json
 
 # dircolors
 !/.config/dircolors
