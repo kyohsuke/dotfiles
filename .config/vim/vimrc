@@ -147,7 +147,6 @@ endif
   " }}}
 
   set ts=2 sts=2 sw=2
-  set wildmode=list:full
   set showmatch
   set t_Co=256
   set visualbell t_vb=
