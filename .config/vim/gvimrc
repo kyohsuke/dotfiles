@@ -9,7 +9,6 @@ if has('gui_running')
 
   set imdisable " Kill IME
 
-  set antialias
   set guioptions& " Win: egmrLtT / MacVim-Kaoriya : egimrL / Other : aegimrLtT
   set guioptions=egimrL
   set guioptions-=mrLtT
@@ -23,6 +22,7 @@ if has('gui_running')
     set transparency=15
     set guifont=Cica-Regular:h14,Osaka-Mono:h14
     set guifontwide=Cica-Regular:h14,Osaka-Mono:h14
+    set antialias
 
     if has('transparency') || exists('+transparency')
       augroup hack234
