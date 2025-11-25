@@ -12,6 +12,6 @@ let g:lsp_settings = {
       \     ],
       \   },
       \  'efm-langserver': {
-      \     'disabled': v:false
+      \     'disabled': v:true
       \   }
       \ }
