@@ -6,7 +6,7 @@ let g:lsp_format_sync_timeout = 1000
 let g:lsp_diagnostics_virtual_text_enabled = 0
 let g:lsp_diagnostics_virtual_text_prefix = '» '
 
-command! LspDebug g:lsp_log_verbose = 1 | g:lsp_log_file = expand('~/lsp.log')
+command! LspDebug let g:lsp_log_verbose = 1 | let g:lsp_log_file = expand('~/lsp.log')
 
 function! g:LspDefinitionSplitWindow()
   split
