@@ -10,3 +10,6 @@ go_set_gobin = false
 
 python.default_packages_file="$HOME/.config/anyenv/requirements.txt"
 ruby.default_packages_file="$HOME/.config/anyenv/default-gems"
+
+[env]
+MISE_NODE_DEFAULT_PACKAGES_FILE = "$HOME/.config/anyenv/default-packages"
