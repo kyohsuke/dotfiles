@@ -12,7 +12,7 @@
 
     - import_tasks: "ansible/osx.yml"
 
-    - import_tasks: "ansible/anyenv.yml"
+    # - import_tasks: "ansible/anyenv.yml"
 
     - import_tasks: "ansible/fish.yml"
 
