@@ -18,6 +18,7 @@
 
       # developments
       - "act"
+      - "awscli"
       - "difftastic"
       - "parallel"
       - "ctags"
