@@ -89,9 +89,9 @@ if test -z $FISHENV_LOAD
 
         switch $DETECT_OSTYPE
             case Darwin
-                set opts "--enable-framework"
+                set opts $opts "--enable-framework"
             case Linux
-                set opts "--enable-shared"
+                set opts $opts "--enable-shared"
         end
 
         set -gx PYTHON_CONFIGURE_OPTS $opts
