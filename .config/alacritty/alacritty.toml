@@ -1,0 +1,64 @@
+# Alacritty configuration file (TOML format)
+# Alacritty v0.13以降（2026年1月現在）の安定版仕様に従い記載しています
+# 参考: https://github.com/alacritty/alacritty　(extra/man/alacritty.5.scd)
+
+[window]
+# ウィンドウ初期サイズ（列・行単位）
+dimensions = { columns = 200, lines = 60 }
+# 背景透過度（0.0 = 完全透明, 1.0 = 不透明）
+opacity = 0.85
+# タイトルバーやウィンドウ装飾 (Proテーマ相当はカラースキームで再現)
+decorations = "Full"
+# サブシステム依存: macos-titlebar-style, window-themeなどは未サポート
+
+[font]
+# フォント設定
+normal = { family = "Cica" }
+bold = { family = "Cica" }
+size = 14.0
+# 太字を明るいカラーで
+# draw_bold_text_with_bright_colors = true
+
+# リガチャを無効化（必要な場合のみ。ほとんどの環境では自動無効/Harfbuzz feature指定も可能）
+# features = ["-calt", "-liga", "-dlig"]
+
+[cursor]
+# カーソル形状・色・点滅設定
+style = { shape = "Block", blinking = "Never" }
+unfocused_hollow = false
+# Ghostty: cursor-color = C0C0C0
+# color = "#C0C0C0"
+
+[selection]
+# 選択範囲の背景色
+# background = "0xC0C0C0"
+save_to_clipboard = true
+
+[mouse]
+# 入力時にマウスポインタを隠す
+hide_when_typing = true
+
+[bell]
+# ベル時の効果（Ghostty: bell-features=borderに近い。Alacrittyでは animation/color 指定のみ）
+animation = "Linear"
+color = "#C0C0C0"
+duration = 0
+
+[terminal]
+# shell-integration-features はAlacrittyでは一部自動
+# shell = ["zsh", "-l"] など任意設定可能
+
+# クイックターミナル(visor的機能)はAlacrittyには無し
+
+[keyboard]
+bindings = [
+  # Homeキーで最上部へ
+  { key = "Home", action = "ScrollToTop" },
+  # Endキーで最下部へ
+  { key = "End", action = "ScrollToBottom" },
+  # ctrl+space トグル等はAlacritty標準では未対応
+]
+
+# 注意:
+# - テーマ/カラースキームの設定例は省略しました。必要なら [colors] テーブルを追加してください。
+# - 設定詳細は https://github.com/alacritty/alacritty/blob/master/alacritty/example/alacritty.toml または man alacritty.5 参照

@@ -43,6 +43,11 @@
 !/.config/anyenv/node-version
 !/.config/anyenv/go-version
 
+# alacritty
+!/.config/alacritty
+/.config/alacritty/*
+!/.config/alacritty/alacritty.toml
+
 # mise
 !/.config/mise
 /.config/mise/*
