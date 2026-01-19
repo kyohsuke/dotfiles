@@ -1,31 +1,29 @@
 {
+  "env": {
+    "DISABLE_AUTOUPDATER": "1",
+    "EDITOR": "gvim --nofork",
+    "VISUAL": "gvim --nofork"
+  },
   "permissions": {
     "allow": [
       "mcp__serena",
-
       "Bash(gh issue view:*)",
-
       "Bash(git checkout:*)",
       "Bash(git add:*)",
       "Bash(git commit:*)",
       "Bash(git show:*)",
       "Bash(git log:*)",
-
       "Bash(sed:*)",
       "Bash(cat:*)"
     ],
     "deny": [
       "Read(.env.*)",
-
       "Bash(git push:*)",
-
       "Bash(rm:*)",
       "Bash(sudo:*)",
       "Bash(mv:*)",
       "Bash(cp:*)"
     ]
   },
-  "env": {
-    "DISABLE_AUTOUPDATER": "1"
-  }
+  "language": "Japanese"
 }
