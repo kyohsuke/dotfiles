@@ -25,5 +25,8 @@
       "Bash(cp:*)"
     ]
   },
-  "language": "Japanese"
+  "language": "Japanese",
+  "enabledPlugins": {
+    "gopls-lsp@claude-plugins-official": true
+  }
 }
