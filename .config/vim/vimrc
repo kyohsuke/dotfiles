@@ -259,9 +259,11 @@ call plug#begin($XDG_DATA_HOME .. '/vim/plugged')
   Plug 'othree/html5.vim'
 
   " golang
-  Plug 'mattn/vim-goimports'
-  Plug 'kyohsuke/vim-go-syntax'
-  Plug 'sebdah/vim-delve'
+  " Plug 'mattn/vim-goimports'
+  " Plug 'kyohsuke/vim-go-syntax'
+  " Plug 'sebdah/vim-delve'
+
+  Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
   " ruby
   Plug 'vim-ruby/vim-ruby'

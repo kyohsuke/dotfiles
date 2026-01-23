@@ -38,5 +38,6 @@ endfunction
 augroup VimLsp
   autocmd!
   autocmd User lsp_buffer_enabled call <SID>OnLspBufferEnabled()
-  autocmd BufWritePre *.rs,*.go execute('LspDocumentFormatSync')
+  autocmd BufWritePre *.rs, execute('LspDocumentFormatSync')
+  " autocmd BufWritePre *.rs,*.go execute('LspDocumentFormatSync')
 augroup END
