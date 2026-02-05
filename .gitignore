@@ -177,7 +177,7 @@
 
 # uv
 !/.config/uv
-/.config/kitty/*
+/.config/uv/*
 !/.config/uv/uv.toml
 
 # fish shell
