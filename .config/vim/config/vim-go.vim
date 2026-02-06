@@ -10,12 +10,17 @@ let g:go_doc_popup_window = 1
 let g:go_decls_includes = 'func'
 let g:go_decls_mode = 'ctrlp.vim'
 
+" コマンド出力用に利用するリストの表示方法を設定するオプション。'quickfix' または 'locationlist' を指定できる。
+" デフォルトは実行されたコマンドに応じて自動的に選択される。
+let g:go_list_type = 'quickfix'
+
 " 強調表示
 let g:go_highlight_array_whitespace_error = 1
 let g:go_highlight_chan_whitespace_error = 1
-let g:go_highlight_extra_types = 1
 let g:go_highlight_space_tab_error = 1
 let g:go_highlight_operators = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_function_parameters = 1
 let g:go_highlight_diagnostic_errors = 1
 
 augroup VimGo
