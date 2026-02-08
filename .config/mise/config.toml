@@ -6,18 +6,25 @@ python = "latest"
 ruby = "latest"
 uv = "latest"
 
+
 [settings]
+cache_prune_age = '7d'
+
+env_shell_expand = true
 
 # golang
 go_set_gobin = false
 
 # python
 python.compile = true
-python.default_packages_file="$HOME/.config/anyenv/requirements.txt"
+# python.default_packages_file="$HOME/.config/anyenv/requirements.txt"
 
 # ruby
 ruby.compile = true
-ruby.default_packages_file="$HOME/.config/anyenv/default-gems"
+ruby.default_packages_file = "$HOME/.config/anyenv/default-gems"
+
+# node
+npm.package_manager = "pnpm"
 
 
 [env]
