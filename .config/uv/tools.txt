@@ -6,3 +6,5 @@ ffpb
 plamo-translate
 yamllint
 yt-dlp
+pgcli
+flake8
