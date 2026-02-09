@@ -177,6 +177,7 @@
 !/.config/uv
 /.config/uv/*
 !/.config/uv/uv.toml
+!/.config/uv/tools.txt
 
 # fish shell
 !/.fish-functions

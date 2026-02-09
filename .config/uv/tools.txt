@@ -1,0 +1,8 @@
+git+https://github.com/kyohsuke/ffpb
+git+https://github.com/aws/aws-cli.git@v2
+--with-executables-from ansible-core,ansible-lint ansible
+argcomplete
+ffpb
+plamo-translate
+yamllint
+yt-dlp
