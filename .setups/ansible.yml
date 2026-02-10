@@ -16,6 +16,8 @@
 
     - import_tasks: "ansible/fish.yml"
 
+    - import_tasks: "ansible/mise.yml"
+
     - import_tasks: "ansible/mas.yml"
 
     - import_tasks: "ansible/mas_indivisual.yml"

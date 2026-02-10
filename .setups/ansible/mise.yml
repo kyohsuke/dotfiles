@@ -1,0 +1,6 @@
+---
+- name: mise | Install tools
+  shell: "fish -l -c 'mise install'"
+
+- name: mise | Install uv tools
+  shell: "fish -l -c 'mise uv-tool-all'"
