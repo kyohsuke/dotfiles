@@ -3,6 +3,9 @@ UsePlugin 'vim-go'
 " GoDoc をバルーン表示するかどうかを設定するオプション。詳細は go#tool#DescribeBalloon() を参照。デフォルトでは無効になっている。
 let g:go_doc_balloon = 1
 
+" gopls の診断情報を有効にするオプション。デフォルトでは無効になっている。
+let g:go_diagnostics_enabled = 1
+
 " K キーおよび :GoDoc の表示にプレビューウィンドウではなくポップアップウィンドウを使用するかどうかを設定するオプション。
 " デフォルトではこの機能は無効になっている。
 let g:go_doc_popup_window = 1
@@ -36,6 +39,7 @@ augroup VimGo
     setlocal foldmethod=syntax regexpengine=1
 
     nnoremap <buffer> <C-]> <plug>(go-def-split)
+    nnoremap <buffer> ge <plug>(go-diagnostics)
     nnoremap <buffer> <f2> <plug>(go-rename)
     nnoremap <buffer> gr <plug>(go-referrers)
     nnoremap <buffer> gi <plug>(go-implements)
