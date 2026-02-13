@@ -1,5 +1,8 @@
 UsePlugin 'vim-go'
 
+" メタルインタープリターを実行した時に自動的にエラー位置にジャンプするかどうかを設定するオプション。デフォルトではジャンプが有効になっている。
+let g:go_jump_to_error = 0
+
 " GoDoc をバルーン表示するかどうかを設定するオプション。詳細は go#tool#DescribeBalloon() を参照。デフォルトでは無効になっている。
 let g:go_doc_balloon = 1
 
@@ -46,7 +49,8 @@ augroup VimGo
     nnoremap <buffer> gt <plug>(go-def-type)
     nnoremap <buffer> gs :<C-u>GoDecls<Return>
     nnoremap <buffer> gS :<C-u>GoDeclsDir<Return>
-    inoremap <buffer> <c-space> <C-x><C-o>
+
+    inoremap <buffer> <C-space> <C-x><C-o>
 
     augroup OnBufferVimGo
       autocmd! * <buffer>
