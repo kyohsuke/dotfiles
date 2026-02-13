@@ -29,19 +29,20 @@ custom-shader-animation = true
 window-theme = system
 window-width = 200
 window-height = 60
+window-save-state = never
 macos-titlebar-style = native
 working-directory = home
 window-inherit-working-directory = true
 
 # Shell Integration
-shell-integration-features = no-cursor,sudo,title
+shell-integration-features = no-cursor,sudo,title,ssh-env
 
 # Quick Terminal
 quick-terminal-position = "top"
 quick-terminal-screen = "main"
 quick-terminal-autohide = true
 quick-terminal-animation-duration = 0.1
-quick-terminal-size = "70%,70%"
+quick-terminal-size = 70%,70%
 
 # keybinds
 keybind = home=scroll_to_top
