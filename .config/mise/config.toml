@@ -2,7 +2,7 @@
 deno = "latest"
 go = "1"
 node = "24"
-python = "3.13"
+python = "3.12"
 ruby = "latest"
 uv = "latest"
 
