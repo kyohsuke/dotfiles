@@ -5,6 +5,6 @@ argcomplete
 ffpb
 plamo-translate
 yamllint
-yt-dlp
+--with websockets yt-dlp
 pgcli
 flake8
