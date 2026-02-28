@@ -32,6 +32,15 @@ let g:go_highlight_functions = 1
 let g:go_highlight_function_parameters = 1
 let g:go_highlight_diagnostic_errors = 1
 
+" gopls
+let g:go_gopls_settings = {
+      \ 'build.directoryFilters': [
+      \     '-.git',
+      \     '-**/.github',
+      \     '-**/node_modules'
+      \   ],
+      \ }
+
 augroup VimGo
   " GoHtmlTmpl
   function! s:DetectGoHtmlTmpl()
