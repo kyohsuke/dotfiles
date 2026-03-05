@@ -34,6 +34,8 @@
 	fsckobjects = true
 [receive]
 	fsckobjects = true
+[rebase]
+	rebaseMerges = true
 [pull]
 	rebase = true
 [push]
