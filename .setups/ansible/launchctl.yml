@@ -22,3 +22,11 @@
   when: (maxfile.stdout == 65536)
   command: "launchctl load -w /Library/LaunchDaemons/limit.maxfiles.plist"
   become_user: root
+
+- include_tasks: launchctl_inner.yml
+  loop_control:
+    loop_var: defaults
+  with_items:
+    - plist: setenv.ollama.flash_attention.plist
+    - plist: setenv.ollama.keep_alive.plist
+    - plist: setenv.ollama.kv_cache_type.plist

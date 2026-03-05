@@ -1,0 +1,19 @@
+- name: launchctl | Check {{ defaults.plist }} exists
+  stat:
+    path: /Library/LaunchDaemons/{{plist}}
+  register: plist
+
+- name: launchctl | Create {{ defaults.plist }}
+  when: not plist.stat.exists
+  become_user: root
+  copy:
+    src: files/{{ defaults.plist }}
+    dest: /Library/LaunchDaemons/{{ defaults.plist }}
+    owner: root
+    group: wheel
+    mode: '0644'
+
+- name: launchctl | Load {{ defaults.plist }}
+  when: not plist.stat.exists
+  command: "launchctl load -w /Library/LaunchDaemons/{{ defaults.plist }}"
+  become_user: root

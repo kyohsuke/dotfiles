@@ -2,26 +2,46 @@
 - hosts: all
   tasks:
     - import_tasks: "ansible/launchctl.yml"
+      tags:
+        - launchctl
 
     - import_tasks: "ansible/homebrew.yml"
+      tags:
+        - homebrew
 
     - import_tasks: "ansible/homebrew_indivisual.yml"
-      tags: indivisual
+      tags:
+        - homebrew
+        - homevrew_indivisual
+        - indivisual
 
     - import_tasks: "ansible/aquaskk.yml"
+      tags:
+        - aquaskk
 
     - import_tasks: "ansible/osx.yml"
+      tags:
+        - osx
 
     # - import_tasks: "ansible/anyenv.yml"
 
     - import_tasks: "ansible/fish.yml"
+      tags:
+        - fish
 
     - import_tasks: "ansible/mise.yml"
+      tags:
+        - mise
 
     - import_tasks: "ansible/mas.yml"
+      tags:
+        - mas
 
     - import_tasks: "ansible/mas_indivisual.yml"
-      tags: indivisual
+      tags:
+        - mas
+        - mas_indivisual
+        - indivisual
 
     - name: "Reload Finder"
       command: killall Finder
