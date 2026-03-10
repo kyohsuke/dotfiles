@@ -3,6 +3,7 @@
 macos-dock-drop-behavior = window
 clipboard-paste-protection = false
 bell-features=border
+scrollback-limit = 50000000
 
 # fonts
 font-family = Cica
