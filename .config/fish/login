@@ -115,7 +115,7 @@ abbr -a 'fish-config-login' '$EDITOR $XDG_CONFIG_HOME/fish/login'
 abbr -a 'fish-config-env' '$EDITOR $XDG_CONFIG_HOME/fish/env'
 abbr -a 'fish-config-rc' '$EDITOR $XDG_CONFIG_HOME/fish/rc'
 abbr -a gup git pull
-
+abbr -a tailf bat --no-paging
 
 # Enable AWS CLI autocompletion: github.com/aws/aws-cli/issues/1079
 command -q aws
