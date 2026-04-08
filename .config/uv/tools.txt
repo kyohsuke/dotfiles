@@ -4,6 +4,6 @@ git+https://github.com/aws/aws-cli.git@v2
 argcomplete
 plamo-translate
 yamllint
---with websockets yt-dlp
+--with websockets,yt-dlp-rajiko yt-dlp
 pgcli
 flake8
