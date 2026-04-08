@@ -232,7 +232,6 @@ call plug#begin($XDG_DATA_HOME .. '/vim/plugged')
   Plug 'direnv/direnv.vim'
   Plug 'ekalinin/Dockerfile.vim'
   Plug 'jparise/vim-graphql'
-  Plug 'dart-lang/dart-vim-plugin'
   Plug 'mechatroner/rainbow_csv'
   Plug 'google/vim-jsonnet'
   Plug 'khaveesh/vim-fish-syntax'
@@ -259,10 +258,6 @@ call plug#begin($XDG_DATA_HOME .. '/vim/plugged')
   Plug 'othree/html5.vim'
 
   " golang
-  " Plug 'mattn/vim-goimports'
-  " Plug 'kyohsuke/vim-go-syntax'
-  " Plug 'sebdah/vim-delve'
-
   Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
   " ruby
