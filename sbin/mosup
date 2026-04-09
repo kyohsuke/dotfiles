@@ -43,7 +43,6 @@ if which brew > /dev/null 2>&1; then
   echo "[INFO] update homebrew"
   brew update
   brew upgrade
-  brew upgrade --cask
   brew cleanup --scrub --prune 0
 fi
 
