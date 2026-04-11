@@ -7,3 +7,4 @@ yamllint
 --with websockets,yt-dlp-rajiko yt-dlp
 pgcli
 flake8
+streamlink
