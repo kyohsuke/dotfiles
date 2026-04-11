@@ -110,7 +110,7 @@ abbr -a cat bat
 abbr -a cp cp -v -i
 abbr -a mv mv -v -i
 abbr -a gce "gcloud compute ssh --zone=us-west1-a --tunnel-through-iap"
-abbr -a youtube --set-cursor "streamlink '%'"
+abbr -a youtube --set-cursor "streamlink --hls-live-edge 5 --player-args \"--network-caching=5000\" '%'"
 abbr -a 'fish-config-login' '$EDITOR $XDG_CONFIG_HOME/fish/login'
 abbr -a 'fish-config-env' '$EDITOR $XDG_CONFIG_HOME/fish/env'
 abbr -a 'fish-config-rc' '$EDITOR $XDG_CONFIG_HOME/fish/rc'
