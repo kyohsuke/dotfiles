@@ -51,4 +51,5 @@ if which mise > /dev/null 2>&1; then
   echo "[INFO] update mise"
   MISE_LOG_LEVEL='info' mise upgrade
   MISE_LOG_LEVEL='info' mise plugins update
+  MISE_LOG_LEVEL='info' mise cache prune
 fi
