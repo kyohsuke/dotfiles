@@ -7,5 +7,6 @@ if command -v uv
     for tool in (bat "$XDG_CONFIG_HOME/uv/tools.txt")
         uv tool install (echo "$tool" | string split ' ')
     end
+    uv cache prune
 end
 """
