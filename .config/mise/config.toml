@@ -24,8 +24,5 @@ ruby.compile = true
 ruby.default_packages_file = "$HOME/.config/anyenv/default-gems"
 
 # node
-npm.package_manager = "pnpm"
-
-
-[env]
-MISE_NODE_DEFAULT_PACKAGES_FILE = "$HOME/.config/anyenv/default-packages"
+node.default_packages_file = "$HOME/.config/anyenv/default-packages"
+node.corepack = true
