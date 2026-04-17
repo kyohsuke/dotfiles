@@ -10,7 +10,7 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 if which uv > /dev/null 2>&1; then
   echo "[INFO] update uv"
   uv tool upgrade --all --reinstall
-  uv cache prune
+  uv cache clean
 fi
 
 if which pipx > /dev/null 2>&1; then
@@ -51,5 +51,5 @@ if which mise > /dev/null 2>&1; then
   echo "[INFO] update mise"
   MISE_LOG_LEVEL='info' mise upgrade
   MISE_LOG_LEVEL='info' mise plugins update
-  MISE_LOG_LEVEL='info' mise cache prune
+  MISE_LOG_LEVEL='info' mise cache clear
 fi
