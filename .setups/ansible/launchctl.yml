@@ -29,4 +29,3 @@
   with_items:
     - plist: setenv.ollama.flash_attention.plist
     - plist: setenv.ollama.keep_alive.plist
-    - plist: setenv.ollama.kv_cache_type.plist
