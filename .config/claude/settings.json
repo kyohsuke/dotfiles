@@ -15,6 +15,10 @@
       "Bash(gh pr list:*)",
       "Bash(gh pr status:*)",
       "Bash(gh pr view:*)",
+      "Bash(gh run download:*)",
+      "Bash(gh run list:*)",
+      "Bash(gh run view:*)",
+      "Bash(gh run watch:*)",
       "Bash(git checkout:*)",
       "Bash(git add:*)",
       "Bash(git commit:*)",
@@ -35,6 +39,6 @@
   "enabledPlugins": {
     "gopls-lsp@claude-plugins-official": true
   },
-  "autoUpdatesChannel": "stable",
-  "language": "Japanese"
+  "language": "Japanese",
+  "autoUpdatesChannel": "stable"
 }
