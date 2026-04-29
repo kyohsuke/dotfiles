@@ -49,7 +49,16 @@
     ]
   },
   "enabledPlugins": {
-    "gopls-lsp@claude-plugins-official": true
+    "gopls-lsp@claude-plugins-official": true,
+    "criticalthink@criticalthink": true
+  },
+  "extraKnownMarketplaces": {
+    "criticalthink": {
+      "source": {
+        "source": "git",
+        "url": "https://github.com/abagames/slash-criticalthink.git"
+      }
+    }
   },
   "language": "Japanese",
   "autoUpdatesChannel": "stable"
