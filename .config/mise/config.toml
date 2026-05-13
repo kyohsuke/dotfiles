@@ -1,4 +1,5 @@
 [tools]
+awscli = { version = "latest", symlink_bins = "true" }
 deno = "latest"
 go = "1"
 node = "24"
