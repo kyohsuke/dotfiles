@@ -68,5 +68,6 @@
     }
   },
   "language": "Japanese",
-  "autoUpdatesChannel": "stable"
+  "autoUpdatesChannel": "stable",
+  "model": "opusplan"
 }
