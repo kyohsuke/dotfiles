@@ -1,15 +1,16 @@
 [tasks.decrypt]
 description = "Decrypt file with public key"
-usage = """
-arg "<src>"
-arg "<dst>" default=""
-"""
+usage = '''
+complete "src" run="find . -maxdepth 1 -name '*.enc' -exec basename {} +"
+arg "<src>" help="Encrypted source file"
+arg "[dst]" default="" help="Decripted to"
+'''
 run = """
 #!/usr/bin/env fish
-set -l fileName "{{arg(name="src")}}"
+set -l fileName "{{ usage.src }}"
 set -l destName (string trim --chars=.enc "$fileName")
-if test "''" != "{{arg(name="dst")}}"
-  set destName "{{arg(name="dst")}}"
+if test "''" != "{{ usage.dst }}"
+  set destName "{{ usage.dst }}"
 end
 
 openssl enc -d -aes256 -pbkdf2 -md sha-256 -in "$fileName" -out "$destName"
