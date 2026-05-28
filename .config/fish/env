@@ -206,7 +206,15 @@ if test -z $FISHENV_LOAD
     set -gx LSCOLORS Gxfxcxdxbxegedabagacad
 
     # cpanm
-    set -gx PERL_CPANM_HOME "$XDG_CACHE_HOME/cpanm"
+    set -gx PERL_LOCAL_LIB_ROOT "$XDG_DATA_HOME/perl"
+    set -gx PERL_CPAN_HOME "$PERL_LOCAL_LIB_ROOT/.cpan"
+    set -gx PERL_CPANM_HOME "$PERL_LOCAL_LIB_ROOT/.cpanm"
+    set -gx PERL_MB_OPT "--install_base '$PERL_LOCAL_LIB_ROOT'"
+    set -gx PERL_MM_OPT "INSTALL_BASE=$PERL_LOCAL_LIB_ROOT"
+    set -gx PERL5LIB "$PERL_LOCAL_LIB_ROOT/lib/perl5"
+
+    # dvdcss
+    set -gx DVDCSS_CACHE "$XDG_DATA_HOME/dvdcss"
 
     # sqlite
     set -gx SQLITE_HISTORY "$XDG_STATE_HOME/sqlite_history"
@@ -214,18 +222,29 @@ if test -z $FISHENV_LOAD
     # inputrc
     set -gx INPUTRC "$XDG_CONFIG_HOME/readline/inputrc"
 
+    # Claude
+    command -q claude
+    set -gx CLAUDE_CONFIG_DIR "$XDG_CONFIG_HOME/claude"
+
+    # Serena
+    set -gx SERENA_HOME "$XDG_DATA_HOME/serena"
+
+    # terminfo
+    set -gx TERMINFO_DIRS "$XDG_DATA_HOME/terminfo:/usr/share/terminfo"
+
+    # Bundle
+    set -gx BUNDLE_USER_CONFIG "$XDG_CONFIG_HOME/bundle/config"
+    set -gx BUNDLE_USER_CACHE "$XDG_CACHE_HOME/bundle"
+    set -gx BUNDLE_USER_PLUGIN "$XDG_DATA_HOME/bundle"
+
+    # solargraph
+    command -q solargraph
+    and set -gx SOLARGRAPH_CACHE "$XDG_CACHE_HOME/solargraph"
+
     # }}}
     # {{{ source .local
     test -f "$XDG_DATA_HOME/fish/env"
     and source "$XDG_DATA_HOME/fish/env"
-    # }}}
-
-    # {{{ Claude
-    set -gx CLAUDE_CONFIG_DIR "$XDG_CONFIG_HOME/claude"
-    # }}}
-
-    # {{{ Serena
-    set -gx SERENA_HOME "$XDG_DATA_HOME/serena"
     # }}}
 
     set -gx FISHENV_LOAD 1
