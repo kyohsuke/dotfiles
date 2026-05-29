@@ -241,6 +241,9 @@ if test -z $FISHENV_LOAD
     command -q solargraph
     and set -gx SOLARGRAPH_CACHE "$XDG_CACHE_HOME/solargraph"
 
+    # shiv
+    set -gx SHIV_ROOT "$XDG_CACHE_HOME/shiv"
+
     # }}}
     # {{{ source .local
     test -f "$XDG_DATA_HOME/fish/env"
