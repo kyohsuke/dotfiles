@@ -78,7 +78,6 @@
       }
     }
   },
-  "prefersReducedMotion" : true,
   "terminalProgressBarEnabled" : false,
   "language": "Japanese",
   "autoUpdatesChannel": "stable",
