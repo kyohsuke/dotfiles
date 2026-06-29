@@ -207,8 +207,8 @@ if test -z $FISHENV_LOAD
 
     # cpanm
     set -gx PERL_LOCAL_LIB_ROOT "$XDG_DATA_HOME/perl"
-    set -gx PERL_CPAN_HOME "$PERL_LOCAL_LIB_ROOT/.cpan"
-    set -gx PERL_CPANM_HOME "$PERL_LOCAL_LIB_ROOT/.cpanm"
+    set -gx PERL_CPAN_HOME "$PERL_LOCAL_LIB_ROOT/cpan"
+    set -gx PERL_CPANM_HOME "$PERL_LOCAL_LIB_ROOT/cpanm"
     set -gx PERL_MB_OPT "--install_base '$PERL_LOCAL_LIB_ROOT'"
     set -gx PERL_MM_OPT "INSTALL_BASE=$PERL_LOCAL_LIB_ROOT"
     set -gx PERL5LIB "$PERL_LOCAL_LIB_ROOT/lib/perl5"
