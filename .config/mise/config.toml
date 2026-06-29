@@ -4,6 +4,7 @@ awscli = { version = "latest", symlink_bins = "true" }
 deno = "latest"
 go = "1"
 node = "26"
+perl = "5.42"
 python = "3.12"
 ruby = "latest"
 uv = "latest"
