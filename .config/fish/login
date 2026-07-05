@@ -177,6 +177,5 @@ if type -q __transient_execute
     end
 end
 # }}}
-
 test -f "$XDG_DATA_HOME/fish/login"
 and source "$XDG_DATA_HOME/fish/login"
