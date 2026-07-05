@@ -323,3 +323,51 @@ runtime! config/*.vim
 
 set secure
 syntax on
+
+" 現在のバッファ全体をターミナルバッファに送信
+function! SendBufferToTerminal()
+    let l:buf_nr = -1
+    for buf in range(1, bufnr('$'))
+        if getbufvar(buf, '&buftype') ==# 'terminal'
+            let l:buf_nr = buf
+            break
+        endif
+    endfor
+
+    if l:buf_nr == -1
+        echo "Terminal buffer not found"
+        return
+    endif
+
+    for line in getline(1, '$')
+        if line =~# '^\s*$'
+            continue
+        endif
+        call term_sendkeys(l:buf_nr, line . "\r")
+
+        let l:elapsed = 0
+        while l:elapsed < 5000
+            call term_wait(l:buf_nr, 50)
+            if term_getline(l:buf_nr, '.') =~# '[#$❯>]\s*$'
+                break
+            endif
+            let l:elapsed += 50
+        endwhile
+
+        if l:elapsed >= 5000
+            echo "Timeout waiting for prompt after: " . line
+            return
+        endif
+    endfor
+
+    " 送信後にバッファをクリア
+    silent! execute '%delete _'
+endfunction
+nnoremap <leader>ts :call SendBufferToTerminal()<CR>
+
+function! OpenTerminalInBackground()
+    let g:_prev_winid = win_getid()
+    terminal
+    call win_gotoid(g:_prev_winid)
+endfunction
+nnoremap <leader>to :call OpenTerminalInBackground()<CR>
