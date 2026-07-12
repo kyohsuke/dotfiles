@@ -25,6 +25,7 @@ cursor-style = block
 cursor-style-blink = false
 selection-background = C0C0C0
 mouse-hide-while-typing = true
+mouse-shift-capture = never
 
 # window
 background-opacity = 0.85
