@@ -17,7 +17,7 @@ if test -z $FISHENV_LOAD
         and set -gx MANPATH "$pathName" $MANPATH
     end
 
-    set -gx EDITOR "gvim"
+    set -gx EDITOR "vim"
     set -gx VISUAL "$EDITOR"
 
     # {{ Set XDG Environments
