@@ -33,6 +33,7 @@ let g:go_highlight_function_parameters = 1
 let g:go_highlight_diagnostic_errors = 1
 
 " gopls
+let g:go_gopls_enabled = 0
 let g:go_gopls_settings = {
       \ 'build.directoryFilters': [
       \     '-.git',
@@ -53,21 +54,24 @@ augroup VimGo
   function! s:OnBufferEnabled()
     setlocal foldmethod=syntax regexpengine=1
 
-    nnoremap <buffer> <C-]> <plug>(go-def-split)
-    nnoremap <buffer> ge <plug>(go-diagnostics)
-    nnoremap <buffer> <f2> <plug>(go-rename)
-    nnoremap <buffer> gr <plug>(go-referrers)
-    nnoremap <buffer> gi <plug>(go-implements)
-    nnoremap <buffer> gt <plug>(go-def-type)
-    nnoremap <buffer> gs :<C-u>GoDecls<Return>
-    nnoremap <buffer> gS :<C-u>GoDeclsDir<Return>
+    " gopls が有効な場合にのみ、キーマッピングを設定する
+    if get(g:, 'go_gopls_enabled', 0) == 1
+      nnoremap <buffer> <C-]> <plug>(go-def-split)
+      nnoremap <buffer> ge <plug>(go-diagnostics)
+      nnoremap <buffer> <f2> <plug>(go-rename)
+      nnoremap <buffer> gr <plug>(go-referrers)
+      nnoremap <buffer> gi <plug>(go-implements)
+      nnoremap <buffer> gt <plug>(go-def-type)
+      nnoremap <buffer> gs :<C-u>GoDecls<Return>
+      nnoremap <buffer> gS :<C-u>GoDeclsDir<Return>
 
-    inoremap <buffer> <C-space> <C-x><C-o>
+      inoremap <buffer> <C-space> <C-x><C-o>
 
-    augroup OnBufferVimGo
-      autocmd! * <buffer>
-      autocmd BufWritePost <buffer> silent! :<C-u>GoDiagnostics
-    augroup END
+      augroup OnBufferVimGo
+        autocmd! * <buffer>
+        autocmd BufWritePost <buffer> silent! :<C-u>GoDiagnostics
+      augroup END
+    endif
   endfunction
 
   autocmd!

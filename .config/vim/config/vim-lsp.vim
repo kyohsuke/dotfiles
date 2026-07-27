@@ -31,6 +31,7 @@ function! s:OnLspBufferEnabled()
   nnoremap <buffer> gs :<C-u>CtrlPLspDocumentSymbol<Return>
   nnoremap <buffer> gS :<C-u>CtrlPLspWorkspaceSymbol<Return>
 
+  inoremap <buffer> <C-space> <C-x><C-o>
   inoremap <buffer> <expr> <C-o> lsp#internal#document_hover#under_cursor#do({}) ? '' : ''
   inoremap <buffer> <expr> <cr> pumvisible() ? "\<c-y>\<cr>" : "\<cr>"
 endfunction
@@ -38,6 +39,6 @@ endfunction
 augroup VimLsp
   autocmd!
   autocmd User lsp_buffer_enabled call <SID>OnLspBufferEnabled()
-  autocmd BufWritePre *.rs, execute('LspDocumentFormatSync')
-  " autocmd BufWritePre *.rs,*.go execute('LspDocumentFormatSync')
+  " autocmd BufWritePre *.rs, execute('LspDocumentFormatSync')
+  autocmd BufWritePre *.rs,*.go execute('LspDocumentFormatSync')
 augroup END
