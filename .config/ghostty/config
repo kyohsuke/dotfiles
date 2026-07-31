@@ -53,3 +53,6 @@ quick-terminal-size = 70%,70%
 keybind = home=scroll_to_top
 keybind = end=scroll_to_bottom
 keybind = global:ctrl+alt+space=toggle_quick_terminal
+
+keybind = super+v=paste_from_clipboard
+keybind = super+c=copy_to_clipboard
