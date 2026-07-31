@@ -19,15 +19,15 @@ function! s:OnLspBufferEnabled()
   setlocal signcolumn=yes
   if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
 
-  nmap <buffer> gd <plug>(lsp-definition)
-  nmap <buffer> <C-]> <plug>LspDefinitionS
-  nmap <buffer> ge <plug>(lsp-document-diagnostics)
-  nmap <buffer> <f2> <plug>(lsp-rename)
-  nmap <buffer> gr <plug>(lsp-references)
-  nmap <buffer> gi <plug>(lsp-implementation)
-  nmap <buffer> gt <plug>(lsp-type-definition)
-  nmap <buffer> K <plug>(lsp-hover)
-  nmap <buffer> <c-o> <plug>(lsp-hover)
+  nnoremap <buffer> gd <plug>(lsp-definition)
+  nnoremap <buffer> <C-]> <plug>LspDefinitionS
+  nnoremap <buffer> ge <plug>(lsp-document-diagnostics)
+  nnoremap <buffer> <f2> <plug>(lsp-rename)
+  nnoremap <buffer> gr <plug>(lsp-references)
+  nnoremap <buffer> gi <plug>(lsp-implementation)
+  nnoremap <buffer> gt <plug>(lsp-type-definition)
+  nnoremap <buffer> K <plug>(lsp-hover)
+  nnoremap <buffer> <c-o> <plug>(lsp-hover)
   nnoremap <buffer> gs :<C-u>CtrlPLspDocumentSymbol<Return>
   nnoremap <buffer> gS :<C-u>CtrlPLspWorkspaceSymbol<Return>
 

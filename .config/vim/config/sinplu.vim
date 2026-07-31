@@ -5,4 +5,4 @@ let g:sinplu_plural_override_wards = [
       \ ['(ind)ex$', '\1exes', 'i'],
       \ ]
 
-nmap <Leader>w <Plug>ToggleWord
+nnoremap <Leader>w <Plug>ToggleWord
