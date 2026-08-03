@@ -42,6 +42,10 @@ let g:go_gopls_settings = {
       \   ],
       \ }
 
+if get(g:, 'go_gopls_enabled', 0) == 0
+  let g:go_def_mapping_enabled = 0
+endif
+
 augroup VimGo
   " GoHtmlTmpl
   function! s:DetectGoHtmlTmpl()
@@ -56,6 +60,7 @@ augroup VimGo
 
     " gopls が有効な場合にのみ、キーマッピングを設定する
     if get(g:, 'go_gopls_enabled', 0) == 1
+      let g:go_def_mapping_enabled = 0
       nnoremap <buffer> <C-]> <plug>(go-def-split)
       nnoremap <buffer> ge <plug>(go-diagnostics)
       nnoremap <buffer> <f2> <plug>(go-rename)

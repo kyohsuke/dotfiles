@@ -1,9 +1,10 @@
 UsePlugin 'asyncomplete.vim'
 
+let g:asyncomplete_auto_popup = 0
 let g:asyncomplete_popup_delay = 200
 
 inoremap <expr> <C-y>     pumvisible() ? asyncomplete#cancel_popup() : "\<C-y>"
 inoremap <expr> <TAB>     pumvisible() ? "\<C-n>" : "\<TAB>"
 inoremap <expr> <S-Tab>   pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <expr> <bs>      pumvisible() ? asyncomplete#close_popup() .. "\<BS>" : "\<BS>"
-inoremap <expr> <c-space> asyncomplete#force_refresh()
+inoremap <expr> <C-Space> <Plug>(asyncomplete_force_refresh)

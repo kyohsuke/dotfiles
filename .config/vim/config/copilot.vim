@@ -7,5 +7,5 @@ let g:copilot_filetypes = {
       \ }
 
 inoremap <silent><script><expr> <C-L> copilot#Accept("\<CR>")
-inoremap <C-0> <Plug>(copilot-next)
-inoremap <C-9> <Plug>(copilot-previous)
+inoremap <silent> <C-0> <Plug>(copilot-next)
+inoremap <silent> <C-9> <Plug>(copilot-previous)

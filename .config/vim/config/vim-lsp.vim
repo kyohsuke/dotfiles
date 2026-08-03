@@ -10,9 +10,8 @@ command! LspDebug let g:lsp_log_verbose = 1 | let g:lsp_log_file = expand('~/lsp
 
 function! g:LspDefinitionSplitWindow()
   split
-  execute "normal \<plug>(lsp-definition)"
+  call lsp#ui#vim#definition(0)
 endfunction
-nnoremap <plug>LspDefinitionS :<C-u>call LspDefinitionSplitWindow()<Return>
 
 function! s:OnLspBufferEnabled()
   setlocal omnifunc=lsp#complete
@@ -20,7 +19,7 @@ function! s:OnLspBufferEnabled()
   if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
 
   nnoremap <buffer> gd <plug>(lsp-definition)
-  nnoremap <buffer> <C-]> <plug>LspDefinitionS
+  nnoremap <buffer> <C-]> :<C-u>call LspDefinitionSplitWindow()<Return>
   nnoremap <buffer> ge <plug>(lsp-document-diagnostics)
   nnoremap <buffer> <f2> <plug>(lsp-rename)
   nnoremap <buffer> gr <plug>(lsp-references)
@@ -31,7 +30,6 @@ function! s:OnLspBufferEnabled()
   nnoremap <buffer> gs :<C-u>CtrlPLspDocumentSymbol<Return>
   nnoremap <buffer> gS :<C-u>CtrlPLspWorkspaceSymbol<Return>
 
-  inoremap <buffer> <C-space> <C-x><C-o>
   inoremap <buffer> <expr> <C-o> lsp#internal#document_hover#under_cursor#do({}) ? '' : ''
   inoremap <buffer> <expr> <cr> pumvisible() ? "\<c-y>\<cr>" : "\<cr>"
 endfunction
