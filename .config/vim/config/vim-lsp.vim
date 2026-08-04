@@ -13,6 +13,18 @@ function! g:LspDefinitionSplitWindow()
   call lsp#ui#vim#definition(0)
 endfunction
 
+function! g:LspRestartServer() abort
+  let l:servers =lsp#get_allowed_servers()
+  for l:server in l:servers
+    echomsg "[vim-lsp] Restarting " . l:server
+    call lsp#stop_server(l:server)
+  endfor
+  redraw
+
+  call lsp#activate()
+endfunction
+command! LspRestartServer call g:LspRestartServer()
+
 function! s:OnLspBufferEnabled()
   setlocal omnifunc=lsp#complete
   setlocal signcolumn=yes
