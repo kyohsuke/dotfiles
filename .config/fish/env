@@ -30,6 +30,11 @@ if test -z $FISHENV_LOAD
 
     # {{{ fish-evalcache
     set -gx FISH_EVALCACHE_DIR "$XDG_CACHE_HOME/fish/evalcache"
+    # }}}
+
+    # {{{ gnupg
+    set -gx GNUPGHOME "$XDG_DATA_HOME/gnupg"
+    # }}}
 
     # {{{ Set CFLAGS/CXXFLAGS
     set -l COMMON_FLAGS "-O2 -pipe -march=native"

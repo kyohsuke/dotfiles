@@ -23,6 +23,12 @@ while true; do
   kill -0 "$$" || exit
 done 2>/dev/null &
 
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_CACHE_HOME="$HOME/.cache"
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_STATE_HOME="$HOME/.local/state"
+export XDG_RUNTIME_DIR="$TEMPDIR"
+
 # Install homebrew
 if test ! "$(command -v brew)"; then
   echo "Installing homebrew..."
@@ -63,6 +69,8 @@ fi
 # Execute Ansible
 if [ -d "$HOME/.setups" ]; then
   cd "$HOME/.setups" || exit
+
+  export ANSIBLE_HOME="$XDG_DATA_HOME/ansible"
 
   if [ "$ATHOME" == "true" ]; then
     ansible-playbook ansible.yml -c local -i localhost,
