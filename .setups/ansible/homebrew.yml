@@ -21,7 +21,7 @@
       - "awscli"
       - "difftastic"
       - "parallel"
-      - "ctags"
+      - "universal-ctags"
       - "git"
       - "git-hooks-go"
       - "ghq"
