@@ -5,7 +5,7 @@ deno = "latest"
 go = "1"
 node = "26"
 perl = "5.42"
-python = "3.12"
+python = "3.14"
 ruby = "latest"
 uv = "latest"
 
