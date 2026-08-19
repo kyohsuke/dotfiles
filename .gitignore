@@ -85,6 +85,14 @@
 !/.config/vim/config
 !/.config/vim/stash
 
+# NeoVim
+!/.config/nvim
+/.config/nvim/*
+!/.config/nvim/lua
+!/.config/nvim/init.lua
+!/.config/nvim/lazy-lock.json
+
+
 # efm-langserver
 !/.config/efm-langserver
 /.config/efm-langserver/*
