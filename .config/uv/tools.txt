@@ -3,7 +3,7 @@ git+https://github.com/kyohsuke/ffpb
 argcomplete
 plamo-translate
 yamllint
---with websockets,yt-dlp-rajiko yt-dlp
+--with yt-dlp-ejs,websockets,yt-dlp-rajiko yt-dlp
 pgcli
 flake8
 streamlink
