@@ -17,7 +17,6 @@
     cask:
       - "imageoptim"
       - "xld"
-      - "parallels"
       - "google-drive"
       - "keka"
 
