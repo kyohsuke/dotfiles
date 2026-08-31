@@ -23,6 +23,10 @@ let g:go_list_type = 'quickfix'
 " コマンド出力用のリストの高さを設定するオプション。デフォルトは 0 (自動調整)。
 let g:go_list_height = 10
 
+" goimports によるインポートフォーマッティングとオートセーブ
+let g:go_fmt_command = "goimports"
+let g:go_fmt_autosave = 1
+
 " 強調表示
 let g:go_highlight_array_whitespace_error = 1
 let g:go_highlight_chan_whitespace_error = 1
