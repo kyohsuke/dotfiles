@@ -14,14 +14,15 @@ function! g:LspDefinitionSplitWindow()
 endfunction
 
 function! g:LspRestartServer() abort
-  let l:servers =lsp#get_allowed_servers()
+  let l:servers = lsp#get_allowed_servers()
   for l:server in l:servers
     echomsg "[vim-lsp] Restarting " . l:server
     call lsp#stop_server(l:server)
   endfor
   redraw
 
-  call lsp#activate()
+  " 1秒後に activate しなおす
+  call timer_start(1000, {-> lsp#activate()})
 endfunction
 command! LspRestartServer call g:LspRestartServer()
 
