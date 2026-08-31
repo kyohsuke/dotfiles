@@ -32,4 +32,8 @@ require("lazy").setup({
   install = { colorscheme = { "habamax" } },
   -- automatically check for plugin updates
   checker = { enabled = true, notify = false, frequency = 86400 },
+  change_detection = {
+    enabled = true,
+    notify = false, -- 自動リロード時の通知だけをオフにする
+  },
 })

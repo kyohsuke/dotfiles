@@ -13,6 +13,32 @@ vim.api.nvim_set_hl(0, "EndOfBuffer", { bg = "none" })
 -- ステータスライン
 vim.opt.statusline = "%<%f %m%r%h%w[%Y]%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}%=%c%V%8P"
 
+local augroup = vim.api.nvim_create_augroup('VimrcTechniqueBible_1_10', { clear = true })
+vim.api.nvim_create_autocmd('InsertEnter', {
+  group = augroup,
+  callback = function()
+    vim.api.nvim_set_hl(0, 'StatusLine', {
+      fg = 'DarkBlue',
+      bg = 'DarkYellow',
+      ctermfg = 'Blue',
+      ctermbg = 'Yellow',
+    })
+  end,
+})
+
+vim.api.nvim_create_autocmd('InsertLeave', {
+  group = augroup,
+  callback = function()
+    vim.api.nvim_set_hl(0, 'StatusLine', {
+      fg = 'DarkBlue',
+      bg = 'DarkGray',
+      ctermfg = 'Blue',
+      ctermbg = 'DarkGray',
+    })
+  end,
+})
+
+
 -- Neovimでクリップボードとヤンクを共有
 vim.opt.clipboard = "unnamedplus"
 
