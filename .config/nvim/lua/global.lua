@@ -1,3 +1,6 @@
+-- 24bitカラーを有効化
+vim.opt.termguicolors = true
+
 -- Set Complete Options
 vim.opt.completeopt = "menu,noselect"
 
@@ -10,6 +13,16 @@ vim.opt.relativenumber = true
 -- ColorColumn
 vim.opt.colorcolumn = "80,128"
 vim.api.nvim_set_hl(0, "ColorColumn", { bg = "DarkRed", ctermbg = 4 })
+
+-- Cursor
+vim.opt.guicursor = {
+  "n-v-c:block-Cursor",
+  "i-ci-ve:ver50-iCursor",
+}
+vim.api.nvim_set_hl(0, "Cursor", {
+  fg = '#708090',
+  bg = '#f0e68c',
+})
 
 -- File Encoding detects
 vim.opt.encoding = "utf-8"

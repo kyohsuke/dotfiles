@@ -10,9 +10,6 @@ vim.api.nvim_set_hl(0, "NonText", { bg = "none" })
 vim.api.nvim_set_hl(0, "NormalNC", { bg = "none" })
 vim.api.nvim_set_hl(0, "EndOfBuffer", { bg = "none" })
 
--- ステータスライン
-vim.opt.statusline = "%<%f %m%r%h%w[%Y]%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}%=%c%V%8P"
-
 local augroup = vim.api.nvim_create_augroup('VimrcTechniqueBible_1_10', { clear = true })
 vim.api.nvim_create_autocmd('InsertEnter', {
   group = augroup,
