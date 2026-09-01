@@ -1,12 +1,12 @@
 {
-  "ddc.vim": { "branch": "main", "commit": "b035d309a402c5c2e89ad7b0e451e9d8c9d7b1aa" },
+  "ddc.vim": { "branch": "main", "commit": "8c00a4979b3e01d5d9706a37b8f5c27ee112e39c" },
   "denops.vim": { "branch": "main", "commit": "e82c5a94ca1154b05c9d74d6f6f58c9991b1424f" },
   "lazy.nvim": { "branch": "main", "commit": "306a05526ada86a7b30af95c5cc81ffba93fef97" },
   "mrkn256.vim": { "branch": "master", "commit": "ff63e2640a1a40688996787b105d4e54083472d4" },
   "neo-tree.nvim": { "branch": "v3.x", "commit": "ebd66767191714e008ce73b769518a763ff31bdc" },
   "nui.nvim": { "branch": "main", "commit": "10fc361835c856ba4233ef5ea135b919bf3dce97" },
-  "nvim-lspconfig": { "branch": "master", "commit": "221c43884319e791519f0d6c94a7f2fbcd653278" },
-  "nvim-web-devicons": { "branch": "master", "commit": "2ae6958df7ced50baac5035cec0c15799eedfbf7" },
+  "nvim-lspconfig": { "branch": "master", "commit": "16286347bdba1333c7d124d9de9fe6630731b2b2" },
+  "nvim-web-devicons": { "branch": "master", "commit": "5f032a85be210cd1c6ac98861eb3b187ff3bd5eb" },
   "nvimdoc-ja": { "branch": "master", "commit": "a9e8f5fe7c77d1271de2e8e59d4e20648975def8" },
   "plenary.nvim": { "branch": "master", "commit": "74b06c6c75e4eeb3108ec01852001636d85a932b" },
   "skkeleton": { "branch": "main", "commit": "cb6e529dada798929deefd879e32e418dab1c6ac" }
