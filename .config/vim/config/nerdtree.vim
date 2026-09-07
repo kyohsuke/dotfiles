@@ -21,8 +21,9 @@ endif
 
 augroup NerdTree
   function! s:AuCloseWindow()
+  " Close the tab if NERDTree is the only window remaining in it.
     if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree())
-      q
+      call feedkeys(":quit\<CR>:\<BS>")
     endif
   endfunction
 
