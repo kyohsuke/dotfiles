@@ -4,7 +4,7 @@ awscli = { version = "latest", symlink_bins = "true" }
 deno = "latest"
 go = "1"
 node = "26"
-perl = "5.44"
+perl = "latest"
 python = "3.14"
 ruby = "latest"
 uv = "latest"
@@ -18,14 +18,8 @@ idiomatic_version_file_enable_tools = ["node"]
 # golang
 go_set_gobin = false
 
-# python
-python.compile = true
-# python.default_packages_file="$HOME/.config/anyenv/requirements.txt"
-
 # ruby
-ruby.compile = true
 ruby.default_packages_file = "$HOME/.config/anyenv/default-gems"
 
 # node
 node.default_packages_file = "$HOME/.config/anyenv/default-packages"
-node.corepack = true
