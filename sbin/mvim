@@ -57,9 +57,12 @@ case "$name" in
     ;;
 esac
 
-RETURN_APP="Terminal"
+RETURN_APP="Ghostty"
 case "$TERM_PROGRAM" in
-  ghostty)
+  Apple_Terminal)
+    RETURN_APP="Terminal"
+    ;;
+  *)
     RETURN_APP="Ghostty"
     ;;
 esac
