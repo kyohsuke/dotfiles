@@ -9,12 +9,12 @@ require("config.lazy")
 -- Global Settings
 require('global')
 
--- vscode only
 if vim.g.vscode then
   require('vsc')
+else
+  require('neovim')
 end
 
--- neovim only
-if not vim.g.vscode then
-  require('neovim')
+if vim.g.neovide then
+  require('neovide')
 end

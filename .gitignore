@@ -20,6 +20,9 @@
 !/.config/ssh/before
 !/.config/ssh/after
 
+# sbin
+!/sbin/*
+
 # pgcli
 !/.config/pgcli
 /.config/pgcli/*

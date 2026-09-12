@@ -52,3 +52,8 @@ vim.keymap.set("n", "gk", "k")
 
 -- Esc 2回でハイライト消去
 vim.keymap.set("n", "<Esc><Esc>", "<Cmd>noh<CR>", { silent = true })
+
+-- コマンドラインでの左右移動
+vim.keymap.set("c", "<C-h>", "<Left>")
+vim.keymap.set("c", "<C-l>", "<Right>")
+

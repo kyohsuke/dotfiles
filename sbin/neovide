@@ -1,0 +1,20 @@
+#!/usr/bin/env sh
+
+NEOVIDE_BIN="/Applications/Neovide.app/Contents/MacOS/neovide"
+
+RETURN_APP="Ghostty"
+case "$TERM_PROGRAM" in
+  Apple_Terminal)
+    RETURN_APP="Terminal"
+    ;;
+  *)
+    RETURN_APP="Ghostty"
+    ;;
+esac
+
+if [ -f "$NEOVIDE_BIN" ]; then
+  exec "$NEOVIDE_BIN" --reuse-instance --new-window ${1:+"$@"} -- --cmd "autocmd VimLeave * :!open -a $RETURN_APP"
+else
+  echo "[Error] neovide not found"
+  exit 1
+fi
