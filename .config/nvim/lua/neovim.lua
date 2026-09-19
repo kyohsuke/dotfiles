@@ -2,7 +2,19 @@
 -- vim: foldmethod=marker
 
 -- コンフィグロード
-vim.keymap.set("n", ",vimrc", "<Cmd>e $MYVIMRC<CR>", { silent = true})
+vim.keymap.set("n", ",vimrc", function()
+  vim.cmd("edit $MYVIMRC")
+
+  if vim.fn.exists(":NERDTreeFind") == 2 then
+    local win = vim.api.nvim_get_current_win()
+
+    vim.cmd("NERDTreeFind")
+
+    if vim.api.nvim_win_is_valid(win) then
+      vim.api.nvim_set_current_win(win)
+    end
+  end
+end, { silent = true })
 
 -- 背景を無効にして透過する
 vim.api.nvim_set_hl(0, "Normal", { bg = "none" })

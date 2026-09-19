@@ -1,10 +1,16 @@
 -- vim: expandtab softtabstop=2 shiftwidth=2
 -- vim: foldmethod=marker
 
+-- Neovide specific
+vim.g.neovide_hide_mouse_when_typing = true
 vim.g.neovide_remember_window_size = false
+vim.g.neovide_opacity = 0.9
+
+-- Fonts
 vim.opt.guifont     = 'Cica:h14'
 vim.opt.guifontwide = 'Cica-Regular:h14'
-vim.g.neovide_opacity = 0.9
+
+-- Lines
 vim.opt.lines   = 60
 vim.opt.columns = 200
 
