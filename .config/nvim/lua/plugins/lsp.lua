@@ -179,128 +179,25 @@ return {
             })
           end
 
-          --------------------------------------------------------
-          -- gd
-          --------------------------------------------------------
-          map(
-            "n",
-            "gd",
-            vim.lsp.buf.definition,
-            "definition"
-          )
-
-          --------------------------------------------------------
-          -- <C-]>
-          --
-          -- 元の vim-lsp:
-          --
-          -- function! g:LspDefinitionSplitWindow()
-          --   split
-          --   call lsp#ui#vim#definition(0)
-          -- endfunction
-          --------------------------------------------------------
+          map("n", "gd", vim.lsp.buf.definition, "definition")
           map("n", "<C-]>", function()
             vim.cmd("aboveleft split")
             vim.lsp.buf.definition()
           end, "definition in split")
-
-          --------------------------------------------------------
-          -- ge
-          --------------------------------------------------------
           map("n", "ge", function()
             vim.diagnostic.setloclist({
               open = true,
             })
           end, "document diagnostics")
 
-          --------------------------------------------------------
-          -- F2
-          --------------------------------------------------------
-          map(
-            "n",
-            "<F2>",
-            vim.lsp.buf.rename,
-            "rename"
-          )
-
-          --------------------------------------------------------
-          -- gr
-          --------------------------------------------------------
-          map(
-            "n",
-            "gr",
-            vim.lsp.buf.references,
-            "references"
-          )
-
-          --------------------------------------------------------
-          -- gi
-          --------------------------------------------------------
-          map(
-            "n",
-            "gi",
-            vim.lsp.buf.implementation,
-            "implementation"
-          )
-
-          --------------------------------------------------------
-          -- gt
-          --------------------------------------------------------
-          map(
-            "n",
-            "gt",
-            vim.lsp.buf.type_definition,
-            "type definition"
-          )
-
-          --------------------------------------------------------
-          -- K
-          --------------------------------------------------------
-          map(
-            "n",
-            "K",
-            vim.lsp.buf.hover,
-            "hover"
-          )
-
-          --------------------------------------------------------
-          -- <C-o>
-          --
-          -- vim-lsp の設定では Insert mode でも hover。
-          --------------------------------------------------------
-          vim.keymap.set(
-            "i",
-            "<C-o>",
-            vim.lsp.buf.hover,
-            {
-              buffer = bufnr,
-              silent = true,
-              desc = "LSP: hover",
-            }
-          )
-
-          --------------------------------------------------------
-          -- gs
-          --
-          -- 旧設定では CtrlP + ctrlp-lsp。
-          -- Neovim ではまず builtin LSP の document_symbol を使用。
-          --------------------------------------------------------
-          map(
-            "n",
-            "gs",
-            vim.lsp.buf.document_symbol,
-            "document symbol"
-          )
-
-          --------------------------------------------------------
-          -- gS
-          --------------------------------------------------------
-          map(
-            "n",
-            "gS",
-            vim.lsp.buf.workspace_symbol,
-            "workspace symbol"
-          )
+          map("n", "<F2>", vim.lsp.buf.rename, "rename")
+          map("n", "gr", vim.lsp.buf.references, "references")
+          map("n", "gi", vim.lsp.buf.implementation, "implementation")
+          map("n", "gt", vim.lsp.buf.type_definition, "type definition")
+          map("n", "K", vim.lsp.buf.hover, "hover")
+          map("n", "gs", vim.lsp.buf.document_symbol, "document symbol")
+          map("n", "gS", vim.lsp.buf.workspace_symbol, "workspace symbol")
+          vim.keymap.set("i", "<C-o>", vim.lsp.buf.hover, { buffer = bufnr, silent = true, desc = "LSP: hover", })
         end,
       })
 
