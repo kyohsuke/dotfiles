@@ -2,7 +2,7 @@
 
 NEOVIDE_BIN="/Applications/Neovide.app/Contents/MacOS/neovide"
 
-RETURN_APP="Ghostty"
+RETURN_APP=""
 case "$TERM_PROGRAM" in
   Apple_Terminal)
     RETURN_APP="Terminal"
@@ -15,6 +15,6 @@ esac
 if [ -f "$NEOVIDE_BIN" ]; then
   exec "$NEOVIDE_BIN" --reuse-instance --new-window ${1:+"$@"} -- --cmd "autocmd VimLeave * :!open -a $RETURN_APP"
 else
-  echo "[Error] neovide not found"
+  echo "[Error] neovide not found. Use brew install --cask neovide"
   exit 1
 fi
