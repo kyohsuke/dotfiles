@@ -34,13 +34,3 @@ vim.api.nvim_create_autocmd("FocusLost", {
     vim.g.neovide_opacity = 0.5
   end,
 })
-
-vim.api.nvim_create_autocmd("VimEnter", {
-  callback = function()
-    vim.defer_fn(function()
-      vim.g.neovide_opacity = 0.9
-      vim.opt.lines   = 60
-      vim.opt.columns = 200
-    end, 60)
-  end,
-})
