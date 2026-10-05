@@ -20,6 +20,11 @@
 !/.config/ssh/before
 !/.config/ssh/after
 
+# neovide
+!/.config/neovide
+/.config/neovide/*
+!/.config/neovide/config.toml
+
 # sbin
 !/sbin/*
 

@@ -10,11 +10,6 @@ vim.g.neovide_opacity = 0.9
 vim.opt.guifont     = 'Cica:h14'
 vim.opt.guifontwide = 'Cica-Regular:h14'
 
--- Lines
-vim.opt.lines   = 60
-vim.opt.columns = 200
-
-
 -- copy & paste
 local function copy() vim.cmd([[normal! "+y]]) end
 local function paste() vim.api.nvim_paste(vim.fn.getreg("+"), true, -1) end
