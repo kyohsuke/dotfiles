@@ -185,6 +185,20 @@ if test -z $FISHENV_LOAD
         set -gx BAT_PAGER "less -FR"
     end
 
+    # CA Certificates
+    set -l CA_BUNDLE "$HOMEBREW_PREFIX/share/ca-certificates/cacert.pem"
+    if test -f "$CA_BUNDLE"
+        set -gx HOMEBREW_FORCE_BREWED_CA_CERTIFICATES 1
+        set -gx SSL_CERT_FILE "$CA_BUNDLE"
+        set -gx CURL_CA_BUNDLE "$CA_BUNDLE"
+        set -gx PIP_CERT "$CA_BUNDLE"
+        set -gx REQUESTS_CA_BUNDLE "$CA_BUNDLE"
+        set -gx CARGO_HTTP_CAINFO "$CA_BUNDLE"
+        set -gx CARGO_HTTP_PROXY_CAINFO "$CA_BUNDLE"
+        set -gx GIT_SSL_CAINFO "$CA_BUNDLE"
+        set -gx GIT_PROXY_SSL_CAINFO "$CA_BUNDLE"
+    end
+
     # libffi
     test -d "$HOMEBREW_PREFIX/opt/libffi/lib/pkgconfig"
     and set -gx PKG_CONFIG_PATH "$HOMEBREW_PREFIX/opt/libffi/lib/pkgconfig"
