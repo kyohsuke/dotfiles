@@ -19,7 +19,11 @@ idiomatic_version_file_enable_tools = ["node"]
 go_set_gobin = false
 
 # ruby
+ruby.compile = true
 ruby.default_packages_file = "$HOME/.config/anyenv/default-gems"
 
 # node
 node.default_packages_file = "$HOME/.config/anyenv/default-packages"
+
+# python
+python.compile = true
