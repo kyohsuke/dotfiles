@@ -18,14 +18,10 @@
 
       # developments
       - "act"
-      - "awscli"
-      - "difftastic"
       - "parallel"
       - "universal-ctags"
       - "git"
       - "git-hooks-go"
-      - "ghq"
-      - "gh"
       - "libsodium"
       - "libyaml"
       - "p7zip"
@@ -40,7 +36,6 @@
       - "cmake-docs"
       - "bat"
       - "ipcalc"
-      - "direnv"
       - "libpq"
       - "lua"
       - "readline"

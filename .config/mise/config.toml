@@ -2,11 +2,16 @@
 [tools]
 awscli = { version = "latest", symlink_bins = "true" }
 deno = "latest"
+difftastic = "latest"
+direnv = "latest"
+gh = "latest"
+ghq = "latest"
 go = "1"
 node = "26"
 perl = "latest"
 python = "3"
 ruby = "latest"
+usage = { version = "latest", workflow = "publish-cli.yml" }
 uv = "latest"
 
 
