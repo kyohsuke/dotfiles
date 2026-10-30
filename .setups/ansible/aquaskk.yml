@@ -13,6 +13,7 @@
       - "com.apple.Terminal"
       - "org.vim.MacVim"
       - "com.apple.Spotlight"
+      - "com.apple.campo"
       - "com.mitchellh.ghostty"
 
 - name: skk | Install question.rule
